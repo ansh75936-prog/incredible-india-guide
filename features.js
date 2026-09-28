@@ -1,5 +1,5 @@
 // ========================================================
-// INCREDIBLE INDIA GUIDE - CORE FEATURES & POPUP FIX
+// INCREDIBLE INDIA GUIDE - CORE FEATURES & FIXED LEFT NAV
 // ========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Dedicated State Page with Left-Aligned Back Button
+// Dedicated State Page with Guaranteed Left-Aligned Back Button
 function renderDedicatedStatePage(stateName, pushHistory = true) {
     document.querySelectorAll('.state-modal, .modal-backdrop, [id*="stateModal"]').forEach(el => el.remove());
 
@@ -91,16 +91,16 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
     const highlightsHtml = details.topHighlights.map(h => `<li style="margin-bottom:6px; color:#E2E8F0;">✨ ${h}</li>`).join('');
     const foodsHtml = details.famousFoods.map(f => `<span style="background:rgba(255,84,18,0.15); border:1px solid rgba(255,84,18,0.3); color:#FF8540; padding:4px 12px; border-radius:20px; font-size:0.82rem; font-weight:700;">🍲 ${f}</span>`).join('');
 
-    // HEADER MEIN JUSTIFY-CONTENT: FLEX-START KIYA HAI TAHO BUTTON KINARE (LEFT) PAR RAHE
+    // Guaranteed Left Position using CSS absolute & !important
     stateView.innerHTML = `
-        <header style="background: #0B132B; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: flex-start; gap: 12px;">
-            <button onclick="handleBackNavigation()" style="background: rgba(255,255,255,0.14); color: #FFF; border: none; padding: 9px 16px; border-radius: 10px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.92rem; text-decoration: none; margin: 0;">
+        <div style="background: #0B132B; height: 56px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 100; width: 100%; box-sizing: border-box;">
+            <button onclick="handleBackNavigation()" style="position: absolute !important; left: 16px !important; top: 50% !important; transform: translateY(-50%) !important; margin: 0 !important; background: rgba(255,255,255,0.14) !important; color: #FFFFFF !important; border: 1px solid rgba(255,255,255,0.18) !important; padding: 7px 14px !important; border-radius: 8px !important; font-weight: 700 !important; cursor: pointer !important; font-size: 0.9rem !important; display: inline-flex !important; align-items: center !important; gap: 5px !important; line-height: 1 !important; z-index: 101 !important;">
                 ← Wapas
             </button>
-            <span style="font-weight: 800; color: #FF5412; font-size: 0.95rem; margin-left: auto;">IncredibleIndiaGuide</span>
-        </header>
+            <span style="position: absolute !important; right: 16px !important; top: 50% !important; transform: translateY(-50%) !important; font-weight: 800; color: #FF5412; font-size: 0.92rem; pointer-events: none;">IncredibleIndiaGuide</span>
+        </div>
 
-        <main style="max-width: 900px; margin: 0 auto; padding: 18px 16px 80px 16px;">
+        <main style="max-width: 900px; margin: 0 auto; padding: 18px 16px 80px 16px; box-sizing: border-box;">
             <!-- Hero Header -->
             <div style="background-image: linear-gradient(to top, rgba(6,10,19,0.95), rgba(6,10,19,0.35)), url('${details.heroImage}'); background-size: cover; background-position: center; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); padding: 30px 20px 22px 20px; margin-bottom: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                 <span style="background: #FF5412; color: #FFF; font-size: 0.72rem; font-weight: 800; padding: 4px 12px; border-radius: 30px; text-transform: uppercase;">Official Tourism Circuit</span>
@@ -164,7 +164,7 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
     }
 }
 
-// Back Navigation Handlers
+// Back Action Handlers
 window.handleBackNavigation = function() {
     if (window.history.state && window.history.state.modalOpen) {
         window.history.back();
