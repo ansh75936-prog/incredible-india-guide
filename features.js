@@ -1133,3 +1133,91 @@ window.closeDedicatedStatePage = function(updateUrl = true) {
         window.history.pushState({}, "", window.location.pathname);
     }
 };
+// =========================================================================
+// HOME PAGE - 6 STATES INITIAL VIEW + "VIEW ALL" EXPAND TOGGLE
+// =========================================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupStateCardLimit();
+});
+
+function setupStateCardLimit() {
+    // State card container dhoondein
+    const container = document.querySelector('.states-grid, .state-cards-container, [id*="statesGrid"], .grid');
+    if (!container) return;
+
+    const cards = Array.from(container.querySelectorAll('.state-card-tile, .state-card, [data-state]'));
+    if (cards.length <= 6) return;
+
+    // Pehle 6 cards ko chhod kar baaki ko hide karein
+    cards.forEach((card, index) => {
+        if (index >= 6) {
+            card.classList.add('state-card-hidden');
+            card.style.display = 'none';
+        }
+    });
+
+    // Agar toggle button pehle se bana hai toh remove karein
+    const oldBtn = document.getElementById('viewAllStatesToggleBtn');
+    if (oldBtn) oldBtn.remove();
+
+    // "View All" Button Container
+    const btnWrapper = document.createElement('div');
+    btnWrapper.id = 'viewAllStatesToggleWrapper';
+    btnWrapper.style.cssText = `
+        text-align: center;
+        margin: 28px 0 40px 0;
+        width: 100%;
+    `;
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.id = 'viewAllStatesToggleBtn';
+    toggleBtn.setAttribute('data-expanded', 'false');
+    toggleBtn.style.cssText = `
+        background: rgba(255, 255, 255, 0.08);
+        color: #FFFFFF;
+        border: 1px solid rgba(255, 84, 18, 0.5);
+        padding: 13px 28px;
+        border-radius: 30px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        transition: all 0.25s ease;
+    `;
+    toggleBtn.innerHTML = `<span>Sabhi 36 States & UTs Dekhein</span> <span style="color:#FF5412; font-size:1.1rem;">↓</span>`;
+
+    toggleBtn.addEventListener('click', () => {
+        const isExpanded = toggleBtn.getAttribute('data-expanded') === 'true';
+
+        if (!isExpanded) {
+            // Saare cards show karein
+            cards.forEach(card => {
+                card.style.display = '';
+                card.style.animation = 'fadeInCard 0.3s ease forwards';
+            });
+            toggleBtn.setAttribute('data-expanded', 'true');
+            toggleBtn.style.background = '#FF5412';
+            toggleBtn.innerHTML = `<span>Kam Dikhayein (Show Less)</span> <span style="font-size:1.1rem;">↑</span>`;
+        } else {
+            // Wapas sirf 6 cards show karein
+            cards.forEach((card, index) => {
+                if (index >= 6) {
+                    card.style.display = 'none';
+                }
+            });
+            toggleBtn.setAttribute('data-expanded', 'false');
+            toggleBtn.style.background = 'rgba(255, 255, 255, 0.08)';
+            toggleBtn.innerHTML = `<span>Sabhi 36 States & UTs Dekhein</span> <span style="color:#FF5412; font-size:1.1rem;">↓</span>`;
+            
+            // Wapas grid ke top par smooth scroll
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+
+    btnWrapper.appendChild(toggleBtn);
+    container.parentNode.insertBefore(btnWrapper, container.nextSibling);
+}
