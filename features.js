@@ -1542,12 +1542,21 @@ function setupUnifiedLeftHamburger() {
 
   leftHamburger.onclick = openUnifiedMenu;
 }
+
 // =========================================================================
-// WORKING LEFT HAMBURGER + DARK MODE + TOPBAR CLEANUP
+// CLEAN HEADER: REMOVE HAMBURGER BUTTONS & 3-DOT TOPBAR
 // =========================================================================
 
-function fixHeaderAndControls() {
-  // 1. Bekar 3-dot topbar ko hide karein
+function removeHamburgerAndCleanHeader() {
+  // 1. Saare hamburger buttons ko hide/remove karein
+  const allHamburgers = document.querySelectorAll(
+    '#hamburgerBtn, .hamburger-btn, #workingLeftHamburger, #unifiedLeftMenuBtn'
+  );
+  allHamburgers.forEach(btn => {
+    btn.style.setProperty('display', 'none', 'important');
+  });
+
+  // 2. Bekar 3-dot topbar ko permanently screen se hatayein
   const topbars = document.querySelectorAll('.topbar, .topbar-wrap, .topbar-right');
   topbars.forEach(el => {
     el.style.setProperty('display', 'none', 'important');
@@ -1555,134 +1564,16 @@ function fixHeaderAndControls() {
     el.style.setProperty('height', '0px', 'important');
   });
 
-  // 2. Original buttons dhoondein
-  const originalHamburger = document.getElementById('hamburgerBtn');
-  const originalThemeBtn = document.getElementById('themeToggleBtn');
-  const originalOverlay = document.getElementById('drawerOverlay');
-  const originalDrawer = document.getElementById('mobileDrawer');
-  const closeBtn = document.getElementById('drawerCloseBtn');
-
-  // Purane hamburger ko hide karein taaki duplicate na dikhe
-  if (originalHamburger) {
-    originalHamburger.style.setProperty('display', 'none', 'important');
-  }
-
-  // Header ke Currency & Dark mode bahar se chupayein
-  const curBox = document.querySelector('.header-actions .currency-select-box');
-  if (curBox) curBox.style.setProperty('display', 'none', 'important');
-  if (originalThemeBtn && !originalThemeBtn.closest('#mobileDrawer')) {
-    originalThemeBtn.style.setProperty('display', 'none', 'important');
-  }
-
-  // 3. Left side par Working Hamburger Button lagayein
+  // 3. Navbar layout ko center/clean karein
   const navbar = document.querySelector('.navbar');
-  if (navbar && !document.getElementById('workingLeftHamburger')) {
-    const leftBtn = document.createElement('button');
-    leftBtn.id = 'workingLeftHamburger';
-    leftBtn.type = 'button';
-    leftBtn.setAttribute('aria-label', 'Open navigation menu');
-    leftBtn.style.cssText = `
-      display: flex !important;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 12px;
-      color: #FFFFFF;
-      cursor: pointer;
-      margin-right: 12px;
-      flex-shrink: 0;
-      z-index: 1001;
-    `;
-    leftBtn.innerHTML = `
-      <svg viewBox="0 0 448 512" style="width:20px; height:20px; fill:currentColor;" aria-hidden="true">
-        <path d="M0 96c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm448 160c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z"/>
-      </svg>
-    `;
-
-    // Click par original drawer kholne ka logic
-    leftBtn.addEventListener('click', () => {
-      if (originalHamburger) {
-        originalHamburger.click();
-      } else if (originalDrawer) {
-        originalDrawer.classList.add('active');
-        if (originalOverlay) originalOverlay.classList.add('active');
-      }
-    });
-
-    navbar.insertBefore(leftBtn, navbar.firstChild);
-  }
-
-  // 4. Drawer ke andar Working Dark Mode + Currency + Submissions inject karein
-  if (originalDrawer && !originalDrawer.querySelector('#injectedDrawerToolbar')) {
-    const drawerHead = originalDrawer.querySelector('.drawer-head');
-    if (drawerHead) {
-      const toolBox = document.createElement('div');
-      toolBox.id = 'injectedDrawerToolbar';
-      toolBox.style.cssText = `
-        padding: 12px 16px;
-        background: rgba(255, 255, 255, 0.04);
-        border-bottom: 1px solid var(--border-light, rgba(255, 255, 255, 0.1));
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      `;
-
-      toolBox.innerHTML = `
-        <div style="display:flex; gap:10px; align-items:center;">
-          <select id="drawerCurrencyDropdown" onchange="if(typeof changeCurrency==='function') changeCurrency(this.value);" style="flex:1; padding:8px 12px; background:var(--surface, #1e293b); color:var(--text-main, #fff); border:1px solid rgba(255,255,255,0.2); border-radius:10px; font-weight:700; font-size:0.85rem; cursor:pointer;">
-            <option value="INR" selected>INR (₹)</option>
-            <option value="USD">USD ($)</option>
-            <option value="EUR">EUR (€)</option>
-            <option value="GBP">GBP (£)</option>
-            <option value="AED">AED (د.إ)</option>
-          </select>
-
-          <button id="drawerToggleThemeBtn" type="button" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:var(--surface, #1e293b); border:1px solid rgba(255,255,255,0.2); border-radius:10px; color:#FFB800; font-size:1.15rem; cursor:pointer;">
-            🌓
-          </button>
-        </div>
-
-        <button type="button" onclick="if(typeof toggleAdminDrawer==='function') toggleAdminDrawer();" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:rgba(255,84,18,0.15); border:1px solid #FF5412; border-radius:10px; color:#fff; font-weight:700; font-size:0.88rem; cursor:pointer;">
-          <span>📋 View Submissions</span>
-          <span style="background:#FF5412; padding:2px 8px; border-radius:12px; font-size:0.75rem;">CRM</span>
-        </button>
-      `;
-
-      drawerHead.insertAdjacentElement('afterend', toolBox);
-
-      // Dark Mode Click Handler (Direct theme toggle bridge)
-      const themeClickBtn = document.getElementById('drawerToggleThemeBtn');
-      themeClickBtn.addEventListener('click', () => {
-        const root = document.documentElement;
-        const currentTheme = root.getAttribute('data-theme') || 'light';
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        root.setAttribute('data-theme', newTheme);
-        try {
-          localStorage.setItem('theme', newTheme);
-        } catch(e) {}
-      });
-    }
-  }
-
-  // Drawer Close Button Event Check
-  if (closeBtn && originalDrawer) {
-    closeBtn.addEventListener('click', () => {
-      originalDrawer.classList.remove('active');
-      if (originalOverlay) originalOverlay.classList.remove('active');
-    });
-  }
-  if (originalOverlay && originalDrawer) {
-    originalOverlay.addEventListener('click', () => {
-      originalDrawer.classList.remove('active');
-      originalOverlay.classList.remove('active');
-    });
+  if (navbar) {
+    navbar.style.setProperty('justify-content', 'space-between', 'important');
+    navbar.style.setProperty('padding', '12px 16px', 'important');
   }
 }
 
-document.addEventListener("DOMContentLoaded", fixHeaderAndControls);
-window.addEventListener("load", fixHeaderAndControls);
-setTimeout(fixHeaderAndControls, 250);
+// Auto-run on load
+document.addEventListener("DOMContentLoaded", removeHamburgerAndCleanHeader);
+window.addEventListener("load", removeHamburgerAndCleanHeader);
+setTimeout(removeHamburgerAndCleanHeader, 150);
+setTimeout(removeHamburgerAndCleanHeader, 500);
