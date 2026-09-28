@@ -1,54 +1,52 @@
 // =========================================================================
-// UNIVERSAL SITE CLEANER & FULL ENGLISH TRANSLATOR (STATES, DISTRICTS & UI)
+// UNIVERSAL SITE CLEANER & FULL ENGLISH TRANSLATOR (UPDATED)
 // =========================================================================
 
 (function () {
-  // 1. Dictionary: Hindi / Hinglish Words -> Proper English
   const translations = [
-    // Header & Hero
+    // Navigation & Buttons
+    { match: /←\s*Wapas/gi, replace: "← Back" },
+    { match: /Wapas/gi, replace: "Back" },
+    { match: /Khojein/gi, replace: "Explore" },
+    { match: /Vistar Se Janein/gi, replace: "View Details" },
+    { match: /Jankari Dekhein/gi, replace: "View Info" },
+
+    // Cuisine & Tour Tips
+    { match: /Prasiddh Vyanjan\s*\(Local Cuisine\)/gi, replace: "Famous Delicacies (Local Cuisine)" },
+    { match: /Prasiddh Vyanjan/gi, replace: "Popular Delicacies" },
+    { match: /Tour Tip:\s*(\d+)[-–](\d+)\s*Din/gi, replace: "Tour Tip: $1-$2 Days" },
+    { match: /(\d+)\s*Din/gi, replace: "$1 Days" },
+    { match: /(\d+)\s*Raat/gi, replace: "$1 Nights" },
+
+    // Districts & State Subtitles
+    { match: /Sabhi Districts & Kshetra/gi, replace: "All Districts & Regions" },
+    { match: /Sabhi Jile/gi, replace: "All Districts" },
+    { match: /Sabhi Rajya/gi, replace: "All States" },
+    { match: /Kisi bhi district par tap karein verified hotels, hospitals, photos aur food dekhne ke liye:/gi, replace: "Tap any district to view verified hotels, hospitals, photos, and local food:" },
+    { match: /verified hotels, hospitals, photos aur food dekhne ke liye/gi, replace: "to view verified hotels, hospitals, photos, and food" },
+
+    // General Tourism Headings & Badges
     { match: /Ek Desh, Anant Rang/gi, replace: "One Nation, Infinite Colors" },
     { match: /Poora Bharat/gi, replace: "All India" },
     { match: /Kahan jana chahte hain\?/gi, replace: "Where do you want to go?" },
-    { match: /Sabhi Rajya/gi, replace: "All States" },
-    { match: /Sabhi Jile/gi, replace: "All Districts" },
-    { match: /Khojein/gi, replace: "Explore" },
-
-    // Categories & Filter Tabs
-    { match: /Pahadi Kshetra/gi, replace: "Hill Stations & Mountains" },
-    { match: /Dharohar va Mandir/gi, replace: "Heritage & Temples" },
-    { match: /Samudra Tat va Dweep/gi, replace: "Beaches & Islands" },
-    { match: /Vanya Jeev va Prakriti/gi, replace: "Wildlife & Nature" },
-    { match: /Registan/gi, replace: "Deserts" },
-    { match: /Adhyatmik Sthal/gi, replace: "Spiritual Sites" },
-    { match: /Sanskritik Virasat/gi, replace: "Cultural Heritage" },
-
-    // Card Details & Badges
     { match: /Pramukh Aakarshan/gi, replace: "Top Attractions" },
     { match: /Jane Ka Sahi Samay/gi, replace: "Best Time to Visit" },
     { match: /Kaise Pahunchein/gi, replace: "How to Reach" },
-    { match: /Pahunchne ke Raste/gi, replace: "How to Reach" },
+    { match: /Pahunchne ke Raste/gi, replace: "Travel Routes" },
     { match: /Hawai Adda/gi, replace: "Airport" },
     { match: /Railway Station/gi, replace: "Railway Station" },
     { match: /Sarak Marg/gi, replace: "By Road" },
-    { match: /Vistar Se Janein/gi, replace: "View Details" },
-    { match: /Jankari Dekhein/gi, replace: "Explore Guide" },
     { match: /Khas Bat/gi, replace: "Highlights" },
     { match: /Khan-Pan/gi, replace: "Local Cuisine" },
-    { match: /Mashhoor Khana/gi, replace: "Famous Dishes" },
-    { match: /Khareedari/gi, replace: "Shopping & Crafts" },
-    { match: /Mausam/gi, replace: "Weather & Climate" },
-    { match: /Duri/gi, replace: "Distance" },
-
-    // District & Registry Labels
+    { match: /Khareedari/gi, replace: "Shopping & Souvenirs" },
+    { match: /Mausam/gi, replace: "Weather" },
     { match: /Kul Jile/gi, replace: "Total Districts" },
     { match: /Rajdhani/gi, replace: "Capital" },
     { match: /Bhasha/gi, replace: "Language" },
     { match: /Aabadi/gi, replace: "Population" },
     { match: /Kshetraphal/gi, replace: "Area" },
-    { match: /Paryatan Sthal/gi, replace: "Tourist Spots" },
-    { match: /Jila Guide/gi, replace: "District Guide" },
 
-    // Support / Booking Form Labels
+    // Booking & Support Form
     { match: /Aapka Naam/gi, replace: "Your Full Name" },
     { match: /Kitne Yatri Hain\?/gi, replace: "Number of Travelers" },
     { match: /Anumanit Budget/gi, replace: "Estimated Budget" },
@@ -56,7 +54,6 @@
     { match: /Free Travel Plan & Quote Payein/gi, replace: "Get Free Travel Plan & Quote" }
   ];
 
-  // 2. Text node replace engine
   function walkAndTranslate(node) {
     if (node.nodeType === Node.TEXT_NODE) {
       let val = node.nodeValue;
@@ -69,7 +66,6 @@
         node.nodeValue = val;
       }
     } else {
-      // Input placeholders handle karein
       if (node.placeholder) {
         translations.forEach(item => {
           if (item.match.test(node.placeholder)) {
@@ -83,7 +79,6 @@
     }
   }
 
-  // 3. UI Cleaner: Header se unwanted items remove karein
   function cleanHeader() {
     const stray = document.querySelectorAll(
       '.header-actions, .currency-select-box, .theme-toggle-btn, ' +
@@ -101,11 +96,8 @@
     walkAndTranslate(document.body);
   }
 
-  // Document life cycle runs
   document.addEventListener("DOMContentLoaded", runCompleteSweep);
   window.addEventListener("load", runCompleteSweep);
-
-  // Jab user state ya district par click kare tab dynamic cards ko bhi turant English karein
-  document.addEventListener("click", () => setTimeout(runCompleteSweep, 150));
-  setInterval(runCompleteSweep, 800);
+  document.addEventListener("click", () => setTimeout(runCompleteSweep, 100));
+  setInterval(runCompleteSweep, 500);
 })();
