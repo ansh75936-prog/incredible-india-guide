@@ -1,5 +1,5 @@
 // ========================================================
-// INCREDIBLE INDIA GUIDE - IN-SITE LEAD DATABASE & CRM
+// INCREDIBLE INDIA GUIDE - CLEAN LEAD & CRM ENGINE
 // ========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSiteAdminBadge();
     }
 
-    // 2. Form Submission Handler
+    // 2. Lead Form Submission Handler
     const leadForm = document.getElementById('leadInquiryForm');
     if (leadForm) {
         leadForm.addEventListener('submit', (e) => {
@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!name || !phone || !dest) return;
 
-            // Site ke andar permanent save
+            // Site ke database me safe store
             saveLeadLocally({ name, phone, destination: dest, pax, budget });
 
-            // WhatsApp link (Traveler desk ko direct update bhej sakta hai)
+            // Direct WhatsApp message link for Traveler
             const waMsg = encodeURIComponent(
                 `Namaste Incredible India Guide!\n\nNew Lead:\nName: ${name}\nPhone: ${phone}\nDestination: ${dest}\nPax: ${pax}\nBudget: ${budget}`
             );
@@ -53,15 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }, true);
     }
 
-    // 3. Admin View Floating Button Injector
+    // 3. Floating In-Site Admin Leads Manager Trigger
     injectAdminTrigger();
 });
 
-// Floating In-Site Leads Viewer & Excel Downloader
 function injectAdminTrigger() {
     if (document.getElementById('siteCrmTriggerBtn')) return;
 
-    // Floating Admin Pill
     const btn = document.createElement('button');
     btn.id = 'siteCrmTriggerBtn';
     btn.innerHTML = `📊 Site Database (<span id="crmCount">0</span>)`;
@@ -129,8 +127,8 @@ function openSiteAdminModal() {
         <div style="background:#0E1726; color:#FFF; width:100%; max-width:850px; max-height:85vh; border-radius:18px; border:1px solid rgba(255,255,255,0.1); display:flex; flex-direction:column; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,0.5);">
             <div style="padding:18px 24px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
                 <div>
-                    <h3 style="font-size:1.3rem; margin:0;">📁 Site Inquiry Manager (CRM)</h3>
-                    <small style="color:#94A3B8;">Gmail par koi mail nahi jayega, saara data yahan secure rahega.</small>
+                    <h3 style="font-size:1.3rem; margin:0;">📁 Site Inquiry Manager</h3>
+                    <small style="color:#94A3B8;">Saara data aapke browser portal me surakshit hai.</small>
                 </div>
                 <button onclick="document.getElementById('siteAdminModal').style.display='none'" style="background:none; border:none; color:#FFF; font-size:1.8rem; cursor:pointer;">&times;</button>
             </div>
@@ -163,7 +161,6 @@ function openSiteAdminModal() {
     modal.style.display = 'flex';
 }
 
-// 4. Export Data to Excel/CSV
 window.downloadLeadsAsCSV = function() {
     const stored = JSON.parse(localStorage.getItem('portal_travel_leads') || '[]');
     if (stored.length === 0) {
