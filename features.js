@@ -1711,4 +1711,92 @@ function setupOnlyThreeDotMenu() {
 document.addEventListener("DOMContentLoaded", setupOnlyThreeDotMenu);
 window.addEventListener("load", setupOnlyThreeDotMenu);
 setTimeout(setupOnlyThreeDotMenu, 150);
+// =========================================================================
+// AUTO-TRANSLATE ENTIRE SITE TO COMPLETE ENGLISH
+// =========================================================================
+
+function convertAllToEnglish() {
+  const dictionary = {
+    // Hero Banner & Headings
+    "Ek Desh, Anant Rang — Explore Incredible Bharat": "One Nation, Infinite Colors — Explore Incredible Bharat",
+    "Ek Desh, Anant Rang": "One Nation, Infinite Colors",
+    "Explore Incredible Bharat": "Explore Incredible Bharat",
+    "THE COMPREHENSIVE TOURISM DIRECTORY OF BHARAT": "THE COMPREHENSIVE TOURISM DIRECTORY OF INDIA",
+    "Himalaya ke barfani shikharon se lekar Kerala ke shaant backwaters, Rajasthan ke shahi dharohar aur North-East ki haribhari vadiyon tak ki poori yatra ek jagah.": "From the snow-capped Himalayan peaks to the serene backwaters of Kerala, the royal heritage of Rajasthan, and the lush green valleys of the North-East — your complete travel guide in one place.",
+    
+    // Search Bar & Filter Placeholders
+    "Kahan jana chahte hain? (e.g. Manali": "Where do you want to go? (e.g. Manali, Goa)",
+    "Kahan jana chahte hain?": "Where do you want to go?",
+    "Sabhi Rajya (All States & UTs)": "All States & Union Territories",
+    "Sabhi Rajya": "All States & UTs",
+    "Explore": "Explore Destinations",
+    "Khojein": "Search",
+
+    // Section Titles & Subtitles
+    "Popular Sthalein": "Popular Destinations",
+    "36 States & UTs Hub": "36 States & Union Territories Hub",
+    "States & UTs Directory": "States & UTs Directory",
+    "Interactive Map": "Interactive Map",
+    "Trip Cost Estimator": "Trip Cost Estimator",
+    "Tour Circuits": "Tour Circuits",
+    "Weather Forecast": "Weather Forecast",
+    "Festival Calendar": "Festival Calendar",
+    "Travel Utilities": "Travel Utilities",
+    "Plan Your Trip": "Plan Your Trip",
+    "View Submissions": "View Inquiries",
+
+    // Toggle Buttons & Badges
+    "Sabhi States & UTs Dekhein (36)": "View All States & UTs (36)",
+    "Kam Dikhayein (Show Less)": "Show Less",
+    "Koi new inquiries nahi aayi hain.": "No new customer inquiries yet.",
+    "Official State & UT Registry": "Official State & UT Registry",
+    "24x7 Tourism Helpline: 1363 (Toll Free)": "24x7 Tourism Helpline: 1363 (Toll Free)"
+  };
+
+  // 1. Text elements replace karein
+  const textNodes = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    null,
+    false
+  );
+
+  let node;
+  while ((node = textNodes.nextNode())) {
+    const trimmed = node.nodeValue.trim();
+    if (dictionary[trimmed]) {
+      node.nodeValue = node.nodeValue.replace(trimmed, dictionary[trimmed]);
+    } else {
+      // Partial matching for sentences
+      for (const [hindi, english] of Object.entries(dictionary)) {
+        if (node.nodeValue.includes(hindi)) {
+          node.nodeValue = node.nodeValue.replaceAll(hindi, english);
+        }
+      }
+    }
+  }
+
+  // 2. Input Placeholders replace karein
+  document.querySelectorAll('input[placeholder]').forEach(input => {
+    for (const [hindi, english] of Object.entries(dictionary)) {
+      if (input.placeholder.includes(hindi)) {
+        input.placeholder = input.placeholder.replaceAll(hindi, english);
+      }
+    }
+  });
+
+  // 3. Select Dropdown options replace karein
+  document.querySelectorAll('option').forEach(opt => {
+    const txt = opt.innerText.trim();
+    if (dictionary[txt]) {
+      opt.innerText = dictionary[txt];
+    }
+  });
+}
+
+// Auto-run translation
+document.addEventListener("DOMContentLoaded", convertAllToEnglish);
+window.addEventListener("load", convertAllToEnglish);
+setTimeout(convertAllToEnglish, 300);
+setTimeout(convertAllToEnglish, 1000);
 setTimeout(setupOnlyThreeDotMenu, 500);
