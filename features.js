@@ -1544,36 +1544,171 @@ function setupUnifiedLeftHamburger() {
 }
 
 // =========================================================================
-// CLEAN HEADER: REMOVE HAMBURGER BUTTONS & 3-DOT TOPBAR
+// ONLY 3-DOT MENU: ALL CONTROLS (DARK MODE + CURRENCY) INSIDE DRAWER
 // =========================================================================
 
-function removeHamburgerAndCleanHeader() {
-  // 1. Saare hamburger buttons ko hide/remove karein
+function setupOnlyThreeDotMenu() {
+  // 1. Saare hamburger buttons ko screen se hamesha ke liye hide karein
   const allHamburgers = document.querySelectorAll(
     '#hamburgerBtn, .hamburger-btn, #workingLeftHamburger, #unifiedLeftMenuBtn'
   );
-  allHamburgers.forEach(btn => {
-    btn.style.setProperty('display', 'none', 'important');
-  });
+  allHamburgers.forEach(btn => btn.style.setProperty('display', 'none', 'important'));
 
-  // 2. Bekar 3-dot topbar ko permanently screen se hatayein
-  const topbars = document.querySelectorAll('.topbar, .topbar-wrap, .topbar-right');
-  topbars.forEach(el => {
-    el.style.setProperty('display', 'none', 'important');
-    el.style.setProperty('visibility', 'hidden', 'important');
-    el.style.setProperty('height', '0px', 'important');
-  });
+  // 2. Header se Dark Mode aur Currency ko bahar se hide karein
+  const navActions = document.querySelector('.header-actions');
+  if (navActions) {
+    const curBox = navActions.querySelector('.currency-select-box');
+    const themeBtn = navActions.querySelector('.theme-toggle-btn');
+    if (curBox) curBox.style.setProperty('display', 'none', 'important');
+    if (themeBtn) themeBtn.style.setProperty('display', 'none', 'important');
+  }
 
-  // 3. Navbar layout ko center/clean karein
-  const navbar = document.querySelector('.navbar');
-  if (navbar) {
-    navbar.style.setProperty('justify-content', 'space-between', 'important');
-    navbar.style.setProperty('padding', '12px 16px', 'important');
+  // 3. Drawer elements dhoondein
+  const drawer = document.getElementById('mobileDrawer');
+  const overlay = document.getElementById('drawerOverlay');
+  const closeBtn = document.getElementById('drawerCloseBtn');
+
+  // By default drawer ko hidden rakhein
+  if (drawer && !drawer.classList.contains('active')) {
+    drawer.style.setProperty('display', 'none', 'important');
+    if (overlay) overlay.style.setProperty('display', 'none', 'important');
+  }
+
+  // 4. Drawer ke andar Dark Mode + Currency controls inject karein
+  if (drawer && !drawer.querySelector('#threeDotInternalControls')) {
+    const drawerHead = drawer.querySelector('.drawer-head');
+    if (drawerHead) {
+      const controlsBox = document.createElement('div');
+      controlsBox.id = 'threeDotInternalControls';
+      controlsBox.style.cssText = `
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border-bottom: 1px solid var(--border-light, rgba(255,255,255,0.1));
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      `;
+
+      controlsBox.innerHTML = `
+        <!-- Currency & Dark Mode Bar inside 3-dot Drawer -->
+        <div style="display:flex; gap:10px; align-items:center;">
+          <select id="internalCurrencySelect" onchange="if(typeof changeCurrency==='function') changeCurrency(this.value);" style="flex:1; padding:9px 12px; background:var(--surface, #1e293b); color:var(--text-main, #fff); border:1px solid rgba(255,255,255,0.18); border-radius:10px; font-weight:700; font-size:0.85rem; cursor:pointer;">
+            <option value="INR" selected>INR (₹)</option>
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="AED">AED (د.إ)</option>
+          </select>
+
+          <button id="internalDarkToggleBtn" type="button" aria-label="Toggle Dark Mode" style="width:42px; height:42px; display:flex; align-items:center; justify-content:center; background:var(--surface, #1e293b); border:1px solid rgba(255,255,255,0.18); border-radius:10px; color:#FFB800; font-size:1.2rem; cursor:pointer;">
+            🌓
+          </button>
+        </div>
+
+        <!-- View Submissions Inquiry Button -->
+        <button type="button" onclick="if(typeof toggleAdminDrawer==='function') toggleAdminDrawer(); closeDrawer();" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:rgba(255,84,18,0.15); border:1px solid #FF5412; border-radius:10px; color:#fff; font-weight:700; font-size:0.88rem; cursor:pointer;">
+          <span>📋 View Submissions</span>
+          <span style="background:#FF5412; padding:2px 8px; border-radius:12px; font-size:0.75rem;">CRM</span>
+        </button>
+      `;
+
+      drawerHead.insertAdjacentElement('afterend', controlsBox);
+
+      // Dark Mode Click Logic
+      const darkToggle = document.getElementById('internalDarkToggleBtn');
+      darkToggle.addEventListener('click', () => {
+        const root = document.documentElement;
+        const currentTheme = root.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        root.setAttribute('data-theme', newTheme);
+        try {
+          localStorage.setItem('theme', newTheme);
+        } catch(e) {}
+      });
+    }
+  }
+
+  // 5. Left 3-Dot Button ko Drawer ke sath bind karein
+  const topbar = document.querySelector('.topbar') || document.querySelector('.topbar-wrap');
+  if (topbar) {
+    topbar.style.cssText = `
+      position: absolute !important;
+      top: 12px !important;
+      left: 12px !important;
+      z-index: 1002 !important;
+      display: flex !important;
+      visibility: visible !important;
+      height: auto !important;
+      width: auto !important;
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+    `;
+
+    // Faltu links chupayein
+    const links = topbar.querySelectorAll('a, span');
+    links.forEach(l => l.style.setProperty('display', 'none', 'important'));
+
+    const dotBtn = topbar.querySelector('button') || topbar;
+    dotBtn.style.cssText = `
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 42px !important;
+      height: 42px !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      border-radius: 12px !important;
+      color: #FFFFFF !important;
+      font-size: 1.4rem !important;
+      cursor: pointer !important;
+    `;
+
+    // Tap karne par open/close toggle
+    dotBtn.onclick = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!drawer) return;
+
+      const isHidden = drawer.style.display === 'none' || !drawer.classList.contains('active');
+      if (isHidden) {
+        drawer.style.setProperty('display', 'flex', 'important');
+        drawer.classList.add('active');
+        if (overlay) {
+          overlay.style.setProperty('display', 'block', 'important');
+          overlay.classList.add('active');
+        }
+      } else {
+        closeDrawer();
+      }
+    };
+  }
+
+  // Close Function
+  function closeDrawer() {
+    if (drawer) {
+      drawer.style.setProperty('display', 'none', 'important');
+      drawer.classList.remove('active');
+    }
+    if (overlay) {
+      overlay.style.setProperty('display', 'none', 'important');
+      overlay.classList.remove('active');
+    }
+  }
+
+  if (closeBtn) closeBtn.onclick = closeDrawer;
+  if (overlay) overlay.onclick = closeDrawer;
+
+  if (drawer) {
+    drawer.querySelectorAll('a').forEach(a => {
+      a.onclick = closeDrawer;
+    });
   }
 }
 
-// Auto-run on load
-document.addEventListener("DOMContentLoaded", removeHamburgerAndCleanHeader);
-window.addEventListener("load", removeHamburgerAndCleanHeader);
-setTimeout(removeHamburgerAndCleanHeader, 150);
-setTimeout(removeHamburgerAndCleanHeader, 500);
+// Auto-run on all triggers
+document.addEventListener("DOMContentLoaded", setupOnlyThreeDotMenu);
+window.addEventListener("load", setupOnlyThreeDotMenu);
+setTimeout(setupOnlyThreeDotMenu, 150);
+setTimeout(setupOnlyThreeDotMenu, 500);
