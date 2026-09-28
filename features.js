@@ -537,6 +537,258 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     hotelAreas: ["Godowlia Ghats", "Cantonment Luxury Zone", "Assi Ghat"],
     hospitals: ["Sir Sunderlal Hospital (BHU)", "Heritage Hospitals Lanka", "Apex Hospital"],
     quickTip: "Subah 5 baje Assi se Dashashwamedh Ghat tak sunrise boat ride zaroor lein."
+  }, 
+  // =========================================================================
+  // PUNJAB (ALL 23 DISTRICTS)
+  // =========================================================================
+  "Amritsar": {
+    attractions: ["Golden Temple", "Wagah Border", "Jallianwala Bagh", "Partition Museum Amritsar"],
+    famousFood: ["Amritsari Kulcha with Chole", "Guru Ka Langar", "Ahuja Lassi", "Makhan Fish"],
+    hotelAreas: ["Heritage Street (Golden Temple Walk)", "Mall Road", "Ranjit Avenue"],
+    hospitals: ["Sri Guru Ram Das Institute of Medical Sciences", "Amandeep Hospital", "Fortis Escorts Amritsar"],
+    quickTip: "Wagah Border parade dekhne ke liye shaam 3:30 baje tak stadium pahunchna behtar hai."
+  },
+  "Barnala": {
+    attractions: ["Gurudwara Tegh Bahadur Sahib", "Geeta Bhawan Barnala"],
+    famousFood: ["Makki Di Roti Sarson Da Saag", "Dal Makhani", "Sweet Lassi"],
+    hotelAreas: ["College Road", "Kachehri Chowk"],
+    hospitals: ["Civil Hospital Barnala", "Adesh Hospital Barnala"],
+    quickTip: "Barnala agricultural machinery aur textile manufacturing ke liye prasiddh hai."
+  },
+  "Bathinda": {
+    attractions: ["Qila Mubarak Bathinda", "Takht Sri Damdama Sahib", "Bathinda Lake"],
+    famousFood: ["Bathinda Lassi & Pinni", "Chana Kulcha", "Tandoori Chicken"],
+    hotelAreas: ["Mall Road Bathinda", "Civil Lines", "Talwandi Sabo Hub"],
+    hospitals: ["AIIMS Bathinda", "Civil Hospital Bathinda", "Max Super Speciality Hospital"],
+    quickTip: "Qila Mubarak wahi aitihasik killa hai jahan Razia Sultan ko bandi banaya gaya tha."
+  },
+  "Faridkot": {
+    attractions: ["Rajmahal Faridkot", "Qila Mubarak Faridkot", "Gurudwara Tilla Baba Farid"],
+    famousFood: ["Punjabi Kadhi Chawal", "Pinni", "Amritsari Kulcha"],
+    hotelAreas: ["Talwandi Road", "Civil Lines Faridkot"],
+    hospitals: ["Guru Gobind Singh Medical College (GGS)", "Civil Hospital Faridkot"],
+    quickTip: "Tilla Baba Farid sufi saint Baba Sheikh Farid ji ki tapobhoomi hai."
+  },
+  "Fatehgarh Sahib": {
+    attractions: ["Gurudwara Fatehgarh Sahib", "Gurudwara Jyoti Saroop", "Aam Khas Bagh Sirhind"],
+    famousFood: ["Guru Ka Langar", "Sirhind Special Pinni", "Malai Kulfi"],
+    hotelAreas: ["GT Road Sirhind", "Fatehgarh Sahib Complex"],
+    hospitals: ["Civil Hospital Fatehgarh Sahib", "Indus Hospital Sirhind"],
+    quickTip: "Yeh chhotte Sahibzaadon Baba Zorawar Singh aur Baba Fateh Singh ka shahadat sthal hai."
+  },
+  "Fazilka": {
+    attractions: ["Sadqi Border", "Fazilka TV Tower", "Asafwala War Memorial"],
+    famousFood: ["Tosha (Fazilka Special Sweet)", "Golgappe with 5 Waters", "Bikaneri Bhujia"],
+    hotelAreas: ["Clock Tower Chowk", "Abohar Highway"],
+    hospitals: ["Civil Hospital Fazilka", "Sanjeevani Hospital Fazilka"],
+    quickTip: "Sadqi Border par Wagah ki tarah hi daily Indo-Pak retreat flag ceremony hoti hai."
+  },
+  "Ferozepur": {
+    attractions: ["National Martyrs Memorial Hussainiwala", "Hussainiwala Border", "Saragarhi Memorial Gurudwara"],
+    famousFood: ["Hussainiwala Kulfi", "Punjabi Samosa", "Lassi"],
+    hotelAreas: ["Cantonment Area", "Mall Road Ferozepur", "Station Road"],
+    hospitals: ["Civil Hospital Ferozepur Cantt", "Frances Newton Hospital"],
+    quickTip: "Hussainiwala mein Shaheed Bhagat Singh, Sukhdev aur Rajguru ki samadhi sthit hai."
+  },
+  "Gurdaspur": {
+    attractions: ["Dera Baba Nanak Kartarpur", "Gurudwara Chola Sahib", "Fish Park Gurdaspur"],
+    famousFood: ["Gurdaspuri Peda", "Makki Roti Saag", "Kadhi Pakora"],
+    hotelAreas: ["Tibri Road", "Batala Road Gurdaspur"],
+    hospitals: ["Civil Hospital Gurdaspur", "Babbar Hospital"],
+    quickTip: "Dera Baba Nanak se Kartarpur Sahib viewing point ka darshan zaroor karein."
+  },
+  "Hoshiarpur": {
+    attractions: ["Takhni-Rehmapur Sanctuary", "Dholbaha Archaeological Museum", "Kamahi Devi Temple"],
+    famousFood: ["Hoshiarpur Wooden Inlay Craft", "Amritsari Kulcha", "Mango Shake"],
+    hotelAreas: ["Mall Road Hoshiarpur", "Jalandhar Road"],
+    hospitals: ["Civil Hospital Hoshiarpur", "Shivam Hospital"],
+    quickTip: "Hoshiarpur Shivalik foothills mein wooden inlay handicrafts ke liye famous hai."
+  },
+  "Jalandhar": {
+    attractions: ["Devi Talab Mandir", "Wonderland Theme Park", "Jang-e-Azadi Memorial Kartarpur"],
+    famousFood: ["Sports City Street Snacks", "Model Town Chhole Bhature", "Kharode Soup"],
+    hotelAreas: ["Model Town", "GT Road", "Civil Lines Jalandhar"],
+    hospitals: ["Tagore Hospital & Heart Institute", "Civil Hospital Jalandhar", "Sacred Heart Hospital"],
+    quickTip: "Cricket bat aur world-class sports equipment ke liye Basti Nau Market visit karein."
+  },
+  "Kapurthala": {
+    attractions: ["Jagatjit Palace", "Moorish Mosque Kapurthala", "Shalimar Gardens Kapurthala"],
+    famousFood: ["Shahi Paneer Naan", "Pinni", "Kapurthala Lassi"],
+    hotelAreas: ["Mall Road", "Jalandhar-Kapurthala Road"],
+    hospitals: ["Civil Hospital Kapurthala", "Guru Nanak Hospital"],
+    quickTip: "Kapurthala ko uske French aur Indo-Saracenic palaces ke kaaran 'Paris of Punjab' kehte hain."
+  },
+  "Ludhiana": {
+    attractions: ["Punjab Agricultural University Museum", "Lodhi Fort Ludhiana", "Clock Tower Ludhiana"],
+    famousFood: ["Tandoori Chicken & Butter Tikka", "Sarson Saag Makki Roti", "Paneer Bhurji"],
+    hotelAreas: ["Ferozepur Road", "Sarabha Nagar", "Civil Lines Ludhiana"],
+    hospitals: ["Christian Medical College (CMC)", "Dayanand Medical College (DMC)", "Fortis Hospital"],
+    quickTip: "Winter hosiery aur woolen kapdon ki shopping ke liye Ghumar Mandi sabse badi market hai."
+  },
+  "Malerkotla": {
+    attractions: ["Mubarak Manzil Palace", "Dargah Hazrat Sheikh Sadruddin", "Kuka Memorial"],
+    famousFood: ["Malerkotla Seekh Kebab", "Dum Biryani", "Badana Sweet"],
+    hotelAreas: ["Ludhiana Bypass", "Satta Chowk Malerkotla"],
+    hospitals: ["Civil Hospital Malerkotla", "Dr. Hira Singh Hospital"],
+    quickTip: "Malerkotla Punjab ka historical Nawabi heritage center hai."
+  },
+  "Mansa": {
+    attractions: ["Bhai Behlo Gurudwara", "Sardulgarh Fort"],
+    famousFood: ["Makki Roti Saag", "Cotton Belt Pure Milk Tea", "Kachori"],
+    hotelAreas: ["Cinema Road", "Station Road Mansa"],
+    hospitals: ["Civil Hospital Mansa", "Janata Hospital"],
+    quickTip: "Mansa ko Punjab ke white cotton belt ke roop mein jana jata hai."
+  },
+  "Moga": {
+    attractions: ["Geeta Bhawan Moga", "Gurudwara Gurusar Mehraj"],
+    famousFood: ["Moga Desi Ghee Sweets", "Kulcha Chhole", "Kulfi"],
+    hotelAreas: ["GT Road Moga", "Main Chowk Moga"],
+    hospitals: ["Civil Hospital Moga", "Medicity Hospital Moga"],
+    quickTip: "Moga dairy aur agro processing industries ke liye mashhoor hai."
+  },
+  "Muktsar": {
+    attractions: ["Gurudwara Tuti Gandi Sahib", "Gurudwara Tibbi Sahib", "Maghi Mela Grounds"],
+    famousFood: ["Muktsari Jutti Craft", "Sarson Saag Makki Roti", "Pinni"],
+    hotelAreas: ["Malout Road", "Bhai Maha Singh Hall Area"],
+    hospitals: ["Civil Hospital Sri Muktsar Sahib", "Adesh Charitable Hospital"],
+    quickTip: "Chalis Mukte (40 Shaheedon) ki yaad mein yahan aitihasik Maghi Mela lagta hai."
+  },
+  "Pathankot": {
+    attractions: ["Mukteshwar Mahadev Cave", "Shahpurkandi Fort", "Ranjit Sagar Dam"],
+    famousFood: ["Pathankot Chana Bhatura", "Tandoori Trout Fish", "Peda"],
+    hotelAreas: ["Dalhousie Road", "Railway Station Circle", "Defense Road"],
+    hospitals: ["Civil Hospital Pathankot", "Amandeep Multispeciality Hospital"],
+    quickTip: "Himachal (Dharamshala, Dalhousie) aur Kashmir jane ke liye Pathankot sabse bada transit hub hai."
+  },
+  "Patiala": {
+    attractions: ["Qila Mubarak Patiala", "Sheesh Mahal Patiala", "Baradari Gardens Patiala"],
+    famousFood: ["Patiala Shahi Lassi", "Butter Chicken", "Patiala Shahi Jutti & Turban"],
+    hotelAreas: ["Mall Road Patiala", "Baradari", "Leela Bhawan"],
+    hospitals: ["Government Rajindra Hospital", "Manipal Hospital Patiala"],
+    quickTip: "Phulkari dupatta aur Patiala jutti ke liye Adalat Bazaar market best hai."
+  },
+  "Rupnagar": {
+    attractions: ["Ropar Archaeological Museum", "Ropar Wetland", "Virasat-e-Khalsa"],
+    famousFood: ["Sutlej Fresh Fish", "Kulcha Chhole", "Pinni"],
+    hotelAreas: ["Sutlej Waterfront", "Nangal Road Ropar"],
+    hospitals: ["Civil Hospital Ropar", "Parmar Hospital"],
+    quickTip: "Virasat-e-Khalsa Anandpur Sahib mein Sikh itihas ka anokha audio-visual museum hai."
+  },
+  "Sahibzada Ajit Singh Nagar": {
+    attractions: ["PCA Stadium Mohali", "Fateh Burj Chappar Chiri", "VR Punjab Mall"],
+    famousFood: ["Butter Chicken", "Amritsari Naan", "Sector 70 Cafe Platter"],
+    hotelAreas: ["Phase 3B2 Hub", "Sector 70", "Aerocity Airport Road"],
+    hospitals: ["Fortis Hospital Mohali", "Max Super Speciality Hospital", "Ivy Hospital"],
+    quickTip: "Fateh Burj Bharat ka sabse uncha victory minar (328 ft) hai."
+  },
+  "Sangrur": {
+    attractions: ["Banasar Bagh", "Marble Baradari Sangrur", "Gurudwara Nankiana Sahib"],
+    famousFood: ["Makki Di Roti", "Desi Chai", "Pinni"],
+    hotelAreas: ["Patiala Road Sangrur", "Dhuri Road"],
+    hospitals: ["Civil Hospital Sangrur", "PGI Satellite Centre Sangrur"],
+    quickTip: "Jind riyasat ke dauran banaya gaya Banasar Bagh ek shant garden retreat hai."
+  },
+  "Shahid Bhagat Singh Nagar": {
+    attractions: ["Khatkar Kalan Museum", "Shaheed Bhagat Singh Ancestral Home", "Kirpal Sagar"],
+    famousFood: ["Sarson Ka Saag", "Punjabi Dal Fry", "Lassi"],
+    hotelAreas: ["Banga Road", "Chandigarh Highway"],
+    hospitals: ["Civil Hospital Nawanshahr", "Guru Nanak Mission Hospital"],
+    quickTip: "Khatkar Kalan museum Shaheed Bhagat Singh ke jeevan aur kranti ki durlabh yaadon se bhara hai."
+  },
+  "Tarn Taran": {
+    attractions: ["Tarn Taran Sahib", "Gurudwara Bir Baba Budha Sahib", "Harike Wetland"],
+    famousFood: ["Guru Ka Langar", "Tarn Taran Jalebi", "Amritsari Kulcha"],
+    hotelAreas: ["Amritsar Road", "Darbar Sahib Complex"],
+    hospitals: ["Civil Hospital Tarn Taran", "Guru Nanak Dev Super Speciality Hospital"],
+    quickTip: "Tarn Taran Sarovar ka ghera duniya mein kisi bhi Gurudware se sabse bada hai."
+  },
+
+  // =========================================================================
+  // HIMACHAL PRADESH (ALL 12 DISTRICTS)
+  // =========================================================================
+  "Bilaspur (HP)": {
+    attractions: ["Govind Sagar Lake", "Naina Devi Temple", "Bhakra Dam"],
+    famousFood: ["Bilaspuri Dham", "Madra", "Sweet Poldu"],
+    hotelAreas: ["Lake View Circuit", "Naina Devi Base"],
+    hospitals: ["AIIMS Bilaspur (Kothipura)", "Regional Hospital Bilaspur"],
+    quickTip: "Naina Devi temple pahunchne ke liye cable car ropeway use karein."
+  },
+  "Chamba": {
+    attractions: ["Khajjiar", "Chamera Lake", "Laxmi Narayan Temple Chamba"],
+    famousFood: ["Chamba Chukh (Chili Paste)", "Chamba Madra", "Chamba Rumaal Craft"],
+    hotelAreas: ["Dalhousie Mall Road", "Khajjiar Meadows", "Chamba Town"],
+    hospitals: ["Pt. Jawaharlal Nehru Govt Medical College Chamba", "Civil Hospital Dalhousie"],
+    quickTip: "Khajjiar ko 'Mini Switzerland of India' kaha jata hai, devdar vanon mein horse riding enjoy karein."
+  },
+  "Hamirpur (HP)": {
+    attractions: ["Baba Balak Nath Temple Deotsidh", "Sujanpur Tira Fort", "Nadaun Beas Riverfront"],
+    famousFood: ["Kangri Dham", "Khatta Meat", "Bhaturu with Dal"],
+    hotelAreas: ["Gandhi Chowk Hamirpur", "Deotsidh Temple Road"],
+    hospitals: ["Dr. Radhakrishnan Govt Medical College Hamirpur", "Civil Hospital Nadaun"],
+    quickTip: "Baba Balak Nath ji ki pawan gufa Deotsidh mein sthit hai jahan har saal lakho bhakt aate hain."
+  },
+  "Kangra": {
+    attractions: ["Dharamshala Cricket Stadium", "Bhagsunag Waterfall", "Kangra Fort", "Dalai Lama Temple"],
+    famousFood: ["Kangri Dham", "Tibetan Momos & Thukpa", "Bhagsu Cake"],
+    hotelAreas: ["McLeodganj Main Chowk", "Bhagsu Village", "Dharamkot"],
+    hospitals: ["Dr. Rajendra Prasad Govt Medical College (Tanda)", "Zonal Hospital Dharamshala"],
+    quickTip: "Triund trek karne ke liye McLeodganj se subah jaldi trek shuru karein."
+  },
+  "Kinnaur": {
+    attractions: ["Chitkul", "Sangla Valley", "Kalpa Kinner Kailash", "Nako Lake"],
+    famousFood: ["Kinnauri Golden Apples", "Chulli (Wild Apricot Oil)", "Thukpa & Tingmo"],
+    hotelAreas: ["Kalpa Viewpoint", "Sangla Riverside Camps", "Reckong Peo"],
+    hospitals: ["Regional Hospital Reckong Peo", "Community Health Center Sangla"],
+    quickTip: "Chitkul Bharat ka aakhri aabadi wala gaon hai jo Indo-Tibetan border par sthit hai."
+  },
+  "Kullu": {
+    attractions: ["Solang Valley", "Rohtang Pass", "Atal Tunnel", "Hidimba Devi Temple"],
+    famousFood: ["Kullu Trout Fish", "Siddu with Ghee", "Lugdi Herbal Drink"],
+    hotelAreas: ["Old Manali", "Aleo & Naggar Road", "Kasol Riverside Camps"],
+    hospitals: ["Regional Hospital Kullu", "Civil Hospital Manali"],
+    quickTip: "Rohtang Pass ke liye online vehicle permit 24 ghante pehle book karna zaroori hai."
+  },
+  "Lahaul & Spiti": {
+    attractions: ["Key Monastery", "Chandratal Lake", "Hikkim Post Office", "Kunzum Pass"],
+    famousFood: ["Spiti Seabuckthorn Tea", "Thukpa", "Tibetan Butter Tea", "Siddu"],
+    hotelAreas: ["Kaza Main Market", "Sissu Valley Homestays", "Jispa Camps"],
+    hospitals: ["Community Health Centre Kaza", "Regional Hospital Keylong"],
+    quickTip: "Hikkim se apne ghar ke liye handwritten postcard zaroor send karein (duniya ka sabse uncha post office)."
+  },
+  "Mandi": {
+    attractions: ["Prashar Lake", "Rewalsar Lake", "Bhootnath Temple Mandi"],
+    famousFood: ["Sepu Badi Madra", "Mandi Dham", "Kachori with spicy tamarind chutney"],
+    hotelAreas: ["Mandi Town Center", "Rewalsar Lakefront", "Barot Camps"],
+    hospitals: ["Shri Lal Bahadur Shastri Govt Medical College Mandi", "Zonal Hospital Mandi"],
+    quickTip: "Prashar Lake ke floating island aur 360-degree Dhauladhar snow view ko zaroor dekhein."
+  },
+  "Shimla": {
+    attractions: ["The Ridge Shimla", "Mall Road Shimla", "Jakhoo Temple", "Kufri"],
+    famousFood: ["Siddu with Ghee", "Chana Madra", "Steamed Momos", "Apple Cider"],
+    hotelAreas: ["The Mall Road (Pedestrian)", "Circular Road", "Chotta Shimla"],
+    hospitals: ["Indira Gandhi Medical College (IGMC)", "Deen Dayal Upadhyay Hospital"],
+    quickTip: "Kalka-Shimla Toy Train ride Shivalik pahadiyon ke 100 se zyada tunnels se guzarti hai."
+  },
+  "Sirmaur": {
+    attractions: ["Renuka Lake", "Paonta Sahib Gurudwara", "Churdhar Peak Trek"],
+    famousFood: ["Sirmauri Patande (Pahari Pancakes)", "Lushke", "Madra"],
+    hotelAreas: ["Paonta Sahib Yamuna Ghat", "Nahan Heritage Town", "Renukaji"],
+    hospitals: ["Dr. Y.S. Parmar Govt Medical College Nahan", "Civil Hospital Paonta Sahib"],
+    quickTip: "Renuka Lake Bharat ki sabse badi natural lake hai jo Mata Renuka ji ke aakar jaisi maani jaati hai."
+  },
+  "Solan": {
+    attractions: ["Kasauli Gilbert Trail", "Monkey Point Kasauli", "Mohan Shakti Heritage Park", "Barog Railway Station"],
+    famousFood: ["Mushroom City Dishes", "Bun Samosa Solan", "Pahari Siddu"],
+    hotelAreas: ["Kasauli Upper Mall", "Chail Resorts", "Solan Mall Road"],
+    hospitals: ["Maharishi Markandeshwar Medical College Kumarhatti", "Regional Hospital Solan"],
+    quickTip: "Kasauli ki serene nature walk aur sunset point weekend peace ke liye best hain."
+  },
+  "Una": {
+    attractions: ["Chintpurni Temple", "Dera Baba Barbhag Singh", "Govind Sagar Lake View Point"],
+    famousFood: ["Pahari Dham", "Madra", "Kachori Chhole"],
+    hotelAreas: ["Chintpurni Temple Hub", "Una Station Road"],
+    hospitals: ["Regional Hospital Una", "Civil Hospital Amb"],
+    quickTip: "Maa Chintpurni darshan ke baad temple bazaar se souvenir aur traditional sweets lein."
   }
 });
 
