@@ -54,6 +54,22 @@
     }
     </script>
     <style>
+  .topbar-right,
+  .topbar select,
+  .topbar .theme-toggle-btn,
+  .topbar button:not([aria-label*="Menu"]):not(#unified3DotBtn),
+  .header-actions .currency-select-box,
+  .header-actions .theme-toggle-btn,
+  #hamburgerBtn,
+  .hamburger-btn {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .topbar {
+    background: transparent !important;
+    border: none !important;
+  }
         @keyframes fadeInCard {
     from {
         opacity: 0;
