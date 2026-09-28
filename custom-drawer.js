@@ -1,9 +1,9 @@
 // =========================================================================
-// INCREDIBLE INDIA - HAMBURGER (☰) DRAWER WITH IN-MENU THEME & PRESERVED FEATURES
+// INCREDIBLE INDIA - CLEAN FLOATING HAMBURGER & TOTAL TOPBAR REMOVAL
 // =========================================================================
 
 (function () {
-  // Purane duplicate drawers aur overlays ko remove karein
+  // 1. Purane duplicate drawer ko permanently delete karein
   function permanentlyNukeOldDrawer() {
     document.querySelectorAll('div, aside, nav, section').forEach(el => {
       if (el.id === 'unifiedDrawer' || el.id === 'unifiedDrawerOverlay' || el.id === 'dedicatedAppContainer') return;
@@ -20,12 +20,46 @@
   permanentlyNukeOldDrawer();
   setInterval(permanentlyNukeOldDrawer, 200);
 
+  // 2. CSS Inject karke puraane saare top bar, Theme button aur containers ko chupayein
+  const styleKiller = document.createElement('style');
+  styleKiller.id = 'killTopBarStyles';
+  styleKiller.innerHTML = `
+    /* Topbar aur uske andar ke theme button ko screen se permanent hide karein */
+    header,
+    .topbar,
+    .top-bar,
+    .header-bar,
+    #topbar,
+    #header,
+    nav.navbar,
+    .theme-toggle,
+    button[id*="theme"]:not(#inDrawerThemeToggle),
+    button[class*="theme"]:not(#inDrawerThemeToggle),
+    div[class*="theme"]:not(#inDrawerThemeToggle),
+    select[id*="curr"],
+    div[class*="currency"] {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* Hero section ko thoda space dein taaki floating button ke niche na dabe */
+    body {
+      padding-top: 20px !important;
+    }
+  `;
+  document.head.appendChild(styleKiller);
+
   const oldDrawer = document.getElementById('unifiedDrawer');
   if (oldDrawer) oldDrawer.remove();
   const oldOverlay = document.getElementById('unifiedDrawerOverlay');
   if (oldOverlay) oldOverlay.remove();
 
-  // User session cache check
   const currentUser = JSON.parse(localStorage.getItem('incredible_user') || 'null');
 
   const drawerHTML = `
@@ -130,32 +164,28 @@
   overlay.addEventListener('click', closeDrawer);
   drawer.addEventListener('click', e => e.stopPropagation());
 
-  // Top header clean: Purane currency dropdown aur bahar ke Theme button ko hide karna
-  function setupHeaderButtons() {
-    document.querySelectorAll('button, div, select').forEach(el => {
-      if (el.id === 'inDrawerThemeToggle' || el.closest('#unifiedDrawer') || el.id === 'appHamburgerBtn') return;
+  // 3. Puraane Theme button aur top bar text ko DOM se direct delete karna
+  function hardCleanTopHeader() {
+    document.querySelectorAll('button, div, a, span').forEach(el => {
+      if (el.closest('#unifiedDrawer') || el.id === 'appHamburgerBtn' || el.closest('#dedicatedAppContainer')) return;
       
       const txt = (el.textContent || '').trim();
-      const cls = (el.className || '').toString().toLowerCase();
-
-      // Bahar ka theme button hide karein
-      if (txt.startsWith('Theme') || cls.includes('theme-toggle') || el.getAttribute('onclick')?.includes('theme')) {
-        el.style.setProperty('display', 'none', 'important');
-      }
-
-      // Currency dropdown hide karein
-      if (el.tagName === 'SELECT' || el.id.toLowerCase().includes('curr') || cls.includes('curr')) {
+      if (txt === 'Theme' || txt.includes('Theme') || el.title === 'Theme') {
+        const parentBox = el.closest('div, header, nav');
+        if (parentBox && parentBox !== document.body && parentBox.offsetHeight < 120) {
+          parentBox.style.setProperty('display', 'none', 'important');
+        }
         el.style.setProperty('display', 'none', 'important');
       }
     });
 
-    // Clean Hamburger Button create karein
+    // Clean floating Hamburger Button
     let hamBtn = document.getElementById('appHamburgerBtn');
     if (!hamBtn) {
       hamBtn = document.createElement('button');
       hamBtn.id = 'appHamburgerBtn';
-      hamBtn.innerHTML = '&#9776;'; // ☰ Hamburger icon
-      hamBtn.setAttribute('aria-label', 'Open Navigation Menu');
+      hamBtn.innerHTML = '&#9776;'; // ☰ Icon
+      hamBtn.setAttribute('aria-label', 'Menu');
       document.body.appendChild(hamBtn);
 
       hamBtn.addEventListener('click', openDrawer);
@@ -165,24 +195,26 @@
       position: fixed !important;
       top: 14px !important;
       left: 14px !important;
-      width: 42px !important;
-      height: 42px !important;
+      width: 44px !important;
+      height: 44px !important;
       background: #0f172a !important;
-      border: 1px solid rgba(255,255,255,0.18) !important;
+      border: 1px solid rgba(255,255,255,0.2) !important;
       border-radius: 10px !important;
       color: #fff !important;
-      font-size: 1.35rem !important;
+      font-size: 1.4rem !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       cursor: pointer !important;
-      z-index: 999999 !important;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.5) !important;
+      z-index: 2147483645 !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important;
       line-height: 1 !important;
     `;
   }
-  setupHeaderButtons();
-  setTimeout(setupHeaderButtons, 500);
+
+  hardCleanTopHeader();
+  setTimeout(hardCleanTopHeader, 300);
+  setTimeout(hardCleanTopHeader, 1000);
 
   // In-Drawer Theme Switch action
   const themeSwitchBtn = document.getElementById('inDrawerThemeToggle');
@@ -204,12 +236,6 @@
       window.switchTheme();
     }
   });
-
-  // Global click listener for Hamburger
-  window.addEventListener('click', function (e) {
-    const btn = e.target.closest('#appHamburgerBtn, #unified3DotBtn, .three-dot-btn, [aria-label*="Menu"]');
-    if (btn) openDrawer(e);
-  }, true);
 
   // Dedicated Pages navigation links
   document.querySelectorAll('.drawer-nav-trigger').forEach(btn => {
