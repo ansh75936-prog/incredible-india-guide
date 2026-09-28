@@ -1,21 +1,14 @@
-// ========================================================
-// INCREDIBLE INDIA GUIDE - CLEAN LEAD & CRM ENGINE
-// ========================================================
-
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. In-Site Leads Storage Engine
-    function saveLeadLocally(leadData) {
-        const stored = JSON.parse(localStorage.getItem('portal_travel_leads') || '[]');
-        stored.unshift({
-            id: 'LEAD-' + Math.floor(100000 + Math.random() * 900000),
-            date: new Date().toLocaleString(),
-            ...leadData
+    // 1. State tile par click karne par Districts popup kholna
+    document.querySelectorAll('.state-card-tile').forEach(tile => {
+        tile.addEventListener('click', () => {
+            const rawName = tile.getAttribute('data-state') || '';
+            const cleanState = rawName.replace(' (UT)', '').replace(' (NCT)', '').trim();
+            openDistrictModal(cleanState);
         });
-        localStorage.setItem('portal_travel_leads', JSON.stringify(stored));
-        updateSiteAdminBadge();
-    }
+    });
 
-    // 2. Lead Form Submission Handler
+    // 2. Lead Form capture & WhatsApp Alert (Bina kisi floating button ke)
     const leadForm = document.getElementById('leadInquiryForm');
     if (leadForm) {
         leadForm.addEventListener('submit', (e) => {
@@ -27,12 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!name || !phone || !dest) return;
 
-            // Site ke database me safe store
-            saveLeadLocally({ name, phone, destination: dest, pax, budget });
-
             // Direct WhatsApp message link for Traveler
             const waMsg = encodeURIComponent(
-                `Namaste Incredible India Guide!\n\nNew Lead:\nName: ${name}\nPhone: ${phone}\nDestination: ${dest}\nPax: ${pax}\nBudget: ${budget}`
+                `Namaste Incredible India Guide!\n\nNew Inquiry:\nName: ${name}\nPhone: ${phone}\nDestination: ${dest}\nPax: ${pax}\nBudget: ${budget}`
             );
             const waLink = `https://wa.me/?text=${waMsg}`;
 
@@ -41,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (banner) {
                     banner.innerHTML = `
                         <div style="display:flex; flex-direction:column; gap:8px;">
-                            <span>✅ <strong>Inquiry Portal Database Me Safe Ho Gayi!</strong></span>
+                            <span>✅ <strong>Inquiry Safely Registered!</strong></span>
                             <a href="${waLink}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#25D366; color:#FFF; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; width:fit-content; margin-top:4px;">
                                 💬 WhatsApp Par Lead Bhejein &rarr;
                             </a>
@@ -52,49 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 300);
         }, true);
     }
-
-    // 3. Floating In-Site Admin Leads Manager Trigger
-    injectAdminTrigger();
 });
 
-function injectAdminTrigger() {
-    if (document.getElementById('siteCrmTriggerBtn')) return;
-
-    const btn = document.createElement('button');
-    btn.id = 'siteCrmTriggerBtn';
-    btn.innerHTML = `📊 Site Database (<span id="crmCount">0</span>)`;
-    btn.style.cssText = `
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        background: #0C1424;
-        color: #FFFFFF;
-        border: 2px solid #FF5412;
-        padding: 12px 20px;
-        border-radius: 50px;
-        font-weight: 800;
-        font-size: 0.9rem;
-        cursor: pointer;
-        z-index: 99999;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    `;
-    btn.onclick = openSiteAdminModal;
-    document.body.appendChild(btn);
-
-    updateSiteAdminBadge();
-}
-
-function updateSiteAdminBadge() {
-    const countEl = document.getElementById('crmCount');
-    const stored = JSON.parse(localStorage.getItem('portal_travel_leads') || '[]');
-    if (countEl) countEl.textContent = stored.length;
-}
-
-function openSiteAdminModal() {
-    let modal = document.getElementById('siteAdminModal');
+// District Explorer Modal Engine
+function openDistrictModal(stateName) {
+    const districts = (window.INDIA_DISTRICTS_DATA && window.INDIA_DISTRICTS_DATA[stateName]) || [];
+    let modal = document.getElementById('districtsModal');
+    
     if (!modal) {
         modal = document.createElement('div');
-        modal.id = 'siteAdminModal';
+        modal.id = 'districtsModal';
         modal.style.cssText = `
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -104,84 +61,35 @@ function openSiteAdminModal() {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 16px;
         `;
         document.body.appendChild(modal);
     }
 
-    const stored = JSON.parse(localStorage.getItem('portal_travel_leads') || '[]');
-    
-    let rowsHtml = stored.length === 0 
-        ? `<tr><td colspan="5" style="text-align:center; padding:20px; color:#94A3B8;">Abhi koi inquiries site database mein nahi hain.</td></tr>`
-        : stored.map((l, idx) => `
-            <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                <td style="padding:10px;">${idx + 1}</td>
-                <td style="padding:10px;"><strong>${l.name}</strong><br><small style="color:#94A3B8;">${l.phone}</small></td>
-                <td style="padding:10px;">${l.destination}</td>
-                <td style="padding:10px;">${l.pax}<br><small style="color:#FF8540;">${l.budget}</small></td>
-                <td style="padding:10px; font-size:0.75rem; color:#94A3B8;">${l.date}</td>
-            </tr>
-        `).join('');
+    const distChips = districts.length > 0 
+        ? districts.map(d => `<span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:6px 14px; border-radius:30px; font-size:0.85rem; color:#FFF; font-weight:600;">${d}</span>`).join('')
+        : `<p style="color:#94A3B8;">Districts data available nahi hai.</p>`;
 
     modal.innerHTML = `
-        <div style="background:#0E1726; color:#FFF; width:100%; max-width:850px; max-height:85vh; border-radius:18px; border:1px solid rgba(255,255,255,0.1); display:flex; flex-direction:column; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,0.5);">
-            <div style="padding:18px 24px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
+        <div style="background:#0E1726; color:#FFF; width:100%; max-width:680px; max-height:85vh; border-radius:20px; border:1px solid rgba(255,255,255,0.12); display:flex; flex-direction:column; overflow:hidden; box-shadow:0 25px 60px rgba(0,0,0,0.6);">
+            <div style="padding:20px 24px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
                 <div>
-                    <h3 style="font-size:1.3rem; margin:0;">📁 Site Inquiry Manager</h3>
-                    <small style="color:#94A3B8;">Saara data aapke browser portal me surakshit hai.</small>
+                    <h3 style="font-size:1.4rem; margin:0; color:#FF8540;">📍 ${stateName}</h3>
+                    <small style="color:#94A3B8; font-size:0.9rem;">Total Official Districts: <strong>${districts.length}</strong></small>
                 </div>
-                <button onclick="document.getElementById('siteAdminModal').style.display='none'" style="background:none; border:none; color:#FFF; font-size:1.8rem; cursor:pointer;">&times;</button>
+                <button onclick="document.getElementById('districtsModal').style.display='none'" style="background:none; border:none; color:#FFF; font-size:1.8rem; cursor:pointer;">&times;</button>
             </div>
             
-            <div style="padding:20px; overflow-y:auto; flex:1;">
-                <table style="width:100%; border-collapse:collapse; font-size:0.88rem; text-align:left;">
-                    <thead>
-                        <tr style="background:rgba(255,255,255,0.05); color:#FF8540;">
-                            <th style="padding:10px;">#</th>
-                            <th style="padding:10px;">Customer</th>
-                            <th style="padding:10px;">Destination</th>
-                            <th style="padding:10px;">Details</th>
-                            <th style="padding:10px;">Timestamp</th>
-                        </tr>
-                    </thead>
-                    <tbody>${rowsHtml}</tbody>
-                </table>
+            <div style="padding:22px; overflow-y:auto; flex:1;">
+                <div style="display:flex; flex-wrap:wrap; gap:8px;">${distChips}</div>
             </div>
 
-            <div style="padding:16px 24px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; background:#070C16;">
-                <button onclick="downloadLeadsAsCSV()" style="background:#0D7A68; color:#FFF; border:none; padding:10px 18px; border-radius:8px; font-weight:700; cursor:pointer;">
-                    📥 Export as Excel / CSV
-                </button>
-                <button onclick="clearSiteLeads()" style="background:#DC2626; color:#FFF; border:none; padding:10px 18px; border-radius:8px; font-weight:700; cursor:pointer;">
-                    🗑️ Clear All Leads
+            <div style="padding:16px 24px; border-top:1px solid rgba(255,255,255,0.1); background:#070C16; text-align:right;">
+                <button onclick="document.getElementById('districtsModal').style.display='none'; document.getElementById('custLeadDest').value='${stateName}'; document.getElementById('plan').scrollIntoView({behavior:'smooth'});" style="background:#FF5412; color:#FFF; border:none; padding:10px 22px; border-radius:50px; font-weight:700; cursor:pointer;">
+                    Is Rajya Ka Tour Plan Karein &rarr;
                 </button>
             </div>
         </div>
     `;
     modal.style.display = 'flex';
 }
-
-window.downloadLeadsAsCSV = function() {
-    const stored = JSON.parse(localStorage.getItem('portal_travel_leads') || '[]');
-    if (stored.length === 0) {
-        alert("Export karne ke liye koi leads nahi hain.");
-        return;
-    }
-    let csv = "ID,Timestamp,Name,Phone,Destination,Group Size,Budget\n";
-    stored.forEach(l => {
-        csv += `"${l.id}","${l.date}","${l.name}","${l.phone}","${l.destination}","${l.pax}","${l.budget}"\n`;
-    });
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `Travel_Leads_${new Date().toISOString().slice(0,10)}.csv`;
-    link.click();
-};
-
-window.clearSiteLeads = function() {
-    if (confirm("Kya aap saari saved inquiries delete karna chahte hain?")) {
-        localStorage.removeItem('portal_travel_leads');
-        openSiteAdminModal();
-        updateSiteAdminBadge();
-    }
-};
