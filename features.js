@@ -1360,3 +1360,185 @@ function setupVaultHomeGrid() {
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(setupVaultHomeGrid, 200);
 });
+// =========================================================================
+// RESTRUCTURE HEADER: MOVE HAMBURGER TO LEFT + MERGE 3-DOT & HAMBURGER
+// =========================================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupUnifiedLeftHamburger();
+});
+
+function setupUnifiedLeftHamburger() {
+  const navbar = document.querySelector('.navbar');
+  const topbar = document.querySelector('.topbar');
+  const existingDrawer = document.getElementById('mobileDrawer');
+  
+  // 1. Purane bikhre hue elements ko hide karein taaki duplicate na dikhein
+  if (topbar) topbar.style.display = 'none';
+  
+  const oldThemeBtn = document.querySelector('.header-actions .theme-toggle-btn');
+  const oldCurrencyBox = document.querySelector('.header-actions .currency-select-box');
+  const oldHamburgerBtn = document.getElementById('hamburgerBtn');
+  
+  if (oldThemeBtn) oldThemeBtn.style.display = 'none';
+  if (oldCurrencyBox) oldCurrencyBox.style.display = 'none';
+  if (oldHamburgerBtn) oldHamburgerBtn.style.display = 'none';
+
+  if (!navbar) return;
+
+  // 2. Left side ke liye Naya Handsome Hamburger Button banayein
+  let leftHamburger = document.getElementById('unifiedLeftMenuBtn');
+  if (!leftHamburger) {
+    leftHamburger = document.createElement('button');
+    leftHamburger.id = 'unifiedLeftMenuBtn';
+    leftHamburger.setAttribute('aria-label', 'Open Unified Menu');
+    leftHamburger.style.cssText = `
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      color: #FFFFFF;
+      cursor: pointer;
+      margin-right: 12px;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    `;
+    leftHamburger.innerHTML = `
+      <svg viewBox="0 0 448 512" style="width:20px; height:20px; fill:currentColor;">
+        <path d="M0 96c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm448 160c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z"/>
+      </svg>
+    `;
+
+    // Navbar ke sabse pehle (Leftmost spot) par insert karein
+    navbar.insertBefore(leftHamburger, navbar.firstChild);
+  }
+
+  // 3. Unified Drawer create/update karein jisme saare features ek sath hon
+  let unifiedDrawer = document.getElementById('unifiedMasterDrawer');
+  let unifiedOverlay = document.getElementById('unifiedMasterOverlay');
+
+  if (!unifiedDrawer) {
+    // Overlay
+    unifiedOverlay = document.createElement('div');
+    unifiedOverlay.id = 'unifiedMasterOverlay';
+    unifiedOverlay.style.cssText = `
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 9998;
+    `;
+    document.body.appendChild(unifiedOverlay);
+
+    // Drawer Window (Left se slide hone wala)
+    unifiedDrawer = document.createElement('div');
+    unifiedDrawer.id = 'unifiedMasterDrawer';
+    unifiedDrawer.style.cssText = `
+      position: fixed;
+      top: 0; left: -320px;
+      width: 290px;
+      height: 100%;
+      background: #0E1726;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 4px 0 25px rgba(0,0,0,0.6);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      font-family: inherit;
+    `;
+
+    unifiedDrawer.innerHTML = `
+      <!-- Header -->
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:1.2rem 1.4rem; border-bottom:1px solid rgba(255,255,255,0.08);">
+        <span style="font-weight:800; font-size:1.15rem; color:#FFFFFF;">Incredible India<span style="color:#FF5412;">.</span></span>
+        <button id="closeUnifiedDrawerBtn" style="background:none; border:none; color:#FFFFFF; font-size:1.6rem; cursor:pointer; line-height:1;">&times;</button>
+      </div>
+
+      <!-- Quick Controls: Currency + Dark Mode -->
+      <div style="display:flex; align-items:center; gap:10px; padding:1rem 1.4rem; background:rgba(255,255,255,0.03); border-bottom:1px solid rgba(255,255,255,0.08);">
+        <select id="drawerCurrencySelect" onchange="if(typeof changeCurrency==='function') changeCurrency(this.value);" style="flex:1; padding:9px 12px; background:#1A2639; color:#FFFFFF; border:1px solid rgba(255,255,255,0.15); border-radius:10px; font-weight:700; font-size:0.88rem; cursor:pointer;">
+          <option value="INR" selected>INR (₹)</option>
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="AED">AED (د.إ)</option>
+        </select>
+        <button id="drawerThemeBtn" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:#1A2639; border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:#FFB800; cursor:pointer;">
+          🌓
+        </button>
+      </div>
+
+      <!-- Section: 3-Dot Management Tools -->
+      <div style="padding:1rem 1.4rem 0.5rem 1.4rem;">
+        <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:#FF5412; font-weight:800; margin-bottom:8px;">Quick Portal Access</div>
+        <button onclick="if(typeof toggleAdminDrawer==='function') toggleAdminDrawer(); closeUnifiedMenu();" style="width:100%; display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:rgba(255,84,18,0.12); border:1px solid rgba(255,84,18,0.3); border-radius:10px; color:#FFFFFF; font-weight:700; font-size:0.9rem; cursor:pointer; margin-bottom:8px;">
+          <span>📋 View Submissions</span>
+          <span style="background:#FF5412; color:#fff; padding:2px 8px; border-radius:20px; font-size:0.75rem;" id="drawerInquiryCountBadge">0</span>
+        </button>
+        <div style="font-size:0.8rem; color:#94A3B8; padding:4px 0;">📞 24x7 Helpline: <b>1363 (Toll Free)</b></div>
+      </div>
+
+      <!-- Section: Main Navigation Links -->
+      <div style="flex:1; padding:0.8rem 1.4rem;">
+        <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.4); font-weight:800; margin-bottom:10px;">Explore Bharat</div>
+        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px;">
+          <li><a href="#states" class="u-drawer-link" style="color:#FFFFFF; text-decoration:none; font-weight:600; font-size:0.95rem; display:block;">🏛️ States & UTs Directory</a></li>
+          <li><a href="#destinations" class="u-drawer-link" style="color:#FFFFFF; text-decoration:none; font-weight:600; font-size:0.95rem; display:block;">✨ Popular Sthalein</a></li>
+          <li><a href="#map-explore" class="u-drawer-link" style="color:#FFFFFF; text-decoration:none; font-weight:600; font-size:0.95rem; display:block;">🗺️ Interactive Live Map</a></li>
+          <li><a href="#estimator" class="u-drawer-link" style="color:#FFFFFF; text-decoration:none; font-weight:600; font-size:0.95rem; display:block;">🧮 Trip Cost Estimator</a></li>
+          <li><a href="#circuits" class="u-drawer-link" style="color:#FFFFFF; text-decoration:none; font-weight:600; font-size:0.95rem; display:block;">🚗 Tour Circuits</a></li>
+          <li><a href="#weather" class="u-drawer-link" style="color:#FFFFFF; text-decoration:none; font-weight:600; font-size:0.95rem; display:block;">☀️ Weather Forecast</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer CTA -->
+      <div style="padding:1.2rem 1.4rem; border-top:1px solid rgba(255,255,255,0.08);">
+        <a href="#plan" class="u-drawer-link" style="display:block; text-align:center; padding:12px; background:#FF5412; color:#fff; border-radius:12px; text-decoration:none; font-weight:800; font-size:0.95rem;">Plan Your Trip ✈️</a>
+      </div>
+    `;
+
+    document.body.appendChild(unifiedDrawer);
+
+    // Dark Mode bridge
+    const drawerThemeBtn = document.getElementById('drawerThemeBtn');
+    drawerThemeBtn.addEventListener('click', () => {
+      const originalThemeBtn = document.getElementById('themeToggleBtn');
+      if (originalThemeBtn) {
+        originalThemeBtn.click();
+      } else {
+        const curTheme = document.documentElement.getAttribute('data-theme');
+        document.documentElement.setAttribute('data-theme', curTheme === 'dark' ? 'light' : 'dark');
+      }
+    });
+
+    // Close Button & Overlay Event
+    document.getElementById('closeUnifiedDrawerBtn').addEventListener('click', closeUnifiedMenu);
+    unifiedOverlay.addEventListener('click', closeUnifiedMenu);
+
+    // Links click hone par menu band ho
+    unifiedDrawer.querySelectorAll('.u-drawer-link').forEach(link => {
+      link.addEventListener('click', closeUnifiedMenu);
+    });
+  }
+
+  // Open Function
+  function openUnifiedMenu() {
+    unifiedDrawer.style.left = '0px';
+    unifiedOverlay.style.display = 'block';
+  }
+
+  // Close Function
+  function closeUnifiedMenu() {
+    unifiedDrawer.style.left = '-320px';
+    unifiedOverlay.style.display = 'none';
+  }
+
+  leftHamburger.onclick = openUnifiedMenu;
+}
