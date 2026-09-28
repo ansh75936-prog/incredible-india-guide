@@ -1,264 +1,273 @@
 // =========================================================================
-// INCREDIBLE INDIA GUIDE - CORE LOGIC & EMBEDDED DISTRICT INTELLIGENCE
+// INCREDIBLE INDIA GUIDE - DYNAMIC WIKIPEDIA PHOTO ENGINE & DISTRICT LOGIC
 // =========================================================================
 
-// Central District Database (Embedded directly so no loading issues occur)
+// Central District Database
 window.DISTRICT_LEVEL_DETAILS = window.DISTRICT_LEVEL_DETAILS || {};
 
 Object.assign(window.DISTRICT_LEVEL_DETAILS, {
   // --- UTTAR PRADESH MAJOR DISTRICTS ---
   "Agra": {
-    attractions: [
-      { name: "Taj Mahal", image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" },
-      { name: "Agra Fort", image: "https://images.unsplash.com/photo-1592635196078-9fdc757f27f4?auto=format&fit=crop&w=600&q=80" },
-      { name: "Fatehpur Sikri", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Taj Mahal", "Agra Fort", "Fatehpur Sikri", "Mehtab Bagh"],
     famousFood: ["Agra Petha (Angoori & Kesar)", "Bedai & Jalebi", "Mughlai Kebab"],
     hotelAreas: ["Fatehabad Road", "Taj East Gate Road", "Sadar Bazaar"],
     hospitals: ["S.N. Medical College & Hospital", "Pushpanjali Hospital", "District Hospital Agra"],
     quickTip: "Taj Mahal sunrise ke waqt visit karein bheed se bachne ke liye."
   },
   "Aligarh": {
-    attractions: [
-      { name: "Aligarh Fort", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" },
-      { name: "AMU Sir Syed Hall", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" },
-      { name: "Khereshwar Temple", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Aligarh Fort", "Sir Syed Hall AMU", "Khereshwar Temple"],
     famousFood: ["Aligarh Barula with Spicy Chutney", "Chhole Bhature", "Rabri Ghewar"],
     hotelAreas: ["GT Road", "Ramghat Road", "Marris Road"],
     hospitals: ["Jawaharlal Nehru Medical College (AMU)", "Malkhan Singh District Hospital"],
     quickTip: "Barula street food Aligarh ka signature snack hai, zaroor try karein."
   },
   "Ambedkar Nagar": {
-    attractions: [
-      { name: "Kichhauchha Sharif Dargah", image: "https://images.unsplash.com/photo-1592635196078-9fdc757f27f4?auto=format&fit=crop&w=600&q=80" },
-      { name: "Shravan Kshetra Dham", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Shiv Baba Mandir", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Kichhauchha Sharif Dargah", "Shravan Kshetra Dham", "Shiv Baba Mandir"],
     famousFood: ["Desi Ghee ki Tikki", "Samosa Chaat", "Tanda Malpua"],
     hotelAreas: ["Akbarpur Station Road", "Tanda Road Circle"],
     hospitals: ["Mahamaya Rajkiya Allopathic Medical College", "District Combined Hospital Akbarpur"],
     quickTip: "Shravan Kshetra mein Shravan Kumar se juda aitihasik sarovar sthit hai."
   },
   "Amethi": {
-    attractions: [
-      { name: "Nandmahar Dham", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Ulta Ratha Mandir", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Nandmahar Dham", "Ulta Ratha Mandir", "Bijli Pasi Fort"],
     famousFood: ["Gulgule", "Besan Ladoo", "Desi Poori Sabzi"],
     hotelAreas: ["Gauriganj Main Market", "Amethi Station Road"],
     hospitals: ["District Hospital Gauriganj", "Sanjay Gandhi Hospital Munshiganj"],
     quickTip: "Gauriganj administrative headquarters hai jahan basic stays uplabdh hain."
   },
   "Amroha": {
-    attractions: [
-      { name: "Vasudev Temple", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Tigri Dham Ganga Ghat", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
-    famousFood: ["Dholak Craft", "Amroha Mango Varieties", "Halwa Sohan"],
+    attractions: ["Vasudev Temple", "Tigri Dham Ganga Ghat", "Dargah Hazrat Shah Wilayat"],
+    famousFood: ["Amroha Dholak Craft", "Mango Varieties", "Halwa Sohan"],
     hotelAreas: ["Station Road", "Joya Road"],
     hospitals: ["District Hospital Amroha", "Chaudhary Nihal Singh Hospital"],
     quickTip: "Kartik Purnima par Tigri Mela UP ke bade snan melon mein shamil hai."
   },
+  "Auraiya": {
+    attractions: ["Devkali Temple", "Bhadreshwar Temple", "Yamuna Ghat Auraiya"],
+    famousFood: ["Auraiya Pure Desi Ghee Peda", "Samosa", "Chhena Kheer"],
+    hotelAreas: ["Dibiyapur Road", "NH-19 Highway Circle"],
+    hospitals: ["100 Bedded District Hospital Chicholi", "Combined Health Centre Auraiya"],
+    quickTip: "Auraiya pure Desi Ghee aur usse bani mithaiyon ke liye prasiddh hai."
+  },
   "Ayodhya": {
-    attractions: [
-      { name: "Shri Ram Janmabhoomi Mandir", image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" },
-      { name: "Hanuman Garhi", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Saryu Ghat Aarti", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" },
-      { name: "Kanak Bhawan", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Ram Mandir Ayodhya", "Hanuman Garhi Ayodhya", "Kanak Bhawan", "Saryu River Ghat"],
     famousFood: ["Ayodhya Rabri & Peda", "Hanuman Garhi Besan Ladoo", "Saryu Chaat"],
     hotelAreas: ["Ram Path Road", "Naya Ghat Circuit", "Civil Lines"],
     hospitals: ["Rajarshi Dashrath Autonomous Medical College", "District Hospital Ayodhya"],
     quickTip: "Ram Mandir darshan ke baad shaam ko Saryu riverfront aarti attend karein."
   },
   "Azamgarh": {
-    attractions: [
-      { name: "Durvasa Rishi Ashram", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Mehnagar Fort", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Durvasa Rishi Ashram", "Mehnagar Fort", "Dattatreya Ashram"],
     famousFood: ["Nizamabad Black Pottery Craft", "Litti Chokha", "Jalebi"],
     hotelAreas: ["Civil Lines", "Chowk Area"],
     hospitals: ["Government Medical College Chakrapanpur", "District Hospital Azamgarh"],
     quickTip: "Nizamabad ki Black Pottery GI tagged handicraft hai."
   },
   "Baghpat": {
-    attractions: [
-      { name: "Trilok Teerth Dham Bada Gaon", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Pura Mahadev Temple", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" },
-      { name: "Barnawa Lakshagriha", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Trilok Teerth Dham", "Pura Mahadev Temple", "Barnawa Lakshagriha"],
     famousFood: ["Ghewar", "Ganne Ka Taaza Ras", "Tandoori Paratha"],
     hotelAreas: ["Delhi-Saharanpur Highway", "Baraut Town"],
     hospitals: ["District Hospital Baghpat", "Astha Hospital Baraut"],
     quickTip: "Pura Mahadev mandir par Shivratri ke dauran lakhon kavad yatri aate hain."
   },
   "Bahraich": {
-    attractions: [
-      { name: "Katarniaghat Wildlife Sanctuary", image: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=600&q=80" },
-      { name: "Dargah Syed Salar Masood", image: "https://images.unsplash.com/photo-1592635196078-9fdc757f27f4?auto=format&fit=crop&w=600&q=80" },
-      { name: "Chittaura Jheel", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Katarniaghat Wildlife Sanctuary", "Dargah Syed Salar Masood", "Chittaura Jheel"],
     famousFood: ["Bahraich Ladoo", "Shahi Tukda", "Kebab Paratha"],
     hotelAreas: ["Station Road", "Digiha Crossing"],
     hospitals: ["Maharshi Balark Medical College", "District Male Hospital"],
     quickTip: "Katarniaghat jungle safari Dudhwa tiger reserve ecosystem ka hissa hai."
   },
   "Ballia": {
-    attractions: [
-      { name: "Bhrigu Rishi Mandir", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Surha Taal Bird Sanctuary", image: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Bhrigu Temple Ballia", "Surha Taal Bird Sanctuary", "Dardari Mela"],
     famousFood: ["Litti Chokha with Desi Ghee", "Sattu Sharbat", "Khaja"],
     hotelAreas: ["Station Road", "Civil Lines Ballia"],
     hospitals: ["District Hospital Ballia", "Mata Ram Shanti Hospital"],
-    quickTip: "Maharshi Bhrigu ka aitihasik mandir aur Dardari mela yahan ke mukhya aakarshan hain."
+    quickTip: "Maharshi Bhrigu ka mandir aur Dardari mela yahan ke mukhya aakarshan hain."
+  },
+  "Balrampur": {
+    attractions: ["Devipatan Shaktipeeth", "Suhaildev Wildlife Sanctuary", "Bijlipur Temple"],
+    famousFood: ["Tharu Tribal Food", "Desi Ghee Puri & Sabzi", "Balrampur Peda"],
+    hotelAreas: ["Tulsipur Road", "Station Circle"],
+    hospitals: ["Memorial Hospital Balrampur", "District Women Hospital"],
+    quickTip: "Devipatan 51 Shaktipeethon mein se ek hai jo Tulsipur ke paas sthit hai."
+  },
+  "Banda": {
+    attractions: ["Kalinjar Fort", "Bamdev Temple", "Khatri Pahar Mandir"],
+    famousFood: ["Bundelkhandi Thali", "Laphra Roti", "Mawa Gujiya"],
+    hotelAreas: ["Civil Lines", "Station Road Banda"],
+    hospitals: ["Government Medical College Banda", "District Hospital Banda"],
+    quickTip: "Kalinjar Fort pahadi par sthit aitihasik killa hai, subah jana behtar hai."
+  },
+  "Barabanki": {
+    attractions: ["Dewa Sharif", "Parijaat Tree Kintoor", "Lodheshwar Mahadev Mandir"],
+    famousFood: ["Dewa Mela Kebabs & Sweets", "Biryani", "Rewari & Gajak"],
+    hotelAreas: ["Faizabad Road NH-28", "Dewa Road"],
+    hospitals: ["District Hospital Barabanki", "Mayo Institute of Medical Sciences"],
+    quickTip: "Kintoor ka Parijaat vriksha Mahabharat kaal se juda durlabh vriksha hai."
   },
   "Bareilly": {
-    attractions: [
-      { name: "Alakhnath Temple (Nath Nagari)", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Dargah Aala Hazrat", image: "https://images.unsplash.com/photo-1592635196078-9fdc757f27f4?auto=format&fit=crop&w=600&q=80" },
-      { name: "Phoenix United Mall", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Alakhnath Temple", "Dargah Aala Hazrat", "Phoenix United Mall"],
     famousFood: ["Seekh Kebab", "Bareilly ki Khasta Kachori", "Paneer Jalebi"],
     hotelAreas: ["Civil Lines", "Station Road", "Pilibhit Bypass"],
     hospitals: ["Rohilkhand Medical College", "District Hospital Bareilly"],
     quickTip: "Zari Zardozi work aur Surma ki shopping ke liye Bareilly ka Bara Bazaar best hai."
   },
   "Basti": {
-    attractions: [
-      { name: "Makhauda Dham (Dashrath Yagya Sthal)", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Bhadreshwar Nath Mandir", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Makhauda Dham", "Bhadreshwar Nath Mandir", "Chando Tal"],
     famousFood: ["Basti Peda", "Samosa Sabzi", "Khichdi with Chooran"],
     hotelAreas: ["Company Bagh", "Malviya Road"],
     hospitals: ["Maharshi Vashishtha Medical College", "District Hospital Basti"],
     quickTip: "Makhauda Dham wahi sthan hai jahan Putrakameshti Yagya hua tha."
   },
   "Bhadohi": {
-    attractions: [
-      { name: "Sita Samahit Sthal (Sitamarhi)", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Semradh Nath Mandir", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Sita Samahit Sthal Sitamarhi", "Semradh Nath Mandir", "Baba Harihar Nath"],
     famousFood: ["Handmade Carpet Craft", "Baati Chokha", "Chhena Toast"],
     hotelAreas: ["Gyanpur Road", "Station Area Bhadohi"],
     hospitals: ["Maharaja Chet Singh District Hospital", "Jeevan Deep Hospital"],
     quickTip: "Bhadohi carpet city of India hai jahan world class hand-woven kaleen bante hain."
   },
   "Bijnor": {
-    attractions: [
-      { name: "Kanva Ashram", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" },
-      { name: "Vidur Kuti Daranagar", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Kanva Ashram", "Vidur Kuti", "Najibudaulah Fort"],
     famousFood: ["Sugarcane Jaggery", "Pista Burfi", "Bedmi Puri"],
     hotelAreas: ["Civil Lines Bijnor", "Najibabad Circle"],
     hospitals: ["District Hospital Bijnor", "Neelkanth Hospital"],
     quickTip: "Kanva Ashram Emperor Bharat ki janam-sthali ke roop mein jaana jata hai."
   },
   "Budaun": {
-    attractions: [
-      { name: "Jama Masjid Shamsi", image: "https://images.unsplash.com/photo-1592635196078-9fdc757f27f4?auto=format&fit=crop&w=600&q=80" },
-      { name: "Dargah Hazrat Bade Sarkar", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Jama Masjid Shamsi", "Dargah Hazrat Bade Sarkar", "Birua Badi Temple"],
     famousFood: ["Budaun Ka Mashhoor Peda", "Sheermal", "Nihari"],
     hotelAreas: ["Civil Lines Budaun", "Indira Chowk"],
     hospitals: ["Government Medical College Budaun", "District Hospital Budaun"],
     quickTip: "Budaun ke pure khoya peda poore Bharat mein famous hain."
   },
   "Bulandshahr": {
-    attractions: [
-      { name: "Khurja Ceramic Pottery Hub", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Anoopshahr Ganga Ghat", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Khurja Pottery", "Anoopshahr Ganga Ghat", "Karnavas"],
     famousFood: ["Khurja ki Khurchan", "Tandoori Kulche", "Chhole Puri"],
     hotelAreas: ["Delhi Road", "Khurja Bypass", "Civil Lines"],
     hospitals: ["District Hospital Bulandshahr", "Kailash Hospital Khurja"],
-    quickTip: "Khurja se hand-painted pottery aur dinner sets wholesale rates par milte hain."
+    quickTip: "Khurja se hand-painted pottery aur ceramic items wholesale rates par milte hain."
   },
   "Chandauli": {
-    attractions: [
-      { name: "Rajdari & Deodari Waterfalls", image: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=600&q=80" },
-      { name: "Chandraprabha Wildlife Sanctuary", image: "https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Rajdari Falls", "Deodari Falls", "Chandraprabha Wildlife Sanctuary"],
     famousFood: ["Baati Chokha", "Chhena Toast", "Gupchup"],
     hotelAreas: ["Pt Deen Dayal Upadhyay Nagar (Mughalsarai) Junction Area"],
     hospitals: ["District Hospital Chandauli", "Railway Divisional Hospital"],
     quickTip: "Rajdari waterfall monsoon ke mausam mein picnic ke liye best spot hai."
   },
   "Chitrakoot": {
-    attractions: [
-      { name: "Ramghat Mandakini Aarti", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" },
-      { name: "Kamadgiri Parikrama", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Gupt Godavari Caves", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" },
-      { name: "Hanuman Dhara", image: "https://images.unsplash.com/photo-1592635196078-9fdc757f27f4?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Ramghat Mandakini", "Kamadgiri", "Gupt Godavari", "Hanuman Dhara"],
     famousFood: ["Chitrakoot Peda", "Mandakini Chaat", "Mahua Ladoo"],
     hotelAreas: ["Ramghat Circle", "Sitapur Road", "Karwi"],
     hospitals: ["Jankikund Chikitsalaya", "Sadguru Netra Chikitsalaya"],
     quickTip: "Gupt Godavari caves explore karne ke liye waterproof footwear pehnein."
   },
   "Deoria": {
-    attractions: [
-      { name: "Deoraha Baba Ashram", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Somnath Mandir", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Deoraha Baba Ashram", "Somnath Mandir Deoria"],
     famousFood: ["Deoria Peda", "Litti Chokha", "Taal Makhana"],
     hotelAreas: ["Civil Lines", "Subhash Chowk"],
     hospitals: ["Maharshi Devraha Baba Medical College", "District Hospital Deoria"],
     quickTip: "Deoraha Baba ashram Saryu nadi ke tat par ek shant spiritual sthal hai."
   },
+  "Etah": {
+    attractions: ["Patna Bird Sanctuary", "Awagarh Fort", "Kailash Mandir"],
+    famousFood: ["Jalesar Bell Brass Craft", "Bedai Sabzi", "Ghewar"],
+    hotelAreas: ["Shringarnagar", "Agra Road Etah"],
+    hospitals: ["Viraangana Avanti Bai Autonomous Medical College", "District Hospital Etah"],
+    quickTip: "Jalesar se mandir ke brass ghante poore vishwa ke mandiron mein export hote hain."
+  },
+  "Etawah": {
+    attractions: ["Etawah Safari Park", "National Chambal Sanctuary", "Victoria Memorial Etawah"],
+    famousFood: ["Etawah ke Gulab Jamun", "Kachori & Dubki Wale Aloo", "Peda"],
+    hotelAreas: ["Safari Road", "Civil Lines Etawah", "Station Road"],
+    hospitals: ["Saifai Medical College (U P Medical University)", "District Hospital Etawah"],
+    quickTip: "Chambal river safari boat ride mein freshwater dolphin aur ghariyal dekhne ko milte hain."
+  },
+  "Faizabad": {
+    attractions: ["Gulab Bari Faizabad", "Bahu Begum Tomb", "Guptar Ghat"],
+    famousFood: ["Faizabadi Biryani", "Kakori Kebab", "Nankhatai"],
+    hotelAreas: ["Civil Lines Faizabad", "Guptar Ghat Riverside"],
+    hospitals: ["District Hospital Faizabad", "Chiranjeev Hospital"],
+    quickTip: "Guptar Ghat par shaam ki sunset boat ride aur river breeze behad soothing hoti hai."
+  },
+  "Farrukhabad": {
+    attractions: ["Sankisa Buddhist Site", "Fatehgarh Cantonment", "Pandav Bagh"],
+    famousFood: ["Dalmoth", "Khasta Kachori", "Ganga Kinare ke Tarbooj"],
+    hotelAreas: ["Fatehgarh Station Road", "Farrukhabad Chowk"],
+    hospitals: ["Dr. Ram Manohar Lohia District Hospital", "Major SD Singh Medical College"],
+    quickTip: "Sankisa Bhagwan Buddha se juda pavitra tirth sthal hai."
+  },
+  "Fatehpur": {
+    attractions: ["Bawani Imli", "Bhitaura Ganga Ghat", "Asothar Fort"],
+    famousFood: ["Peda of Fatehpur", "Samosa", "Litti Sabzi"],
+    hotelAreas: ["GT Road", "Station Area", "Civil Lines"],
+    hospitals: ["Amar Shaheed Jodha Singh Medical College", "District Hospital Fatehpur"],
+    quickTip: "Bawani Imli 1857 kranti ke 52 amar shaheedon ki yaadgar aitihasik jagah hai."
+  },
+  "Firozabad": {
+    attractions: ["Suhag Nagari Glass Craft", "Jain Glass Temple", "Kotla Fort"],
+    famousFood: ["Dal Sew Namkeen", "Bedmi Puri", "Mathura Style Lassi"],
+    hotelAreas: ["Agra-Firozabad Highway", "Raja Ka Taal"],
+    hospitals: ["Autonomous State Medical College Firozabad", "District Hospital Firozabad"],
+    quickTip: "Firozabad se colorful glass bangles aur handicraft lights direct factory se lein."
+  },
   "Gorakhpur": {
-    attractions: [
-      { name: "Gorakhnath Temple", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Ramgarh Taal & Marine Drive", image: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=600&q=80" },
-      { name: "Gita Press", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Gorakhnath Temple", "Ramgarh Taal Lake", "Gita Press Gorakhpur"],
     famousFood: ["Gorakhpuri Galouti Kebab", "Ramgarhtal Kulhad Pizza", "Kachori Dum Aloo"],
     hotelAreas: ["Golghar", "Ramgarh Taal Road", "Station Area"],
     hospitals: ["AIIMS Gorakhpur", "BRD Medical College"],
     quickTip: "Ramgarh Taal par evening musical fountain show dekhna na bhoolein."
   },
+  "Jhansi": {
+    attractions: ["Jhansi Fort", "Rani Mahal", "Government Museum Jhansi"],
+    famousFood: ["Bundelkhandi Thali", "Laphra", "Petha Dalmoth"],
+    hotelAreas: ["Station Road", "Civil Lines", "Elite Crossing"],
+    hospitals: ["Maharani Laxmi Bai Medical College", "District Hospital Jhansi"],
+    quickTip: "Jhansi Fort ke light and sound show mein Rani Laxmibai ki veer-gatha zaroor dekhein."
+  },
+  "Kanpur Nagar": {
+    attractions: ["Bithoor Brahmavart Ghat", "JK Temple", "Allen Forest Zoo", "Moti Jheel"],
+    famousFood: ["Thaggu ke Laddu", "Badnam Kulfi", "Kanpuri Biryani"],
+    hotelAreas: ["Civil Lines", "Mall Road", "Swaroop Nagar"],
+    hospitals: ["GSVM Medical College", "Regency Hospital", "Hallet Hospital"],
+    quickTip: "Bithoor Ganga Ghat par sunset boat ride aur Nana Saheb memorial visit karein."
+  },
   "Lucknow": {
-    attractions: [
-      { name: "Bara Imambara & Bhool Bhulaiya", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" },
-      { name: "Rumi Darwaza", image: "https://images.unsplash.com/photo-1592635196078-9fdc757f27f4?auto=format&fit=crop&w=600&q=80" },
-      { name: "Chhota Imambara", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Ambedkar Memorial Park", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Bara Imambara", "Rumi Darwaza", "Chhota Imambara", "Ambedkar Memorial Park"],
     famousFood: ["Galouti Kebab (Tunday)", "Awadhi Dum Biryani", "Basket Chaat", "Prakash Kulfi"],
     hotelAreas: ["Gomti Nagar", "Hazratganj", "Charbagh"],
     hospitals: ["KGMU Lucknow", "SGPGI", "Medanta Super Speciality Hospital"],
     quickTip: "Hazratganj evening walk aur old city food crawl miss na karein."
   },
   "Mathura": {
-    attractions: [
-      { name: "Shri Krishna Janmabhoomi", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Dwarkadhish Temple", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" },
-      { name: "Vishram Ghat Yamuna Aarti", image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Krishna Janmasthan", "Dwarkadhish Temple Mathura", "Vishram Ghat"],
     famousFood: ["Mathura ke Peda", "Kachori Jalebi", "Makhan Mishri"],
     hotelAreas: ["Near Krishna Janmasthan", "Mathura Cantt", "Vrindavan Bypass"],
     hospitals: ["KD Medical College", "Nayati Multi Speciality Hospital"],
     quickTip: "Govardhan parikrama subah ya shaam ke suhavne mausam mein karein."
   },
+  "Meerut": {
+    attractions: ["Augarnath Temple", "Sardhana Church", "Hastinapur Temples"],
+    famousFood: ["Meerut Gajak & Rewari", "Nan Khatai", "Amritsari Naan"],
+    hotelAreas: ["Delhi Road", "Cantonment Area", "Garh Road"],
+    hospitals: ["LLRM Medical College", "Nutema Hospital"],
+    quickTip: "Sardhana mein Begum Samru dwara banwaya gaya 200 saal purana church dekhein."
+  },
+  "Mirzapur": {
+    attractions: ["Vindhyavasini Devi Mandir", "Chunar Fort", "Wyndham Falls"],
+    famousFood: ["Vindhyachal Peda", "Baati Chokha", "Chunar Clay Pottery"],
+    hotelAreas: ["Vindhyachal Corridor", "Civil Lines Mirzapur"],
+    hospitals: ["Maa Vindhyavasini Autonomous State Medical College", "District Hospital Mirzapur"],
+    quickTip: "Vindhyachal Trikon Parikrama (Vindhyavasini, Kali Khoh, Ashtabhuja) zaroor karein."
+  },
   "Prayagraj": {
-    attractions: [
-      { name: "Triveni Sangam", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" },
-      { name: "Anand Bhawan", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" },
-      { name: "Allahabad Fort & Akshayavat", image: "https://images.unsplash.com/photo-1592635196078-9fdc757f27f4?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Triveni Sangam Prayagraj", "Anand Bhawan", "Allahabad Fort"],
     famousFood: ["Allahabadi Surkha Amrud", "Dam Aloo Puri", "Loknath Chaat"],
     hotelAreas: ["Civil Lines", "Near Sangam Daraganj"],
     hospitals: ["Swaroop Rani Nehru Hospital (SRN)", "Kamla Nehru Memorial Hospital"],
     quickTip: "Sangam snan ke liye fixed-rate government boat counters se boat lein."
   },
   "Varanasi": {
-    attractions: [
-      { name: "Kashi Vishwanath Mandir Corridor", image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" },
-      { name: "Dashashwamedh Ghat Ganga Aarti", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" },
-      { name: "Assi Ghat", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-      { name: "Sarnath Buddhist Stupa", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" }
-    ],
+    attractions: ["Kashi Vishwanath Temple", "Dashashwamedh Ghat", "Assi Ghat", "Dhamek Stupa Sarnath"],
     famousFood: ["Banarasi Paan", "Tamatar Chaat", "Kachori Jalebi", "Malaiyo"],
     hotelAreas: ["Godowlia Ghats", "Cantonment Luxury Zone", "Assi Ghat"],
     hospitals: ["Sir Sunderlal Hospital (BHU)", "Heritage Hospitals Lanka", "Apex Hospital"],
@@ -267,14 +276,47 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
 });
 
 // =========================================================================
+// WIKIMEDIA COMMONS DYNAMIC IMAGE FETCHER (SMART CACHED)
+// =========================================================================
+
+window._wikiImageCache = window._wikiImageCache || {};
+
+async function fetchWikiImage(queryName) {
+    if (window._wikiImageCache[queryName]) {
+        return window._wikiImageCache[queryName];
+    }
+
+    try {
+        const cleanQuery = encodeURIComponent(queryName.trim());
+        const endpoint = `https://en.wikipedia.org/w/api.php?action=query&titles=${cleanQuery}&prop=pageimages&format=json&pithumbsize=600&origin=*`;
+        
+        const response = await fetch(endpoint);
+        const data = await response.json();
+        
+        if (data && data.query && data.query.pages) {
+            const pages = data.query.pages;
+            const pageId = Object.keys(pages)[0];
+            if (pageId && pages[pageId].thumbnail && pages[pageId].thumbnail.source) {
+                const imgUrl = pages[pageId].thumbnail.source;
+                window._wikiImageCache[queryName] = imgUrl;
+                return imgUrl;
+            }
+        }
+    } catch (err) {
+        console.warn("Wiki fetch skipped for:", queryName);
+    }
+    return null;
+}
+
+// =========================================================================
 // UI CONTROLLERS & BOTTOM DRAWER RENDERER
 // =========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Purane popup modal ko permanently disable karna
+    // Purane modal ko hatayein
     document.querySelectorAll('.state-modal, .modal-backdrop, [id*="stateModal"], [class*="state-popup"]').forEach(el => el.remove());
 
-    // State card tiles par dedicated view attach karna
+    // State card tiles par dedicated view attach karein
     document.querySelectorAll('.state-card-tile, .state-card, [data-state]').forEach(tile => {
         const newTile = tile.cloneNode(true);
         tile.parentNode.replaceChild(newTile, tile);
@@ -288,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Android Hardware / Swipe Back Navigation Listener
+    // Android Hardware / Swipe Back Navigation
     window.addEventListener('popstate', () => {
         const distDrawer = document.getElementById('districtDetailDrawer');
         if (distDrawer && distDrawer.style.display !== 'none') {
@@ -403,22 +445,16 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
     }
 }
 
-// DISTRICT BOTTOM DRAWER (RENDER WITH EXACT VERIFIED DATA)
+// DISTRICT BOTTOM DRAWER (WITH WIKIPEDIA DYNAMIC IMAGES)
 window.openDistrictDrawer = function(districtName, stateName) {
     const cleanDist = (districtName || '').trim();
-    
-    // Look up directly in window registry
     let data = window.DISTRICT_LEVEL_DETAILS && window.DISTRICT_LEVEL_DETAILS[cleanDist];
 
-    // Fallback if not specifically found in dataset
     if (!data) {
         data = {
-            attractions: [
-                { name: `${cleanDist} Heritage & Mandir`, image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
-                { name: `${cleanDist} City Park & Lake`, image: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=600&q=80" }
-            ],
-            famousFood: ["Local Special Thali", "Desi Sweets & Snacks"],
-            hotelAreas: ["Station Road Circle", "Civil Lines"],
+            attractions: [`${cleanDist} Pavitra Mandir`, `${cleanDist} Historical Landmark`, `${cleanDist} City Lake`],
+            famousFood: ["Local Traditional Thali", "Desi Sweets & Snacks"],
+            hotelAreas: ["Station Road Circle", "City Centre Market"],
             hospitals: [`District Hospital ${cleanDist}`, "Community Health Center"],
             quickTip: "Local sightseeing ke liye auto-rickshaw aur cab suvidha aaram se uplabdh hai."
         };
@@ -444,18 +480,35 @@ window.openDistrictDrawer = function(districtName, stateName) {
         document.body.appendChild(drawer);
     }
 
-    // Photo Cards Rendering
-    const attrCardsHtml = data.attractions.map(item => {
-        const name = typeof item === 'string' ? item : item.name;
-        const img = (typeof item === 'object' && item.image) 
-            ? item.image 
-            : "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80";
+    // Dynamic Photo Cards with Clean Gradient Placeholder
+    const attrCardsHtml = data.attractions.map((placeName, idx) => {
+        const imgId = `place-img-${cleanDist.replace(/\s+/g, '')}-${idx}`;
+        
+        // Background Wikipedia Image Fetcher
+        setTimeout(async () => {
+            const el = document.getElementById(imgId);
+            if (el) {
+                const liveImg = await fetchWikiImage(placeName);
+                if (liveImg) {
+                    el.src = liveImg;
+                    el.style.display = 'block';
+                    const fallbackEl = document.getElementById(`fallback-${imgId}`);
+                    if (fallbackEl) fallbackEl.style.display = 'none';
+                }
+            }
+        }, 100 * idx);
 
         return `
             <div style="background: #060A13; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;">
-                <img src="${img}" alt="${name}" loading="lazy" style="width: 100%; height: 110px; object-fit: cover; background: #1E293B;" onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80'" />
+                <div style="width: 100%; height: 110px; background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); position: relative; display: flex; align-items: center; justify-content: center;">
+                    <div id="fallback-${imgId}" style="text-align: center; color: #94A3B8; font-size: 0.78rem;">
+                        <span style="font-size: 1.6rem; display: block; margin-bottom: 2px;">🏛️</span>
+                        Official Heritage
+                    </div>
+                    <img id="${imgId}" src="" alt="${placeName}" style="display:none; width: 100%; height: 100%; object-fit: cover;" />
+                </div>
                 <div style="padding: 10px 12px; font-size: 0.85rem; font-weight: 700; color: #F1F5F9; line-height: 1.3;">
-                    📍 ${name}
+                    📍 ${placeName}
                 </div>
             </div>
         `;
