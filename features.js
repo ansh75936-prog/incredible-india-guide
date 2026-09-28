@@ -1,5 +1,5 @@
 // ========================================================
-// INCREDIBLE INDIA GUIDE - CORE FEATURES & DEDICATED STATE VIEW
+// INCREDIBLE INDIA GUIDE - CORE FEATURES & SMART BACK NAV
 // ========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,25 +15,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 2. Agar koi direct URL se state page khole (?state=Rajasthan)
+    // 2. Hardware / Android Swipe Back Navigation Handler
+    window.addEventListener('popstate', (e) => {
+        const stateView = document.getElementById('dedicatedStateViewContainer');
+        if (stateView && stateView.style.display !== 'none') {
+            // Android back button / swipe back dabane par state view smoothly close hoga
+            closeDedicatedStatePage(false);
+        }
+    });
+
+    // 3. Direct URL handling (?state=Rajasthan)
     const urlParams = new URLSearchParams(window.location.search);
     const stateParam = urlParams.get('state');
     if (stateParam) {
-        setTimeout(() => renderDedicatedStatePage(stateParam), 250);
+        setTimeout(() => renderDedicatedStatePage(stateParam, false), 250);
     }
 });
 
 // Dedicated State Page with Rich Tourism Content & Animated Districts
-function renderDedicatedStatePage(stateName) {
+function renderDedicatedStatePage(stateName, pushHistory = true) {
     const districts = (window.INDIA_DISTRICTS_DATA && window.INDIA_DISTRICTS_DATA[stateName]) || [];
     
-    // states-data.js se details lena (agar match na ho toh fallback safe data)
+    // states-data ya zone files se details lena
     const details = (window.STATES_TOURISM_DETAILS && window.STATES_TOURISM_DETAILS[stateName]) || {
         tagline: "Explore the authentic beauty and culture of Bharat",
         capital: "Regional Hub",
         bestSeason: "October se March",
-        topHighlights: ["Heritage Temples & Forts", "Scenic Landscapes", "Local Cultural Markets"],
-        famousFoods: ["Traditional Thali", "Local Street Snacks"],
+        topHighlights: ["Heritage Sites", "Scenic Landscapes", "Local Cultural Markets"],
+        famousFoods: ["Traditional Thali", "Local Street Food"],
         itineraryHint: "5-7 Dino ka customized guided circuit.",
         heroImage: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=80"
     };
@@ -57,7 +66,7 @@ function renderDedicatedStatePage(stateName) {
         document.body.appendChild(stateView);
     }
 
-    // Districts wave animation
+    // Districts wave chips
     const distListHtml = districts.length > 0 
         ? districts.map((d, index) => {
             const delay = Math.min(index * 0.03, 1.2);
@@ -70,16 +79,16 @@ function renderDedicatedStatePage(stateName) {
 
     stateView.innerHTML = `
         <header style="background: #0B132B; padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center;">
-            <button onclick="closeDedicatedStatePage()" style="background: rgba(255,255,255,0.12); color: #FFF; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer;">
-                &larr; Wapas Directory
+            <button onclick="handleBackNavigation()" style="background: rgba(255,255,255,0.14); color: #FFF; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.95rem;">
+                ← Wapas
             </button>
             <span style="font-weight: 800; color: #FF5412; font-size: 1rem;">IncredibleIndiaGuide</span>
         </header>
 
         <main style="max-width: 900px; margin: 0 auto; padding: 20px 16px 80px 16px;">
-            <!-- State Hero Card With Cover Picture -->
+            <!-- Hero Header -->
             <div style="background-image: linear-gradient(to top, rgba(6,10,19,0.95), rgba(6,10,19,0.35)), url('${details.heroImage}'); background-size: cover; background-position: center; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); padding: 32px 20px 22px 20px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                <span style="background: #FF5412; color: #FFF; font-size: 0.72rem; font-weight: 800; padding: 4px 12px; border-radius: 30px; text-transform: uppercase;">Verified Tourism Circuit</span>
+                <span style="background: #FF5412; color: #FFF; font-size: 0.72rem; font-weight: 800; padding: 4px 12px; border-radius: 30px; text-transform: uppercase;">Official Tourism Circuit</span>
                 <h1 style="font-size: 2.2rem; margin: 12px 0 6px 0; color: #FFFFFF; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">${stateName}</h1>
                 <p style="color: #F8FAFC; margin: 0 0 14px 0; font-size: 1rem; font-style: italic;">"${details.tagline}"</p>
                 <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:0.85rem; color:#CBD5E1;">
@@ -89,7 +98,7 @@ function renderDedicatedStatePage(stateName) {
                 </div>
             </div>
 
-            <!-- Highlights & Foods Side-by-Side Grid -->
+            <!-- Highlights & Foods Grid -->
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom: 26px;">
                 <div style="background: #0E1726; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 18px;">
                     <h3 style="color:#FF8540; font-size:1.1rem; margin-top:0; margin-bottom:10px;">⭐ Pramukh Aakarshan (Highlights)</h3>
@@ -110,7 +119,7 @@ function renderDedicatedStatePage(stateName) {
                 </div>
             </div>
 
-            <!-- All Districts Section -->
+            <!-- All Districts -->
             <section style="margin-bottom: 30px;">
                 <h2 style="font-size: 1.25rem; color: #FF8540; margin-bottom: 15px; border-bottom: 2px solid rgba(255,84,18,0.3); padding-bottom: 8px;">
                     🏛️ Sabhi Districts & Kshetra (${districts.length})
@@ -120,30 +129,49 @@ function renderDedicatedStatePage(stateName) {
                 </div>
             </section>
 
-            <!-- Direct Booking Action Desk -->
+            <!-- Direct Booking Action -->
             <section style="background: #0E1726; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px; text-align: center;">
                 <h3 style="font-size: 1.25rem; margin: 0 0 8px 0;">Kya aap ${stateName} ghumne ki yojana bana rahe hain?</h3>
                 <p style="color: #94A3B8; font-size: 0.9rem; margin-bottom: 18px;">Humare verified cabs aur custom itinerary ke sath yatra plan karein.</p>
                 <button onclick="bookThisState('${stateName}')" style="background: #FF5412; color: #FFF; border: none; padding: 14px 26px; border-radius: 10px; font-weight: 800; font-size: 1rem; cursor: pointer; width: 100%; max-width: 340px;">
-                    ${stateName} Ka Free Plan Payein &rarr;
+                    ${stateName} Ka Free Plan Payein →
                 </button>
             </section>
         </main>
     `;
 
     stateView.style.display = 'block';
-    window.scrollTo(0, 0);
-    window.history.pushState({ state: stateName }, "", `?state=${encodeURIComponent(stateName)}`);
+    document.body.style.overflow = 'hidden'; // Main page background scroll lock
+    stateView.scrollTo(0, 0);
+
+    // Browser history push for Android Back support
+    if (pushHistory) {
+        window.history.pushState({ modalOpen: true, state: stateName }, "", `?state=${encodeURIComponent(stateName)}`);
+    }
 }
 
-window.closeDedicatedStatePage = function() {
+// Back Button Click Handler
+window.handleBackNavigation = function() {
+    if (window.history.state && window.history.state.modalOpen) {
+        window.history.back(); // Android popstate trigger karega
+    } else {
+        closeDedicatedStatePage(true);
+    }
+};
+
+window.closeDedicatedStatePage = function(updateUrl = true) {
     const stateView = document.getElementById('dedicatedStateViewContainer');
-    if (stateView) stateView.style.display = 'none';
-    window.history.pushState({}, "", window.location.pathname);
+    if (stateView) {
+        stateView.style.display = 'none';
+    }
+    document.body.style.overflow = ''; // Background scroll unlock
+    if (updateUrl && window.location.search.includes('state=')) {
+        window.history.pushState({}, "", window.location.pathname);
+    }
 };
 
 window.bookThisState = function(stateName) {
-    closeDedicatedStatePage();
+    closeDedicatedStatePage(true);
     const destInput = document.getElementById('custLeadDest') || document.querySelector('input[name*="dest"]');
     if (destInput) destInput.value = stateName;
     const plan = document.getElementById('plan') || document.querySelector('form');
