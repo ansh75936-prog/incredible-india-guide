@@ -1,6 +1,6 @@
-// ========================================================
-// INCREDIBLE INDIA GUIDE - CORE FEATURES & FIXED LEFT NAV
-// ========================================================
+// =========================================================================
+// INCREDIBLE INDIA GUIDE - CORE FEATURES & DISTRICT DRAWER ENGINE
+// =========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Purane popup modal ko completely block / hide karna
@@ -33,13 +33,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Android Hardware / Swipe Back Navigation Listener
     window.addEventListener('popstate', () => {
+        const distDrawer = document.getElementById('districtDetailDrawer');
+        if (distDrawer && distDrawer.style.display !== 'none') {
+            closeDistrictDrawer();
+            return;
+        }
+
         const stateView = document.getElementById('dedicatedStateViewContainer');
         if (stateView && stateView.style.display !== 'none') {
             closeDedicatedStatePage(false);
         }
     });
 
-    // 4. Direct URL handler (?state=Punjab)
+    // 4. Direct URL handler (?state=Uttar Pradesh)
     const urlParams = new URLSearchParams(window.location.search);
     const stateParam = urlParams.get('state');
     if (stateParam) {
@@ -47,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Dedicated State Page with Guaranteed Left-Aligned Back Button
+// Dedicated State Page with Clickable District Chips
 function renderDedicatedStatePage(stateName, pushHistory = true) {
     document.querySelectorAll('.state-modal, .modal-backdrop, [id*="stateModal"]').forEach(el => el.remove());
 
@@ -81,17 +87,21 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
         document.body.appendChild(stateView);
     }
 
+    // Har district chip par DIRECT CLICK HANDLER
+    const safeState = stateName.replace(/'/g, "\\'");
     const distListHtml = districts.length > 0 
         ? districts.map((d, index) => {
-            const delay = Math.min(index * 0.03, 1.2);
-            return `<span class="district-animated-chip" style="animation-delay: ${delay}s; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); padding: 9px 16px; border-radius: 25px; font-size: 0.88rem; color: #E2E8F0; display: inline-block;">📍 ${d}</span>`;
+            const delay = Math.min(index * 0.02, 1.0);
+            const safeDist = d.replace(/'/g, "\\'");
+            return `<button type="button" onclick="openDistrictDrawer('${safeDist}', '${safeState}')" class="district-animated-chip" style="animation-delay: ${delay}s; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); padding: 10px 16px; border-radius: 25px; font-size: 0.9rem; color: #FFFFFF; display: inline-flex; align-items:center; gap:6px; cursor: pointer; text-align: left; font-family: inherit; -webkit-tap-highlight-color: transparent;">
+                📍 ${d} <span style="font-size:0.8rem; color:#FF5412; font-weight:800;">›</span>
+            </button>`;
         }).join('')
         : `<p style="color:#94A3B8;">Districts data updating...</p>`;
 
     const highlightsHtml = details.topHighlights.map(h => `<li style="margin-bottom:6px; color:#E2E8F0;">✨ ${h}</li>`).join('');
     const foodsHtml = details.famousFoods.map(f => `<span style="background:rgba(255,84,18,0.15); border:1px solid rgba(255,84,18,0.3); color:#FF8540; padding:4px 12px; border-radius:20px; font-size:0.82rem; font-weight:700;">🍲 ${f}</span>`).join('');
 
-    // Guaranteed Left Position using CSS absolute & !important
     stateView.innerHTML = `
         <div style="background: #0B132B; height: 56px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 100; width: 100%; box-sizing: border-box;">
             <button onclick="handleBackNavigation()" style="position: absolute !important; left: 16px !important; top: 50% !important; transform: translateY(-50%) !important; margin: 0 !important; background: rgba(255,255,255,0.14) !important; color: #FFFFFF !important; border: 1px solid rgba(255,255,255,0.18) !important; padding: 7px 14px !important; border-radius: 8px !important; font-weight: 700 !important; cursor: pointer !important; font-size: 0.9rem !important; display: inline-flex !important; align-items: center !important; gap: 5px !important; line-height: 1 !important; z-index: 101 !important;">
@@ -134,11 +144,12 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
                 </div>
             </div>
 
-            <!-- All Districts -->
+            <!-- All Districts Section -->
             <section style="margin-bottom: 30px;">
-                <h2 style="font-size: 1.25rem; color: #FF8540; margin-bottom: 15px; border-bottom: 2px solid rgba(255,84,18,0.3); padding-bottom: 8px;">
+                <h2 style="font-size: 1.25rem; color: #FF8540; margin-bottom: 6px; border-bottom: 2px solid rgba(255,84,18,0.3); padding-bottom: 8px;">
                     🏛️ Sabhi Districts & Kshetra (${districts.length})
                 </h2>
+                <p style="color:#94A3B8; font-size:0.85rem; margin-bottom:14px;">Kisi bhi district par tap karein hotel, hospital, photo places aur food details dekhne ke liye:</p>
                 <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                     ${distListHtml}
                 </div>
@@ -148,7 +159,7 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
             <section style="background: #0E1726; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px; text-align: center;">
                 <h3 style="font-size: 1.25rem; margin: 0 0 8px 0;">Kya aap ${stateName} ghumne ki yojana bana rahe hain?</h3>
                 <p style="color: #94A3B8; font-size: 0.9rem; margin-bottom: 18px;">Humare verified cabs aur custom itinerary ke sath yatra plan karein.</p>
-                <button onclick="bookThisState('${stateName}')" style="background: #FF5412; color: #FFF; border: none; padding: 14px 26px; border-radius: 10px; font-weight: 800; font-size: 1rem; cursor: pointer; width: 100%; max-width: 340px;">
+                <button onclick="bookThisState('${safeState}')" style="background: #FF5412; color: #FFF; border: none; padding: 14px 26px; border-radius: 10px; font-weight: 800; font-size: 1rem; cursor: pointer; width: 100%; max-width: 340px;">
                     ${stateName} Ka Free Plan Payein →
                 </button>
             </section>
@@ -164,7 +175,146 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
     }
 }
 
-// Back Action Handlers
+// =========================================================================
+// DISTRICT BOTTOM DRAWER (WITH IMAGE CARDS, FOOD, STAYS & HOSPITALS)
+// =========================================================================
+
+window.openDistrictDrawer = function(districtName, stateName) {
+    const data = (window.DISTRICT_LEVEL_DETAILS && window.DISTRICT_LEVEL_DETAILS[districtName]) || {
+        attractions: [
+            { name: "Pramukh Mandir & Darshan Sthal", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
+            { name: "Heritage Landmark & Fort", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" },
+            { name: "Local Traditional Bazaar", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" }
+        ],
+        famousFood: ["Traditional Thali", "Local Special Sweets & Snacks"],
+        hotelAreas: ["Main Railway Station Circle", "City Centre", "Civil Lines"],
+        hospitals: ["District Civil Hospital", "Government Medical College"],
+        quickTip: "Local sightseeing ke liye auto-rickshaw aur cab suvidha aaram se uplabdh hai."
+    };
+
+    let drawer = document.getElementById('districtDetailDrawer');
+    if (!drawer) {
+        drawer = document.createElement('div');
+        drawer.id = 'districtDetailDrawer';
+        drawer.style.cssText = `
+            position: fixed;
+            bottom: 0; left: 0; width: 100vw; height: 86vh;
+            background: #0B132B;
+            border-top: 3px solid #FF5412;
+            border-radius: 24px 24px 0 0;
+            color: #FFFFFF;
+            z-index: 10000000;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: 0 -12px 45px rgba(0,0,0,0.85);
+            box-sizing: border-box;
+        `;
+        document.body.appendChild(drawer);
+    }
+
+    // Photo Card Grid for Attractions
+    const attrCardsHtml = data.attractions.map(item => {
+        const name = typeof item === 'string' ? item : item.name;
+        const img = (typeof item === 'object' && item.image) 
+            ? item.image 
+            : "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80";
+
+        return `
+            <div style="background: #060A13; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;">
+                <img src="${img}" alt="${name}" loading="lazy" style="width: 100%; height: 110px; object-fit: cover; background: #1E293B;" onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80'" />
+                <div style="padding: 10px 12px; font-size: 0.85rem; font-weight: 700; color: #F1F5F9; line-height: 1.3;">
+                    📍 ${name}
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    const foodHtml = data.famousFood.map(f => `<span style="background:rgba(255,84,18,0.15); border:1px solid rgba(255,84,18,0.3); padding:6px 12px; border-radius:15px; font-size:0.85rem; color:#FF8540; font-weight:700;">🍲 ${f}</span>`).join('');
+    const stayHtml = data.hotelAreas.map(h => `<li style="margin-bottom:6px; color:#CBD5E1;">🏨 <strong>Zone:</strong> ${h}</li>`).join('');
+    const hospHtml = data.hospitals.map(m => `<li style="margin-bottom:6px; color:#94A3B8;">🏥 ${m}</li>`).join('');
+
+    const safeDist = districtName.replace(/'/g, "\\'");
+    const safeSt = stateName.replace(/'/g, "\\'");
+
+    drawer.innerHTML = `
+        <div style="padding: 20px 20px 90px 20px; max-width: 720px; margin: 0 auto; position: relative;">
+            <!-- Pull Handle -->
+            <div style="width: 46px; height: 5px; background: rgba(255,255,255,0.3); border-radius: 10px; margin: 0 auto 16px auto;"></div>
+            
+            <!-- Drawer Title Bar -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <div>
+                    <span style="color:#FF8540; font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">District Guide • ${stateName}</span>
+                    <h2 style="font-size: 1.85rem; margin: 4px 0 0 0; color: #FFF;">📍 ${districtName}</h2>
+                </div>
+                <button onclick="closeDistrictDrawer()" style="background: rgba(255,255,255,0.14); color:#FFF; border:none; border-radius:50%; width:38px; height:38px; font-size:1.3rem; cursor:pointer; font-weight:bold; display:flex; align-items:center; justify-content:center;">&times;</button>
+            </div>
+
+            <!-- Attractions Gallery Grid -->
+            <div style="margin-bottom:18px;">
+                <h4 style="margin:0 0 10px 0; color:#FF8540; font-size:1rem;">⭐ Pramukh Paryatan Sthal (Famous Places)</h4>
+                <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;">
+                    ${attrCardsHtml}
+                </div>
+            </div>
+
+            <!-- Famous Food -->
+            <div style="background:#060A13; border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:16px; margin-bottom:16px;">
+                <h4 style="margin:0 0 10px 0; color:#FF8540; font-size:0.95rem;">🍽️ Prasiddh Khana & Street Flavors</h4>
+                <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                    ${foodHtml}
+                </div>
+            </div>
+
+            <!-- Stays & Hospitals 2-Column Grid -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap:12px; margin-bottom:16px;">
+                <div style="background:#060A13; border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:16px;">
+                    <h4 style="margin:0 0 8px 0; color:#E2E8F0; font-size:0.95rem;">🛌 Kahan Rukein? (Best Hotel Zones)</h4>
+                    <ul style="padding-left:18px; margin:0; font-size:0.85rem; line-height:1.6;">
+                        ${stayHtml}
+                    </ul>
+                </div>
+
+                <div style="background:#060A13; border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:16px;">
+                    <h4 style="margin:0 0 8px 0; color:#E2E8F0; font-size:0.95rem;">🚑 Emergency & Big Hospitals</h4>
+                    <ul style="padding-left:18px; margin:0; font-size:0.85rem; line-height:1.6;">
+                        ${hospHtml}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quick Travel Tip -->
+            <div style="background:rgba(255,84,18,0.08); border-left:3px solid #FF5412; padding:12px 16px; font-size:0.86rem; color:#CBD5E1; margin-bottom:20px; border-radius:0 10px 10px 0;">
+                💡 <strong>Yatri Salah:</strong> ${data.quickTip}
+            </div>
+
+            <!-- Direct Book District Action -->
+            <button onclick="bookThisDistrict('${safeDist}', '${safeSt}')" style="background:#FF5412; color:#FFF; border:none; width:100%; padding:15px; border-radius:12px; font-weight:800; font-size:1rem; cursor:pointer;">
+                ${districtName} Ke Liye Cab / Tour Plan Mangein →
+            </button>
+        </div>
+    `;
+
+    drawer.style.display = 'block';
+    drawer.scrollTo(0, 0);
+};
+
+window.closeDistrictDrawer = function() {
+    const drawer = document.getElementById('districtDetailDrawer');
+    if (drawer) drawer.style.display = 'none';
+};
+
+window.bookThisDistrict = function(districtName, stateName) {
+    closeDistrictDrawer();
+    closeDedicatedStatePage(true);
+    const destInput = document.getElementById('custLeadDest') || document.querySelector('input[name*="dest"]');
+    if (destInput) destInput.value = `${districtName} (${stateName})`;
+    const plan = document.getElementById('plan') || document.querySelector('form');
+    if (plan) plan.scrollIntoView({ behavior: 'smooth' });
+    const nameInput = document.getElementById('custLeadName') || document.querySelector('input[name*="name"]');
+    if (nameInput) nameInput.focus();
+};
+
 window.handleBackNavigation = function() {
     if (window.history.state && window.history.state.modalOpen) {
         window.history.back();
@@ -174,6 +324,7 @@ window.handleBackNavigation = function() {
 };
 
 window.closeDedicatedStatePage = function(updateUrl = true) {
+    closeDistrictDrawer();
     const stateView = document.getElementById('dedicatedStateViewContainer');
     if (stateView) {
         stateView.style.display = 'none';
