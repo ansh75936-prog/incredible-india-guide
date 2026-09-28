@@ -54,6 +54,40 @@
     }
     </script>
     <style>
+          /* Universal Header Hide: Topbar aur Header ke saare Currency & Theme controls */
+  .topbar,
+  header .theme-toggle-btn,
+  header select,
+  header #currencySelector,
+  header .currency-select,
+  header .currency-wrap,
+  header [class*="currency"],
+  header [id*="currency"],
+  header [class*="theme"],
+  header [id*="theme"],
+  header button[onclick*="theme"],
+  header button[onclick*="Theme"],
+  .header-actions {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Sirf Left 3-Dot Button ko zinda rakhein */
+  #unified3DotBtn,
+  button[aria-label*="Menu"],
+  .topbar-left,
+  .topbar-left button {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: fixed !important;
+    top: 12px !important;
+    left: 12px !important;
+    z-index: 99999 !important;
+  }
   .topbar-right,
   .topbar select,
   .topbar .theme-toggle-btn,
