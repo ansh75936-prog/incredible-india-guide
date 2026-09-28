@@ -183,13 +183,8 @@
             z-index: 3000;
         }
 
-        /* --- Top Bar --- */
         .topbar {
-            background: var(--dark-950);
-            color: #94A3B8;
-            padding: 8px 0;
-            font-size: 0.82rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: none !important;
         }
 
         .topbar-wrap {
@@ -303,37 +298,19 @@
             gap: 12px;
         }
 
-        /* Currency Selector */
-        .currency-select-box select {
-            background: var(--bg-base);
-            border: 1px solid var(--border-light);
-            color: var(--text-main);
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .theme-toggle-btn {
-            background: var(--bg-base);
-            border: 1px solid var(--border-light);
-            color: var(--text-main);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            transition: all 0.2s;
-        }
-
-        .theme-toggle-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
+        .hamburger-btn {
+    order: -1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 12px !important;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    color: var(--text-main);
+    cursor: pointer;
         }
 
         .btn-portal-cta {
@@ -385,21 +362,21 @@
         }
         .drawer-overlay.active { display: block; opacity: 1; }
 
-        .nav-drawer {
-            position: fixed;
-            top: 0; right: 0;
-            width: min(300px, 85vw); height: 100%;
-            background: var(--surface);
-            z-index: 2100;
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
-            transform: translateX(105%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
-            visibility: hidden;
-            padding: 2rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .hamburger-btn {
+    order: -1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 12px !important;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    color: var(--text-main);
+    cursor: pointer;
         }
+        
         .nav-drawer.active { 
             transform: translateX(0); 
             visibility: visible;
