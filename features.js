@@ -1221,3 +1221,142 @@ function setupStateCardLimit() {
     btnWrapper.appendChild(toggleBtn);
     container.parentNode.insertBefore(btnWrapper, container.nextSibling);
 }
+// =========================================================================
+// HOME PAGE ENGINE: .vault-grid-layout REAL IMAGES + 6 CARDS TOGGLE
+// =========================================================================
+
+const HOME_STATE_IMAGES = {
+  "Himachal Pradesh": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80",
+  "Uttarakhand": "https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=600&q=80",
+  "Punjab": "https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80",
+  "Uttar Pradesh": "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80",
+  "Rajasthan": "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80",
+  "Kerala": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80",
+  "Karnataka": "https://images.unsplash.com/photo-1600100397608-f010f4439c27?auto=format&fit=crop&w=600&q=80",
+  "Tamil Nadu": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80",
+  "Andhra Pradesh": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80",
+  "Telangana": "https://images.unsplash.com/photo-1605335198084-257a3e9b1d9c?auto=format&fit=crop&w=600&q=80",
+  "Goa": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80",
+  "Gujarat": "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=600&q=80",
+  "Maharashtra": "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=600&q=80",
+  "Odisha": "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=600&q=80",
+  "West Bengal": "https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=600&q=80",
+  "Sikkim": "https://images.unsplash.com/photo-1617854818583-09e7f077a156?auto=format&fit=crop&w=600&q=80",
+  "Assam": "https://images.unsplash.com/photo-1571401835393-8c5f35328320?auto=format&fit=crop&w=600&q=80",
+  "Meghalaya": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=600&q=80",
+  "Arunachal Pradesh": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",
+  "Nagaland": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+  "Manipur": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80",
+  "Mizoram": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+  "Tripura": "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80",
+  "Jharkhand": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80",
+  "Bihar": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80",
+  "Chhattisgarh": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=600&q=80",
+  "Madhya Pradesh": "https://images.unsplash.com/photo-1600100397608-f010f4439c27?auto=format&fit=crop&w=600&q=80",
+  "Haryana": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80",
+  "Delhi": "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=600&q=80",
+  "Jammu & Kashmir": "https://images.unsplash.com/photo-1566837945700-30057527ade0?auto=format&fit=crop&w=600&q=80",
+  "Ladakh": "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=600&q=80",
+  "Andaman & Nicobar": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80",
+  "Chandigarh": "https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80",
+  "Lakshadweep": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+  "Puducherry": "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=600&q=80",
+  "Daman & Diu": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80"
+};
+
+function setupVaultHomeGrid() {
+  const container = document.querySelector('.vault-grid-layout');
+  if (!container) return;
+
+  const cards = Array.from(container.querySelectorAll('.state-card-tile'));
+  if (cards.length === 0) return;
+
+  // 1. Har card par photo lagana
+  cards.forEach(card => {
+    const title = card.querySelector('.state-tile-meta h3')?.innerText?.trim() || '';
+    const cleanState = title.replace(' (UT)', '').replace(' (NCT)', '').trim();
+    const imgUrl = HOME_STATE_IMAGES[cleanState] || "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80";
+
+    const iconBox = card.querySelector('.state-tile-icon');
+    if (iconBox) {
+      iconBox.innerHTML = `<img src="${imgUrl}" alt="${cleanState}" style="width:100%; height:100%; object-fit:cover; border-radius:12px; display:block;" onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80'" />`;
+      iconBox.style.padding = '0';
+      iconBox.style.overflow = 'hidden';
+      iconBox.style.background = '#1E293B';
+      iconBox.style.border = '1px solid rgba(255,255,255,0.12)';
+    }
+  });
+
+  // 2. Sirf 6 states dikhana aur baaki hide karna
+  if (cards.length > 6) {
+    cards.forEach((card, index) => {
+      if (index >= 6) {
+        card.style.display = 'none';
+      }
+    });
+
+    const oldWrap = document.getElementById('vaultToggleBtnWrap');
+    if (oldWrap) oldWrap.remove();
+
+    const btnWrap = document.createElement('div');
+    btnWrap.id = 'vaultToggleBtnWrap';
+    btnWrap.style.cssText = `
+      width: 100%;
+      text-align: center;
+      margin: 28px 0 45px 0;
+      display: flex;
+      justify-content: center;
+    `;
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.id = 'vaultToggleBtn';
+    toggleBtn.setAttribute('data-open', 'false');
+    toggleBtn.style.cssText = `
+      background: linear-gradient(135deg, rgba(255,84,18,0.18), rgba(255,84,18,0.06));
+      color: #FFFFFF;
+      border: 1.5px solid #FF5412;
+      padding: 13px 28px;
+      border-radius: 30px;
+      font-size: 0.96rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(255,84,18,0.25);
+      font-family: inherit;
+    `;
+    toggleBtn.innerHTML = `<span>Sabhi States & UTs Dekhein (36)</span> <span style="font-size:1.15rem; color:#FF5412;">↓</span>`;
+
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = toggleBtn.getAttribute('data-open') === 'true';
+
+      if (!isOpen) {
+        cards.forEach(card => {
+          card.style.display = 'flex';
+          card.style.animation = 'fadeInCard 0.25s ease forwards';
+        });
+        toggleBtn.setAttribute('data-open', 'true');
+        toggleBtn.style.background = '#FF5412';
+        toggleBtn.innerHTML = `<span>Kam Dikhayein (Show Less)</span> <span style="font-size:1.15rem;">↑</span>`;
+      } else {
+        cards.forEach((card, index) => {
+          if (index >= 6) {
+            card.style.display = 'none';
+          }
+        });
+        toggleBtn.setAttribute('data-open', 'false');
+        toggleBtn.style.background = 'linear-gradient(135deg, rgba(255,84,18,0.18), rgba(255,84,18,0.06))';
+        toggleBtn.innerHTML = `<span>Sabhi States & UTs Dekhein (36)</span> <span style="font-size:1.15rem; color:#FF5412;">↓</span>`;
+        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    btnWrap.appendChild(toggleBtn);
+    container.parentNode.insertBefore(btnWrap, container.nextSibling);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(setupVaultHomeGrid, 200);
+});
