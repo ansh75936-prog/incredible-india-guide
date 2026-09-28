@@ -1,9 +1,27 @@
 // =========================================================================
-// UNIVERSAL SITE CLEANER & FULL ENGLISH TRANSLATOR (UPDATED)
+// UNIVERSAL SITE CLEANER & FULL ENGLISH TRANSLATOR (HOME + DETAILS)
 // =========================================================================
 
 (function () {
   const translations = [
+    // Hero & Home Section Headings
+    { match: /Bharat Ki Sabse Lokpriya Yatra Sthalein/gi, replace: "India's Most Popular Travel Destinations" },
+    { match: /Lokpriya Yatra Sthalein/gi, replace: "Popular Travel Destinations" },
+    { match: /Ek Desh, Anant Rang/gi, replace: "One Nation, Infinite Colors" },
+    { match: /Poora Bharat/gi, replace: "All India" },
+    { match: /Kahan jana chahte hain\?/gi, replace: "Where do you want to go?" },
+    { match: /Explore Destinations Destinations/gi, replace: "Explore Destinations" },
+
+    // Category Buttons & Filters
+    { match: /Hill Stations & Snow/gi, replace: "Hill Stations & Snow" },
+    { match: /Royal Forts & Palaces/gi, replace: "Royal Forts & Palaces" },
+    { match: /Coastal & Islands/gi, replace: "Coastal & Islands" },
+    { match: /Spiritual Circuits/gi, replace: "Spiritual Circuits" },
+    { match: /Pahadi Kshetra/gi, replace: "Hill Stations" },
+    { match: /Dharohar va Mandir/gi, replace: "Heritage & Temples" },
+    { match: /Samudra Tat va Dweep/gi, replace: "Beaches & Islands" },
+    { match: /Vanya Jeev va Prakriti/gi, replace: "Wildlife & Nature" },
+
     // Navigation & Buttons
     { match: /←\s*Wapas/gi, replace: "← Back" },
     { match: /Wapas/gi, replace: "Back" },
@@ -13,7 +31,7 @@
 
     // Cuisine & Tour Tips
     { match: /Prasiddh Vyanjan\s*\(Local Cuisine\)/gi, replace: "Famous Delicacies (Local Cuisine)" },
-    { match: /Prasiddh Vyanjan/gi, replace: "Popular Delicacies" },
+    { match: /Prasiddh Vyanjan/gi, replace: "Famous Delicacies" },
     { match: /Tour Tip:\s*(\d+)[-–](\d+)\s*Din/gi, replace: "Tour Tip: $1-$2 Days" },
     { match: /(\d+)\s*Din/gi, replace: "$1 Days" },
     { match: /(\d+)\s*Raat/gi, replace: "$1 Nights" },
@@ -26,9 +44,6 @@
     { match: /verified hotels, hospitals, photos aur food dekhne ke liye/gi, replace: "to view verified hotels, hospitals, photos, and food" },
 
     // General Tourism Headings & Badges
-    { match: /Ek Desh, Anant Rang/gi, replace: "One Nation, Infinite Colors" },
-    { match: /Poora Bharat/gi, replace: "All India" },
-    { match: /Kahan jana chahte hain\?/gi, replace: "Where do you want to go?" },
     { match: /Pramukh Aakarshan/gi, replace: "Top Attractions" },
     { match: /Jane Ka Sahi Samay/gi, replace: "Best Time to Visit" },
     { match: /Kaise Pahunchein/gi, replace: "How to Reach" },
@@ -99,5 +114,5 @@
   document.addEventListener("DOMContentLoaded", runCompleteSweep);
   window.addEventListener("load", runCompleteSweep);
   document.addEventListener("click", () => setTimeout(runCompleteSweep, 100));
-  setInterval(runCompleteSweep, 500);
+  setInterval(runCompleteSweep, 400);
 })();
