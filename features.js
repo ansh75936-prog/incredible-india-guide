@@ -1884,3 +1884,80 @@ window.addEventListener("load", injectThemeAndCurrencyToActiveDrawer);
 document.addEventListener("click", () => {
   setTimeout(injectThemeAndCurrencyToActiveDrawer, 100);
 });
+// =========================================================================
+// FORCE INJECT THEME & CURRENCY RIGHT ABOVE HELPLINE BUTTON
+// =========================================================================
+
+function forceAddThemeAndCurrency() {
+  if (document.getElementById('forcedControlBar')) return;
+
+  // Helpline button dhoondein
+  const allElements = document.querySelectorAll('button, a, div');
+  let helplineEl = null;
+
+  for (let el of allElements) {
+    if (el.textContent && el.textContent.includes('1363')) {
+      helplineEl = el;
+      break;
+    }
+  }
+
+  if (helplineEl) {
+    const parentContainer = helplineEl.parentElement;
+    if (!parentContainer) return;
+
+    const controlBar = document.createElement('div');
+    controlBar.id = 'forcedControlBar';
+    controlBar.style.cssText = `
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 10px !important;
+      margin: 14px 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    `;
+
+    controlBar.innerHTML = `
+      <select id="quickCurrencySelect" onchange="if(typeof changeCurrency==='function') changeCurrency(this.value);" style="flex:1; padding:10px 12px; background:#162032; color:#FFFFFF; border:1px solid rgba(255,255,255,0.2); border-radius:12px; font-weight:700; font-size:0.9rem; cursor:pointer; outline:none;">
+        <option value="INR" selected>INR (₹)</option>
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="GBP">GBP (£)</option>
+        <option value="AED">AED (د.إ)</option>
+      </select>
+
+      <button id="quickDarkToggleBtn" type="button" aria-label="Toggle Theme" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:10px 16px; background:#162032; border:1px solid rgba(255,255,255,0.2); border-radius:12px; color:#FFB800; font-weight:700; font-size:0.9rem; cursor:pointer;">
+        <span>🌓</span> <span style="color:#FFF; font-size:0.85rem;">Theme</span>
+      </button>
+    `;
+
+    // Helpline ke theek upar insert karein
+    parentContainer.insertBefore(controlBar, helplineEl);
+
+    // Dark Mode Toggle Logic
+    const toggleBtn = controlBar.querySelector('#quickDarkToggleBtn');
+    toggleBtn.onclick = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'dark';
+      const targetTheme = current === 'dark' ? 'light' : 'dark';
+
+      html.setAttribute('data-theme', targetTheme);
+      document.body.setAttribute('data-theme', targetTheme);
+      
+      try {
+        localStorage.setItem('theme', targetTheme);
+      } catch(err) {}
+
+      // Original navbar toggle sync
+      const origBtn = document.getElementById('themeToggleBtn');
+      if (origBtn) origBtn.click();
+    };
+  }
+}
+
+// Continuous check taaki drawer khulte hi button create ho jaye
+setInterval(forceAddThemeAndCurrency, 300);
