@@ -31,6 +31,27 @@
     #workingLeftHamburger {
       display: none !important;
       visibility: hidden !important;
+          /* Purane duplicate drawer ko hide karein */
+    #mobileNav, 
+    #mobile-nav-drawer, 
+    .mobile-nav-panel, 
+    .mobile-nav-drawer,
+    aside.mobile-drawer,
+    nav.mobile-nav,
+    .mobile-sidebar {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    /* Naye clean drawer ko priority z-index dein */
+    #unifiedDrawer {
+      z-index: 2147483647 !important;
+    }
+    #unifiedDrawerOverlay {
+      z-index: 2147483646 !important;
+    }
     }
     .topbar { background: transparent !important; border: none !important; }
 
