@@ -157,3 +157,55 @@
     }, 'google_translate_element');
   };
 })();
+// =========================================================================
+// REMOVE CURRENCY DROPDOWN & FIX HAMBURGER (☰) BUTTON
+// =========================================================================
+(function fixTopBar() {
+  function applyFix() {
+    // 1. Currency dropdown aur uske text ko hide karein
+    document.querySelectorAll('select, option, button, div').forEach(el => {
+      if (el.id === 'unifiedDrawer' || el.id === 'dedicatedAppContainer') return;
+      if (
+        el.tagName === 'SELECT' || 
+        el.id.toLowerCase().includes('curr') || 
+        el.className.toString().toLowerCase().includes('curr')
+      ) {
+        el.style.setProperty('display', 'none', 'important');
+      }
+    });
+
+    // 2. Hamburger (☰) Button ko top-left me clean floating button banayein
+    let btn = document.getElementById('unified3DotBtn');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'unified3DotBtn';
+      document.body.appendChild(btn);
+    }
+
+    btn.innerHTML = '&#9776;'; // Hamburger icon (3 horizontal lines ☰)
+    btn.setAttribute('aria-label', 'Open Navigation Menu');
+
+    btn.style.cssText = `
+      position: fixed !important;
+      top: 14px !important;
+      left: 14px !important;
+      width: 42px !important;
+      height: 42px !important;
+      background: #0f172a !important;
+      border: 1px solid rgba(255,255,255,0.15) !important;
+      border-radius: 10px !important;
+      color: #fff !important;
+      font-size: 1.3rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      z-index: 99999 !important;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4) !important;
+      line-height: 1 !important;
+    `;
+  }
+
+  applyFix();
+  setTimeout(applyFix, 500);
+})();
