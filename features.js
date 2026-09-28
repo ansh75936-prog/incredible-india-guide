@@ -1,30 +1,46 @@
 // ========================================================
-// INCREDIBLE INDIA GUIDE - CORE FEATURES & SMART BACK NAV
+// INCREDIBLE INDIA GUIDE - CORE FEATURES & POPUP FIX
 // ========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. State card tile par tap karne par dedicated state page kholna
-    document.querySelectorAll('.state-card-tile').forEach(tile => {
-        tile.addEventListener('click', (e) => {
+    // 1. Purane popup modal ko completely block / hide karna
+    const killOldModals = () => {
+        document.querySelectorAll('.state-modal, .modal-backdrop, [id*="stateModal"], [class*="state-popup"]').forEach(el => {
+            el.style.display = 'none';
+            el.remove(); // DOM se hi hata dein taaki pichhe khula na rahe
+        });
+    };
+    killOldModals();
+
+    // 2. State card tiles par naya full-page view attach karna
+    document.querySelectorAll('.state-card-tile, .state-card, [data-state]').forEach(tile => {
+        // Purane event listeners ko bypass karne ke liye cloned element use karein
+        const newTile = tile.cloneNode(true);
+        tile.parentNode.replaceChild(newTile, tile);
+
+        newTile.addEventListener('click', (e) => {
             e.preventDefault();
-            const rawName = tile.getAttribute('data-state') || '';
-            const cleanState = rawName.replace(' (UT)', '').replace(' (NCT)', '').trim();
+            e.stopPropagation();
+            killOldModals();
+
+            const rawName = newTile.getAttribute('data-state') || newTile.querySelector('h3, h4')?.innerText || '';
+            const cleanState = rawName.replace(' (UT)', '').replace(' (NCT)', '').replace('State Guide', '').trim();
+            
             if (cleanState) {
                 renderDedicatedStatePage(cleanState);
             }
         });
     });
 
-    // 2. Hardware / Android Swipe Back Navigation Handler
-    window.addEventListener('popstate', (e) => {
+    // 3. Android Hardware / Swipe Back Navigation Listener
+    window.addEventListener('popstate', () => {
         const stateView = document.getElementById('dedicatedStateViewContainer');
         if (stateView && stateView.style.display !== 'none') {
-            // Android back button / swipe back dabane par state view smoothly close hoga
             closeDedicatedStatePage(false);
         }
     });
 
-    // 3. Direct URL handling (?state=Rajasthan)
+    // 4. Direct URL handler (?state=Punjab)
     const urlParams = new URLSearchParams(window.location.search);
     const stateParam = urlParams.get('state');
     if (stateParam) {
@@ -32,11 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Dedicated State Page with Rich Tourism Content & Animated Districts
+// Dedicated State Page with Rich Tourism Details & Animated Districts
 function renderDedicatedStatePage(stateName, pushHistory = true) {
+    // Purana koi bhi popup background mein ho toh use turant hatao
+    document.querySelectorAll('.state-modal, .modal-backdrop, [id*="stateModal"]').forEach(el => el.remove());
+
     const districts = (window.INDIA_DISTRICTS_DATA && window.INDIA_DISTRICTS_DATA[stateName]) || [];
-    
-    // states-data ya zone files se details lena
     const details = (window.STATES_TOURISM_DETAILS && window.STATES_TOURISM_DETAILS[stateName]) || {
         tagline: "Explore the authentic beauty and culture of Bharat",
         capital: "Regional Hub",
@@ -56,7 +73,7 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
             top: 0; left: 0; width: 100vw; height: 100vh;
             background: #060A13;
             color: #FFFFFF;
-            z-index: 999999;
+            z-index: 9999999;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             padding: 0;
@@ -80,7 +97,7 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
     stateView.innerHTML = `
         <header style="background: #0B132B; padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center;">
             <button onclick="handleBackNavigation()" style="background: rgba(255,255,255,0.14); color: #FFF; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.95rem;">
-                ← Wapas
+                ← Wapas Directory
             </button>
             <span style="font-weight: 800; color: #FF5412; font-size: 1rem;">IncredibleIndiaGuide</span>
         </header>
@@ -141,19 +158,18 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
     `;
 
     stateView.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Main page background scroll lock
+    document.body.style.overflow = 'hidden';
     stateView.scrollTo(0, 0);
 
-    // Browser history push for Android Back support
     if (pushHistory) {
         window.history.pushState({ modalOpen: true, state: stateName }, "", `?state=${encodeURIComponent(stateName)}`);
     }
 }
 
-// Back Button Click Handler
+// Back Action Handler
 window.handleBackNavigation = function() {
     if (window.history.state && window.history.state.modalOpen) {
-        window.history.back(); // Android popstate trigger karega
+        window.history.back();
     } else {
         closeDedicatedStatePage(true);
     }
@@ -164,7 +180,11 @@ window.closeDedicatedStatePage = function(updateUrl = true) {
     if (stateView) {
         stateView.style.display = 'none';
     }
-    document.body.style.overflow = ''; // Background scroll unlock
+    document.body.style.overflow = '';
+    
+    // Safety: Purana modal agar bacha ho toh use bhi band karein
+    document.querySelectorAll('.state-modal, .modal-backdrop').forEach(el => el.remove());
+
     if (updateUrl && window.location.search.includes('state=')) {
         window.history.pushState({}, "", window.location.pathname);
     }
