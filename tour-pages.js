@@ -1,5 +1,5 @@
 // =========================================================================
-// INCREDIBLE INDIA - DEDICATED FULL-SCREEN PAGES WITH USER AUTH & TRANSLATE
+// INCREDIBLE INDIA - DEDICATED FULL-SCREEN PAGES (FIXED INPUT FIELDS)
 // =========================================================================
 
 (function () {
@@ -79,7 +79,7 @@
       `;
     }
 
-    // ================= 2. USER LOGIN & SIGNUP PAGE =================
+    // ================= 2. USER LOGIN & SIGNUP PAGE (FIXED FORMS) =================
     else if (pageType === 'login') {
       const currentUser = JSON.parse(localStorage.getItem('incredible_user') || 'null');
 
@@ -104,40 +104,75 @@
               <button id="authTabSignup" onclick="switchAuthTab('signup')" style="flex:1; padding:10px; background:transparent; border:none; color:#94a3b8; font-weight:600; cursor:pointer;">Sign Up</button>
             </div>
 
-            <!-- Login Form -->
-            <form id="loginForm" onsubmit="handleLoginSubmit(event)" style="display:flex; flex-direction:column; gap:12px;">
-              <input type="email" id="loginEmail" placeholder="Your Email Address" required style="padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;">
-              <input type="password" id="loginPassword" placeholder="Password" required style="padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;">
-              <button type="submit" style="padding:12px; background:#FF5412; border:none; border-radius:8px; color:#fff; font-weight:700; cursor:pointer; margin-top:4px;">Sign In</button>
-            </form>
+            <!-- Login Box -->
+            <div id="loginFormBox" style="display:block;">
+              <form onsubmit="handleLoginSubmit(event)" style="display:flex; flex-direction:column; gap:12px;">
+                <div>
+                  <label style="font-size:0.75rem; color:#94a3b8; display:block; margin-bottom:4px;">Email Address</label>
+                  <input type="email" id="loginEmail" placeholder="name@example.com" required style="width:100%; padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; box-sizing:border-box; font-size:0.9rem;">
+                </div>
+                <div>
+                  <label style="font-size:0.75rem; color:#94a3b8; display:block; margin-bottom:4px;">Password</label>
+                  <input type="password" id="loginPassword" placeholder="••••••••" required style="width:100%; padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; box-sizing:border-box; font-size:0.9rem;">
+                </div>
+                <button type="submit" style="padding:12px; background:#FF5412; border:none; border-radius:8px; color:#fff; font-weight:700; cursor:pointer; margin-top:6px; font-size:0.95rem;">Sign In</button>
+              </form>
+            </div>
 
-            <!-- Sign Up Form (Hidden Initially) -->
-            <form id="signupForm" onsubmit="handleSignupSubmit(event)" style="display:none; flex-direction:column; gap:12px;">
-              <input type="text" id="regName" placeholder="Full Name" required style="padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;">
-              <input type="email" id="regEmail" placeholder="Email Address" required style="padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;">
-              <input type="password" id="regPassword" placeholder="Create Password" required style="padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;">
-              <button type="submit" style="padding:12px; background:#FF5412; border:none; border-radius:8px; color:#fff; font-weight:700; cursor:pointer; margin-top:4px;">Create Account</button>
-            </form>
+            <!-- Signup Box -->
+            <div id="signupFormBox" style="display:none;">
+              <form onsubmit="handleSignupSubmit(event)" style="display:flex; flex-direction:column; gap:12px;">
+                <div>
+                  <label style="font-size:0.75rem; color:#94a3b8; display:block; margin-bottom:4px;">Full Name</label>
+                  <input type="text" id="regName" placeholder="Enter your full name" required style="width:100%; padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; box-sizing:border-box; font-size:0.9rem;">
+                </div>
+                <div>
+                  <label style="font-size:0.75rem; color:#94a3b8; display:block; margin-bottom:4px;">Email Address</label>
+                  <input type="email" id="regEmail" placeholder="name@example.com" required style="width:100%; padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; box-sizing:border-box; font-size:0.9rem;">
+                </div>
+                <div>
+                  <label style="font-size:0.75rem; color:#94a3b8; display:block; margin-bottom:4px;">Create Password</label>
+                  <input type="password" id="regPassword" placeholder="Minimum 6 characters" required style="width:100%; padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; box-sizing:border-box; font-size:0.9rem;">
+                </div>
+                <button type="submit" style="padding:12px; background:#FF5412; border:none; border-radius:8px; color:#fff; font-weight:700; cursor:pointer; margin-top:6px; font-size:0.95rem;">Create Account</button>
+              </form>
+            </div>
 
           </div>
         `;
       }
     }
 
-    // ================= 3. PLAN TRIP / GET FREE QUOTE =================
+    // ================= 3. PLAN TRIP / GET FREE QUOTE (FIXED INPUT FIELDS) =================
     else if (pageType === 'quote') {
       const u = JSON.parse(localStorage.getItem('incredible_user') || '{}');
       body = `
         <h2 style="font-size:1.35rem; margin-top:0;">📝 Plan Trip / Get Free Quote</h2>
         <p style="color:#94a3b8; font-size:0.85rem;">Submit your travel details and connect directly with tour operators.</p>
 
-        <form action="https://formspree.io/f/xbjnqepq" method="POST" style="display:flex; flex-direction:column; gap:12px; margin-top:16px; max-width:480px;">
-          <input type="text" name="name" placeholder="Full Name" value="${u.name || ''}" required style="padding:12px; background:#0f172a; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;">
-          <input type="tel" name="phone" placeholder="WhatsApp / Phone Number" required style="padding:12px; background:#0f172a; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;">
-          <input type="text" name="destination" placeholder="Preferred Destination / State" required style="padding:12px; background:#0f172a; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;">
-          <textarea name="notes" rows="4" placeholder="Any special requests or number of travelers..." style="padding:12px; background:#0f172a; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;"></textarea>
-          <button type="submit" style="padding:14px; background:#FF5412; border:none; border-radius:8px; color:#fff; font-weight:700; cursor:pointer;">Submit Travel Inquiry</button>
-        </form>
+        <div style="background:#0f172a; padding:20px; border-radius:12px; border:1px solid rgba(255,255,255,0.08); margin-top:16px; max-width:480px;">
+          <form onsubmit="handleInquirySubmit(event)" style="display:flex; flex-direction:column; gap:12px;">
+            <div>
+              <label style="font-size:0.75rem; color:#94a3b8; display:block; margin-bottom:4px;">Full Name</label>
+              <input type="text" id="quoteName" placeholder="Your Name" value="${u.name || ''}" required style="width:100%; padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; box-sizing:border-box; font-size:0.9rem;">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; color:#94a3b8; display:block; margin-bottom:4px;">WhatsApp / Mobile Number</label>
+              <input type="tel" id="quotePhone" placeholder="+91 9876543210" required style="width:100%; padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; box-sizing:border-box; font-size:0.9rem;">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; color:#94a3b8; display:block; margin-bottom:4px;">Preferred State or City</label>
+              <input type="text" id="quoteDest" placeholder="e.g. Kashmir, Rajasthan, Goa" required style="width:100%; padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; box-sizing:border-box; font-size:0.9rem;">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; color:#94a3b8; display:block; margin-bottom:4px;">Notes & Preferences</label>
+              <textarea id="quoteNotes" rows="3" placeholder="Tell us about dates, family size, or special requirements..." style="width:100%; padding:12px; background:#1e293b; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; box-sizing:border-box; font-size:0.9rem; font-family:inherit;"></textarea>
+            </div>
+            <button type="submit" style="padding:14px; background:#FF5412; border:none; border-radius:8px; color:#fff; font-weight:700; cursor:pointer; font-size:0.95rem; margin-top:4px;">
+              Send Inquiry Via WhatsApp
+            </button>
+          </form>
+        </div>
       `;
     }
 
@@ -225,21 +260,21 @@
 
   // Auth Switch tabs
   window.switchAuthTab = function (tab) {
-    const lForm = document.getElementById('loginForm');
-    const sForm = document.getElementById('signupForm');
+    const lBox = document.getElementById('loginFormBox');
+    const sBox = document.getElementById('signupFormBox');
     const lTab = document.getElementById('authTabLogin');
     const sTab = document.getElementById('authTabSignup');
 
     if (tab === 'signup') {
-      lForm.style.display = 'none';
-      sForm.style.display = 'flex';
+      lBox.style.display = 'none';
+      sBox.style.display = 'block';
       sTab.style.borderBottom = '2px solid #FF5412';
       sTab.style.color = '#fff';
       lTab.style.borderBottom = 'none';
       lTab.style.color = '#94a3b8';
     } else {
-      sForm.style.display = 'none';
-      lForm.style.display = 'flex';
+      sBox.style.display = 'none';
+      lBox.style.display = 'block';
       lTab.style.borderBottom = '2px solid #FF5412';
       lTab.style.color = '#fff';
       sTab.style.borderBottom = 'none';
@@ -256,16 +291,16 @@
 
     const users = JSON.parse(localStorage.getItem('incredible_all_users') || '{}');
     if (users[email]) {
-      alert('Account already exists with this email! Please login.');
+      alert('An account already exists with this email. Please login!');
       return;
     }
 
     users[email] = { name, email, password };
     localStorage.setItem('incredible_all_users', JSON.stringify(users));
 
-    // Auto Login
+    // Save active user cache
     localStorage.setItem('incredible_user', JSON.stringify({ name, email }));
-    alert('Account created and logged in successfully!');
+    alert('Welcome ' + name + '! Your account has been registered and logged in.');
     location.reload();
   };
 
@@ -279,23 +314,37 @@
     const user = users[email];
 
     if (!user || user.password !== password) {
-      alert('Invalid Email or Password. Please try again or Sign Up.');
+      alert('Invalid email or password! Please check or switch to Sign Up.');
       return;
     }
 
     localStorage.setItem('incredible_user', JSON.stringify({ name: user.name, email: user.email }));
-    alert('Welcome back, ' + user.name + '!');
+    alert('Logged in successfully! Welcome back, ' + user.name + '.');
     location.reload();
   };
 
   // Logout
   window.logoutUser = function () {
     localStorage.removeItem('incredible_user');
-    alert('Logged out successfully.');
+    alert('You have been logged out.');
     location.reload();
   };
 
-  // Estimator update
+  // WhatsApp Inquiry Handler
+  window.handleInquirySubmit = function (e) {
+    e.preventDefault();
+    const name = document.getElementById('quoteName').value.trim();
+    const phone = document.getElementById('quotePhone').value.trim();
+    const dest = document.getElementById('quoteDest').value.trim();
+    const notes = document.getElementById('quoteNotes').value.trim();
+
+    const msg = `*New Travel Inquiry - Incredible India Portal*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Destination:* ${encodeURIComponent(dest)}%0A*Details:* ${encodeURIComponent(notes || 'None')}`;
+    
+    // Redirects to official tourism desk / WhatsApp dispatch
+    window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
+  };
+
+  // Estimator calculation
   window.updateTourEstimate = function () {
     const days = parseInt(document.getElementById('estDays').value);
     const pax = parseInt(document.getElementById('estPax').value);
