@@ -1,34 +1,87 @@
 // =========================================================================
-// UNIVERSAL SITE TRANSLATOR & REAL-TIME SANITIZER (CURRENT + FUTURE DATA)
+// CLEAN HOME PAGE: CUT OFF EVERYTHING AFTER MAP + BRAND FOOTER + TRANSLATOR
 // =========================================================================
 
 (function () {
-  // Master Comprehensive Translation Map
-  const translationMap = [
-    // --- Common Hinglish / Hindi Connectors & Phrases ---
-    [/\bhai\b/gi, "is"],
-    [/\bhain\b/gi, "are"],
-    [/\bke liye\b/gi, "for"],
-    [/\bse lekar\b/gi, "ranging from"],
-    [/\baur\b/gi, "and"],
-    [/\bya\b/gi, "or"],
-    [/\bka\b|\bki\b|\bke\b/gi, "of"],
-    [/\bmein\b|\bme\b/gi, "in"],
-    [/\bpar\b/gi, "at"],
-    [/\bse\b/gi, "from"],
-    [/\bsabse\b/gi, "most"],
-    [/\bprasiddh\b/gi, "famous"],
-    [/\bitihasik\b/gi, "historical"],
-    [/\bpramukh\b/gi, "prominent"],
-    [/\bkhubsurat\b/gi, "beautiful"],
-    [/\bgaye\b/gi, "visited"],
-    [/\bjayein\b/gi, "visit"],
-    [/\bkarein\b/gi, "explore"],
-    [/\bdekhne\b/gi, "to see"],
-    [/\bkripya\b/gi, "please"],
-    [/\bdhyan dein\b/gi, "note"],
+  // 1. CSS Rule: Map ke baad ke saare heavy sections ko hide karein
+  const style = document.createElement('style');
+  style.id = 'clean-map-end-style';
+  style.innerHTML = `
+    /* Map ke baad ka lamba content hide karein */
+    #tour-circuits,
+    .tour-circuits-section,
+    #booking-form-section,
+    .support-desk-section,
+    .support-desk,
+    form,
+    section[id*="circuit"],
+    section[class*="circuit"] {
+      display: none !important;
+    }
 
-    // --- State, District & Regional UI ---
+    /* Topbar & Header Cleanup */
+    .topbar-right,
+    .topbar select,
+    .topbar .theme-toggle-btn,
+    .topbar button:not([aria-label*="Menu"]):not(#unified3DotBtn),
+    .header-actions .currency-select-box,
+    .header-actions .theme-toggle-btn,
+    #hamburgerBtn,
+    .hamburger-btn,
+    #workingLeftHamburger {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    .topbar { background: transparent !important; border: none !important; }
+
+    /* Clean Compact Incredible India Footer */
+    #cleanIncredibleFooter {
+      text-align: center;
+      padding: 30px 16px 50px 16px;
+      background: #070c16;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 24px;
+    }
+    #cleanIncredibleFooter h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #FF5412;
+      margin: 0 0 8px 0;
+      letter-spacing: 0.5px;
+    }
+    #cleanIncredibleFooter p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+  `;
+  if (!document.getElementById('clean-map-end-style')) {
+    document.head.appendChild(style);
+  }
+
+  // 2. Map ke theek baad clean footer insert karein
+  function setupCleanFooter() {
+    if (document.getElementById('cleanIncredibleFooter')) return;
+
+    const mapElement = document.querySelector('#map, .map-section, #map-container, leaflet-container');
+    if (!mapElement) return;
+
+    const footer = document.createElement('div');
+    footer.id = 'cleanIncredibleFooter';
+    footer.innerHTML = `
+      <h3>IncredibleIndiaGuide.in</h3>
+      <p>Discover India's 28 States, 8 UTs, authentic heritage, and cultural destinations in one place.</p>
+    `;
+
+    // Map ke parent container ke baad footer attach karein
+    const mapSection = mapElement.closest('section') || mapElement;
+    mapSection.insertAdjacentElement('afterend', footer);
+  }
+
+  // 3. Global English Translation Dictionary
+  const translations = [
     [/Ek Desh, Anant Rang/gi, "One Nation, Infinite Colors"],
     [/Bharat Ki Sabse Lokpriya Yatra Sthalein/gi, "India's Most Popular Travel Destinations"],
     [/Lokpriya Yatra Sthalein/gi, "Popular Travel Destinations"],
@@ -42,21 +95,6 @@
     [/Khojein/gi, "Explore"],
     [/←\s*Wapas/gi, "← Back"],
     [/Wapas/gi, "Back"],
-    [/Peeche/gi, "Back"],
-    [/Kul Jile/gi, "Total Districts"],
-    [/Rajdhani/gi, "Capital"],
-    [/Bhasha/gi, "Official Language"],
-    [/Aabadi/gi, "Population"],
-    [/Kshetraphal/gi, "Total Area"],
-    [/Paryatan Sthal/gi, "Tourist Spots"],
-    [/Jila Guide/gi, "District Guide"],
-    [/Jila\b/gi, "District"],
-    [/Jile\b/gi, "Districts"],
-    [/Rajya\b/gi, "State"],
-
-    // --- Guides, Facilities & Information ---
-    [/Kisi bhi district par tap karein verified hotels, hospitals, photos aur food dekhne ke liye:/gi, "Tap any district to view verified hotels, hospitals, photos, and local food:"],
-    [/verified hotels, hospitals, photos aur food dekhne ke liye/gi, "to view verified hotels, hospitals, photos, and food"],
     [/Pramukh Aakarshan/gi, "Top Attractions"],
     [/Jane Ka Sahi Samay/gi, "Best Time to Visit"],
     [/Kaise Pahunchein/gi, "How to Reach"],
@@ -67,137 +105,47 @@
     [/Vistar Se Janein/gi, "View Details"],
     [/Jankari Dekhein/gi, "View Guide"],
     [/Khas Bat/gi, "Highlights"],
-    [/Khas Baat/gi, "Key Highlights"],
     [/Prasiddh Vyanjan\s*\(Local Cuisine\)/gi, "Famous Delicacies (Local Cuisine)"],
     [/Prasiddh Vyanjan/gi, "Famous Delicacies"],
     [/Mashhoor Khana/gi, "Famous Dishes"],
     [/Khareedari/gi, "Shopping & Souvenirs"],
     [/Mausam/gi, "Weather & Climate"],
-    [/Najdiki Hawai Adda/gi, "Nearest Airport"],
-    [/Najdiki Railway Station/gi, "Nearest Railway Station"],
-    [/Najdiki/gi, "Nearest"],
-    [/Ghumne ka samay/gi, "Visiting Hours"],
-    [/Entry Fees/gi, "Entry Fee"],
-    [/Bina kisi shulk ke/gi, "Free Entry"],
-
-    // --- Durations & Tour Tips ---
-    [/Tour Tip:\s*(\d+)[-–](\d+)\s*Din/gi, "Tour Tip: $1-$2 Days"],
-    [/(\d+)\s*Din\s*\/\s*(\d+)\s*Raat/gi, "$1 Days / $2 Nights"],
-    [/(\d+)\s*Din/gi, "$1 Days"],
-    [/(\d+)\s*Raat/gi, "$1 Nights"],
-    [/Pahaad, jungle wildlife, chai ke baagan aur shaant backwaters ka perfect mixture\./gi, "A perfect blend of mountains, wildlife, tea plantations, and tranquil backwaters."],
-    [/Ganga Aarti ki aadhyatmik oorja ke sath Himalayas ke pavitra shivalaya darshan\./gi, "Experience the spiritual bliss of Ganga Aarti alongside holy Himalayan shrines."],
-
-    // --- Inquiry & Booking Forms ---
-    [/Apna Bharat Yatra Plan Customize Karein/gi, "Customize Your India Travel Plan"],
-    [/Chaahe solo backpacking ho, honeymoon, ya family tour/gi, "Whether solo backpacking, a romantic honeymoon, or a family holiday"],
-    [/humari team aapke liye sateek travel plan bana kar degi\./gi, "our team will create the perfect customized travel plan for you."],
-    [/Aapka Naam/gi, "Your Full Name"],
-    [/WhatsApp Number/gi, "WhatsApp Phone Number"],
-    [/Email Address \(Optional\)/gi, "Email Address (Optional)"],
-    [/Destination \/ State/gi, "Destination / Preferred State"],
-    [/Kitne Yatri Hain\?/gi, "Number of Travelers"],
-    [/Anumanit Budget \(Per Person\)/gi, "Estimated Budget (Per Person)"],
-    [/Anumanit Budget/gi, "Estimated Budget"],
-    [/Koi Khas Zarurat ya Sawal\?/gi, "Special Requests or Questions?"],
-    [/Free Travel Plan & Quote Payein/gi, "Get Free Travel Plan & Quote"],
-
-    // --- Footer & Legal Credits ---
-    [/Bharat ke har rajya, sanskriti, khan-paan aur virasat ki pramanik jankari pradan karne wala swatantra tourism portal\./gi, "An independent national tourism portal providing authentic insights across every Indian state, culture, and cuisine."],
-    [/swatantra tourism portal/gi, "independent tourism portal"],
-    [/Popular Circuits/gi, "Popular Circuits"]
+    [/Kul Jile/gi, "Total Districts"],
+    [/Rajdhani/gi, "Capital"],
+    [/Bhasha/gi, "Language"],
+    [/Aabadi/gi, "Population"],
+    [/Kshetraphal/gi, "Area"],
+    [/Paryatan Sthal/gi, "Tourist Spots"]
   ];
 
-  // Universal text processor
-  function applyTranslation(text) {
-    if (!text || typeof text !== 'string') return text;
-    let result = text;
-    translationMap.forEach(([regex, replacement]) => {
-      if (regex.test(result)) {
-        result = result.replace(regex, replacement);
-      }
-    });
-    return result;
-  }
-
-  // Recursive DOM scanner
-  function scanAndTranslate(node) {
-    if (!node) return;
-
+  function translateNode(node) {
     if (node.nodeType === Node.TEXT_NODE) {
-      const originalText = node.nodeValue;
-      if (originalText && originalText.trim().length > 0) {
-        const translated = applyTranslation(originalText);
-        if (translated !== originalText) {
-          node.nodeValue = translated;
-        }
+      let str = node.nodeValue;
+      if (str && str.trim().length > 0) {
+        translations.forEach(([regex, rep]) => {
+          if (regex.test(str)) str = str.replace(regex, rep);
+        });
+        node.nodeValue = str;
       }
     } else if (node.nodeType === Node.ELEMENT_NODE) {
-      // Input placeholders & labels
       if (node.placeholder) {
-        node.placeholder = applyTranslation(node.placeholder);
-        if (node.placeholder.includes('Rahul')) node.placeholder = "e.g. John Smith";
-        if (node.placeholder.includes('Kahan')) node.placeholder = "Where do you want to go? (e.g. Manali, Goa)";
+        let p = node.placeholder;
+        translations.forEach(([regex, rep]) => {
+          if (regex.test(p)) p = p.replace(regex, rep);
+        });
+        node.placeholder = p;
       }
-      if (node.title) node.title = applyTranslation(node.title);
-      if (node.getAttribute('aria-label')) {
-        node.setAttribute('aria-label', applyTranslation(node.getAttribute('aria-label')));
-      }
-
-      // Children traverse karein
-      let child = node.firstChild;
-      while (child) {
-        scanAndTranslate(child);
-        child = child.nextSibling;
-      }
+      node.childNodes.forEach(translateNode);
     }
   }
 
-  // Clean Header Clutter
-  function purgeHeaderStray() {
-    const stray = document.querySelectorAll(
-      '.header-actions, .currency-select-box, .theme-toggle-btn, ' +
-      'header select, .topbar-right, #hamburgerBtn, .hamburger-btn, #workingLeftHamburger'
-    );
-    stray.forEach(el => {
-      if (!el.closest('aside, [role="dialog"], [class*="drawer"], [id*="drawer"]')) {
-        el.remove();
-      }
-    });
+  function run() {
+    setupCleanFooter();
+    translateNode(document.body);
   }
 
-  function sweepEverything() {
-    purgeHeaderStray();
-    scanAndTranslate(document.body);
-  }
-
-  // MutationObserver for Future & Dynamic Components
-  const realTimeObserver = new MutationObserver(mutations => {
-    for (let mutation of mutations) {
-      for (let addedNode of mutation.addedNodes) {
-        scanAndTranslate(addedNode);
-      }
-      if (mutation.type === 'characterData') {
-        const target = mutation.target;
-        const currentText = target.nodeValue;
-        const translated = applyTranslation(currentText);
-        if (translated !== currentText) {
-          target.nodeValue = translated;
-        }
-      }
-    }
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    sweepEverything();
-    realTimeObserver.observe(document.body, {
-      childList: true,
-      subtree: true,
-      characterData: true
-    });
-  });
-
-  window.addEventListener("load", sweepEverything);
-  document.addEventListener("click", () => setTimeout(sweepEverything, 60));
-  setInterval(sweepEverything, 500);
+  document.addEventListener("DOMContentLoaded", run);
+  window.addEventListener("load", run);
+  document.addEventListener("click", () => setTimeout(run, 60));
+  setInterval(run, 500);
 })();
