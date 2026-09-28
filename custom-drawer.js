@@ -1,9 +1,9 @@
 // =========================================================================
-// INCREDIBLE INDIA - CLEAN FLOATING HAMBURGER & TOTAL TOPBAR REMOVAL
+// INCREDIBLE INDIA - WORKING THEME SWITCHER + HAMBURGER DRAWER
 // =========================================================================
 
 (function () {
-  // 1. Purane duplicate drawer ko permanently delete karein
+  // 1. Purane duplicate drawers aur overlays ko remove karein
   function permanentlyNukeOldDrawer() {
     document.querySelectorAll('div, aside, nav, section').forEach(el => {
       if (el.id === 'unifiedDrawer' || el.id === 'unifiedDrawerOverlay' || el.id === 'dedicatedAppContainer') return;
@@ -20,37 +20,13 @@
   permanentlyNukeOldDrawer();
   setInterval(permanentlyNukeOldDrawer, 200);
 
-  // 2. CSS Inject karke puraane saare top bar, Theme button aur containers ko chupayein
+  // 2. CSS Inject: Bahar wale topbar aur theme text ko screen se hide rakhein (taaki tap na dabe)
   const styleKiller = document.createElement('style');
   styleKiller.id = 'killTopBarStyles';
   styleKiller.innerHTML = `
-    /* Topbar aur uske andar ke theme button ko screen se permanent hide karein */
-    header,
-    .topbar,
-    .top-bar,
-    .header-bar,
-    #topbar,
-    #header,
-    nav.navbar,
-    .theme-toggle,
-    button[id*="theme"]:not(#inDrawerThemeToggle),
-    button[class*="theme"]:not(#inDrawerThemeToggle),
-    div[class*="theme"]:not(#inDrawerThemeToggle),
-    select[id*="curr"],
-    div[class*="currency"] {
+    .topbar, .top-bar, #topbar, nav.navbar, select[id*="curr"], div[class*="currency"] {
       display: none !important;
       visibility: hidden !important;
-      pointer-events: none !important;
-      height: 0 !important;
-      min-height: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      overflow: hidden !important;
-    }
-
-    /* Hero section ko thoda space dein taaki floating button ke niche na dabe */
-    body {
-      padding-top: 20px !important;
     }
   `;
   document.head.appendChild(styleKiller);
@@ -97,10 +73,10 @@
         `}
       </div>
 
-      <!-- In-Menu Theme Switcher -->
+      <!-- Live Theme Toggle Button -->
       <button id="inDrawerThemeToggle" style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; border:1px solid rgba(255,255,255,0.12); padding:10px 14px; border-radius:8px; color:#f1f5f9; font-size:0.85rem; font-weight:600; cursor:pointer; width:100%; margin-bottom:12px;">
         <span>🌓 Switch Theme</span>
-        <span style="font-size:0.75rem; background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:12px; color:#38bdf8;">Dark / Light</span>
+        <span id="themeBadgeText" style="font-size:0.75rem; background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:12px; color:#38bdf8;">Dark / Light</span>
       </button>
 
       <!-- Helpline -->
@@ -164,30 +140,15 @@
   overlay.addEventListener('click', closeDrawer);
   drawer.addEventListener('click', e => e.stopPropagation());
 
-  // 3. Puraane Theme button aur top bar text ko DOM se direct delete karna
-  function hardCleanTopHeader() {
-    document.querySelectorAll('button, div, a, span').forEach(el => {
-      if (el.closest('#unifiedDrawer') || el.id === 'appHamburgerBtn' || el.closest('#dedicatedAppContainer')) return;
-      
-      const txt = (el.textContent || '').trim();
-      if (txt === 'Theme' || txt.includes('Theme') || el.title === 'Theme') {
-        const parentBox = el.closest('div, header, nav');
-        if (parentBox && parentBox !== document.body && parentBox.offsetHeight < 120) {
-          parentBox.style.setProperty('display', 'none', 'important');
-        }
-        el.style.setProperty('display', 'none', 'important');
-      }
-    });
-
-    // Clean floating Hamburger Button
+  // 3. Top-left Hamburger Button create & align
+  function ensureHamburger() {
     let hamBtn = document.getElementById('appHamburgerBtn');
     if (!hamBtn) {
       hamBtn = document.createElement('button');
       hamBtn.id = 'appHamburgerBtn';
-      hamBtn.innerHTML = '&#9776;'; // ☰ Icon
+      hamBtn.innerHTML = '&#9776;'; // ☰
       hamBtn.setAttribute('aria-label', 'Menu');
       document.body.appendChild(hamBtn);
-
       hamBtn.addEventListener('click', openDrawer);
     }
 
@@ -210,31 +171,65 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important;
       line-height: 1 !important;
     `;
+
+    // Original bahar wale Theme button ko background mein chhupa ke rakhein (taaki click kar sakein)
+    document.querySelectorAll('button, div, span').forEach(el => {
+      if (el.closest('#unifiedDrawer') || el.id === 'appHamburgerBtn' || el.closest('#dedicatedAppContainer')) return;
+      const txt = (el.textContent || '').trim();
+      if (txt === 'Theme' || txt.includes('Theme')) {
+        el.style.opacity = '0';
+        el.style.pointerEvents = 'none';
+        el.style.position = 'fixed';
+        el.style.top = '-9999px';
+      }
+    });
   }
+  ensureHamburger();
+  setTimeout(ensureHamburger, 500);
 
-  hardCleanTopHeader();
-  setTimeout(hardCleanTopHeader, 300);
-  setTimeout(hardCleanTopHeader, 1000);
-
-  // In-Drawer Theme Switch action
+  // 4. POWERFUL THEME SWITCH TRIGGER (Clicks original buttons + toggles attributes)
   const themeSwitchBtn = document.getElementById('inDrawerThemeToggle');
   themeSwitchBtn.addEventListener('click', function () {
-    const isDark = document.documentElement.classList.contains('dark') || document.body.classList.contains('dark');
-    if (isDark) {
-      document.documentElement.classList.remove('dark');
-      document.body.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.classList.add('dark');
+    let triggered = false;
+
+    // A. Original theme button dhoondh kar usko programmatically click karein
+    document.querySelectorAll('button, div, a').forEach(el => {
+      if (el === themeSwitchBtn || el.closest('#unifiedDrawer')) return;
+      const t = (el.textContent || '').trim();
+      if (
+        t === 'Theme' || 
+        t.includes('Theme') || 
+        el.getAttribute('onclick')?.includes('theme') ||
+        el.className.toString().includes('theme-toggle')
+      ) {
+        el.click(); // Original website toggle click
+        triggered = true;
+      }
+    });
+
+    // B. Direct CSS Theme Toggle (Dark / Light toggle)
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme') || (html.classList.contains('dark') ? 'dark' : 'light');
+    const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+
+    html.setAttribute('data-theme', newTheme);
+    document.body.setAttribute('data-theme', newTheme);
+
+    if (newTheme === 'dark') {
+      html.classList.add('dark');
       document.body.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      document.getElementById('themeBadgeText').innerText = 'Dark Mode';
+    } else {
+      html.classList.remove('dark');
+      document.body.classList.remove('dark');
+      document.getElementById('themeBadgeText').innerText = 'Light Mode';
     }
 
-    if (typeof window.toggleTheme === 'function') {
-      window.toggleTheme();
-    } else if (typeof window.switchTheme === 'function') {
-      window.switchTheme();
-    }
+    localStorage.setItem('theme', newTheme);
+
+    // C. Global function call agar koi ho
+    if (typeof window.toggleTheme === 'function') window.toggleTheme();
+    if (typeof window.switchTheme === 'function') window.switchTheme();
   });
 
   // Dedicated Pages navigation links
