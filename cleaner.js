@@ -169,4 +169,9 @@
   window.addEventListener("load", run);
   document.addEventListener("click", () => setTimeout(run, 60));
   setInterval(run, 500);
+  
 })();
+// Currency selector ko permanently remove karein
+document.querySelectorAll('[id*="currenc"], [class*="currenc"], select').forEach(el => {
+  if (el.textContent.includes('₹') || el.id.includes('curr')) el.remove();
+});
