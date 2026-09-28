@@ -53,8 +53,17 @@
       ]
     }
     </script>
-
     <style>
+        @keyframes fadeInCard {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+        }
         :root {
             --primary: #FF5412;
             --primary-dark: #D43800;
