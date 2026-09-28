@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="en-IN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Incredible India Guide | National Travel & Tourism Experience Portal</title>
+    
+    <!-- Meta SEO & Social Tags -->
+    <meta name="description" content="Discover India's 28 States, 8 UTs, curated multi-day tour circuits, live currency switcher, interactive route maps, regional climate advisory, and trip cost calculator.">
+    <meta name="keywords" content="Incredible India, India Tourism, Travel Bharat, 28 States 8 UTs, Golden Triangle, Himalayas, Kerala Backwaters, Goa, Rajasthan">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://incredibleindiaguide.in/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://incredibleindiaguide.in/">
+    <meta property="og:title" content="Incredible India Guide | National Travel & Tourism Portal">
+    <meta property="og:description" content="Complete travel directory for India's 28 states and 8 union territories with live trip cost calculator and verified itineraries.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&h=630&q=80">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Incredible India Guide | National Travel & Tourism Portal">
+    <meta name="twitter:description" content="Explore Bharat with curated circuits, 36 state/UT guides, and smart trip budgeting.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&h=630&q=80">
+
+    <!-- Fonts & Leaflet Map Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://incredibleindiaguide.in/#website",
+          "url": "https://incredibleindiaguide.in/",
+          "name": "Incredible India Guide",
+          "description": "National Travel & Tourism Experience Portal for Bharat",
+          "inLanguage": "en-IN"
+        },
+        {
+          "@type": "TravelAgency",
+          "@id": "https://incredibleindiaguide.in/#agency",
+          "name": "Incredible India Guide Portal",
+          "url": "https://incredibleindiaguide.in/",
+          "description": "Comprehensive independent travel resource covering 28 Indian States & 8 Union Territories.",
+          "telephone": "1363",
+          "areaServed": "IN"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #FF5412;
+            --primary-dark: #D43800;
+            --primary-light: #FFF2EC;
+            --secondary: #0D7A68;
+            --secondary-dark: #085246;
+            --secondary-light: #EBF7F5;
+            --accent: #F59E0B;
+            --dark-950: #060A13;
+            --dark-900: #0C1424;
+            --dark-800: #142038;
+            --dark-card: #182642;
+            --dark-border: rgba(255, 255, 255, 0.08);
+            --text-main: #0F172A;
+            --text-muted: #4A5A70;
+            --bg-base: #F8FAFD;
+            --surface: #FFFFFF;
+            --border-light: #E2E8F2;
+            --shadow-subtle: 0 4px 20px rgba(12, 20, 36, 0.04);
+            --shadow-card: 0 12px 32px rgba(12, 20, 36, 0.07);
+            --shadow-float: 0 24px 50px rgba(12, 20, 36, 0.16);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+        }
+
+        [data-theme="dark"] {
+            --primary: #FF6A32;
+            --primary-dark: #FF5412;
+            --primary-light: #2A1710;
+            --secondary: #229A84;
+            --secondary-dark: #0D7A68;
+            --secondary-light: #102723;
+            --text-main: #F1F5F9;
+            --text-muted: #94A3B8;
+            --bg-base: #070C16;
+            --surface: #0E1726;
+            --border-light: #1E293B;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.5);
+            --shadow-float: 0 24px 50px rgba(0, 0, 0, 0.7);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        html {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden !important;
+        }
+
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden !important;
+            position: relative;
+            touch-action: pan-y;
+        }
+
+        *:focus-visible {
+            outline: 3px solid var(--primary) !important;
+            outline-offset: 2px !important;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -60px;
+            left: 20px;
+            background: var(--primary);
+            color: #FFFFFF;
+            padding: 10px 18px;
+            font-weight: 700;
+            border-radius: 6px;
+            z-index: 9999;
+            text-decoration: none;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 15px; }
+
+        .icon-svg {
+            display: inline-block;
+            width: 1.1em;
+            height: 1.1em;
+            stroke-width: 0;
+            stroke: currentColor;
+            fill: currentColor;
+            vertical-align: -0.15em;
+        }
+
+        /* --- Network Offline Banner --- */
+        #offlineAlertBanner {
+            display: none;
+            background: #DC2626;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            position: sticky;
+            top: 0;
+            z-index: 3000;
+        }
+
+        /* --- Top Bar --- */
+        .topbar {
+            background: var(--dark-950);
+            color: #94A3B8;
+            padding: 8px 0;
+            font-size: 0.82rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .topbar-wrap {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar-left {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .topbar-left span svg {
+            color: var(--primary);
+            margin-right: 6px;
+        }
+
+        .topbar-right {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .topbar-right a, .topbar-right button {
+            color: #CBD5E1;
+            text-decoration: none;
+            font-size: 0.82rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .topbar-right a:hover, .topbar-right button:hover {
+            color: var(--primary);
+        }
+
+        /* --- Main Header Navigation --- */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--surface);
+            backdrop-filter: blur(16px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.95rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), #FF8040);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 1.3rem;
+            box-shadow: 0 6px 18px rgba(255, 84, 18, 0.35);
+        }
+
+        .brand-logo span { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Currency Selector */
+        .currency-select-box select {
+            background: var(--bg-base);
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-base);
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-portal-cta {
+            background: var(--primary);
+            color: #FFFFFF !important;
+            padding: 0.72rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(255, 84, 18, 0.28);
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-portal-cta:hover {
+            background: var(--primary-dark) !important;
+            transform: translateY(-2px);
+        }
+
+        .hamburger-btn {
+            display: none;
+            background: var(--bg-base);
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        /* --- Drawer --- */
+        .drawer-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .drawer-overlay.active { display: block; opacity: 1; }
+
+        .nav-drawer {
+            position: fixed;
+            top: 0; right: 0;
+            width: min(300px, 85vw); height: 100%;
+            background: var(--surface);
+            z-index: 2100;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+            transform: translateX(105%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
+            visibility: hidden;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .nav-drawer.active { 
+            transform: translateX(0); 
+            visibility: visible;
+        }
+
+        .drawer-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .drawer-close-btn {
+            background: none; border: none; font-size: 1.6rem; color: var(--text-main); cursor: pointer; padding: 6px;
+        }
+
+        .drawer-links {
+            list-style: none; display: flex; flex-direction: column; gap: 1.2rem;
+        }
+        .drawer-links a {
+            text-decoration: none; font-size: 1.1rem; font-weight: 600; color: var(--text-main); display: block;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            position: relative;
+            min-height: 88vh;
+            background: linear-gradient(180deg, rgba(6, 10, 19, 0.55) 0%, rgba(6, 10, 19, 0.94) 100%),
+                        url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #FFFFFF;
+            padding: 4.5rem 1.5rem 7rem;
+        }
+
+        .hero-badge-pill {
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.3rem, 5vw, 4.4rem);
+            line-height: 1.15;
+            max-width: 1080px;
+            margin-bottom: 1.4rem;
+            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.55);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.28rem);
+            max-width: 780px;
+            color: #E2E8F0;
+            margin-bottom: 3.2rem;
+            font-weight: 400;
+        }
+
+        .search-dock {
+            background: var(--surface);
+            padding: 10px 14px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 920px;
+            box-shadow: var(--shadow-float);
+        }
+
+        .dock-input {
+            flex: 1.2;
+            display: flex;
+            align-items: center;
+            padding: 0 1.2rem;
+            border-right: 1px solid var(--border-light);
+        }
+
+        .dock-input svg {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .dock-input input, .dock-input select {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 0.96rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .dock-btn {
+            background: var(--primary);
+            color: #FFFFFF;
+            border: none;
+            padding: 1.15rem 2.6rem;
+            border-radius: 50px;
+            font-size: 1.02rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .dock-btn:hover { background: var(--primary-dark); transform: scale(1.02); }
+
+        .search-results-feedback {
+            max-width: 920px;
+            width: 100%;
+            margin: 1.2rem auto 0;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            color: #E2E8F0;
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: none;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .quick-pills-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 1rem auto 2.5rem;
+            position: relative;
+            z-index: 20;
+            padding: 0 1.5rem;
+            max-width: 1100px;
+        }
+
+        .pill-chip {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--text-main);
+            box-shadow: var(--shadow-card);
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            transition: all 0.25s ease;
+        }
+
+        .pill-chip svg { color: var(--primary); }
+
+        .pill-chip:hover, .pill-chip.active {
+            background: var(--text-main);
+            color: var(--surface);
+            border-color: var(--text-main);
+            transform: translateY(-3px);
+        }
+
+        /* --- Stats --- */
+        .stats-strip {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-light);
+            padding: 2.8rem 1.5rem;
+        }
+
+        .stats-grid {
+            max-width: 1360px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-box p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Sections Layout --- */
+        .section-wrap {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem;
+        }
+
+        .section-header-box {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 3.8rem;
+        }
+
+        .section-subhead {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        .section-header-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.9rem);
+            color: var(--text-main);
+            line-height: 1.25;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-header-box p {
+            color: var(--text-muted);
+            font-size: 1.08rem;
+        }
+
+        /* --- 36 States & UTs Hub --- */
+        .states-vault-area {
+            background: var(--bg-base);
+            padding: 6rem 1.5rem;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .vault-pill-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 3.2rem;
+        }
+
+        .vault-pill {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            padding: 0.75rem 1.6rem;
+            border-radius: 50px;
+            font-size: 0.94rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .vault-pill:hover, .vault-pill.active {
+            background: var(--text-main);
+            color: var(--surface);
+            border-color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        .vault-grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 22px;
+            max-width: 1360px;
+            margin: 0 auto;
+        }
+
+        .state-card-tile {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 1.35rem;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow-subtle);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
+            width: 100%;
+        }
+
+        .state-card-tile:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-card);
+        }
+
+        .state-tile-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            transition: 0.2s ease;
+        }
+
+        .state-card-tile:hover .state-tile-icon {
+            background: var(--primary);
+            color: #FFFFFF;
+        }
+
+        .state-tile-meta h3 {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .state-tile-meta span {
+            font-size: 0.83rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        /* --- Destination Cards --- */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 30px;
+        }
+
+        .destination-card-unit {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .destination-card-unit:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .dest-card-img-wrap {
+            position: relative;
+            height: 235px;
+            overflow: hidden;
+        }
+
+        .dest-card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .destination-card-unit:hover .dest-card-img-wrap img {
+            transform: scale(1.08);
+        }
+
+        .dest-tag-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            color: var(--dark-900);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+
+        .btn-share-dest {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-900);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-share-dest:hover {
+            background: var(--primary);
+            color: #FFFFFF;
+        }
+
+        .dest-body-meta {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .dest-loc-badge {
+            color: var(--primary);
+            font-size: 0.88rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .dest-card-heading {
+            font-size: 1.34rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .dest-card-desc {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            margin-bottom: 1.4rem;
+            flex: 1;
+        }
+
+        .dest-card-foot {
+            border-top: 1px solid var(--border-light);
+            padding-top: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-inspect-guide {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.88rem;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-inspect-guide:hover {
+            background: var(--primary);
+            color: #FFFFFF;
+        }
+
+        /* --- Cost Calculator --- */
+        .calculator-card {
+            background: linear-gradient(135deg, #070D18 0%, #131E33 100%);
+            color: #FFFFFF;
+            border-radius: var(--radius-lg);
+            padding: 4rem 3.5rem;
+            box-shadow: var(--shadow-float);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .calc-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 2.8rem;
+        }
+
+        .calc-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            margin-bottom: 8px;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 2.2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .calc-input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #94A3B8;
+            margin-bottom: 8px;
+        }
+
+        .calc-input-group select, .calc-input-group input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #FFFFFF;
+            border-radius: 10px;
+            outline: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .calc-input-group select option {
+            background: #0C1424;
+            color: #FFFFFF;
+        }
+
+        .calc-breakdown-deck {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 1.8rem;
+        }
+
+        .breakdown-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .breakdown-item span {
+            font-size: 0.8rem;
+            color: #94A3B8;
+            display: block;
+        }
+
+        .breakdown-item strong {
+            font-size: 1.2rem;
+            color: #FFFFFF;
+        }
+
+        .calc-total-banner {
+            margin-top: 2rem;
+            background: rgba(255, 84, 18, 0.15);
+            border: 1px solid var(--primary);
+            border-radius: 14px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .calc-total-banner span {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #FFB394;
+            display: block;
+        }
+
+        .calc-total-banner strong {
+            font-size: 2.2rem;
+            color: #FF8540;
+            font-weight: 800;
+        }
+
+        /* --- Live Weather --- */
+        .weather-panel-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2.5rem;
+            margin-bottom: 5rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .weather-city-select-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .weather-city-chip {
+            background: var(--bg-base);
+            border: 1px solid var(--border-light);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .weather-city-chip.active, .weather-city-chip:hover {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+        }
+
+        .weather-display-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+            background: var(--bg-base);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+        }
+
+        .weather-main-temp h4 {
+            font-size: 2.8rem;
+            color: var(--text-main);
+            line-height: 1;
+        }
+
+        .weather-main-temp span {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .weather-stat-cell h5 {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .weather-stat-cell strong {
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
+
+        /* --- Map Container --- */
+        .map-section-container {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 5rem;
+        }
+
+        #indiaLeafletMap {
+            height: 480px;
+            width: 100%;
+            border-radius: var(--radius-md);
+            z-index: 10;
+        }
+
+        /* --- Circuits --- */
+        .circuits-wrapper-box {
+            background: #080D1A;
+            color: #FFFFFF;
+            padding: 6rem 1.5rem;
+        }
+
+        .circuits-wrapper-box .section-header-box h2 { color: #FFFFFF; }
+        .circuits-wrapper-box .section-header-box p { color: #94A3B8; }
+
+        .circuits-grid-deck {
+            max-width: 1360px;
+            margin: 2rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 28px;
+        }
+
+        .circuit-panel {
+            background: #10192B;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 2.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .circuit-panel:hover {
+            border-color: var(--primary);
+            transform: translateY(-6px);
+        }
+
+        .circuit-duration-tag {
+            background: var(--primary);
+            color: #FFFFFF;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 5px 14px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1.2rem;
+        }
+
+        .circuit-panel h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .circuit-transit-line {
+            color: #94A3B8;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .circuit-transit-line svg { color: var(--primary); font-size: 0.85rem; }
+
+        .circuit-highlights-list {
+            list-style: none;
+            margin-top: 1.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.92rem;
+            color: #CBD5E1;
+        }
+
+        .circuit-highlights-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .circuit-highlights-list li svg { color: #10B981; }
+
+        /* --- Custom Trip Planning Desk --- */
+        .planning-console-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 4.5rem 3.5rem;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-light);
+            display: grid;
+            grid-template-columns: 1fr 1.35fr;
+            gap: 4.5rem;
+            align-items: center;
+        }
+
+        .console-info-pane h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.2vw, 2.6rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .inquiry-grid-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            position: relative;
+        }
+
+        .col-full { grid-column: span 2; }
+
+        .form-unit-group { position: relative; }
+
+        .form-unit-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .form-unit-group input, .form-unit-group select, .form-unit-group textarea {
+            width: 100%;
+            padding: 0.95rem 1.15rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-base);
+            outline: none;
+            font-size: 0.96rem;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        .form-unit-group input:focus, .form-unit-group select:focus, .form-unit-group textarea:focus {
+            border-color: var(--primary);
+            background: var(--surface);
+            box-shadow: 0 0 0 4px rgba(255, 84, 18, 0.12);
+        }
+
+        .error-message {
+            color: #DC2626;
+            font-size: 0.78rem;
+            margin-top: 4px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .form-unit-group.has-error input { border-color: #DC2626; }
+        .form-unit-group.has-error .error-message { display: block; }
+
+        .btn-submit-inquiry {
+            background: var(--primary);
+            color: #FFFFFF;
+            border: none;
+            padding: 1.15rem;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(255, 84, 18, 0.32);
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit-inquiry:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .form-feedback-banner {
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            font-weight: 600;
+            font-size: 0.94rem;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-feedback-banner.success {
+            background: #ECFDF5;
+            color: #065F46;
+            border: 1px solid #A7F3D0;
+            display: flex;
+        }
+
+        /* --- Admin Lead Drawer --- */
+        .admin-leads-drawer {
+            position: fixed;
+            top: 0; left: 0;
+            width: min(380px, 88vw); height: 100%;
+            background: var(--surface);
+            border-right: 1px solid var(--border-light);
+            z-index: 2500;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.15);
+            transform: translateX(-105%);
+            transition: transform 0.3s ease, visibility 0.3s;
+            visibility: hidden;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .admin-leads-drawer.open { 
+            transform: translateX(0); 
+            visibility: visible;
+        }
+
+        .lead-entry-card {
+            background: var(--bg-base);
+            border: 1px solid var(--border-light);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+
+        /* --- Modal Popup --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(6, 10, 19, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            max-width: 650px;
+            width: 100%;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-float);
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: var(--bg-base);
+            border: 1px solid var(--border-light);
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--dark-900);
+            color: #94A3B8;
+            padding: 5.5rem 1.5rem 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-grid-wrap {
+            max-width: 1360px;
+            margin: 0 auto 3.8rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.3fr;
+            gap: 3.8rem;
+        }
+
+        .footer-brand-meta h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            color: #FFFFFF;
+            margin-bottom: 1.1rem;
+        }
+
+        .footer-brand-meta h3 span { color: var(--primary); }
+
+        .legal-disclaimer-box {
+            max-width: 1360px;
+            margin: 0 auto 2.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            font-size: 0.84rem;
+            color: #94A3B8;
+        }
+
+        .footer-bottom-bar {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding-top: 2.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+            .calc-grid { grid-template-columns: 1fr 1fr; }
+            .weather-display-row { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .planning-console-card { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 2rem; }
+            .footer-grid-wrap { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger-btn { display: flex; }
+            .search-dock { flex-direction: column; border-radius: 24px; padding: 16px; }
+            .dock-input { border-right: none; border-bottom: 1px solid var(--border-light); width: 100%; padding: 12px 0; }
+            .dock-btn { width: 100%; margin-top: 12px; justify-content: center; }
+            .calc-grid { grid-template-columns: 1fr; }
+            .calc-breakdown-deck { grid-template-columns: 1fr 1fr; }
+            .weather-display-row { grid-template-columns: 1fr; }
+            .inquiry-grid-form { grid-template-columns: 1fr; }
+            .col-full { grid-column: span 1; }
+            .footer-grid-wrap { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Offline Detection Alert -->
+    <div id="offlineAlertBanner">⚠️ You are currently offline. Cached destination guides and emergency contacts remain accessible.</div>
+
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Top Emergency & Utility Bar -->
+    <div class="topbar">
+        <div class="topbar-wrap">
+            <div class="topbar-left">
+                <span>
+                    <svg class="icon-svg" viewBox="0 0 512 512" aria-hidden="true"><path d="M48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 24.3-4.2 47.7-12 69.4L383 256h-31c-17.7 0-32 14.3-32 32v128c0 17.7 14.3 32 32 32h32c44.2 0 80-35.8 80-80 0-30.8-12.7-58.7-33.1-78.6 6.9-20.9 10.7-43.2 10.7-66.4 0-141.4-114.6-256-256-256S0 114.6 0 256c0 23.2 3.8 45.5 10.7 66.4C-9.7 342.3-22.4 370.2-22.4 401c0 44.2 35.8 80 80 80h32c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32h-31L48 256z"/></svg>
+                    24x7 Tourism Helpline: 1363 (Toll Free)
+                </span>
+                <span>
+                    <svg class="icon-svg" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.7 363.2-16.7 8-36 8-52.7 0C57.2 420.7 16.4 239.2 15.9 140c-.1-26.2 16.3-47.9 38.3-57.2L242.6 2.9C246.8 1 251.4 0 256 0z"/></svg>
+                    Official State & UT Registry
+                </span>
+            </div>
+            <div class="topbar-right">
+                <button type="button" onclick="toggleAdminDrawer()" aria-label="Open Inquiries CRM Drawer">
+                    📋 View Submissions (<span id="inquiryCountBadge">0</span>)
+                </button>
+                <a href="#states">36 States/UTs</a>
+                <a href="#map-explore">Live Map</a>
+                <a href="#estimator">Cost Calculator</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="#" class="brand-logo" aria-label="Incredible India Guide Homepage">
+                <div class="brand-icon" aria-hidden="true">
+                    <svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-464a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm-59 133.7l163.6 75.5c4.7 2.2 8.5 5.9 10.6 10.6L446.7 395.4c4.8 10.5-2.7 22.4-14 22.4-3.5 0-6.9-1.1-9.8-3.1L259.3 339.2c-4.7-2.2-8.5-5.9-10.6-10.6L173.2 165c-4.8-10.5 2.7-22.4 14-22.4 3.5 0 6.9 1.1 9.8 3.1z"/></svg>
+                </div>
+                IncredibleIndia<span>Guide.in</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#states">States & UTs</a></li>
+                <li><a href="#destinations">Popular Sthalein</a></li>
+                <li><a href="#map-explore">Interactive Map</a></li>
+                <li><a href="#estimator">Cost Calculator</a></li>
+                <li><a href="#circuits">Tour Circuits</a></li>
+                <li><a href="#weather">Weather</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <!-- Live Currency Switcher -->
+                <div class="currency-select-box">
+                    <label for="currencySelect" class="visually-hidden" style="position:absolute; width:1px; height:1px; overflow:hidden;">Select Currency</label>
+                    <select id="currencySelect" onchange="changeCurrency(this.value)">
+                        <option value="INR" selected>INR (₹)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                        <option value="AED">AED (د.إ)</option>
+                    </select>
+                </div>
+
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark and Light Mode" title="Toggle theme">
+                    <svg class="icon-svg theme-icon" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 160c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm0-112c13.3 0 24-10.7 24-24V24c0-13.3-10.7-24-24-24s-24 10.7-24 24v24c0 13.3 10.7 24 24 24zm0 416c-13.3 0-24 10.7-24 24v24c0 13.3 10.7 24 24 24s24-10.7 24-24v-24c0-13.3-10.7-24-24-24zm184-232h24c13.3 0 24-10.7 24-24s-10.7-24-24-24h-24c-13.3 0-24 10.7-24 24s10.7 24 24 24zM56 256c0-13.3-10.7-24-24-24H8c-13.3 0-24 10.7-24 24s10.7 24 24 24h24c13.3 0 24-10.7 24-24z"/></svg>
+                </button>
+
+                <a href="#plan" class="btn-portal-cta">Plan Your Trip</a>
+
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobileDrawer">
+                    <svg class="icon-svg" viewBox="0 0 448 512" aria-hidden="true"><path d="M0 96c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm448 160c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z"/></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Admin Leads Drawer (Inquiries Database) -->
+    <aside class="admin-leads-drawer" id="adminLeadsDrawer" aria-label="Customer Inquiries Drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:0.8rem; border-bottom:1px solid var(--border-light);">
+            <h3 style="font-size:1.15rem;">Submissions Inbox</h3>
+            <button onclick="toggleAdminDrawer()" style="background:none; border:none; font-size:1.4rem; cursor:pointer;">&times;</button>
+        </div>
+        <div id="leadsListContainer" style="overflow-y:auto; flex:1;">
+            <p style="color:var(--text-muted); font-size:0.9rem;">Koi new inquiries nahi mili hain.</p>
+        </div>
+        <button onclick="clearAllLeads()" style="margin-top:1rem; padding:8px; background:#DC2626; color:#FFF; border:none; border-radius:6px; cursor:pointer; font-weight:700;">Clear All Leads</button>
+    </aside>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+    <div class="nav-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+        <div>
+            <div class="drawer-head">
+                <span style="font-weight:800; font-size:1.15rem; color:var(--text-main);">Incredible India</span>
+                <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close menu">&times;</button>
+            </div>
+            <ul class="drawer-links">
+                <li><a href="#states" class="drawer-nav-item">States & UTs Directory</a></li>
+                <li><a href="#destinations" class="drawer-nav-item">Popular Sthalein</a></li>
+                <li><a href="#map-explore" class="drawer-nav-item">Interactive Map</a></li>
+                <li><a href="#estimator" class="drawer-nav-item">Trip Cost Estimator</a></li>
+                <li><a href="#circuits" class="drawer-nav-item">Tour Circuits</a></li>
+                <li><a href="#weather" class="drawer-nav-item">Weather Forecast</a></li>
+                <li><a href="#festivals" class="drawer-nav-item">Festival Calendar</a></li>
+                <li><a href="#tools" class="drawer-nav-item">Travel Utilities</a></li>
+            </ul>
+        </div>
+        <div style="padding-top: 1.5rem; border-top: 1px solid var(--border-light);">
+            <a href="#plan" class="btn-portal-cta drawer-nav-item" style="width: 100%; justify-content: center;">Plan Your Trip</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT START -->
+    <main id="main-content">
+
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-heading">
+            <div class="hero-badge-pill">
+                <svg class="icon-svg" viewBox="0 0 512 512" aria-hidden="true"><path d="M349.565 98.783C295.978 98.783 251.721 64 184.348 64c-24.955 0-47.309 4.382-68.043 12.013V48c0-8.837-7.163-16-16-16s-16 7.163-16 16v416c0 8.837 7.163 16 16 16s16-7.163 16-16V300.916c20.734-7.631 43.088-12.013 68.043-12.013 67.373 0 111.63 34.783 165.217 34.783 48.067 0 86.667-27.869 116.326-47.643 14.542-9.695 16.126-29.07 3.518-40.75-34.908-32.327-72.247-52.128-119.444-52.128z"/></svg>
+                The Comprehensive Tourism Directory of Bharat
+            </div>
+            <h1 id="hero-heading">Ek Desh, Anant Rang — Explore Incredible Bharat</h1>
+            <p>Himalaya ke barfani shikharon se lekar Kerala ke shaant backwaters, Rajasthan ke shahi dharohar aur North-East ki haribhari vadiyon tak ki poori yatra ek jagah.</p>
+
+            <div class="search-dock" role="search">
+                <div class="dock-input">
+                    <svg class="icon-svg" viewBox="0 0 384 512" aria-hidden="true"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 86.04 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z"/></svg>
+                    <label for="liveSearchInput" class="visually-hidden" style="position:absolute; width:1px; height:1px; overflow:hidden;">Search destination or state</label>
+                    <input type="text" id="liveSearchInput" placeholder="Kahan jana chahte hain? (e.g. Manali, Goa, Jaipur)..." autocomplete="off">
+                </div>
+                <div class="dock-input">
+                    <svg class="icon-svg" viewBox="0 0 576 512" aria-hidden="true"><path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.9 32 137.4 32 128s5.4-17.9 13.9-21.8L264.5 5.2z"/></svg>
+                    <label for="directStateSelect" class="visually-hidden" style="position:absolute; width:1px; height:1px; overflow:hidden;">Filter by state</label>
+                    <select id="directStateSelect">
+                        <option value="">Sabhi Rajya (All States & UTs)</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                        <option value="Ladakh">Ladakh</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Sikkim">Sikkim</option>
+                    </select>
+                </div>
+                <button class="dock-btn" id="dockSearchBtn" aria-label="Submit search">
+                    <svg class="icon-svg" viewBox="0 0 512 512" aria-hidden="true"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+                    Explore
+                </button>
+            </div>
+
+            <div id="searchAriaLive" class="search-results-feedback" aria-live="polite"></div>
+        </section>
+
+        <!-- Quick Category Vibe Pills -->
+        <div class="quick-pills-bar" role="toolbar" aria-label="Category Filters">
+            <button class="pill-chip active" data-vibe="all" aria-pressed="true">
+                <svg class="icon-svg" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm-35.3-70.3C137 421.3 75.6 348 70.7 258.8 90.7 266.3 114 272 138.7 272c41.3 0 74.7-33.3 74.7-74.7 0-14.9-4.3-28.7-11.7-40.4 12-5.7 25.5-8.9 39.7-8.9 44.8 0 82.2 30.6 92.7 72.2-12 12.5-19.4 29.5-19.4 48.4 0 39.7 32.3 72 72 72 4.1 0 8.1-.3 12-.9-19.1 58.1-66.3 101.4-124.7 114.1z"/></svg>
+                Poora Bharat
+            </button>
+            <button class="pill-chip" data-vibe="hills" aria-pressed="false">
+                <svg class="icon-svg" viewBox="0 0 640 512" aria-hidden="true"><path d="M256 64L32 448h448L256 64zm0 85.5L389.2 400H122.8L256 149.5zm256 66.5L416 384h192L512 216z"/></svg>
+                Hill Stations & Snow
+            </button>
+            <button class="pill-chip" data-vibe="heritage" aria-pressed="false">
+                <svg class="icon-svg" viewBox="0 0 448 512" aria-hidden="true"><path d="M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm64 96v64h-32v-64h32zm96 0v64h-32v-64h32zm96 0v64h-32v-64h32zM96 288h256v128H96V288z"/></svg>
+                Royal Forts & Palaces
+            </button>
+            <button class="pill-chip" data-vibe="beach" aria-pressed="false">
+                <svg class="icon-svg" viewBox="0 0 576 512" aria-hidden="true"><path d="M569.5 440c0 39.8-32.2 72-72 72-30.6 0-56.9-19.1-67.4-46.2-8.3 4-17.7 6.2-27.6 6.2s-19.3-2.2-27.6-6.2C364.4 492.9 338.1 512 307.5 512s-56.9-19.1-67.4-46.2c-8.3 4-17.7 6.2-27.6 6.2s-19.3-2.2-27.6-6.2C174.4 492.9 148.1 512 117.5 512c-39.8 0-72-32.2-72-72 0-14.8 4.5-28.5 12.2-40H557.3c7.7 11.5 12.2 25.2 12.2 40zM288 32C129.5 32 0 161.5 0 320h576C576 161.5 446.5 32 288 32z"/></svg>
+                Coastal & Islands
+            </button>
+            <button class="pill-chip" data-vibe="spiritual" aria-pressed="false">
+                <svg class="icon-svg" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 0c141.4 0 256 114.6 256 256s-114.6 256-256 256S0 397.4 0 256 114.6 0 256 0zm0 96c-88.4 0-160 71.6-160 160s71.6 160 160 160 160-71.6 160-160-71.6-160-160-160z"/></svg>
+                Spiritual Circuits
+            </button>
+        </div>
+
+        <!-- Key Metrics Strip -->
+        <div class="stats-strip" aria-label="National tourism summary metrics">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>36</h3>
+                    <p>28 States + 8 Union Territories</p>
+                </div>
+                <div class="stat-box">
+                    <h3>42+</h3>
+                    <p>UNESCO World Heritage Sites</p>
+                </div>
+                <div class="stat-box">
+                    <h3>106+</h3>
+                    <p>National Parks & Wild Forests</p>
+                </div>
+                <div class="stat-box">
+                    <h3>7,500+ km</h3>
+                    <p>Coastline, Bays & Islands</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 36 States & UTs Directory -->
+        <section class="states-vault-area" id="states" aria-labelledby="states-heading">
+            <div class="section-header-box">
+                <span class="section-subhead">Comprehensive Registry</span>
+                <h2 id="states-heading">Bharat Ke Sabhi 28 Rajya Aur 8 UTs</h2>
+                <p>Click on any State or Union Territory tile to view authentic capital, attractions, and seasonal details.</p>
+            </div>
+
+            <div class="vault-pill-tabs" role="tablist" aria-label="Filter States by Region">
+                <button class="vault-pill active" data-region="all" role="tab" aria-selected="true">All 36 Units</button>
+                <button class="vault-pill" data-region="north" role="tab" aria-selected="false">North</button>
+                <button class="vault-pill" data-region="south" role="tab" aria-selected="false">South</button>
+                <button class="vault-pill" data-region="west" role="tab" aria-selected="false">West</button>
+                <button class="vault-pill" data-region="east" role="tab" aria-selected="false">East</button>
+                <button class="vault-pill" data-region="central" role="tab" aria-selected="false">Central</button>
+                <button class="vault-pill" data-region="northeast" role="tab" aria-selected="false">North East</button>
+                <button class="vault-pill" data-region="ut" role="tab" aria-selected="false">Union Territories</button>
+            </div>
+
+            <div class="vault-grid-layout" id="statesVaultContainer">
+                <!-- NORTH (6) -->
+                <button class="state-card-tile" data-region="north" data-state="Himachal Pradesh">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Himachal Pradesh</h3><span>Shimla • Manali • Spiti</span></div>
+                </button>
+                <button class="state-card-tile" data-region="north" data-state="Uttarakhand">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Uttarakhand</h3><span>Rishikesh • Nainital • Kedarnath</span></div>
+                </button>
+                <button class="state-card-tile" data-region="north" data-state="Punjab">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Punjab</h3><span>Amritsar • Wagah • Patiala</span></div>
+                </button>
+                <button class="state-card-tile" data-region="north" data-state="Haryana">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Haryana</h3><span>Kurukshetra • Sultanpur • Morni</span></div>
+                </button>
+                <button class="state-card-tile" data-region="north" data-state="Uttar Pradesh">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Uttar Pradesh</h3><span>Agra • Varanasi • Ayodhya</span></div>
+                </button>
+                <button class="state-card-tile" data-region="north" data-state="Rajasthan">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Rajasthan</h3><span>Jaipur • Udaipur • Jaisalmer</span></div>
+                </button>
+
+                <!-- SOUTH (5) -->
+                <button class="state-card-tile" data-region="south" data-state="Kerala">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Kerala</h3><span>Munnar • Alleppey • Wayanad</span></div>
+                </button>
+                <button class="state-card-tile" data-region="south" data-state="Karnataka">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Karnataka</h3><span>Coorg • Hampi • Mysore</span></div>
+                </button>
+                <button class="state-card-tile" data-region="south" data-state="Tamil Nadu">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Tamil Nadu</h3><span>Ooty • Rameswaram • Madurai</span></div>
+                </button>
+                <button class="state-card-tile" data-region="south" data-state="Andhra Pradesh">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Andhra Pradesh</h3><span>Tirupati • Araku • Vizag</span></div>
+                </button>
+                <button class="state-card-tile" data-region="south" data-state="Telangana">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Telangana</h3><span>Charminar • Golconda • Ramoji</span></div>
+                </button>
+
+                <!-- WEST (3) -->
+                <button class="state-card-tile" data-region="west" data-state="Goa">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Goa</h3><span>Calangute • Dudhsagar • Palolem</span></div>
+                </button>
+                <button class="state-card-tile" data-region="west" data-state="Gujarat">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Gujarat</h3><span>Rann of Kutch • Gir • Statue of Unity</span></div>
+                </button>
+                <button class="state-card-tile" data-region="west" data-state="Maharashtra">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Maharashtra</h3><span>Mumbai • Lonavala • Ajanta-Ellora</span></div>
+                </button>
+
+                <!-- CENTRAL (2) -->
+                <button class="state-card-tile" data-region="central" data-state="Madhya Pradesh">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Madhya Pradesh</h3><span>Khajuraho • Kanha • Ujjain</span></div>
+                </button>
+                <button class="state-card-tile" data-region="central" data-state="Chhattisgarh">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Chhattisgarh</h3><span>Chitrakote • Bastar • Barnawapara</span></div>
+                </button>
+
+                <!-- EAST (4) -->
+                <button class="state-card-tile" data-region="east" data-state="Bihar">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Bihar</h3><span>Bodh Gaya • Nalanda • Rajgir</span></div>
+                </button>
+                <button class="state-card-tile" data-region="east" data-state="Jharkhand">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Jharkhand</h3><span>Betla • Dassam • Parasnath</span></div>
+                </button>
+                <button class="state-card-tile" data-region="east" data-state="Odisha">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Odisha</h3><span>Puri • Konark • Chilika Lake</span></div>
+                </button>
+                <button class="state-card-tile" data-region="east" data-state="West Bengal">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>West Bengal</h3><span>Darjeeling • Sundarbans • Kolkata</span></div>
+                </button>
+
+                <!-- NORTH EAST (8) -->
+                <button class="state-card-tile" data-region="northeast" data-state="Sikkim">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Sikkim</h3><span>Gangtok • Nathula • Gurudongmar</span></div>
+                </button>
+                <button class="state-card-tile" data-region="northeast" data-state="Assam">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Assam</h3><span>Kaziranga • Majuli • Kamakhya</span></div>
+                </button>
+                <button class="state-card-tile" data-region="northeast" data-state="Meghalaya">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Meghalaya</h3><span>Cherrapunji • Dawki • Shillong</span></div>
+                </button>
+                <button class="state-card-tile" data-region="northeast" data-state="Arunachal Pradesh">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Arunachal Pradesh</h3><span>Tawang • Ziro • Sela Pass</span></div>
+                </button>
+                <button class="state-card-tile" data-region="northeast" data-state="Nagaland">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Nagaland</h3><span>Dzukou • Kohima • Khonoma</span></div>
+                </button>
+                <button class="state-card-tile" data-region="northeast" data-state="Manipur">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Manipur</h3><span>Loktak Lake • Imphal • Keibul</span></div>
+                </button>
+                <button class="state-card-tile" data-region="northeast" data-state="Mizoram">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Mizoram</h3><span>Aizawl • Vantawng • Reiek</span></div>
+                </button>
+                <button class="state-card-tile" data-region="northeast" data-state="Tripura">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Tripura</h3><span>Ujjayanta • Unakoti • Neermahal</span></div>
+                </button>
+
+                <!-- 8 UNION TERRITORIES (UT) -->
+                <button class="state-card-tile" data-region="ut" data-state="Jammu & Kashmir">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Jammu & Kashmir (UT)</h3><span>Srinagar • Gulmarg • Pahalgam</span></div>
+                </button>
+                <button class="state-card-tile" data-region="ut" data-state="Ladakh">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Ladakh (UT)</h3><span>Pangong Tso • Nubra • Leh</span></div>
+                </button>
+                <button class="state-card-tile" data-region="ut" data-state="Delhi">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Delhi (NCT)</h3><span>Red Fort • Qutub • India Gate</span></div>
+                </button>
+                <button class="state-card-tile" data-region="ut" data-state="Chandigarh">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Chandigarh (UT)</h3><span>Rock Garden • Sukhna • Rose Garden</span></div>
+                </button>
+                <button class="state-card-tile" data-region="ut" data-state="Andaman & Nicobar Islands">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Andaman & Nicobar (UT)</h3><span>Radhanagar • Cellular Jail • Havelock</span></div>
+                </button>
+                <button class="state-card-tile" data-region="ut" data-state="Lakshadweep">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Lakshadweep (UT)</h3><span>Agatti Atoll • Bangaram • Kavaratti</span></div>
+                </button>
+                <button class="state-card-tile" data-region="ut" data-state="Puducherry">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Puducherry (UT)</h3><span>French Promenade • Auroville • Paradise</span></div>
+                </button>
+                <button class="state-card-tile" data-region="ut" data-state="Dadra & Nagar Haveli and Daman & Diu">
+                    <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
+                    <div class="state-tile-meta"><h3>Daman & Diu, DNH (UT)</h3><span>Diu Fort • Naida Caves • Jampore</span></div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Popular Destination Cards -->
+        <section class="section-wrap" id="destinations" aria-labelledby="dest-heading">
+            <div class="section-header-box">
+                <span class="section-subhead">Verified Top Picks</span>
+                <h2 id="dest-heading">Bharat Ki Sabse Lokpriya Yatra Sthalein</h2>
+                <p>Every destination features verified best seasons, transit airports, and local cuisine guide.</p>
+            </div>
+
+            <div class="destinations-grid" id="destGridTarget">
+                <!-- Jaipur -->
+                <article class="destination-card-unit" data-state="Rajasthan" data-vibe="heritage">
+                    <div class="dest-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80" alt="Amber Fort in Jaipur, Rajasthan" loading="lazy" width="600" height="235">
+                        <span class="dest-tag-badge">Heritage</span>
+                        <button class="btn-share-dest" aria-label="Share Jaipur" onclick="shareDestination('Jaipur, Rajasthan', 'Royal palaces & Hawa Mahal.')">
+                            <svg class="icon-svg" viewBox="0 0 448 512"><path d="M352 224c53 0 96-43 96-96s-43-96-96-96-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 129.5 160 112 160c-53 0-96 43-96 96s43 96 96 96c17.5 0 33.4-10.2 40.6-25.9l94.1 47c-.5 3.9-.7 7.9-.7 11.9 0 53 43 96 96 96s96-43 96-96-43-96-96-96c-17.5 0-33.4 10.2-40.6 25.9l-94.1-47c.5-3.9.7-7.9.7-11.9 0-4-.2-8-.7-11.9l94.1-47c7.2 15.7 23.1 25.9 40.6 25.9z"/></svg>
+                        </button>
+                    </div>
+                    <div class="dest-body-meta">
+                        <div class="dest-loc-badge">Rajasthan</div>
+                        <h3 class="dest-card-heading">Jaipur & Udaipur</h3>
+                        <p class="dest-card-desc">Amer Fort, Hawa Mahal, Pichola Lake aur shahi Rajasthani parampara ka anokha sangam.</p>
+                        <div class="dest-card-foot">
+                            <div class="dest-season-box">Best: <strong>Oct - Mar</strong></div>
+                            <button onclick="openModalGuide('Jaipur & Udaipur', 'Rajasthan', 'Oct - Mar', 'Jaipur Airport (JAI)', 'Amer Fort, City Palace, Pichola Lake', 'Dal Baati Churma, Gatte ki Sabzi', this)" class="btn-inspect-guide">Guide Dekhein &rarr;</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Manali -->
+                <article class="destination-card-unit" data-state="Himachal Pradesh" data-vibe="hills">
+                    <div class="dest-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" alt="Snow valley in Manali, Himachal Pradesh" loading="lazy" width="600" height="235">
+                        <span class="dest-tag-badge">Snow & Hills</span>
+                        <button class="btn-share-dest" aria-label="Share Manali" onclick="shareDestination('Manali, Himachal Pradesh', 'Alpine valley & snow sports.')">
+                            <svg class="icon-svg" viewBox="0 0 448 512"><path d="M352 224c53 0 96-43 96-96s-43-96-96-96-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 129.5 160 112 160c-53 0-96 43-96 96s43 96 96 96c17.5 0 33.4-10.2 40.6-25.9l94.1 47c-.5 3.9-.7 7.9-.7 11.9 0 53 43 96 96 96s96-43 96-96-43-96-96-96c-17.5 0-33.4 10.2-40.6 25.9l-94.1-47c.5-3.9.7-7.9.7-11.9 0-4-.2-8-.7-11.9l94.1-47c7.2 15.7 23.1 25.9 40.6 25.9z"/></svg>
+                        </button>
+                    </div>
+                    <div class="dest-body-meta">
+                        <div class="dest-loc-badge">Himachal Pradesh</div>
+                        <h3 class="dest-card-heading">Manali, Kasol & Spiti</h3>
+                        <p class="dest-card-desc">Solang Valley skiing, Atal Tunnel, Beas river rafting aur sukoon bhare pahaad.</p>
+                        <div class="dest-card-foot">
+                            <div class="dest-season-box">Best: <strong>Year Round</strong></div>
+                            <button onclick="openModalGuide('Manali & Spiti', 'Himachal Pradesh', 'April - June & Dec - Feb', 'Bhuntar Airport (KUU)', 'Solang Valley, Rohtang Pass, Old Manali', 'Siddu, Thukpa, Trout Fish', this)" class="btn-inspect-guide">Guide Dekhein &rarr;</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Kerala -->
+                <article class="destination-card-unit" data-state="Kerala" data-vibe="beach">
+                    <div class="dest-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80" alt="Alleppey Backwaters in Kerala" loading="lazy" width="600" height="235">
+                        <span class="dest-tag-badge">Backwaters</span>
+                        <button class="btn-share-dest" aria-label="Share Kerala" onclick="shareDestination('Kerala Backwaters', 'Houseboats and tea plantations.')">
+                            <svg class="icon-svg" viewBox="0 0 448 512"><path d="M352 224c53 0 96-43 96-96s-43-96-96-96-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 129.5 160 112 160c-53 0-96 43-96 96s43 96 96 96c17.5 0 33.4-10.2 40.6-25.9l94.1 47c-.5 3.9-.7 7.9-.7 11.9 0 53 43 96 96 96s96-43 96-96-43-96-96-96c-17.5 0-33.4 10.2-40.6 25.9l-94.1-47c.5-3.9.7-7.9.7-11.9 0-4-.2-8-.7-11.9l94.1-47c7.2 15.7 23.1 25.9 40.6 25.9z"/></svg>
+                        </button>
+                    </div>
+                    <div class="dest-body-meta">
+                        <div class="dest-loc-badge">Kerala</div>
+                        <h3 class="dest-card-heading">Munnar & Alleppey</h3>
+                        <p class="dest-card-desc">Chai ke baageeche, traditional houseboats me stay aur Ayurvedic rejuvenations.</p>
+                        <div class="dest-card-foot">
+                            <div class="dest-season-box">Best: <strong>Sep - Mar</strong></div>
+                            <button onclick="openModalGuide('Munnar & Alleppey', 'Kerala', 'Sep - Mar', 'Cochin Airport (COK)', 'Alleppey Backwaters, Tea Gardens, Eravikulam', 'Appam with Stew, Kerala Fish Curry', this)" class="btn-inspect-guide">Guide Dekhein &rarr;</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Goa -->
+                <article class="destination-card-unit" data-state="Goa" data-vibe="beach">
+                    <div class="dest-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80" alt="Goa beach coast" loading="lazy" width="600" height="235">
+                        <span class="dest-tag-badge">Beaches</span>
+                        <button class="btn-share-dest" aria-label="Share Goa" onclick="shareDestination('Goa Coast', 'Beaches & Portuguese churches.')">
+                            <svg class="icon-svg" viewBox="0 0 448 512"><path d="M352 224c53 0 96-43 96-96s-43-96-96-96-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 129.5 160 112 160c-53 0-96 43-96 96s43 96 96 96c17.5 0 33.4-10.2 40.6-25.9l94.1 47c-.5 3.9-.7 7.9-.7 11.9 0 53 43 96 96 96s96-43 96-96-43-96-96-96c-17.5 0-33.4 10.2-40.6 25.9l-94.1-47c.5-3.9.7-7.9.7-11.9 0-4-.2-8-.7-11.9l94.1-47c7.2 15.7 23.1 25.9 40.6 25.9z"/></svg>
+                        </button>
+                    </div>
+                    <div class="dest-body-meta">
+                        <div class="dest-loc-badge">Goa</div>
+                        <h3 class="dest-card-heading">North & South Goa</h3>
+                        <p class="dest-card-desc">Water sports, Dudhsagar falls, shant beaches aur Portuguese heritage churches.</p>
+                        <div class="dest-card-foot">
+                            <div class="dest-season-box">Best: <strong>Nov - Feb</strong></div>
+                            <button onclick="openModalGuide('Goa Coastal Hub', 'Goa', 'Nov - Feb', 'Goa Airport (GOX / GOI)', 'Baga Beach, Dudhsagar Falls, Fort Aguada', 'Goan Prawn Curry, Bebinca', this)" class="btn-inspect-guide">Guide Dekhein &rarr;</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Kashmir -->
+                <article class="destination-card-unit" data-state="Jammu & Kashmir" data-vibe="hills">
+                    <div class="dest-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80" alt="Shikara on Dal Lake, Kashmir" loading="lazy" width="600" height="235">
+                        <span class="dest-tag-badge">Paradise</span>
+                        <button class="btn-share-dest" aria-label="Share Kashmir" onclick="shareDestination('Kashmir Valley', 'Dal lake & Gulmarg gondola.')">
+                            <svg class="icon-svg" viewBox="0 0 448 512"><path d="M352 224c53 0 96-43 96-96s-43-96-96-96-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 129.5 160 112 160c-53 0-96 43-96 96s43 96 96 96c17.5 0 33.4-10.2 40.6-25.9l94.1 47c-.5 3.9-.7 7.9-.7 11.9 0 53 43 96 96 96s96-43 96-96-43-96-96-96c-17.5 0-33.4 10.2-40.6 25.9l-94.1-47c.5-3.9.7-7.9.7-11.9 0-4-.2-8-.7-11.9l94.1-47c7.2 15.7 23.1 25.9 40.6 25.9z"/></svg>
+                        </button>
+                    </div>
+                    <div class="dest-body-meta">
+                        <div class="dest-loc-badge">Jammu & Kashmir</div>
+                        <h3 class="dest-card-heading">Srinagar & Gulmarg</h3>
+                        <p class="dest-card-desc">Dal Lake Shikara ride, Gulmarg Gondola ride, tulip garden aur baraf ki chadar.</p>
+                        <div class="dest-card-foot">
+                            <div class="dest-season-box">Best: <strong>Mar - Oct / Dec</strong></div>
+                            <button onclick="openModalGuide('Srinagar & Gulmarg', 'Jammu & Kashmir', 'Mar - Oct & Dec - Feb', 'Srinagar Airport (SXR)', 'Dal Lake, Gulmarg Gondola, Pahalgam', 'Kashmiri Wazwan, Rogan Josh, Kahwa', this)" class="btn-inspect-guide">Guide Dekhein &rarr;</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Meghalaya -->
+                <article class="destination-card-unit" data-state="Meghalaya" data-vibe="hills">
+                    <div class="dest-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1626014303757-640a32065842?auto=format&fit=crop&w=600&q=80" alt="Dawki River clear water in Meghalaya" loading="lazy" width="600" height="235">
+                        <span class="dest-tag-badge">Nature</span>
+                        <button class="btn-share-dest" aria-label="Share Meghalaya" onclick="shareDestination('Meghalaya Rainforests', 'Root bridges & clear river.')">
+                            <svg class="icon-svg" viewBox="0 0 448 512"><path d="M352 224c53 0 96-43 96-96s-43-96-96-96-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 129.5 160 112 160c-53 0-96 43-96 96s43 96 96 96c17.5 0 33.4-10.2 40.6-25.9l94.1 47c-.5 3.9-.7 7.9-.7 11.9 0 53 43 96 96 96s96-43 96-96-43-96-96-96c-17.5 0-33.4 10.2-40.6 25.9l-94.1-47c.5-3.9.7-7.9.7-11.9 0-4-.2-8-.7-11.9l94.1-47c7.2 15.7 23.1 25.9 40.6 25.9z"/></svg>
+                        </button>
+                    </div>
+                    <div class="dest-body-meta">
+                        <div class="dest-loc-badge">Meghalaya</div>
+                        <h3 class="dest-card-heading">Shillong & Cherrapunji</h3>
+                        <p class="dest-card-desc">Living Root Bridges, saaf-shaffaf Dawki river aur Asia ka sabse geela chhetra.</p>
+                        <div class="dest-card-foot">
+                            <div class="dest-season-box">Best: <strong>Oct - Apr</strong></div>
+                            <button onclick="openModalGuide('Shillong & Cherrapunji', 'Meghalaya', 'Oct - Apr', 'Guwahati Airport (GAU)', 'Root Bridges, Dawki River, Nohkalikai Falls', 'Jadoh, Bamboo Shoot Pork', this)" class="btn-inspect-guide">Guide Dekhein &rarr;</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Leaflet Geographic Map Section -->
+        <section class="section-wrap" id="map-explore" style="padding-top: 0;">
+            <div class="section-header-box">
+                <span class="section-subhead">Geographic Explorer</span>
+                <h2>Interactive India Tourism Map</h2>
+                <p>Click on any marker pin to view key sightseeing points and launch verified tour itineraries.</p>
+            </div>
+            <div class="map-section-container">
+                <div id="indiaLeafletMap"></div>
+            </div>
+        </section>
+
+        <!-- Regional Weather Advisory Widget -->
+        <section class="section-wrap" id="weather" style="padding-top: 0;">
+            <div class="section-header-box">
+                <span class="section-subhead">Climate Advisory</span>
+                <h2>Live Regional Weather Insights</h2>
+                <p>Real-time metrics for clothing recommendations and travel ratings across India.</p>
+            </div>
+
+            <div class="weather-panel-card">
+                <div class="weather-city-select-bar">
+                    <button class="weather-city-chip active" onclick="switchWeather('srinagar', this)">Srinagar (Kashmir)</button>
+                    <button class="weather-city-chip" onclick="switchWeather('manali', this)">Manali (Himachal)</button>
+                    <button class="weather-city-chip" onclick="switchWeather('jaipur', this)">Jaipur (Rajasthan)</button>
+                    <button class="weather-city-chip" onclick="switchWeather('goa', this)">Goa Coast</button>
+                    <button class="weather-city-chip" onclick="switchWeather('munnar', this)">Munnar (Kerala)</button>
+                    <button class="weather-city-chip" onclick="switchWeather('shillong', this)">Shillong (Meghalaya)</button>
+                </div>
+
+                <div class="weather-display-row">
+                    <div class="weather-main-temp">
+                        <h4 id="wTemp">14°C</h4>
+                        <span id="wCondition">Pleasant / Mild Breeze</span>
+                    </div>
+                    <div class="weather-stat-cell">
+                        <h5>Humidity</h5>
+                        <strong id="wHumidity">62%</strong>
+                    </div>
+                    <div class="weather-stat-cell">
+                        <h5>Clothing Advice</h5>
+                        <strong id="wCloth">Light Woollens</strong>
+                    </div>
+                    <div class="weather-stat-cell">
+                        <h5>Travel Rating</h5>
+                        <strong id="wRating" style="color:#059669;">Excellent (4.9/5)</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Trip Cost Estimator Section -->
+        <div class="estimator-bridge" id="estimator">
+            <div class="section-wrap" style="padding-bottom: 0;">
+                <div class="calculator-card">
+                    <div class="calc-header">
+                        <span class="section-subhead" style="color: #FF8540;">Live Budget Planner</span>
+                        <h2>Interactive Bharat Yatra Cost Estimator</h2>
+                        <p style="color: #94A3B8;">Multi-variable calculation of hotel stays, dedicated transport, seasonal demand, and food.</p>
+                    </div>
+
+                    <div class="calc-grid">
+                        <div class="calc-input-group">
+                            <label for="calcRegion">Destination Zone</label>
+                            <select id="calcRegion">
+                                <option value="1.0">North India (Himalayas & Plains)</option>
+                                <option value="1.25">Kashmir & Ladakh (High Altitude)</option>
+                                <option value="1.15">Goa & Coastal Beaches</option>
+                                <option value="1.10">South India (Kerala Backwaters)</option>
+                                <option value="0.95">East & Central Heritage Circuit</option>
+                                <option value="1.20">North-East (7 Sisters)</option>
+                            </select>
+                        </div>
+
+                        <div class="calc-input-group">
+                            <label for="calcPax">Travelers Count</label>
+                            <select id="calcPax">
+                                <option value="1">1 Person (Solo Travel)</option>
+                                <option value="2" selected>2 Persons (Couple)</option>
+                                <option value="4">4 Persons (Family Group)</option>
+                                <option value="6">6 Persons (Large Friends Tour)</option>
+                            </select>
+                        </div>
+
+                        <div class="calc-input-group">
+                            <label for="calcDays">Trip Duration (Days)</label>
+                            <input type="number" id="calcDays" value="5" min="2" max="30">
+                        </div>
+
+                        <div class="calc-input-group">
+                            <label for="calcSeason">Season Factor</label>
+                            <select id="calcSeason">
+                                <option value="1.3">Peak Holiday Season (1.3x)</option>
+                                <option value="1.0" selected>Regular / Shoulder Season (1.0x)</option>
+                                <option value="0.8">Off-Season / Monsoon Discount (0.8x)</option>
+                            </select>
+                        </div>
+
+                        <div class="calc-input-group">
+                            <label for="calcTier">Stay Class</label>
+                            <select id="calcTier">
+                                <option value="1800">Budget Homestay / 2-Star</option>
+                                <option value="3600" selected>Comfort 3-Star Hotel</option>
+                                <option value="7500">Luxury 5-Star Resort</option>
+                            </select>
+                        </div>
+
+                        <div class="calc-input-group">
+                            <label for="calcTransport">Transit Mode</label>
+                            <select id="calcTransport">
+                                <option value="train">Train + Local Transit</option>
+                                <option value="cab" selected>Dedicated AC Private Cab</option>
+                                <option value="flight">Flight + Outstation SUV</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="calc-breakdown-deck">
+                        <div class="breakdown-item">
+                            <span>Accommodation (Stay)</span>
+                            <strong id="breakdownStay">₹18,000</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Transport & Fuel</span>
+                            <strong id="breakdownTransit">₹14,000</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Food & Sightseeing</span>
+                            <strong id="breakdownFood">₹8,000</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Contingency Buffer (5%)</span>
+                            <strong id="breakdownMisc">₹2,000</strong>
+                        </div>
+                    </div>
+
+                    <div class="calc-total-banner">
+                        <div>
+                            <span>Estimated Total Budget (All Travelers)</span>
+                            <strong id="calcTotalDisplay">₹42,000</strong>
+                        </div>
+                        <button class="btn-portal-cta" onclick="prefillInquiryFromEstimator()">
+                            Get Exact Quote For This Plan &rarr;
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Curated Tour Circuits -->
+        <div class="circuits-wrapper-box" id="circuits">
+            <div class="section-header-box">
+                <span class="section-subhead" style="color: #FF8540;">Master Routes</span>
+                <h2>Top Multi-Day India Tour Circuits</h2>
+                <p>Day-by-day itineraries jo travelers ke time aur travel logistics ko aasan banati hain.</p>
+            </div>
+
+            <div class="circuits-grid-deck">
+                <article class="circuit-panel">
+                    <span class="circuit-duration-tag">6 Din / 5 Raat</span>
+                    <h3>Golden Triangle Circuit</h3>
+                    <div class="circuit-transit-line">
+                        Delhi <svg class="icon-svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0-105.5 105.5c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg> 
+                        Agra <svg class="icon-svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0-105.5 105.5c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg> 
+                        Jaipur
+                    </div>
+                    <p style="color: #CBD5E1; font-size: 0.92rem;">Bharat ki shahi sanskriti, Mughal architecture aur Rajasthani hospitality ka sabse lokpriya route.</p>
+                    <ul class="circuit-highlights-list">
+                        <li><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm113-303L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Red Fort, Qutub Minar & Chandni Chowk Food Tour</li>
+                        <li><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm113-303L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Taj Mahal Sunrise View & Agra Fort</li>
+                        <li><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm113-303L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Amer Fort, Hawa Mahal & Chokhi Dhani</li>
+                    </ul>
+                </article>
+
+                <article class="circuit-panel">
+                    <span class="circuit-duration-tag">7 Din / 6 Raat</span>
+                    <h3>God's Own Country Circuit</h3>
+                    <div class="circuit-transit-line">
+                        Kochi <svg class="icon-svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0-105.5 105.5c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg> 
+                        Munnar <svg class="icon-svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0-105.5 105.5c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg> 
+                        Alleppey
+                    </div>
+                    <p style="color: #CBD5E1; font-size: 0.92rem;">Pahaad, jungle wildlife, chai ke baagan aur shaant backwaters ka perfect mixture.</p>
+                    <ul class="circuit-highlights-list">
+                        <li><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm113-303L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Munnar Tea Plantations & Mattupetty Dam</li>
+                        <li><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm113-303L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Periyar Wildlife Safari & Spice Garden Visit</li>
+                        <li><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm113-303L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Luxury Private Houseboat Night Stay with Meals</li>
+                    </ul>
+                </article>
+
+                <article class="circuit-panel">
+                    <span class="circuit-duration-tag">8 Din / 7 Raat</span>
+                    <h3>Devbhoomi & Char Dham Gateway</h3>
+                    <div class="circuit-transit-line">
+                        Haridwar <svg class="icon-svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0-105.5 105.5c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg> 
+                        Rishikesh <svg class="icon-svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0-105.5 105.5c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg> 
+                        Kedarnath
+                    </div>
+                    <p style="color: #CBD5E1; font-size: 0.92rem;">Ganga Aarti ki aadhyaatmik oorja ke sath Himalayas ke pavitra shivalaya darshan.</p>
+                    <ul class="circuit-highlights-list">
+                        <li><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm113-303L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Har Ki Pauri Sandhya Maha Aarti</li>
+                        <li><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm113-303L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Rishikesh Adventure River Rafting</li>
+                        <li><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm113-303L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Kedarnath Ji Trek & Helicopter Help</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+
+        <!-- Custom Plan & Booking Desk -->
+        <section class="section-wrap" id="plan" aria-labelledby="plan-heading">
+            <div class="planning-console-card">
+                <div class="console-info-pane">
+                    <span class="section-subhead">Support Desk</span>
+                    <h2 id="plan-heading">Apna Bharat Yatra Plan Customize Karein</h2>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">Chaahe solo backpacking ho, honeymoon, ya family tour — humari team aapke liye sateek travel plan bana kar degi.</p>
+
+                    <div style="margin-top:2rem; line-height:1.8; color:var(--text-muted); font-size:0.92rem;">
+                        <p>✓ 100% Verified Commercial Cabs & Verified Stays</p>
+                        <p>✓ Zero Hidden Cancellation Surcharges</p>
+                        <p>✓ WhatsApp & Call Helpline with Local Drivers</p>
+                    </div>
+                </div>
+
+                <form class="inquiry-grid-form" id="leadInquiryForm" novalidate>
+                    <div class="form-unit-group" id="groupName">
+                        <label for="custLeadName">Aapka Naam *</label>
+                        <input type="text" id="custLeadName" name="name" required placeholder="e.g. Rahul Sharma">
+                        <span class="error-message">Kam se kam 2 akshar likhein.</span>
+                    </div>
+
+                    <div class="form-unit-group" id="groupPhone">
+                        <label for="custLeadPhone">WhatsApp Number *</label>
+                        <input type="tel" id="custLeadPhone" name="phone" required placeholder="10-digit mobile number">
+                        <span class="error-message">Valid 10-digit number likhein (e.g. 9876543210).</span>
+                    </div>
+
+                    <div class="form-unit-group" id="groupEmail">
+                        <label for="custLeadEmail">Email Address (Optional)</label>
+                        <input type="email" id="custLeadEmail" name="email" placeholder="rahul@example.com">
+                        <span class="error-message">Valid email address likhein.</span>
+                    </div>
+
+                    <div class="form-unit-group" id="groupDest">
+                        <label for="custLeadDest">Destination / State *</label>
+                        <input type="text" id="custLeadDest" name="destination" required placeholder="e.g. Kashmir, Kerala, Rajasthan">
+                        <span class="error-message">Destination likhna zaroori hai.</span>
+                    </div>
+
+                    <div class="form-unit-group">
+                        <label for="custLeadGroup">Kitne Yatri Hain?</label>
+                        <select id="custLeadGroup" name="group_size">
+                            <option>1-2 Yatri (Solo / Couple)</option>
+                            <option selected>3-5 Yatri (Family Trip)</option>
+                            <option>6+ Yatri (Group Tour)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-unit-group">
+                        <label for="custLeadBudget">Anumanit Budget (Per Person)</label>
+                        <select id="custLeadBudget" name="budget_tier">
+                            <option>₹10,000 - ₹20,000 (Pocket Friendly)</option>
+                            <option selected>₹20,000 - ₹40,000 (Comfort 3-Star)</option>
+                            <option>₹40,000+ (Luxury 5-Star Experience)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-unit-group col-full">
+                        <label for="custLeadNotes">Koi Khas Zarurat ya Sawal?</label>
+                        <textarea id="custLeadNotes" name="notes" rows="3" placeholder="Hotel preferences, vehicle type, food choices, etc."></textarea>
+                    </div>
+
+                    <div class="col-full">
+                        <button type="submit" class="btn-submit-inquiry" id="inquirySubmitBtn" style="width: 100%;">
+                            <span id="btnText">Free Travel Plan & Quote Payein</span>
+                            <span id="btnSpinner" style="display:none;">Saving Request...</span>
+                        </button>
+                        <div class="form-feedback-banner" id="formSuccessBanner" role="alert">
+                            <span>Dhanyawaad! Aapki inquiry safely register ho chuki hai. Hamare destination specialist aapse WhatsApp par jald sampark karenge.</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Accessible Modal Popup for Detailed Guide -->
+    <div class="modal-overlay" id="guideModal" role="dialog" aria-modal="true" aria-labelledby="modalPlaceTitle">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close dialog">&times;</button>
+            <h3 id="modalPlaceTitle">Destination Guide</h3>
+            <span id="modalPlaceState" style="color:var(--primary); font-weight:700; font-size:0.9rem; display:block; margin-bottom:1rem;"></span>
+            
+            <div style="background:var(--bg-base); padding:1rem; border-radius:10px; margin-bottom:1.2rem; font-size:0.92rem; border:1px solid var(--border-light);">
+                <p style="margin-bottom:8px;"><strong>🏛️ District Count:</strong> <span id="modalDistCount" style="color:var(--primary); font-weight:800;">-</span></p>
+                <div style="margin-bottom:10px;">
+                    <strong style="display:block; margin-bottom:5px;">🏙️ Districts List:</strong>
+                    <div id="modalDistrictsList" style="max-height: 120px; overflow-y: auto; display: flex; flex-wrap: wrap; gap: 6px; padding: 6px; background: var(--surface); border: 1px solid var(--border-light); border-radius: 8px;"></div>
+                </div>
+                <p style="margin-bottom:8px;"><strong>🗓️ Best Months:</strong> <span id="modalBestSeason">-</span></p>
+                <p style="margin-bottom:8px;"><strong>✈️ Nearest Hub:</strong> <span id="modalTransit">-</span></p>
+                <p style="margin-bottom:8px;"><strong>📍 Top Attractions:</strong> <span id="modalAttractions">-</span></p>
+                <p><strong>🍲 Local Flavors:</strong> <span id="modalFood">-</span></p>
+            </div>
+
+            <button onclick="closeModalAndPlan()" class="btn-portal-cta" style="width:100%; justify-content:center;">
+                Is Jagah Ka Custom Package Plan Karein
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid-wrap">
+            <div class="footer-brand-meta">
+                <h3>IncredibleIndia<span>Guide.in</span></h3>
+                <p style="line-height: 1.7; font-size: 0.95rem; margin-top: 10px;">Bharat ke har rajya, sanskriti, khan-paan aur virasat ki pramanik jankari pradan karne wala swatantra tourism portal.</p>
+            </div>
+            <div class="footer-col-nav">
+                <h4>Popular Circuits</h4>
+                <ul>
+                    <li><a href="#circuits">Golden Triangle Route</a></li>
+                    <li><a href="#circuits">Kerala Backwaters & Hills</a></li>
+                    <li><a href="#circuits">Himachal Snow Circuit</a></li>
+                    <li><a href="#circuits">Char Dham Yatra Gateway</a></li>
+                </ul>
+            </div>
+            <div class="footer-col-nav">
+                <h4>Directory Zones</h4>
+                <ul>
+                    <li><a href="#states">North Himalayas</a></li>
+                    <li><a href="#states">South Coastal Temples</a></li>
+                    <li><a href="#states">West Heritage Forts</a></li>
+                    <li><a href="#states">North-East 7 Sisters</a></li>
+                </ul>
+            </div>
+            <div class="footer-col-nav">
+                <h4>Emergency Helplines</h4>
+                <p style="margin-bottom:8px;">Tourist Helpline: <strong>1363</strong></p>
+                <p style="margin-bottom:8px;">National Police: <strong>112</strong></p>
+                <p>Email: support@incredibleindiaguide.in</p>
+            </div>
+        </div>
+
+        <div class="legal-disclaimer-box">
+            <strong>Legal Notice:</strong> This is an independent informational portal and is NOT affiliated with or endorsed by the official Incredible India campaign or Ministry of Tourism, Government of India.
+        </div>
+
+        <div class="footer-bottom-bar">
+            <p>&copy; 2026 IncredibleIndiaGuide.in — Promoting Indian Tourism Independently.</p>
+            <div>
+                <a href="#states" style="color:#94A3B8; text-decoration:none; margin-right:15px;">State Directory</a>
+                <a href="#map-explore" style="color:#94A3B8; text-decoration:none; margin-right:15px;">Live Map</a>
+                <a href="#estimator" style="color:#94A3B8; text-decoration:none;">Cost Calculator</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Instant Booking Checkout Modal (With UPI & Live Voucher) -->
+    <div class="modal-overlay" id="bookingCheckoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutPackageTitle">
+        <div class="modal-card" style="max-width:500px;">
+            <button class="modal-close-btn" onclick="document.getElementById('bookingCheckoutModal').style.display='none'; document.body.style.overflow='';">&times;</button>
+            <h3 id="checkoutPackageTitle" style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--text-main);">Instant Reservation</h3>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:1rem;">Verified Tourism Partner Escrow Reservation</p>
+            
+            <div style="background:var(--bg-base); padding:1rem; border-radius:10px; border:1px solid var(--border-light); margin-bottom:1rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                    <span>Base Fare (Per Person):</span>
+                    <strong id="checkoutBasePrice">₹14,500</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                    <span>GST & Tourist Welfare (5%):</span>
+                    <strong id="checkoutTax">₹725</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-top:1px solid var(--border-light); padding-top:6px; font-size:1.15rem; color:var(--primary);">
+                    <span>Total Amount:</span>
+                    <strong id="checkoutTotalPrice">₹15,225</strong>
+                </div>
+            </div>
+
+            <div style="background:#FFFFFF; border:2px dashed var(--primary); border-radius:12px; padding:1.2rem; text-align:center; margin-bottom:1.2rem;">
+                <span style="font-size:0.8rem; font-weight:800; color:var(--text-muted); text-transform:uppercase;">Scan to Pay via UPI</span>
+                <div style="margin:10px auto; width:130px; height:130px; background:#F8FAFD; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border-light);">
+                    <svg class="icon-svg" style="font-size:3rem; color:var(--primary);" viewBox="0 0 448 512"><path d="M0 48C0 21.5 21.5 0 48 0H144c26.5 0 48 21.5 48 48V144c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V48zm48 32v64H144V80H48zM0 368c0-26.5 21.5-48 48-48H144c26.5 0 48 21.5 48 48V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V368zm48 32v64H144V400H48zM304 0h96c26.5 0 48 21.5 48 48V144c0 26.5-21.5 48-48 48H304c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zm32 80v64h64V80H336z"/></svg>
+                </div>
+                <small style="color:var(--text-muted); font-size:0.75rem; display:block;">UPI ID: travel@incrediblebharat</small>
+            </div>
+
+            <button onclick="confirmAndDownloadVoucher()" class="btn-portal-cta" style="width:100%; justify-content:center; padding:12px;">
+                Download Booking Receipt Voucher &rarr;
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Leaflet JS Library -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Interactive Client Scripts -->
+    <script>
+        // 1. Offline & Online Network Listener
+        window.addEventListener('offline', () => {
+            document.getElementById('offlineAlertBanner').style.display = 'block';
+        });
+        window.addEventListener('online', () => {
+            document.getElementById('offlineAlertBanner').style.display = 'none';
+        });
+
+        // 2. Theme Toggle with LocalStorage
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const savedTheme = localStorage.getItem('site_theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const target = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', target);
+            localStorage.setItem('site_theme', target);
+        });
+
+        // 3. Currency Multiplier Engine
+        const currencyRates = {
+            INR: { symbol: '₹', rate: 1.0 },
+            USD: { symbol: '$', rate: 0.012 },
+            EUR: { symbol: '€', rate: 0.011 },
+            GBP: { symbol: '£', rate: 0.0095 },
+            AED: { symbol: 'د.إ', rate: 0.044 }
+        };
+        let currentCurrency = 'INR';
+
+        function changeCurrency(currCode) {
+            currentCurrency = currCode;
+            calculateTripCost();
+        }
+
+        function formatPrice(inrAmount) {
+            const curr = currencyRates[currentCurrency];
+            const converted = Math.round(inrAmount * curr.rate);
+            return curr.symbol + ' ' + converted.toLocaleString('en-IN');
+        }
+
+        // 4. Cost Estimator Function
+        function calculateTripCost() {
+            const regionMultiplier = parseFloat(document.getElementById('calcRegion').value);
+            const pax = parseInt(document.getElementById('calcPax').value) || 2;
+            const days = Math.max(1, parseInt(document.getElementById('calcDays').value) || 1);
+            const seasonMultiplier = parseFloat(document.getElementById('calcSeason').value);
+            const roomRate = parseInt(document.getElementById('calcTier').value);
+            const transportMode = document.getElementById('calcTransport').value;
+
+            const rooms = Math.ceil(pax / 2);
+            const stayTotal = Math.round(rooms * roomRate * days * seasonMultiplier);
+
+            let dailyTransit = 2600;
+            if (transportMode === 'train') dailyTransit = pax <= 2 ? 1000 : 1800;
+            if (transportMode === 'flight') dailyTransit = pax <= 2 ? 6000 : 10000;
+            if (transportMode === 'cab') dailyTransit = pax <= 4 ? 2600 : 3800;
+
+            const transitTotal = Math.round(dailyTransit * days * regionMultiplier);
+            const foodTotal = Math.round(pax * 850 * days);
+            const subtotal = stayTotal + transitTotal + foodTotal;
+            const miscBuffer = Math.round(subtotal * 0.05);
+            const grandTotal = subtotal + miscBuffer;
+
+            document.getElementById('breakdownStay').textContent = formatPrice(stayTotal);
+            document.getElementById('breakdownTransit').textContent = formatPrice(transitTotal);
+            document.getElementById('breakdownFood').textContent = formatPrice(foodTotal);
+            document.getElementById('breakdownMisc').textContent = formatPrice(miscBuffer);
+            document.getElementById('calcTotalDisplay').textContent = formatPrice(grandTotal);
+        }
+
+        ['calcRegion', 'calcPax', 'calcDays', 'calcSeason', 'calcTier', 'calcTransport'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('input', calculateTripCost);
+                el.addEventListener('change', calculateTripCost);
+            }
+        });
+        calculateTripCost();
+
+        function prefillInquiryFromEstimator() {
+            const sel = document.getElementById('calcRegion');
+            const regionName = sel.options[sel.selectedIndex].text.split('(')[0].trim();
+            document.getElementById('custLeadDest').value = regionName;
+            document.getElementById('plan').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('custLeadName').focus();
+        }
+
+        // 5. Mobile Drawer
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+
+        function openDrawer() {
+            mobileDrawer.classList.add('active');
+            drawerOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDrawer() {
+            mobileDrawer.classList.remove('active');
+            drawerOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        hamburgerBtn.addEventListener('click', openDrawer);
+        drawerCloseBtn.addEventListener('click', closeDrawer);
+        drawerOverlay.addEventListener('click', closeDrawer);
+        document.querySelectorAll('.drawer-nav-item').forEach(i => i.addEventListener('click', closeDrawer));
+
+        // 6. Complete 36 States/UTs Full Information Database for Modal Display
+        const stateDistrictsData = {"Andhra Pradesh": ["Alluri Sitharama Raju", "Anakapalli", "Ananthapuramu", "Annamayya", "Bapatla", "Chittoor", "Dr. B.R. Ambedkar Konaseema", "East Godavari", "Eluru", "Guntur", "Kakinada", "Krishna", "Kurnool", "Nandyal", "NTR", "Palnadu", "Parvathipuram Manyam", "Prakasam", "Srikakulam", "Sri Potti Sriramulu Nellore", "Sri Sathya Sai", "Tirupati", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"], "Arunachal Pradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kamle", "Kra Daadi", "Kurung Kumey", "Lepa Rada", "Lohit", "Longding", "Lower Dibang Valley", "Lower Siang", "Lower Subansiri", "Namsai", "Pakke Kessang", "Papum Pare", "Shi Yomi", "Siang", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang", "Bichom", "Keyi Panyor"], "Assam": ["Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Dima Hasao", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "South Salmara-Mankachar", "Tinsukia", "Udalguri", "West Karbi Anglong", "Bajali", "Tamulpur"], "Bihar": ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnia", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"], "Chhattisgarh": ["Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bijapur", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Gariaband", "Gaurela-Pendra-Marwahi", "Janjgir-Champa", "Jashpur", "Kabirdham", "Kanker", "Kondagaon", "Korba", "Koriya", "Mahasamund", "Manendragarh-Chirmiri-Bharatpur", "Mohla-Manpur-Ambagarh Chowki", "Mungeli", "Narayanpur", "Raigarh", "Raipur", "Rajnandgaon", "Sarangarh-Bilaigarh", "Sakti", "Sukma", "Surajpur", "Surguja", "Khairagarh-Chhuikhadan-Gandai"], "Goa": ["North Goa", "South Goa"], "Gujarat": ["Ahmedabad", "Amreli", "Anand", "Aravalli", "Banaskantha", "Bharuch", "Bhavnagar", "Botad", "Chhota Udaipur", "Dahod", "Dang", "Devbhumi Dwarka", "Gandhinagar", "Gir Somnath", "Jamnagar", "Junagadh", "Kheda", "Kutch", "Mahisagar", "Mehsana", "Morbi", "Narmada", "Navsari", "Panchmahal", "Patan", "Porbandar", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Tapi", "Vadodara", "Valsad"], "Haryana": ["Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"], "Himachal Pradesh": ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"], "Jharkhand": ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribagh", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahebganj", "Seraikela Kharsawan", "Simdega", "West Singhbhum"], "Karnataka": ["Bagalkote", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", "Bidar", "Chamarajanagara", "Chikkaballapura", "Chikkamagaluru", "Chitradurga", "Dakshina Kannada", "Davanagere", "Dharwad", "Gadag", "Hassan", "Haveri", "Kalaburagi", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru", "Raichur", "Ramanagara", "Shivamogga", "Tumakuru", "Udupi", "Uttara Kannada", "Vijayanagara", "Vijayapura", "Yadgir"], "Kerala": ["Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", "Thiruvananthapuram", "Thrissur", "Wayanad"], "Madhya Pradesh": ["Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani", "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Hoshangabad", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narsinghpur", "Neemuch", "Niwari", "Panna", "Raisen", "Rajgarh", "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha", "Mauganj", "Maihar", "Pandhurna"], "Maharashtra": ["Ahmednagar", "Akola", "Amravati", "Chhatrapati Sambhajinagar", "Beed", "Bhandara", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nanded", "Nandurbar", "Nashik", "Dharashiv", "Palghar", "Parbhani", "Pune", "Raigad", "Ratnagiri", "Sangli", "Satara", "Sindhudurg", "Solapur", "Thane", "Wardha", "Washim", "Yavatmal"], "Manipur": ["Bishnupur", "Chandel", "Churachandpur", "Imphal East", "Imphal West", "Jiribam", "Kakching", "Kamjong", "Kangpokpi", "Noney", "Pherzawl", "Senapati", "Tamenglong", "Tengnoupal", "Thoubal", "Ukhrul"], "Meghalaya": ["East Garo Hills", "East Jaintia Hills", "East Khasi Hills", "Eastern West Khasi Hills", "North Garo Hills", "Ri Bhoi", "South Garo Hills", "South West Garo Hills", "South West Khasi Hills", "West Garo Hills", "West Jaintia Hills", "West Khasi Hills"], "Mizoram": ["Aizawl", "Champhai", "Hnahthial", "Khawzawl", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saitual", "Serchhip", "Siaha"], "Nagaland": ["Chumoukedima", "Dimapur", "Kiphire", "Kohima", "Longleng", "Mokokchung", "Mon", "Niuland", "Noklak", "Peren", "Phek", "Shamator", "Tseminyu", "Tuensang", "Wokha", "Zunheboto"], "Odisha": ["Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Boudh", "Cuttack", "Deogarh", "Dhenkanal", "Gajapati", "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kandhamal", "Kendrapara", "Kendujhar", "Khordha", "Koraput", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nayagarh", "Nuapada", "Puri", "Rayagada", "Sambalpur", "Subarnapur", "Sundargarh"], "Punjab": ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Ferozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Malerkotla", "Mansa", "Moga", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "Sahibzada Ajit Singh Nagar", "Sangrur", "Shahid Bhagat Singh Nagar", "Sri Muktsar Sahib", "Tarn Taran"], "Rajasthan": ["Ajmer", "Alwar", "Anupgarh", "Balotra", "Banswara", "Baran", "Barmer", "Beawar", "Bharatpur", "Bhilwara", "Bikaner", "Bundi", "Chittorgarh", "Churu", "Dausa", "Deeg", "Dholpur", "Didwana-Kuchaman", "Dudu", "Dungarpur", "Ganganagar", "Gangapur City", "Hanumangarh", "Jaipur", "Jaipur Rural", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu", "Jodhpur", "Jodhpur Rural", "Karauli", "Kekri", "Khairthal-Tijara", "Kota", "Kotputli-Behror", "Nagaur", "Neem Ka Thana", "Pali", "Phalodi", "Pratapgarh", "Rajsamand", "Salumbar", "Sanchore", "Sawai Madhopur", "Shahpura", "Sikar", "Sirohi", "Tonk", "Udaipur"], "Sikkim": ["Gangtok", "Gyalshing", "Mangan", "Namchi", "Pakyong", "Soreng"], "Tamil Nadu": ["Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kanchipuram", "Kanyakumari", "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur", "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram", "Virudhunagar"], "Telangana": ["Adilabad", "Bhadradri Kothagudem", "Hanamkonda", "Hyderabad", "Jagtial", "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam", "Kumuram Bheem Asifabad", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak", "Medchal-Malkajgiri", "Mulugu", "Nagarkurnool", "Nalgonda", "Narayanpet", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Ranga Reddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy", "Warangal", "Yadadri Bhuvanagiri"], "Tripura": ["Dhalai", "Gomati", "Khowai", "North Tripura", "Sepahijala", "South Tripura", "Unakoti", "West Tripura"], "Uttar Pradesh": ["Agra", "Aligarh", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Ayodhya", "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti", "Bhadohi", "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah", "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddha Nagar", "Ghaziabad", "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur", "Hapur", "Hardoi", "Hathras", "Jalaun", "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat", "Kanpur Nagar", "Kasganj", "Kaushambi", "Kheri", "Kushinagar", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri", "Mathura", "Mau", "Meerut", "Mirzapur", "Moradabad", "Muzaffarnagar", "Pilibhit", "Pratapgarh", "Prayagraj", "Raebareli", "Rampur", "Saharanpur", "Sambhal", "Sant Kabir Nagar", "Shahjahanpur", "Shamli", "Shravasti", "Siddharthnagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"], "Uttarakhand": ["Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"], "West Bengal": ["Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Jhargram", "Kalimpong", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur", "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas", "Uttar Dinajpur"], "Andaman & Nicobar Islands": ["Nicobar", "North and Middle Andaman", "South Andaman"], "Chandigarh": ["Chandigarh"], "Dadra & Nagar Haveli and Daman & Diu": ["Daman", "Diu", "Dadra and Nagar Haveli"], "Delhi": ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi", "North West Delhi", "Shahdara", "South Delhi", "South East Delhi", "South West Delhi", "West Delhi"], "Jammu & Kashmir": ["Anantnag", "Bandipora", "Baramulla", "Budgam", "Doda", "Ganderbal", "Jammu", "Kathua", "Kishtwar", "Kulgam", "Kupwara", "Poonch", "Pulwama", "Rajouri", "Ramban", "Reasi", "Samba", "Shopian", "Srinagar", "Udhampur"], "Ladakh": ["Kargil", "Leh"], "Lakshadweep": ["Lakshadweep"], "Puducherry": ["Karaikal", "Mahe", "Puducherry", "Yanam"]};
+        const stateRegistry = {
+            "Himachal Pradesh": { cap: "Shimla", best: "Apr - Jun & Dec - Feb", transit: "Bhuntar (KUU) / Chandigarh", sights: "Solang Valley, Spiti, Rohtang Pass, Kasol", food: "Siddu, Chha Gosht, Kullu Trout" },
+            "Uttarakhand": { cap: "Dehradun", best: "Mar - Jun & Sep - Nov", transit: "Dehradun Jolly Grant (DED)", sights: "Rishikesh, Kedarnath, Nainital, Valley of Flowers", food: "Kafuli, Chainsoo, Bal Mithai" },
+            "Punjab": { cap: "Chandigarh", best: "Oct - Mar", transit: "Amritsar (ATQ)", sights: "Golden Temple, Wagah Border, Jallianwala Bagh", food: "Makki di Roti, Sarson da Saag, Amritsari Kulcha" },
+            "Haryana": { cap: "Chandigarh", best: "Oct - Mar", transit: "Delhi IGI Airport", sights: "Kurukshetra, Sultanpur Sanctuary, Yadavindra Gardens", food: "Bajra Khichri, Kadhi Pakora" },
+            "Uttar Pradesh": { cap: "Lucknow", best: "Oct - Mar", transit: "Varanasi (VNS) / Lucknow (LKO)", sights: "Taj Mahal Agra, Kashi Vishwanath, Ayodhya Ram Mandir", food: "Awadhi Biryani, Tunday Kebab, Petha" },
+            "Rajasthan": { cap: "Jaipur", best: "Oct - Mar", transit: "Jaipur (JAI) / Udaipur (UDR)", sights: "Amer Fort, Lake Pichola Udaipur, Jaisalmer Sand Dunes", food: "Dal Baati Churma, Laal Maas, Ghevar" },
+            "Kerala": { cap: "Thiruvananthapuram", best: "Sep - Mar", transit: "Cochin (COK) / Trivandrum (TRV)", sights: "Alleppey Houseboats, Munnar Tea Gardens, Wayanad", food: "Appam with Stew, Karimeen Pollichathu, Payasam" },
+            "Karnataka": { cap: "Bengaluru", best: "Oct - Mar", transit: "Bengaluru (BLR) / Mangalore (IXE)", sights: "Hampi Ruins, Coorg Coffee Valleys, Mysore Palace", food: "Bisi Bele Bath, Mysore Pak, Neer Dosa" },
+            "Tamil Nadu": { cap: "Chennai", best: "Nov - Mar", transit: "Chennai (MAA) / Madurai (IXM)", sights: "Meenakshi Temple, Ooty Hill Station, Rameswaram", food: "Chettinad Chicken, Dosa, Filter Coffee" },
+            "Andhra Pradesh": { cap: "Amaravati", best: "Oct - Mar", transit: "Visakhapatnam (VTZ) / Vijayawada", sights: "Tirupati Balaji, Araku Valley, Borra Caves", food: "Hyderabadi Pulao, Gongura Pachadi" },
+            "Telangana": { cap: "Hyderabad", best: "Oct - Mar", transit: "Hyderabad (HYD)", sights: "Charminar, Golconda Fort, Ramoji Film City", food: "Hyderabadi Dum Biryani, Mirchi ka Salan" },
+            "Goa": { cap: "Panaji", best: "Nov - Feb", transit: "Goa Mopa (GOX) / Dabolim (GOI)", sights: "Calangute, Dudhsagar Waterfalls, Fort Aguada", food: "Goan Fish Curry, Bebinca, Pork Vindaloo" },
+            "Gujarat": { cap: "Gandhinagar", best: "Nov - Feb", transit: "Ahmedabad (AMD)", sights: "Rann of Kutch, Statue of Unity, Gir Lion Safari", food: "Dhokla, Thepla, Gujarati Thali, Khandvi" },
+            "Maharashtra": { cap: "Mumbai", best: "Oct - Mar", transit: "Mumbai (BOM) / Pune (PNQ)", sights: "Gateway of India, Ajanta Ellora Caves, Lonavala", food: "Vada Pav, Pav Bhaji, Puran Poli" },
+            "Madhya Pradesh": { cap: "Bhopal", best: "Oct - Mar", transit: "Indore (IDR) / Bhopal (BHO)", sights: "Khajuraho Temples, Kanha Tiger Reserve, Mahakaleshwar", food: "Poha Jalebi, Dal Bafla, Bhutte ka Kees" },
+            "Chhattisgarh": { cap: "Raipur", best: "Oct - Mar", transit: "Raipur (RPR)", sights: "Chitrakote Falls (Niagara of India), Bastar Arts", food: "Chila, Fara, Muthia" },
+            "Bihar": { cap: "Patna", best: "Oct - Mar", transit: "Patna (PAT) / Gaya (GAY)", sights: "Mahabodhi Temple Bodh Gaya, Nalanda University", food: "Litti Chokha, Sattu Paratha, Khaja" },
+            "Jharkhand": { cap: "Ranchi", best: "Oct - Mar", transit: "Ranchi (IXR)", sights: "Betla National Park, Dassam Falls, Parasnath Peak", food: "Dhuska, Rugda, Thekua" },
+            "Odisha": { cap: "Bhubaneswar", best: "Oct - Mar", transit: "Bhubaneswar (BBI)", sights: "Jagannath Temple Puri, Konark Sun Temple, Chilika", food: "Chhena Poda, Dalma, Rasagola" },
+            "West Bengal": { cap: "Kolkata", best: "Oct - Mar", transit: "Kolkata (CCU) / Bagdogra (IXB)", sights: "Darjeeling Himalayan Railway, Sundarbans, Victoria", food: "Macher Jhol, Kosha Mangsho, Sandesh" },
+            "Sikkim": { cap: "Gangtok", best: "Mar - May & Oct - Dec", transit: "Pakyong (PYG) / Bagdogra (IXB)", sights: "Nathula Pass, Gurudongmar Lake, Tsomgo Lake", food: "Momos, Thukpa, Gundruk" },
+            "Assam": { cap: "Dispur", best: "Nov - Apr", transit: "Guwahati (GAU)", sights: "Kaziranga Rhino Safari, Kamakhya Temple, Majuli", food: "Assamese Fish Tenga, Khaar, Pitha" },
+            "Meghalaya": { cap: "Shillong", best: "Oct - Apr", transit: "Guwahati (GAU) - 3h Drive", sights: "Double Decker Living Root Bridge, Dawki River", food: "Jadoh, Dohneiiong, Nakham Bitchi" },
+            "Arunachal Pradesh": { cap: "Itanagar", best: "Oct - Apr", transit: "Donyi Polo (HGI) / Tezpur", sights: "Tawang Monastery, Ziro Valley, Sela Pass", food: "Thukpa, Lukter, Bamboo Shoot Fry" },
+            "Nagaland": { cap: "Kohima", best: "Oct - May", transit: "Dimapur (DMU)", sights: "Dzukou Valley, Hornbill Village Kisama, Khonoma", food: "Smoked Pork with Axone, Bamboo Steamed Rice" },
+            "Manipur": { cap: "Imphal", best: "Oct - Mar", transit: "Imphal (IMF)", sights: "Loktak Floating Lake, Keibul Lamjao Park, Kangla", food: "Kangshoi, Chamthong, Eromba" },
+            "Mizoram": { cap: "Aizawl", best: "Oct - Mar", transit: "Lengpui (AJL)", sights: "Vantawng Falls, Reiek Tlang Peak, Solomon Temple", food: "Bai, Vawksa Rep, Sawhchiar" },
+            "Tripura": { cap: "Agartala", best: "Oct - Mar", transit: "Agartala (IXA)", sights: "Ujjayanta Palace, Unakoti Rock Sculptures, Neermahal", food: "Mui Borok, Berma, Chakhwi" },
+            "Jammu & Kashmir": { cap: "Srinagar (Summer) / Jammu (Winter)", best: "Mar - Oct & Dec - Feb", transit: "Srinagar (SXR)", sights: "Dal Lake, Gulmarg Gondola, Betaab Valley", food: "Wazwan, Rogan Josh, Kashmiri Kahwa" },
+            "Ladakh": { cap: "Leh", best: "May - Sep", transit: "Leh Kushok Bakula (IXL)", sights: "Pangong Tso Lake, Nubra Valley, Khardung La", food: "Skyu, Chhurpi, Butter Tea" },
+            "Delhi": { cap: "New Delhi", best: "Oct - Mar", transit: "Indira Gandhi International (DEL)", sights: "Red Fort, Qutub Minar, Humayun Tomb, Lotus Temple", food: "Chole Bhature, Parathas, Butter Chicken" },
+            "Chandigarh": { cap: "Chandigarh", best: "Oct - Mar", transit: "Chandigarh (IXC)", sights: "Rock Garden, Sukhna Lake, Zakir Rose Garden", food: "Amritsari Naan, Lassi, Chana Bhatura" },
+            "Andaman & Nicobar Islands": { cap: "Port Blair", best: "Oct - May", transit: "Port Blair (IXZ)", sights: "Radhanagar Beach Havelock, Cellular Jail, Neil Island", food: "Fresh Seafood, Coconut Prawn Curry" },
+            "Lakshadweep": { cap: "Kavaratti", best: "Oct - May", transit: "Agatti Island (AGX)", sights: "Agatti Coral Atoll, Bangaram Lagoon, Minicoy", food: "Tuna Curry, Rayereha, Malabar Parotta" },
+            "Puducherry": { cap: "Pondicherry", best: "Oct - Mar", transit: "Chennai (MAA) / Pondicherry", sights: "French Quarter White Town, Auroville, Promenade", food: "French Croissants, Creole Seafood Curry" },
+            "Dadra & Nagar Haveli and Daman & Diu": { cap: "Daman", best: "Oct - Mar", transit: "Surat (STV) / Mumbai (BOM)", sights: "Diu Fort, Naida Caves, Jampore Beach", food: "Portuguese Fish Fry, Dhokla, Cozido" }
+        };
+
+        // State Tile Click Listener
+        document.querySelectorAll('.state-card-tile').forEach(tile => {
+            tile.addEventListener('click', () => {
+                const sName = tile.getAttribute('data-state');
+                const info = stateRegistry[sName];
+                if (info) {
+                    openModalGuide(sName + " State Guide", "Capital: " + info.cap, info.best, info.transit, info.sights, info.food, tile);
+                }
+            });
+        });
+
+        // 7. Interactive Leaflet Map Setup
+        let mapInstance = null;
+        function initInteractiveMap() {
+            if (typeof L === 'undefined' || !document.getElementById('indiaLeafletMap')) return;
+            mapInstance = L.map('indiaLeafletMap').setView([22.5937, 78.9629], 5);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(mapInstance);
+
+            const mapDestinations = [
+                { name: "Jaipur, Rajasthan", coords: [26.9124, 75.7873], desc: "Amer Fort & royal palaces" },
+                { name: "Manali, Himachal Pradesh", coords: [32.2396, 77.1887], desc: "Solang valley snow passes" },
+                { name: "Srinagar, Kashmir", coords: [34.0837, 74.7973], desc: "Dal Lake houseboats & Gulmarg" },
+                { name: "Goa Coastal Beach", coords: [15.2993, 74.1240], desc: "Golden sands & Portuguese chapels" },
+                { name: "Munnar, Kerala", coords: [10.0889, 77.0595], desc: "Tea plantations & backwaters" },
+                { name: "Shillong, Meghalaya", coords: [25.5788, 91.8933], desc: "Living root bridges & clear rivers" },
+                { name: "Varanasi, Uttar Pradesh", coords: [25.3176, 82.9739], desc: "Holy Ganga Aarti & ancient ghats" },
+                { name: "Bodh Gaya, Bihar", coords: [24.6961, 84.9869], desc: "Mahabodhi UNESCO temple" },
+                { name: "Kaziranga, Assam", coords: [26.5775, 93.1711], desc: "One-horned rhino safari" }
+            ];
+
+            mapDestinations.forEach(item => {
+                const marker = L.marker(item.coords).addTo(mapInstance);
+                marker.bindPopup(`<b>${item.name}</b><br>${item.desc}<br><a href="#destinations" style="color:#FF5412; font-weight:bold;">View Details &rarr;</a>`);
+            });
+        }
+        window.addEventListener('DOMContentLoaded', initInteractiveMap);
+
+        // 8. Weather Switcher
+        const weatherDatabase = {
+            srinagar: { temp: "14°C", cond: "Pleasant / Mild Breeze", hum: "62%", cloth: "Light Woollens", rating: "Excellent (4.9/5)" },
+            manali: { temp: "11°C", cond: "Chilly / Clear Alpine Sky", hum: "55%", cloth: "Heavy Jacket", rating: "Top Choice (4.8/5)" },
+            jaipur: { temp: "28°C", cond: "Warm & Sunny Days", hum: "38%", cloth: "Cotton Wear + Shades", rating: "Ideal (4.7/5)" },
+            goa: { temp: "30°C", cond: "Tropical / Pleasant Breeze", hum: "70%", cloth: "Beach Casuals", rating: "Prime Beach Vibe (4.9/5)" },
+            munnar: { temp: "18°C", cond: "Misty & Refreshing", hum: "78%", cloth: "Comfortable Layers", rating: "Serene (5.0/5)" },
+            shillong: { temp: "16°C", cond: "Cool Clouds & Forest Dew", hum: "82%", cloth: "Windbreaker / Umbrella", rating: "Scenic (4.8/5)" }
+        };
+
+        function switchWeather(k, btn) {
+            document.querySelectorAll('.weather-city-chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            const w = weatherDatabase[k];
+            if (w) {
+                document.getElementById('wTemp').textContent = w.temp;
+                document.getElementById('wCondition').textContent = w.cond;
+                document.getElementById('wHumidity').textContent = w.hum;
+                document.getElementById('wCloth').textContent = w.cloth;
+                document.getElementById('wRating').textContent = w.rating;
+            }
+        }
+
+        // 9. Search & Filter Engine with Typo Tolerance
+        const liveSearchInput = document.getElementById('liveSearchInput');
+        const directStateSelect = document.getElementById('directStateSelect');
+        const searchAriaLive = document.getElementById('searchAriaLive');
+        const searchEmptyState = document.getElementById('searchEmptyState');
+        const destCards = document.querySelectorAll('.destination-card-unit');
+        const stateTiles = document.querySelectorAll('.state-card-tile');
+        let currentActiveVibe = 'all';
+
+        function isMatch(needle, text) {
+            const n = needle.toLowerCase().trim();
+            const h = text.toLowerCase();
+            return !n || h.includes(n);
+        }
+
+        function applyCombinedFilters() {
+            const query = liveSearchInput.value.trim();
+            const selState = directStateSelect.value;
+            let mDest = 0;
+            let mState = 0;
+
+            destCards.forEach(card => {
+                const cState = card.getAttribute('data-state') || '';
+                const cVibe = card.getAttribute('data-vibe') || '';
+                const title = card.querySelector('.dest-card-heading').innerText;
+                const desc = card.querySelector('.dest-card-desc').innerText;
+
+                const passQuery = isMatch(query, title + " " + cState + " " + desc);
+                const passState = !selState || cState.toLowerCase() === selState.toLowerCase();
+                const passVibe = currentActiveVibe === 'all' || cVibe === currentActiveVibe;
+
+                if (passQuery && passState && passVibe) {
+                    card.style.display = 'flex';
+                    mDest++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            stateTiles.forEach(tile => {
+                const sName = tile.getAttribute('data-state') || '';
+                const passQuery = !query || isMatch(query, sName + " " + tile.innerText);
+                const passState = !selState || sName.toLowerCase() === selState.toLowerCase();
+
+                if (passQuery && passState) {
+                    tile.style.display = 'flex';
+                    mState++;
+                } else {
+                    tile.style.display = 'none';
+                }
+            });
+
+            searchEmptyState.style.display = (mDest === 0) ? 'block' : 'none';
+
+            if (query || selState) {
+                searchAriaLive.style.display = 'block';
+                searchAriaLive.textContent = `Found ${mDest} destinations and ${mState} states.`;
+            } else {
+                searchAriaLive.style.display = 'none';
+            }
+        }
+
+        liveSearchInput.addEventListener('input', applyCombinedFilters);
+        directStateSelect.addEventListener('change', applyCombinedFilters);
+        document.getElementById('dockSearchBtn').addEventListener('click', applyCombinedFilters);
+
+        // Vibe Filters
+        document.querySelectorAll('.pill-chip').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.pill-chip').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentActiveVibe = btn.getAttribute('data-vibe');
+                applyCombinedFilters();
+            });
+        });
+
+        // Region Filter for States
+        document.querySelectorAll('.vault-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.vault-pill').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const reg = btn.getAttribute('data-region');
+                stateTiles.forEach(t => {
+                    t.style.display = (reg === 'all' || t.getAttribute('data-region') === reg) ? 'flex' : 'none';
+                });
+            });
+        });
+
+        // 10. Modal Logic
+        let lastFocusedElement = null;
+        const guideModal = document.getElementById('guideModal');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+        function openModalGuide(title, state, season, transit, attractions, food, triggerElem) {
+            lastFocusedElement = triggerElem || document.activeElement;
+            document.getElementById('modalPlaceTitle').textContent = title;
+            document.getElementById('modalPlaceState').textContent = state;
+            document.getElementById('modalBestSeason').textContent = season;
+            document.getElementById('modalTransit').textContent = transit;
+            document.getElementById('modalAttractions').textContent = attractions;
+            document.getElementById('modalFood').textContent = food;
+            
+            // Populate Districts dynamically
+            const stateCleanName = state.replace(' State Guide', '').replace(' (UT)', '').trim();
+            const dists = stateDistrictsData[stateCleanName] || [];
+            document.getElementById('modalDistCount').textContent = dists.length + " Districts";
+            const distContainer = document.getElementById('modalDistrictsList');
+            distContainer.innerHTML = dists.map(d => `<span style="font-size:0.75rem; background:var(--bg-base); padding:3px 8px; border-radius:12px; border:1px solid var(--border-light);">${d}</span>`).join('');
+            guideModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            modalCloseBtn.focus();
+        }
+
+        function closeModal() {
+            guideModal.style.display = 'none';
+            document.body.style.overflow = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
+        }
+
+        function closeModalAndPlan() {
+            const pName = document.getElementById('modalPlaceTitle').textContent;
+            closeModal();
+            document.getElementById('custLeadDest').value = pName;
+            document.getElementById('plan').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('custLeadName').focus();
+        }
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        guideModal.addEventListener('click', e => { if (e.target === guideModal) closeModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        // 11. Persistent Leads Inbox System (LocalStorage CRM)
+        function loadStoredLeads() {
+            const container = document.getElementById('leadsListContainer');
+            const countBadge = document.getElementById('inquiryCountBadge');
+            const leads = JSON.parse(localStorage.getItem('inbound_leads') || '[]');
+            countBadge.textContent = leads.length;
+
+            if (leads.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted); font-size:0.9rem;">No submissions yet. Any form inquiries submitted will appear here.</p>';
+                return;
+            }
+
+            container.innerHTML = leads.map(l => `
+                <div class="lead-entry-card">
+                    <strong>${l.name}</strong> (${l.phone})<br>
+                    <span>📍 Destination: <strong>${l.destination}</strong></span><br>
+                    <span>💰 Budget: ${l.budget} | Pax: ${l.pax}</span><br>
+                    <small style="color:var(--text-muted);">${l.date}</small>
+                </div>
+            `).join('');
+        }
+
+        function toggleAdminDrawer() {
+            const d = document.getElementById('adminLeadsDrawer');
+            d.classList.toggle('open');
+            loadStoredLeads();
+        }
+
+        function clearAllLeads() {
+            localStorage.removeItem('inbound_leads');
+            loadStoredLeads();
+        }
+
+        loadStoredLeads();
+
+        // 12. Lead Capture Form with Inline Validation & Storage
+        const leadForm = document.getElementById('leadInquiryForm');
+        leadForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const name = document.getElementById('custLeadName').value.trim();
+            const phone = document.getElementById('custLeadPhone').value.trim();
+            const dest = document.getElementById('custLeadDest').value.trim();
+
+            let hasErr = false;
+            if (name.length < 2) {
+                document.getElementById('groupName').classList.add('has-error');
+                hasErr = true;
+            } else {
+                document.getElementById('groupName').classList.remove('has-error');
+            }
+
+            if (!/^[6-9]\d{9}$/.test(phone.replace(/[\s\-\+]/g, '').slice(-10))) {
+                document.getElementById('groupPhone').classList.add('has-error');
+                hasErr = true;
+            } else {
+                document.getElementById('groupPhone').classList.remove('has-error');
+            }
+
+            if (!dest) {
+                document.getElementById('groupDest').classList.add('has-error');
+                hasErr = true;
+            } else {
+                document.getElementById('groupDest').classList.remove('has-error');
+            }
+
+            if (hasErr) return;
+
+            document.getElementById('btnText').style.display = 'none';
+            document.getElementById('btnSpinner').style.display = 'inline';
+
+            const newLead = {
+                name, phone, destination: dest,
+                pax: document.getElementById('custLeadGroup').value,
+                budget: document.getElementById('custLeadBudget').value,
+                date: new Date().toLocaleString()
+            };
+
+            setTimeout(() => {
+                const existing = JSON.parse(localStorage.getItem('inbound_leads') || '[]');
+                existing.unshift(newLead);
+                localStorage.setItem('inbound_leads', JSON.stringify(existing));
+
+                document.getElementById('btnText').style.display = 'inline';
+                document.getElementById('btnSpinner').style.display = 'none';
+                document.getElementById('formSuccessBanner').style.display = 'flex';
+                leadForm.reset();
+                loadStoredLeads();
+            }, 600);
+        });
+
+        // 13. Web Share API
+        async function shareDestination(title, desc) {
+            if (navigator.share) {
+                try {
+                    await navigator.share({ title, text: desc, url: window.location.href });
+                } catch (err) {}
+            } else {
+                navigator.clipboard.writeText(`${title} - ${desc} | ${window.location.href}`);
+                alert("Destination link copied to clipboard!");
+            }
+        }
+    
+        // Live Booking Checkout Engine
+        let currentBookingTitle = "Tour Package";
+        let currentBookingFare = 14500;
+
+        function openBookingCheckout(title, fare) {
+            currentBookingTitle = title;
+            currentBookingFare = fare;
+            document.getElementById('checkoutPackageTitle').textContent = title;
+            document.getElementById('checkoutBasePrice').textContent = formatPrice(fare);
+            const gst = Math.round(fare * 0.05);
+            document.getElementById('checkoutTax').textContent = formatPrice(gst);
+            document.getElementById('checkoutTotalPrice').textContent = formatPrice(fare + gst);
+            document.getElementById('bookingCheckoutModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function confirmAndDownloadVoucher() {
+            const refNo = "IN-" + Math.floor(100000 + Math.random() * 900000);
+            const voucher = `=====================================================
+INCREDIBLE INDIA GUIDE - OFFICIAL BOOKING CONFIRMATION
+=====================================================
+Booking Reference : ${refNo}
+Date of Booking   : ${new Date().toLocaleDateString()}
+Reserved Package  : ${currentBookingTitle}
+Paid Total        : ${formatPrice(currentBookingFare * 1.05)}
+Status            : CONFIRMED & RESERVED (ESCROW PROTECTED)
+National Helpline : 1363 (24x7 Toll-Free)
+=====================================================
+Thank you for booking with Incredible India Guide!
+Please present this official voucher upon check-in.`;
+
+            const blob = new Blob([voucher], { type: 'text/plain;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `Booking_Receipt_${refNo}.txt`;
+            link.click();
+
+            alert(`✅ Booking Confirmed! Your confirmation receipt voucher (${refNo}) has been downloaded.`);
+            document.getElementById('bookingCheckoutModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+    </script>
+</body>
+</html>
