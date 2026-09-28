@@ -1542,3 +1542,75 @@ function setupUnifiedLeftHamburger() {
 
   leftHamburger.onclick = openUnifiedMenu;
 }
+// =========================================================================
+// EMERGENCY FIX: CLEAN SINGLE LEFT MENU + REMOVE 3-DOT & DOUBLE BUTTON
+// =========================================================================
+
+function applyHeaderFixInstantly() {
+  // 1. 3-dot box aur Topbar ko turant screen se hatayein
+  const topbars = document.querySelectorAll('.topbar, .topbar-wrap, .topbar-right');
+  topbars.forEach(el => {
+    el.style.setProperty('display', 'none', 'important');
+    el.style.setProperty('visibility', 'hidden', 'important');
+    el.style.setProperty('height', '0px', 'important');
+  });
+
+  // 2. Extra original right hamburger ko hide karein (Double button fix)
+  const originalHamburger = document.getElementById('hamburgerBtn');
+  if (originalHamburger) {
+    originalHamburger.style.setProperty('display', 'none', 'important');
+  }
+
+  // 3. Navbar se currency & dark mode hide karein
+  const navActions = document.querySelector('.header-actions');
+  if (navActions) {
+    const curBox = navActions.querySelector('.currency-select-box');
+    const themeBtn = navActions.querySelector('.theme-toggle-btn');
+    if (curBox) curBox.style.setProperty('display', 'none', 'important');
+    if (themeBtn) themeBtn.style.setProperty('display', 'none', 'important');
+  }
+
+  // 4. Purana default drawer agar khula reh jaye toh use theek karein
+  const oldDrawer = document.getElementById('mobileDrawer');
+  if (oldDrawer && !oldDrawer.querySelector('#injectedToolsBar')) {
+    // Agar purana drawer hi open hota hai, toh uske andar Currency, Dark Mode & Submissions daal dein
+    const drawerHead = oldDrawer.querySelector('.drawer-head');
+    if (drawerHead) {
+      const toolsBar = document.createElement('div');
+      toolsBar.id = 'injectedToolsBar';
+      toolsBar.style.cssText = `
+        padding: 12px 16px;
+        background: rgba(255,255,255,0.04);
+        border-bottom: 1px solid var(--border-light, rgba(255,255,255,0.1));
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      `;
+      toolsBar.innerHTML = `
+        <div style="display:flex; gap:10px; align-items:center;">
+          <select id="drawerInjectedCurrency" onchange="if(typeof changeCurrency==='function') changeCurrency(this.value);" style="flex:1; padding:8px 12px; background:var(--surface, #1e293b); color:#fff; border:1px solid rgba(255,255,255,0.2); border-radius:10px; font-weight:600; font-size:0.85rem;">
+            <option value="INR" selected>INR (₹)</option>
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="AED">AED (د.إ)</option>
+          </select>
+          <button type="button" onclick="const b=document.querySelector('.theme-toggle-btn'); if(b) b.click();" style="width:38px; height:38px; background:var(--surface, #1e293b); border:1px solid rgba(255,255,255,0.2); border-radius:10px; color:#FFB800; cursor:pointer;">
+            🌓
+          </button>
+        </div>
+        <button type="button" onclick="if(typeof toggleAdminDrawer==='function') toggleAdminDrawer();" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:rgba(255,84,18,0.15); border:1px solid #FF5412; border-radius:10px; color:#fff; font-weight:700; font-size:0.85rem; cursor:pointer;">
+          <span>📋 View Submissions</span>
+          <span style="background:#FF5412; padding:2px 7px; border-radius:10px; font-size:0.75rem;">CRM</span>
+        </button>
+      `;
+      drawerHead.insertAdjacentElement('afterend', toolsBar);
+    }
+  }
+}
+
+// Har event par auto-run karein
+document.addEventListener("DOMContentLoaded", applyHeaderFixInstantly);
+window.addEventListener("load", applyHeaderFixInstantly);
+setTimeout(applyHeaderFixInstantly, 100);
+setTimeout(applyHeaderFixInstantly, 500);
