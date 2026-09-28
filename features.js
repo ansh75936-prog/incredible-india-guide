@@ -1800,3 +1800,87 @@ window.addEventListener("load", convertAllToEnglish);
 setTimeout(convertAllToEnglish, 300);
 setTimeout(convertAllToEnglish, 1000);
 setTimeout(setupOnlyThreeDotMenu, 500);
+// =========================================================================
+// INJECT DARK MODE TOGGLE & CURRENCY DIRECTLY INTO ACTIVE DRAWER
+// =========================================================================
+
+function injectThemeAndCurrencyToActiveDrawer() {
+  // Active drawer container target karein
+  const drawerContainers = document.querySelectorAll(
+    '.admin-leads-drawer, #adminLeadsDrawer, #mobileDrawer, .nav-drawer, [aria-label*="Drawer"]'
+  );
+
+  drawerContainers.forEach(drawer => {
+    // Duplicate check
+    if (drawer.querySelector('#drawerQuickBar')) return;
+
+    // Header find karein jiske theek neeche toggle lagana hai
+    const headerTitle = drawer.querySelector('h3, .drawer-head, span');
+    
+    const quickBar = document.createElement('div');
+    quickBar.id = 'drawerQuickBar';
+    quickBar.style.cssText = `
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+      margin: 12px 0 16px 0 !important;
+      padding: 10px 14px !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 12px !important;
+      box-sizing: border-box !important;
+    `;
+
+    quickBar.innerHTML = `
+      <!-- Currency Switcher -->
+      <select id="drawerCurrencySwitcher" onchange="if(typeof changeCurrency==='function') changeCurrency(this.value);" style="flex:1; padding:8px 10px; background:#162032; color:#fff; border:1px solid rgba(255,255,255,0.2); border-radius:8px; font-weight:700; font-size:0.85rem; cursor:pointer; outline:none;">
+        <option value="INR" selected>INR (₹)</option>
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="GBP">GBP (£)</option>
+        <option value="AED">AED (د.إ)</option>
+      </select>
+
+      <!-- Dark / Light Mode Button -->
+      <button id="drawerDarkThemeBtn" type="button" aria-label="Toggle Theme" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 14px; background:#162032; border:1px solid rgba(255,255,255,0.2); border-radius:8px; color:#FFB800; font-weight:700; font-size:0.85rem; cursor:pointer;">
+        <span>🌓</span> <span id="drawerThemeText" style="color:#FFFFFF; font-size:0.8rem;">Theme</span>
+      </button>
+    `;
+
+    if (headerTitle && headerTitle.parentElement) {
+      headerTitle.parentElement.insertAdjacentElement('afterend', quickBar);
+    } else {
+      drawer.insertBefore(quickBar, drawer.firstChild);
+    }
+
+    // Theme Toggle Functionality
+    const themeBtn = quickBar.querySelector('#drawerDarkThemeBtn');
+    if (themeBtn) {
+      themeBtn.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const root = document.documentElement;
+        const currentTheme = root.getAttribute('data-theme') || 'dark';
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        root.setAttribute('data-theme', nextTheme);
+        try {
+          localStorage.setItem('theme', nextTheme);
+        } catch(err) {}
+
+        // Original button trigger if available
+        const origBtn = document.getElementById('themeToggleBtn');
+        if (origBtn) origBtn.click();
+      };
+    }
+  });
+}
+
+// Auto-run & Event bindings
+document.addEventListener("DOMContentLoaded", injectThemeAndCurrencyToActiveDrawer);
+window.addEventListener("load", injectThemeAndCurrencyToActiveDrawer);
+document.addEventListener("click", () => {
+  setTimeout(injectThemeAndCurrencyToActiveDrawer, 100);
+});
