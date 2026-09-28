@@ -7,14 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const killOldModals = () => {
         document.querySelectorAll('.state-modal, .modal-backdrop, [id*="stateModal"], [class*="state-popup"]').forEach(el => {
             el.style.display = 'none';
-            el.remove(); // DOM se hi hata dein taaki pichhe khula na rahe
+            el.remove();
         });
     };
     killOldModals();
 
     // 2. State card tiles par naya full-page view attach karna
     document.querySelectorAll('.state-card-tile, .state-card, [data-state]').forEach(tile => {
-        // Purane event listeners ko bypass karne ke liye cloned element use karein
         const newTile = tile.cloneNode(true);
         tile.parentNode.replaceChild(newTile, tile);
 
@@ -48,9 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Dedicated State Page with Rich Tourism Details & Animated Districts
+// Dedicated State Page with Left-Aligned Back Button
 function renderDedicatedStatePage(stateName, pushHistory = true) {
-    // Purana koi bhi popup background mein ho toh use turant hatao
     document.querySelectorAll('.state-modal, .modal-backdrop, [id*="stateModal"]').forEach(el => el.remove());
 
     const districts = (window.INDIA_DISTRICTS_DATA && window.INDIA_DISTRICTS_DATA[stateName]) || [];
@@ -83,7 +81,6 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
         document.body.appendChild(stateView);
     }
 
-    // Districts wave chips
     const distListHtml = districts.length > 0 
         ? districts.map((d, index) => {
             const delay = Math.min(index * 0.03, 1.2);
@@ -94,17 +91,18 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
     const highlightsHtml = details.topHighlights.map(h => `<li style="margin-bottom:6px; color:#E2E8F0;">✨ ${h}</li>`).join('');
     const foodsHtml = details.famousFoods.map(f => `<span style="background:rgba(255,84,18,0.15); border:1px solid rgba(255,84,18,0.3); color:#FF8540; padding:4px 12px; border-radius:20px; font-size:0.82rem; font-weight:700;">🍲 ${f}</span>`).join('');
 
+    // HEADER MEIN JUSTIFY-CONTENT: FLEX-START KIYA HAI TAHO BUTTON KINARE (LEFT) PAR RAHE
     stateView.innerHTML = `
-        <header style="background: #0B132B; padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center;">
-            <button onclick="handleBackNavigation()" style="background: rgba(255,255,255,0.14); color: #FFF; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.95rem;">
-                ← Wapas Directory
+        <header style="background: #0B132B; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: flex-start; gap: 12px;">
+            <button onclick="handleBackNavigation()" style="background: rgba(255,255,255,0.14); color: #FFF; border: none; padding: 9px 16px; border-radius: 10px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.92rem; text-decoration: none; margin: 0;">
+                ← Wapas
             </button>
-            <span style="font-weight: 800; color: #FF5412; font-size: 1rem;">IncredibleIndiaGuide</span>
+            <span style="font-weight: 800; color: #FF5412; font-size: 0.95rem; margin-left: auto;">IncredibleIndiaGuide</span>
         </header>
 
-        <main style="max-width: 900px; margin: 0 auto; padding: 20px 16px 80px 16px;">
+        <main style="max-width: 900px; margin: 0 auto; padding: 18px 16px 80px 16px;">
             <!-- Hero Header -->
-            <div style="background-image: linear-gradient(to top, rgba(6,10,19,0.95), rgba(6,10,19,0.35)), url('${details.heroImage}'); background-size: cover; background-position: center; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); padding: 32px 20px 22px 20px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div style="background-image: linear-gradient(to top, rgba(6,10,19,0.95), rgba(6,10,19,0.35)), url('${details.heroImage}'); background-size: cover; background-position: center; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); padding: 30px 20px 22px 20px; margin-bottom: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                 <span style="background: #FF5412; color: #FFF; font-size: 0.72rem; font-weight: 800; padding: 4px 12px; border-radius: 30px; text-transform: uppercase;">Official Tourism Circuit</span>
                 <h1 style="font-size: 2.2rem; margin: 12px 0 6px 0; color: #FFFFFF; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">${stateName}</h1>
                 <p style="color: #F8FAFC; margin: 0 0 14px 0; font-size: 1rem; font-style: italic;">"${details.tagline}"</p>
@@ -116,7 +114,7 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
             </div>
 
             <!-- Highlights & Foods Grid -->
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom: 26px;">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom: 24px;">
                 <div style="background: #0E1726; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 18px;">
                     <h3 style="color:#FF8540; font-size:1.1rem; margin-top:0; margin-bottom:10px;">⭐ Pramukh Aakarshan (Highlights)</h3>
                     <ul style="padding-left:18px; margin:0; line-height:1.6;">
@@ -166,7 +164,7 @@ function renderDedicatedStatePage(stateName, pushHistory = true) {
     }
 }
 
-// Back Action Handler
+// Back Navigation Handlers
 window.handleBackNavigation = function() {
     if (window.history.state && window.history.state.modalOpen) {
         window.history.back();
@@ -181,8 +179,6 @@ window.closeDedicatedStatePage = function(updateUrl = true) {
         stateView.style.display = 'none';
     }
     document.body.style.overflow = '';
-    
-    // Safety: Purana modal agar bacha ho toh use bhi band karein
     document.querySelectorAll('.state-modal, .modal-backdrop').forEach(el => el.remove());
 
     if (updateUrl && window.location.search.includes('state=')) {
