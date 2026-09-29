@@ -1,5 +1,5 @@
 // =========================================================================
-// INCREDIBLE INDIA - POPULAR DESTINATIONS HORIZONTAL SLIDER (SAFE DOM VERSION)
+// INCREDIBLE INDIA - PERFECT ASPECT-RATIO POPULAR DESTINATIONS SLIDER
 // =========================================================================
 
 (function () {
@@ -17,8 +17,8 @@
     if ([1, 2].includes(code)) return { t: 'Partly Cloudy', i: '🌤️' };
     if (code === 3) return { t: 'Overcast', i: '☁️' };
     if ([45, 48].includes(code)) return { t: 'Misty', i: '🌫️' };
-    if ([51, 53, 55, 61, 63, 65].includes(code)) return { t: 'Rain Showers', i: '🌧️' };
-    if ([71, 73, 75, 77, 85, 86].includes(code)) return { t: 'Snowfall', i: '❄️' };
+    if ([51, 53, 55, 61, 63, 65].includes(code)) return { t: 'Rain', i: '🌧️' };
+    if ([71, 73, 75, 77, 85, 86].includes(code)) return { t: 'Snow', i: '❄️' };
     return { t: 'Pleasant', i: '⛅' };
   }
 
@@ -30,15 +30,14 @@
       const data = await res.json();
       if (data?.current_weather) {
         const info = getWeatherDesc(data.current_weather.weathercode);
-        badgeEl.innerHTML = `${info.i} <b style="color:#fff;">${Math.round(data.current_weather.temperature)}°C</b> • ${info.t}`;
+        badgeEl.innerHTML = `${info.i} <b style="color:#0f172a;">${Math.round(data.current_weather.temperature)}°C</b> • ${info.t}`;
       }
     } catch (e) {
-      badgeEl.innerHTML = `⛅ Live Mausam`;
+      badgeEl.innerHTML = `⛅ Live Weather`;
     }
   }
 
   function applySlider() {
-    // 1. Heading locate karein
     let heading = null;
     document.querySelectorAll('h1, h2, h3, h4').forEach(h => {
       const txt = (h.textContent || '').toLowerCase();
@@ -52,8 +51,7 @@
     const section = heading.closest('section') || heading.parentElement;
     if (!section) return;
 
-    // 2. Sirf pure cards ke common parent grid container ko slider style dein
-    // Bina DOM nodes ko tode ya chhede!
+    // Card container locate karein
     let cardsContainer = null;
     section.querySelectorAll('div').forEach(box => {
       if (cardsContainer) return;
@@ -68,29 +66,62 @@
 
     if (!cardsContainer) return;
 
-    // Pure container ko directly horizontal touch swipe banayein
-    cardsContainer.style.setProperty('display', 'flex', 'important');
-    cardsContainer.style.setProperty('flex-direction', 'row', 'important');
-    cardsContainer.style.setProperty('overflow-x', 'auto', 'important');
-    cardsContainer.style.setProperty('overflow-y', 'hidden', 'important');
-    cardsContainer.style.setProperty('scroll-snap-type', 'x mandatory', 'important');
-    cardsContainer.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
-    cardsContainer.style.setProperty('gap', '16px', 'important');
-    cardsContainer.style.setProperty('padding', '10px 16px 20px 16px', 'important');
-    cardsContainer.style.setProperty('margin-left', '-16px', 'important');
-    cardsContainer.style.setProperty('margin-right', '-16px', 'important');
-    cardsContainer.style.setProperty('scrollbar-width', 'none', 'important');
+    // Fixed CSS rules inject karein taaki container grid collapse na ho
+    if (!document.getElementById('sliderFixedStyleSheet')) {
+      const style = document.createElement('style');
+      style.id = 'sliderFixedStyleSheet';
+      style.innerHTML = `
+        .slider-scroll-track {
+          display: flex !important;
+          flex-direction: row !important;
+          align-items: stretch !important;
+          overflow-x: auto !important;
+          overflow-y: hidden !important;
+          scroll-snap-type: x mandatory !important;
+          -webkit-overflow-scrolling: touch !important;
+          gap: 16px !important;
+          padding: 8px 16px 20px 16px !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+          scrollbar-width: none !important;
+        }
+        .slider-scroll-track::-webkit-scrollbar {
+          display: none !important;
+        }
+        .slider-single-card {
+          flex: 0 0 85% !important;
+          max-width: 320px !important;
+          min-width: 270px !important;
+          height: auto !important;
+          scroll-snap-align: start !important;
+          margin: 0 !important;
+          box-sizing: border-box !important;
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: space-between !important;
+          background: #ffffff !important;
+          border-radius: 16px !important;
+          overflow: hidden !important;
+          box-shadow: 0 4px 18px rgba(0,0,0,0.08) !important;
+        }
+        .slider-single-card img {
+          width: 100% !important;
+          height: 190px !important;
+          object-fit: cover !important;
+          display: block !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
 
-    // Har card ko carousel card shape dein (image bilkul safe rahegi)
+    cardsContainer.classList.add('slider-scroll-track');
+
     Array.from(cardsContainer.children).forEach(card => {
-      card.style.setProperty('flex', '0 0 82%', 'important');
-      card.style.setProperty('max-width', '320px', 'important');
-      card.style.setProperty('min-width', '280px', 'important');
-      card.style.setProperty('scroll-snap-align', 'start', 'important');
-      card.style.setProperty('margin', '0', 'important');
-      card.style.setProperty('box-sizing', 'border-box', 'important');
+      card.classList.add('slider-single-card');
 
-      // Live weather badge add karein
+      // Live weather badge check
       const cardText = (card.textContent || '').toLowerCase();
       let key = null;
       if (cardText.includes('jaipur')) key = 'jaipur';
@@ -107,19 +138,19 @@
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          background: rgba(15, 23, 42, 0.88);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          backdrop-filter: blur(6px);
-          color: #38bdf8;
-          font-size: 0.76rem;
-          padding: 5px 12px;
+          background: #f1f5f9;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          color: #0f172a;
+          font-size: 0.75rem;
+          padding: 4px 10px;
           border-radius: 20px;
-          margin: 6px 0 10px 0;
+          margin: 6px 14px;
           font-weight: 600;
+          align-self: flex-start;
         `;
-        badge.innerHTML = `<span>⏳ Loading weather...</span>`;
+        badge.innerHTML = `<span>⏳ Weather...</span>`;
 
-        const guideBtn = card.querySelector('button, a[class*="guide"], div:has(> *:contains("Guide"))') || card.lastElementChild;
+        const guideBtn = card.querySelector('button, a, div:has(> button)') || card.lastElementChild;
         if (guideBtn && guideBtn.parentElement) {
           guideBtn.parentElement.insertBefore(badge, guideBtn);
         } else {
@@ -130,19 +161,18 @@
       }
     });
 
-    // Swipe hint indicator
     if (!document.getElementById('sliderSwipeHintMsg')) {
       const hint = document.createElement('div');
       hint.id = 'sliderSwipeHintMsg';
       hint.style.cssText = `
         text-align: center;
         color: #FF5412;
-        font-size: 0.76rem;
+        font-size: 0.75rem;
         font-weight: 700;
-        margin-top: -6px;
-        margin-bottom: 22px;
+        margin-top: 4px;
+        margin-bottom: 24px;
       `;
-      hint.innerHTML = `⟵ Swipe horizontally to view all 6 destinations ⟶`;
+      hint.innerHTML = `⟵ Swipe horizontally to explore ⟶`;
       cardsContainer.parentNode.insertBefore(hint, cardsContainer.nextSibling);
     }
   }
@@ -152,6 +182,6 @@
   } else {
     applySlider();
   }
-  setTimeout(applySlider, 600);
-  setTimeout(applySlider, 1200);
+  setTimeout(applySlider, 400);
+  setTimeout(applySlider, 1000);
 })();
