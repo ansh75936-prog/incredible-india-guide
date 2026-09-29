@@ -1,5 +1,5 @@
 // =========================================================================
-// INCREDIBLE INDIA - COMPLETE TRAVEL SERVICES (SRTC BUG FIXED)
+// INCREDIBLE INDIA - TRAVEL SERVICES & 24x7 EMERGENCY CALL HELPLINES
 // =========================================================================
 
 (function () {
@@ -107,7 +107,7 @@
             </div>
           </div>
 
-          <!-- 3. STATE ROADWAYS (SRTC) & EXPRESS BUSES - DIRECT BUS BOOKING ONLY -->
+          <!-- 3. STATE ROADWAYS (SRTC) & EXPRESS BUSES -->
           <div style="background:#0f172a; padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.08); border-left:4px solid #4ade80; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
               <div>
@@ -116,11 +116,10 @@
               </div>
               <span style="background:rgba(74,222,128,0.15); color:#4ade80; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:10px;">SRTC Portals</span>
             </div>
-            <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 12px 0;">
+            <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 10px 0;">
               Official state government portals for safe, economical inter-state and mountain bus booking:
             </p>
             
-            <!-- Direct Bus Portal Links -->
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
               <a href="https://upsrtc.up.gov.in" target="_blank" rel="noopener noreferrer" style="background:#1e293b; color:#4ade80; text-decoration:none; padding:9px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; border:1px solid rgba(74,222,128,0.25); text-align:center; display:block;">
                 UP Roadways (UPSRTC) ↗
@@ -136,7 +135,6 @@
               </a>
             </div>
 
-            <!-- All India Bus Aggregator (Direct Online Booking) -->
             <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:10px; display:flex; gap:8px; align-items:center;">
               <span style="font-size:0.75rem; color:#94a3b8; white-space:nowrap;">All India Buses:</span>
               <a href="https://www.redbus.in" target="_blank" rel="noopener noreferrer" style="background:#d84e55; color:#fff; text-decoration:none; padding:6px 12px; border-radius:6px; font-size:0.75rem; font-weight:700;">
@@ -165,18 +163,56 @@
             </div>
           </div>
 
-          <!-- 5. Travel Permits (ILP & PAP) -->
+          <!-- 5. TOURIST PERMITS & 24x7 EMERGENCY HELPLINES (WITH DIRECT CALL BUTTONS) -->
           <div style="background:#0f172a; padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.08); border-left:4px solid #ec4899; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <b style="color:#fff; font-size:1rem;">🛡️ Tourist Permits (ILP & PAP)</b>
-              <span style="background:rgba(236,72,153,0.15); color:#ec4899; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:10px;">Official</span>
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <b style="color:#fff; font-size:1.05rem;">🛡️ Permits & 24×7 Emergency Support</b>
+              <span style="background:rgba(236,72,153,0.15); color:#ec4899; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:10px;">Official SOS</span>
             </div>
-            <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 8px 0;">
+
+            <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 14px 0;">
               Inner Line Permits (ILP) are mandatory for visiting protected border areas in Arunachal Pradesh, Nagaland, Mizoram, and parts of Ladakh.
             </p>
-            <div style="font-size:0.78rem; color:#f472b6;">
-              📞 Official Tourism Helpline: <b>1363</b> (Toll-Free, 24×7 Multi-language support)
+
+            <!-- Helplines Grid with Call Buttons -->
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              
+              <!-- Police 24x7 -->
+              <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <b style="color:#f87171; font-size:0.85rem; display:block;">🚨 Police Emergency (24×7)</b>
+                  <span style="color:#94a3b8; font-size:0.75rem;">National Helpline: <b>112</b></span>
+                </div>
+                <a href="tel:112" style="background:#ef4444; color:#fff; text-decoration:none; padding:7px 14px; border-radius:8px; font-size:0.8rem; font-weight:700; display:inline-flex; align-items:center; gap:5px; box-shadow:0 2px 8px rgba(239,68,68,0.4);">
+                  📞 Call
+                </a>
+              </div>
+
+              <!-- Ambulance 24x7 -->
+              <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <b style="color:#fbbf24; font-size:0.85rem; display:block;">🚑 Ambulance & Medical (24×7)</b>
+                  <span style="color:#94a3b8; font-size:0.75rem;">Medical SOS Helpline: <b>108</b></span>
+                </div>
+                <a href="tel:108" style="background:#f59e0b; color:#0f172a; text-decoration:none; padding:7px 14px; border-radius:8px; font-size:0.8rem; font-weight:800; display:inline-flex; align-items:center; gap:5px; box-shadow:0 2px 8px rgba(245,158,11,0.4);">
+                  📞 Call
+                </a>
+              </div>
+
+              <!-- Tourist Helpline 24x7 -->
+              <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <b style="color:#38bdf8; font-size:0.85rem; display:block;">ℹ️ Incredible India Tourist Helpline</b>
+                  <span style="color:#94a3b8; font-size:0.75rem;">Toll-Free (Multi-language): <b>1363</b></span>
+                </div>
+                <a href="tel:1363" style="background:#38bdf8; color:#0f172a; text-decoration:none; padding:7px 14px; border-radius:8px; font-size:0.8rem; font-weight:800; display:inline-flex; align-items:center; gap:5px; box-shadow:0 2px 8px rgba(56,189,248,0.4);">
+                  📞 Call
+                </a>
+              </div>
+
             </div>
+
           </div>
 
         </div>
