@@ -1,5 +1,5 @@
 // =========================================================================
-// INCREDIBLE INDIA - COMPLETE ENGLISH CATEGORY SHOWCASE
+// INCREDIBLE INDIA - CATEGORY SHOWCASE (STRICT PILLS ONLY - NO CARD CONFLICT)
 // =========================================================================
 
 (function () {
@@ -13,105 +13,105 @@
           name: "Gulmarg & Apharwat Peak",
           state: "Jammu & Kashmir",
           season: "Snow Sports: Dec – Mar | Alpine Blooms: May – Sep",
-          tag: "Skiing & World's Highest Gondola",
-          desc: "Renowned globally for world-class powder snow, pristine alpine meadows, pine forests, and magnificent panoramas of Mount Nanga Parbat.",
-          highlights: "Kongdori Gondola Phase 2, Apharwat Snow Peak, Alpather Lake Trek, Snowboarding Courses"
+          tag: "Skiing & Gondola",
+          desc: "Renowned globally for world-class powder snow, alpine meadows, pine forests, and views of Mount Nanga Parbat.",
+          highlights: "Kongdori Gondola Phase 2, Apharwat Snow Peak, Alpather Lake Trek"
         },
         {
           name: "Manali & Solang Valley",
           state: "Himachal Pradesh",
-          season: "Winter Snow: Dec – Feb | Pleasant Climate: Apr – Jun",
-          tag: "Mountain Passes & High Altitude",
-          desc: "The adventure hub of Himachal featuring ancient cedar woods, swift river streams, hot sulfur springs, and scenic mountain corridors.",
-          highlights: "Atal Tunnel Highway, Solang Valley Snow Park, Rohtang Pass, Old Manali Heritage Cafes"
+          season: "Winter Snow: Dec – Feb | Pleasant: Apr – Jun",
+          tag: "Mountain Passes",
+          desc: "The adventure hub of Himachal featuring cedar woods, swift river streams, hot springs, and scenic mountain corridors.",
+          highlights: "Atal Tunnel Highway, Solang Valley Snow Park, Rohtang Pass"
         },
         {
           name: "Auli High Altitude Slopes",
           state: "Uttarakhand",
-          season: "Championship Snow: Jan – Mar",
-          tag: "Premier Ski Resort of India",
-          desc: "Surrounded by magnificent 180-degree panoramas of sacred Himalayan summits including Nanda Devi, Kamet, and Mana Parvat.",
-          highlights: "Nanda Devi National Park Vista, Joshimath to Auli Cable Car, Gorson Bugyal Trek"
+          season: "Snow Season: Jan – Mar",
+          tag: "Premier Ski Resort",
+          desc: "Surrounded by 180-degree panoramas of sacred Himalayan summits including Nanda Devi, Kamet, and Mana Parvat.",
+          highlights: "Nanda Devi Vista, Joshimath Cable Car, Gorson Bugyal Trek"
         },
         {
           name: "Munnar Tea Gardens",
           state: "Kerala",
           season: "Cool & Serene: Sep – Mar",
-          tag: "Emerald Valleys & Western Ghats",
-          desc: "Sprawling carpet of endless emerald tea plantations, cloud-wrapped mountain gorges, and the habitat of the endangered Nilgiri Tahr.",
-          highlights: "Eravikulam National Park, Mattupetty Lake Dam, Top Station Panoramic Viewpoint, Tea Museum"
+          tag: "Emerald Valleys",
+          desc: "Sprawling carpet of endless emerald tea plantations, cloud-wrapped mountain gorges, and the rare Nilgiri Tahr.",
+          highlights: "Eravikulam National Park, Mattupetty Lake Dam, Top Station Viewpoint"
         },
         {
           name: "Darjeeling & Tiger Hill",
           state: "West Bengal",
           season: "Crisp Sunrises: Oct – Dec & Mar – May",
           tag: "Queen of the Hills",
-          desc: "World-famous sunrise vistas across Mount Kanchenjunga (the world's 3rd highest peak) combined with century-old UNESCO steam trains.",
-          highlights: "Tiger Hill Sunrise Point, UNESCO Himalayan Toy Train, Batasia Loop, Happy Valley Tea Estate"
+          desc: "World-famous sunrise vistas across Mount Kanchenjunga combined with century-old UNESCO steam trains.",
+          highlights: "Tiger Hill Sunrise, Toy Train (UNESCO), Batasia Loop"
         },
         {
           name: "Leh & Khardung La Pass",
           state: "Ladakh",
-          season: "Open Highway: May – Sep | Frozen Wonder: Jan – Feb",
-          tag: "High-Altitude Cold Desert",
-          desc: "Dramatic lunar mountain terrain, sacred ancient Tibetan monasteries, surreal turquoise glacial lakes, and legendary high motorable passes.",
-          highlights: "Pangong Tso Crystal Lake, Nubra Valley Sand Dunes, Khardung La, Thiksey Monastery"
+          season: "Open Highway: May – Sep | Frozen: Jan – Feb",
+          tag: "Cold Desert",
+          desc: "Dramatic lunar mountain terrain, sacred ancient Tibetan monasteries, surreal turquoise glacial lakes, and motorable passes.",
+          highlights: "Pangong Tso Crystal Lake, Nubra Valley Dunes, Khardung La Pass"
         }
       ]
     },
 
     forts: {
       title: "🏰 Royal Forts & Historic Palaces",
-      subtitle: "Relive centuries of legendary dynasties, invincible mountain fortresses, and royal opulence.",
+      subtitle: "Relive centuries of legendary dynasties, mountain fortresses, and royal opulence.",
       themeColor: "#f59e0b",
       items: [
         {
           name: "Amer Fort & Sheesh Mahal",
           state: "Jaipur, Rajasthan",
           season: "Ideal Season: Oct – Mar",
-          tag: "UNESCO World Heritage Citadel",
-          desc: "Perched majestically atop the Cheel ka Teela hill, famous for mirrored royal courtyards, subterranean passages, and ornate Rajput design.",
-          highlights: "Sheesh Mahal (Hall of Mirrors), Ganesh Pol Royal Entrance, Maota Lake Reflection, Light & Sound Show"
+          tag: "UNESCO Citadel",
+          desc: "Perched majestically atop the Cheel ka Teela hill, famous for mirrored royal courtyards and ornate Rajput design.",
+          highlights: "Sheesh Mahal (Hall of Mirrors), Ganesh Pol Entrance, Maota Lake Reflection"
         },
         {
           name: "Mehrangarh Fortress",
           state: "Jodhpur, Rajasthan",
           season: "Ideal Season: Oct – Mar",
-          tag: "Guardian of the Blue City",
-          desc: "Rising 400 feet above the city skyline, this colossal citadel boasts burnished cannon battlements, royal palanquins, and pearl halls.",
-          highlights: "Moti Mahal, Phool Mahal, Chamunda Devi Sanctum, Flying Fox Zipline Tour"
+          tag: "Blue City Citadel",
+          desc: "Rising 400 feet above the city skyline, this colossal citadel boasts burnished cannon battlements and pearl halls.",
+          highlights: "Moti Mahal, Phool Mahal, Chamunda Devi Sanctum, Flying Fox Zipline"
         },
         {
           name: "Taj Mahal & Agra Fort",
           state: "Uttar Pradesh",
           season: "Ideal Season: Oct – Mar",
-          tag: "Monument to Eternal Love",
-          desc: "One of the Seven Wonders of the World crafted from pure white Makrana marble, flanked by the formidable red sandstone Mughal seat.",
-          highlights: "Sunrise View of Taj Mahal, Diwan-i-Khas, Jahangiri Mahal, Mehtab Bagh Sunset Point"
+          tag: "Monument to Love",
+          desc: "One of the Seven Wonders of the World crafted from pure white Makrana marble, flanked by the red sandstone Mughal seat.",
+          highlights: "Sunrise View of Taj Mahal, Diwan-i-Khas, Jahangiri Mahal, Mehtab Bagh"
         },
         {
           name: "Mysore Palace (Amba Vilas)",
           state: "Karnataka",
           season: "Pleasant: Sep – Mar | Grand Dasara: Oct",
-          tag: "Indo-Saracenic Architectural Jewel",
-          desc: "The official royal residence of the Wadiyar dynasty, illuminated every weekend by nearly 100,000 incandescent golden lamps.",
-          highlights: "Grand Durbar Hall, Kalyana Mantapa Stained Glass Ceiling, Golden Howdah Elephant Throne"
+          tag: "Architectural Jewel",
+          desc: "The official royal residence of the Wadiyar dynasty, illuminated every weekend by nearly 100,000 golden incandescent lamps.",
+          highlights: "Grand Durbar Hall, Kalyana Mantapa Stained Glass Ceiling, Golden Elephant Throne"
         },
         {
           name: "Gwalior Fort Complex",
           state: "Madhya Pradesh",
           season: "Ideal Season: Oct – Mar",
-          tag: "Pearl Amongst Indian Fortresses",
-          desc: "Described as the pearl among Indian citadels, featuring brilliant turquoise blue tilework, rock-cut Tirthankara sculptures, and palaces.",
-          highlights: "Man Singh Palace, Gujari Mahal Archaeological Museum, Sas-Bahu Temples, Teli Ka Mandir"
+          tag: "Pearl of Fortresses",
+          desc: "Described as the pearl among Indian citadels, featuring brilliant turquoise blue tilework and rock-cut sculptures.",
+          highlights: "Man Singh Palace, Gujari Mahal Museum, Sas-Bahu Temples"
         },
         {
           name: "Golconda Fort & Acoustic Vaults",
           state: "Hyderabad, Telangana",
           season: "Pleasant: Nov – Feb",
-          tag: "Kakatiya & Qutb Shahi Citadel",
-          desc: "Renowned for its ingenious acoustic engineering where a handclap at the entry gates echoes clearly a kilometer away at the citadel summit.",
-          highlights: "Bala Hissar Whispering Arches, Fateh Darwaza, Historic Diamond Vaults, Royal Pavilions"
+          tag: "Acoustic Engineering",
+          desc: "Renowned for acoustic engineering where a handclap at the entry gates echoes clearly a kilometer away at the citadel summit.",
+          highlights: "Bala Hissar Whispering Arches, Fateh Darwaza, Historic Diamond Vaults"
         }
       ]
     },
@@ -125,49 +125,49 @@
           name: "Radhanagar & Elephant Beach",
           state: "Havelock Island, Andaman & Nicobar",
           season: "Ideal Weather: Oct – May",
-          tag: "Ranked Among Asia's Best Shores",
-          desc: "World-class turquoise coastal waters, powdery white sand strips, lush virgin rain forests, and pristine coral reefs with exotic marine life.",
-          highlights: "PADI Certified Scuba Diving, Night Kayaking in Bioluminescence, Snorkeling, Glass-bottom Boats"
+          tag: "Asia's Best Shoreline",
+          desc: "Turquoise coastal waters, powdery white sand strips, lush virgin rain forests, and pristine coral reefs.",
+          highlights: "PADI Scuba Diving, Night Kayaking in Bioluminescence, Snorkeling"
         },
         {
           name: "Alleppey & Kumarakom Backwaters",
           state: "Kerala",
           season: "Ideal Season: Sep – Mar",
           tag: "Venice of the East",
-          desc: "Sail effortlessly through palm-fringed labyrinthine canals, tranquil mangrove lagoons, and serene coastal villages on traditional houseboats.",
-          highlights: "Overnight Luxury Houseboat Cruise, Vembanad Lake Bird Sanctuary, Marari Beach Sunset"
+          desc: "Sail effortlessly through palm-fringed labyrinthine canals, tranquil mangrove lagoons, and serene coastal villages.",
+          highlights: "Overnight Luxury Houseboat Cruise, Vembanad Lake, Marari Beach Sunset"
         },
         {
           name: "Palolem & Butterfly Bay",
           state: "South Goa",
           season: "Peak Holiday: Nov – Apr",
-          tag: "Golden Crescent Shoreline",
-          desc: "A breathtaking crescent-shaped bay sheltered by coconut palms, safe swimming waters, lively beachside shacks, and dolphin sightings.",
-          highlights: "Sea Kayaking to Butterfly Island, Sunset Boat Safaris, Silent Headphone Parties, Seafood Dining"
+          tag: "Golden Crescent Bay",
+          desc: "A breathtaking crescent-shaped bay sheltered by coconut palms, safe swimming waters, and dolphin boat cruises.",
+          highlights: "Sea Kayaking to Butterfly Island, Sunset Boat Safaris, Silent Headphone Parties"
         },
         {
           name: "Bangaram & Agatti Atolls",
           state: "Lakshadweep Archipelago",
           season: "Crystal Clear: Oct – Apr",
-          tag: "Untouched Coral Reef Paradise",
-          desc: "Teardrop-shaped coral atolls bordered by turquoise lagoons, thriving stingrays, sea turtles, and untouched white sandbanks.",
-          highlights: "Deep Sea Scuba Excursions, Lagoon Swimming, Windsurfing, Live Coral Snorkeling"
+          tag: "Coral Reef Sanctuary",
+          desc: "Teardrop-shaped coral atolls bordered by turquoise lagoons, thriving stingrays, sea turtles, and white sandbanks.",
+          highlights: "Deep Sea Scuba Excursions, Lagoon Swimming, Live Coral Snorkeling"
         },
         {
           name: "Gokarna (Om & Kudle Beach)",
           state: "Karnataka",
           season: "Ideal Season: Oct – Mar",
-          tag: "Rocky Ocean Cliffs & Tranquility",
-          desc: "Where the mountain cliffs of the Western Ghats dive directly into the Arabian Sea, featuring five scenic beaches linked by cliff trails.",
-          highlights: "Panoramic Five Beach Hike, Om-shaped Rock Formations, Mahabaleshwar Ancient Coastal Temple"
+          tag: "Rocky Ocean Cliffs",
+          desc: "Where the cliffs of the Western Ghats dive directly into the Arabian Sea, featuring five scenic beaches linked by cliff trails.",
+          highlights: "Panoramic Beach Hike, Om-shaped Rock Formations, Mahabaleshwar Coastal Temple"
         },
         {
           name: "Dhanushkodi & Rameswaram Coast",
           state: "Tamil Nadu",
           season: "Mild Climate: Oct – Apr",
-          tag: "Meeting of Two Great Oceans",
-          desc: "The southernmost coastal tip where the Bay of Bengal merges with the Indian Ocean, famous for shallow turquoise shoals and legends of Ram Setu.",
-          highlights: "Arichal Munai Ocean Border, Ram Setu Bridge Viewpoint, Pamban Sea Bridge, Ghost Town Relics"
+          tag: "Meeting of Two Oceans",
+          desc: "The southernmost coastal tip where the Bay of Bengal merges with the Indian Ocean, famous for shallow crystal shoals.",
+          highlights: "Arichal Munai Ocean Border, Ram Setu Bridge Viewpoint, Pamban Sea Bridge"
         }
       ]
     },
@@ -181,49 +181,49 @@
           name: "Kashi Vishwanath & River Ghats",
           state: "Varanasi, Uttar Pradesh",
           season: "Ideal Climate: Oct – Mar",
-          tag: "Eternal City of Light",
-          desc: "One of the oldest continuously inhabited cities on earth. Experience soulful sunrise boat journeys and grand evening fire ceremonies along the Ganga.",
-          highlights: "Maha Ganga Aarti at Dashashwamedh Ghat, Vishwanath Temple Corridor, Sacred Boat Rides, Sarnath"
+          tag: "Eternal Sacred City",
+          desc: "One of the oldest living cities. Experience soulful sunrise boat journeys and grand evening fire ceremonies along the holy Ganga.",
+          highlights: "Maha Ganga Aarti at Dashashwamedh, Vishwanath Temple Corridor, Sarnath"
         },
         {
           name: "Char Dham Himalayan Shrines",
           state: "Uttarakhand",
-          season: "Pilgrimage Window: May – Nov",
-          tag: "Himalayan High Altitude Sanctuaries",
-          desc: "The sacred mountain pilgrimage encompassing Yamunotri, Gangotri, Kedarnath, and Badrinath nestled deep within snow-capped peaks.",
-          highlights: "Kedarnath Jyotirlinga Helicopter & Trek, Badrinath Alaknanda Aarti, Mana India's First Village"
+          season: "Pilgrimage: May – Nov",
+          tag: "Himalayan Sanctuaries",
+          desc: "The sacred mountain pilgrimage encompassing Yamunotri, Gangotri, Kedarnath, and Badrinath nestled deep within snowy peaks.",
+          highlights: "Kedarnath Jyotirlinga Heli/Trek, Badrinath Alaknanda Aarti, Mana Border Village"
         },
         {
           name: "Sri Harmandir Sahib (Golden Temple)",
           state: "Amritsar, Punjab",
           season: "Pleasant Season: Oct – Mar",
-          tag: "Universal Sanctuary of Peace & Equality",
-          desc: "A pure gold-leaf sanctuary standing serenely in the center of the holy Amrit Sarovar, hosting the world's largest community kitchen (Langar).",
-          highlights: "Parikrama of the Sacred Pool, Continuous Divine Kirtan, 24/7 Mega Community Langar, Akal Takht"
+          tag: "Universal Sanctuary",
+          desc: "A pure gold-leaf sanctuary standing serenely in the sacred Amrit Sarovar, hosting the world's largest community kitchen.",
+          highlights: "Parikrama of Amrit Sarovar, Continuous Divine Kirtan, 24/7 Mega Community Langar"
         },
         {
           name: "Tirumala Venkateswara Temple",
           state: "Tirupati, Andhra Pradesh",
           season: "Open Year-Round | Pleasant: Nov – Feb",
-          tag: "The Seven Sacred Peaks of Seshachalam",
-          desc: "Dravidian temple architecture perched high upon seven holy hills, dedicated to Lord Sri Venkateswara and celebrated for grand rituals.",
-          highlights: "Vaikuntam Sacred Complex, Traditional Tirupati Laddu Prasadam, Kapila Theertham Waterfalls"
+          tag: "Seven Sacred Peaks",
+          desc: "Dravidian temple architecture perched high upon seven holy hills, dedicated to Lord Sri Venkateswara.",
+          highlights: "Vaikuntam Complex, Traditional Tirupati Laddu Prasadam, Kapila Theertham"
         },
         {
           name: "Jagannath Temple & Konark Sun Temple",
           state: "Puri & Konark, Odisha",
           season: "Ideal Season: Oct – Mar",
-          tag: "Sacred Eastern Dham & Sun Monument",
-          desc: "The ancient seaside fortress temple of Lord Jagannath, paired with the 13th-century stone chariot architecture of the Konark Sun Temple.",
+          tag: "Eastern Dham & Sun Temple",
+          desc: "The ancient seaside temple of Lord Jagannath, paired with the 13th-century stone chariot architecture of Konark.",
           highlights: "Fifty-Six Offering Mahaprasad Feast, Golden Beach Sunrise, Architectural Wheels of Konark"
         },
         {
           name: "Rishikesh & Haridwar Gateway",
           state: "Uttarakhand",
           season: "Ideal Season: Sep – Apr",
-          tag: "World Yoga Capital & Gateway of Gods",
-          desc: "Where the pristine waters of the holy Ganga flow out from the Himalayan foothills, world-renowned for riverside ashrams and meditation.",
-          highlights: "Har Ki Pauri Evening Chants, Triveni Ghat Aarti, Beatles Ashram Heritage, River Rafting"
+          tag: "Yoga Capital of the World",
+          desc: "Where the pristine waters of the holy Ganga flow out from Himalayan foothills, world-renowned for riverside ashrams.",
+          highlights: "Har Ki Pauri Evening Aarti, Triveni Ghat, Beatles Ashram Heritage, River Rafting"
         }
       ]
     }
@@ -319,13 +319,11 @@
           ${place.desc}
         </p>
 
-        <!-- Highlights & Season Box -->
         <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding:10px 12px; border-radius:8px; margin-bottom:14px; font-size:0.78rem; display:flex; flex-direction:column; gap:5px;">
           <div><b style="color:#94a3b8;">✨ Highlights:</b> <span style="color:#f1f5f9;">${place.highlights}</span></div>
           <div><b style="color:#94a3b8;">🗓️ Best Season:</b> <span style="color:#4ade80; font-weight:600;">${place.season}</span></div>
         </div>
 
-        <!-- Action Button -->
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <button onclick="bookThisDestination('${place.name.replace(/'/g, "\\'")}', '${place.state}')" style="background:#FF5412; border:none; color:#fff; padding:10px 16px; border-radius:8px; font-size:0.85rem; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px;">
             📝 Plan Trip to ${place.name.split(' ')[0]} ›
@@ -339,7 +337,6 @@
     pageContainer.innerHTML = headerHTML + `<div style="max-width:540px; margin:0 auto;">${cardsHTML}</div>`;
   };
 
-  // Connect Plan Trip Button with auto-filled destination
   window.bookThisDestination = function (destName, stateName) {
     window.closeCategoryPage();
     if (window.openAppPage) {
@@ -354,27 +351,31 @@
     }
   };
 
-  // Connect Home Page Category Pills
+  // STRICT PILL BINDING - NEVER TOUCH DESTINATION CARDS OR SECTIONS!
   function linkPills() {
-    document.querySelectorAll('button, div, a').forEach(el => {
-      if (el.closest('#unifiedDrawer') || el.closest('#dedicatedAppContainer') || el.closest('#categoryDedicatedPage')) return;
+    document.querySelectorAll('button, a, div').forEach(el => {
+      // Sirf single pill button ko target karein, kisi container ya card ko nahi
+      if (el.closest('#unifiedDrawer') || el.closest('#dedicatedAppContainer') || el.closest('#categoryDedicatedPage') || el.closest('section')) return;
 
-      const txt = (el.textContent || '').trim().toLowerCase();
+      // Sirf short direct text wale pills ko check karein
+      const rawText = (el.innerText || el.textContent || '').trim().replace(/\s+/g, ' ');
+      if (rawText.length > 35) return; // Ignore any big card or paragraph!
 
       let targetCat = null;
-      if (txt.includes('all india')) targetCat = 'all';
-      else if (txt.includes('hill stations') || txt.includes('snow')) targetCat = 'hills';
-      else if (txt.includes('royal forts') || txt.includes('palaces')) targetCat = 'forts';
-      else if (txt.includes('coastal') || txt.includes('islands')) targetCat = 'coastal';
-      else if (txt.includes('spiritual')) targetCat = 'spiritual';
+      if (/^all india$/i.test(rawText)) targetCat = 'all';
+      else if (/^hill stations & snow$/i.test(rawText)) targetCat = 'hills';
+      else if (/^royal forts & palaces$/i.test(rawText)) targetCat = 'forts';
+      else if (/^coastal & islands$/i.test(rawText)) targetCat = 'coastal';
+      else if (/^spiritual circuits$/i.test(rawText)) targetCat = 'spiritual';
 
-      if (targetCat) {
+      if (targetCat && !el.dataset.strictPillBound) {
+        el.dataset.strictPillBound = targetCat;
         el.style.cursor = 'pointer';
-        el.addEventListener('click', function (e) {
+        el.onclick = function (e) {
           e.preventDefault();
           e.stopPropagation();
-          window.openCategoryPage(targetCat);
-        });
+          window.openCategoryPage(this.dataset.strictPillBound);
+        };
       }
     });
   }
@@ -384,5 +385,6 @@
   } else {
     linkPills();
   }
-  setTimeout(linkPills, 800);
+  setTimeout(linkPills, 500);
+  setTimeout(linkPills, 1200);
 })();
