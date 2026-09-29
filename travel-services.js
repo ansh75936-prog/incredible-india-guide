@@ -1,9 +1,8 @@
 // =========================================================================
-// INCREDIBLE INDIA - COMPLETE TRAVEL & TRANSIT SERVICES ENGINE
+// INCREDIBLE INDIA - COMPLETE TRAVEL & TRANSIT SERVICES (FIXED SRTC + CABS)
 // =========================================================================
 
 (function () {
-  // Travel Services Dedicated Container
   let travelPage = document.getElementById('travelServicesPage');
   if (!travelPage) {
     travelPage = document.createElement('div');
@@ -32,7 +31,6 @@
   };
 
   window.openTravelPage = function () {
-    // Drawer agar khula ho toh close karein
     const drawer = document.getElementById('unifiedDrawer');
     const overlay = document.getElementById('unifiedDrawerOverlay');
     if (drawer) drawer.style.left = '-330px';
@@ -56,13 +54,13 @@
           🚆 India Travel Services & Transit
         </h1>
         <p style="margin:0 0 20px 0; font-size:0.85rem; color:#94a3b8; line-height:1.5;">
-          Official guide to booking trains, luxury coaches, airport connections, and inter-state permit regulations across Bharat.
+          Official portals for booking Trains, State Express Buses, City Cabs, Rapido Rides, and Air Hubs across India.
         </p>
 
         <!-- Transit Cards -->
         <div style="display:flex; flex-direction:column; gap:14px;">
 
-          <!-- Indian Railways & Vande Bharat -->
+          <!-- 1. Indian Railways & Vande Bharat -->
           <div style="background:#0f172a; padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.08); border-left:4px solid #38bdf8; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
               <div>
@@ -72,60 +70,106 @@
               <span style="background:rgba(56,189,248,0.15); color:#38bdf8; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:10px;">IRCTC</span>
             </div>
             <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 12px 0;">
-              Over 50+ semi-high-speed Vande Bharat Express corridors, iconic mountain toy trains (Darjeeling & Nilgiri), and nationwide Rajdhani networks.
+              Over 50+ semi-high-speed Vande Bharat corridors, heritage hill rail, and express networks connecting all 28 states.
             </p>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <a href="https://www.irctc.co.in" target="_blank" style="background:#38bdf8; color:#060b17; text-decoration:none; padding:8px 14px; border-radius:8px; font-size:0.8rem; font-weight:700; display:inline-block;">
                 Book IRCTC Train Tickets ↗
               </a>
               <a href="https://enquiry.indianrail.gov.in" target="_blank" style="background:rgba(255,255,255,0.06); color:#cbd5e1; text-decoration:none; padding:8px 14px; border-radius:8px; font-size:0.8rem; font-weight:600; display:inline-block; border:1px solid rgba(255,255,255,0.12);">
-                Live Train Running Status ↗
+                Live Train Status ↗
               </a>
             </div>
           </div>
 
-          <!-- Domestic Flight Gateways -->
-          <div style="background:#0f172a; padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.08); border-left:4px solid #f59e0b; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+          <!-- 2. CITY RIDES & LOCAL CABS (RAPIDO, OLA, UBER) -->
+          <div style="background:#0f172a; padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.08); border-left:4px solid #facc15; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
               <div>
-                <b style="color:#fff; font-size:1.05rem;">✈️ International & Domestic Airports</b>
-                <span style="display:block; font-size:0.75rem; color:#f59e0b; font-weight:600; margin-top:2px;">UDAN Regional Connectivity</span>
+                <b style="color:#fff; font-size:1.05rem;">🛵 City Cabs, Auto & Bike Taxi</b>
+                <span style="display:block; font-size:0.75rem; color:#facc15; font-weight:600; margin-top:2px;">Fast intra-city transit & station transfers</span>
               </div>
-              <span style="background:rgba(245,158,11,0.15); color:#f59e0b; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:10px;">Air Hubs</span>
+              <span style="background:rgba(250,204,21,0.15); color:#facc15; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:10px;">Instant Rides</span>
             </div>
-            <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 10px 0;">
-              Primary hubs at Delhi (DEL), Mumbai (BOM), Bengaluru (BLR), Chennai (MAA), and Kolkata (CCU). Regional flights operational for remote hill destinations including Kullu, Leh, and Shillong.
+            <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 12px 0;">
+              Fastest point-to-point city commuting across 100+ tourist hubs via verified bikes, metered autos, and local cabs.
             </p>
-            <div style="font-size:0.75rem; color:#94a3b8; background:rgba(255,255,255,0.03); padding:8px 10px; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
-              💡 <b>Tip:</b> Book flight transfers at least 3-4 weeks ahead during peak hill station & beach seasons.
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <a href="https://www.rapido.bike" target="_blank" style="background:#facc15; color:#0f172a; text-decoration:none; padding:7px 12px; border-radius:8px; font-size:0.78rem; font-weight:800; display:inline-flex; align-items:center; gap:4px;">
+                🛵 Rapido (Bike/Auto) ↗
+              </a>
+              <a href="https://www.olacabs.com" target="_blank" style="background:#1e293b; color:#fff; text-decoration:none; padding:7px 12px; border-radius:8px; font-size:0.78rem; font-weight:700; display:inline-block; border:1px solid rgba(255,255,255,0.15);">
+                🚕 Ola Cabs ↗
+              </a>
+              <a href="https://m.uber.com" target="_blank" style="background:#1e293b; color:#fff; text-decoration:none; padding:7px 12px; border-radius:8px; font-size:0.78rem; font-weight:700; display:inline-block; border:1px solid rgba(255,255,255,0.15);">
+                🚗 Uber Rides ↗
+              </a>
             </div>
           </div>
 
-          <!-- State Bus Roadways & Private Cabs -->
+          <!-- 3. STATE ROADWAYS (SRTC) - FIXED DIRECT PORTALS -->
           <div style="background:#0f172a; padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.08); border-left:4px solid #4ade80; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
               <div>
                 <b style="color:#fff; font-size:1.05rem;">🚌 Inter-State State Roadways (SRTC)</b>
-                <span style="display:block; font-size:0.75rem; color:#4ade80; font-weight:600; margin-top:2px;">Volvo & Air-Conditioned Sleepers</span>
+                <span style="display:block; font-size:0.75rem; color:#4ade80; font-weight:600; margin-top:2px;">Government Volvo, AC & Sleeper buses</span>
               </div>
-              <span style="background:rgba(74,222,128,0.15); color:#4ade80; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:10px;">Highways</span>
+              <span style="background:rgba(74,222,128,0.15); color:#4ade80; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:10px;">SRTC Portals</span>
             </div>
-            <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 12px 0;">
-              Government-operated express road connectivity across national highways: HRTC (Himachal), UPSRTC (UP), RSRTC (Rajasthan), and KSRTC (Kerala/Karnataka).
+            <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 10px 0;">
+              Direct state government bus booking portals for safe, economical inter-state and mountain transit:
             </p>
-            <button onclick="requestTravelVehicle()" style="background:#FF5412; border:none; color:#fff; padding:10px 16px; border-radius:8px; font-size:0.82rem; font-weight:700; cursor:pointer;">
-              🚗 Request Private Cab / Tempo Traveller ›
-            </button>
+            
+            <!-- Direct Bus Portal Links -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+              <a href="https://upsrtc.up.gov.in" target="_blank" style="background:#1e293b; color:#4ade80; text-decoration:none; padding:8px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; border:1px solid rgba(74,222,128,0.2); text-align:center;">
+                UP Roadways (UPSRTC) ↗
+              </a>
+              <a href="https://www.hrtchp.com" target="_blank" style="background:#1e293b; color:#4ade80; text-decoration:none; padding:8px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; border:1px solid rgba(74,222,128,0.2); text-align:center;">
+                Himachal (HRTC) ↗
+              </a>
+              <a href="https://rsrtconline.rajasthan.gov.in" target="_blank" style="background:#1e293b; color:#4ade80; text-decoration:none; padding:8px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; border:1px solid rgba(74,222,128,0.2); text-align:center;">
+                Rajasthan (RSRTC) ↗
+              </a>
+              <a href="https://www.ksrtc.in" target="_blank" style="background:#1e293b; color:#4ade80; text-decoration:none; padding:8px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; border:1px solid rgba(74,222,128,0.2); text-align:center;">
+                South India (KSRTC) ↗
+              </a>
+            </div>
+
+            <!-- Custom Outstation Tour Vehicle -->
+            <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.75rem; color:#94a3b8;">Need private multi-day vehicle?</span>
+              <button onclick="requestTravelVehicle()" style="background:#FF5412; border:none; color:#fff; padding:6px 12px; border-radius:6px; font-size:0.78rem; font-weight:700; cursor:pointer;">
+                Book Private Cab / Tempo ›
+              </button>
+            </div>
           </div>
 
-          <!-- Travel Permits & Important Advisory -->
+          <!-- 4. Domestic & International Airports -->
+          <div style="background:#0f172a; padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.08); border-left:4px solid #f59e0b; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+              <div>
+                <b style="color:#fff; font-size:1.05rem;">✈️ Major Airport Gateways</b>
+                <span style="display:block; font-size:0.75rem; color:#f59e0b; font-weight:600; margin-top:2px;">UDAN Regional Air Connectivity</span>
+              </div>
+              <span style="background:rgba(245,158,11,0.15); color:#f59e0b; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:10px;">Air Hubs</span>
+            </div>
+            <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 10px 0;">
+              Key international hubs at Delhi (DEL), Mumbai (BOM), Bengaluru (BLR), Chennai (MAA), and Kolkata (CCU). Regional flights operational for remote hill destinations including Kullu, Leh, and Shillong.
+            </p>
+            <div style="font-size:0.75rem; color:#94a3b8; background:rgba(255,255,255,0.03); padding:8px 10px; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
+              💡 <b>Tip:</b> Direct cab stands and pre-paid counters are available 24×7 at all terminal arrival gates.
+            </div>
+          </div>
+
+          <!-- 5. Travel Permits (ILP & PAP) -->
           <div style="background:#0f172a; padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.08); border-left:4px solid #ec4899; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
               <b style="color:#fff; font-size:1rem;">🛡️ Tourist Permits (ILP & PAP)</b>
               <span style="background:rgba(236,72,153,0.15); color:#ec4899; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:10px;">Official</span>
             </div>
             <p style="color:#cbd5e1; font-size:0.83rem; line-height:1.5; margin:0 0 8px 0;">
-              Inner Line Permits (ILP) are mandatory for Indian tourists visiting designated border areas in Arunachal Pradesh, Nagaland, Mizoram, and parts of Ladakh (Nubra/Pangong).
+              Inner Line Permits (ILP) are mandatory for designated border routes in Arunachal Pradesh, Nagaland, Mizoram, and parts of Ladakh (Nubra/Pangong).
             </p>
             <div style="font-size:0.78rem; color:#f472b6;">
               📞 Official Tourism Helpline: <b>1363</b> (Toll-Free, 24×7 Multi-language support)
@@ -152,14 +196,12 @@
     }
   };
 
-  // Drawer ke andar Travel button insert karna
+  // Drawer me button inject karna
   function injectTravelButtonInDrawer() {
     const drawer = document.getElementById('unifiedDrawer');
     if (!drawer) return;
-
     if (document.getElementById('drawerTravelBtn')) return;
 
-    // Circuits ya Estimator button ke upar ya theek baad insert karein
     const targetRef = drawer.querySelector('[data-page="circuits"]') || drawer.querySelector('[data-page="estimator"]');
     
     const travelBtn = document.createElement('button');
