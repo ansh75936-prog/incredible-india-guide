@@ -1,5 +1,5 @@
 // =========================================================================
-// INCREDIBLE INDIA - PERFECT ASPECT-RATIO POPULAR DESTINATIONS SLIDER
+// INCREDIBLE INDIA - POPULAR DESTINATIONS SLIDER (IMAGE FALLBACK & CLEAN UI)
 // =========================================================================
 
 (function () {
@@ -10,6 +10,16 @@
     'goa': { lat: 15.2993, lon: 74.1240 },
     'srinagar': { lat: 34.0837, lon: 74.7973 },
     'shillong': { lat: 25.5788, lon: 91.8933 }
+  };
+
+  // High-Resolution Fallback Images in case any card image breaks
+  const fallbackImages = {
+    'shillong': 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=800&q=80',
+    'jaipur': 'https://images.unsplash.com/photo-1603288940356-9b044d50cbf1?auto=format&fit=crop&w=800&q=80',
+    'manali': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80',
+    'munnar': 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80',
+    'goa': 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80',
+    'srinagar': 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=800&q=80'
   };
 
   function getWeatherDesc(code) {
@@ -51,7 +61,6 @@
     const section = heading.closest('section') || heading.parentElement;
     if (!section) return;
 
-    // Card container locate karein
     let cardsContainer = null;
     section.querySelectorAll('div').forEach(box => {
       if (cardsContainer) return;
@@ -66,7 +75,6 @@
 
     if (!cardsContainer) return;
 
-    // Fixed CSS rules inject karein taaki container grid collapse na ho
     if (!document.getElementById('sliderFixedStyleSheet')) {
       const style = document.createElement('style');
       style.id = 'sliderFixedStyleSheet';
@@ -93,7 +101,7 @@
         .slider-single-card {
           flex: 0 0 85% !important;
           max-width: 320px !important;
-          min-width: 270px !important;
+          min-width: 275px !important;
           height: auto !important;
           scroll-snap-align: start !important;
           margin: 0 !important;
@@ -105,12 +113,14 @@
           border-radius: 16px !important;
           overflow: hidden !important;
           box-shadow: 0 4px 18px rgba(0,0,0,0.08) !important;
+          position: relative !important;
         }
         .slider-single-card img {
           width: 100% !important;
-          height: 190px !important;
+          height: 195px !important;
           object-fit: cover !important;
           display: block !important;
+          background: #e2e8f0 !important;
         }
       `;
       document.head.appendChild(style);
@@ -121,7 +131,6 @@
     Array.from(cardsContainer.children).forEach(card => {
       card.classList.add('slider-single-card');
 
-      // Live weather badge check
       const cardText = (card.textContent || '').toLowerCase();
       let key = null;
       if (cardText.includes('jaipur')) key = 'jaipur';
@@ -129,8 +138,23 @@
       else if (cardText.includes('munnar')) key = 'munnar';
       else if (cardText.includes('goa')) key = 'goa';
       else if (cardText.includes('srinagar')) key = 'srinagar';
-      else if (cardText.includes('shillong')) key = 'shillong';
+      else if (cardText.includes('shillong') || cardText.includes('cherrapunji')) key = 'shillong';
 
+      // Fix Broken Images
+      const img = card.querySelector('img');
+      if (img && key && fallbackImages[key]) {
+        // Agar image load nahi ho rahi ya broken hai
+        img.onerror = function () {
+          this.onerror = null;
+          this.src = fallbackImages[key];
+        };
+        // Agar src pehle se broken ya empty hai
+        if (!img.getAttribute('src') || img.naturalWidth === 0 || img.getAttribute('src').includes('Dawki River')) {
+          img.src = fallbackImages[key];
+        }
+      }
+
+      // Proper Weather Badge Placement (Niche bottom buttons ke theek upar)
       if (key && !card.querySelector('.live-slider-weather-pill')) {
         const badge = document.createElement('div');
         badge.className = 'live-slider-weather-pill';
@@ -144,7 +168,7 @@
           font-size: 0.75rem;
           padding: 4px 10px;
           border-radius: 20px;
-          margin: 6px 14px;
+          margin: 6px 14px 10px 14px;
           font-weight: 600;
           align-self: flex-start;
         `;
