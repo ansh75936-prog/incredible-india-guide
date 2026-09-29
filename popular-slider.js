@@ -1,5 +1,5 @@
 // =========================================================================
-// INCREDIBLE INDIA - POPULAR DESTINATIONS SLIDER (IMAGE & BADGE FIX)
+// INCREDIBLE INDIA - POPULAR DESTINATIONS SLIDER (IMAGES 100% STABLE)
 // =========================================================================
 
 (function () {
@@ -12,15 +12,8 @@
     'shillong': { lat: 25.5788, lon: 91.8933 }
   };
 
-  // Reliable Direct CDN Images (No hotlink blocks)
-  const reliableImages = {
-    'shillong': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Umngot_river_Dawki_Meghalaya.jpg/800px-Umngot_river_Dawki_Meghalaya.jpg',
-    'jaipur': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Amber_Fort_Jaipur_India.jpg/800px-Amber_Fort_Jaipur_India.jpg',
-    'manali': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Solang_Valley_Himachal_Pradesh.jpg/800px-Solang_Valley_Himachal_Pradesh.jpg',
-    'munnar': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Munnar_tea_plantations.jpg/800px-Munnar_tea_plantations.jpg',
-    'goa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Palolem_beach_Goa.jpg/800px-Palolem_beach_Goa.jpg',
-    'srinagar': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Dal_Lake_Srinagar_Kashmir.jpg/800px-Dal_Lake_Srinagar_Kashmir.jpg'
-  };
+  // 100% reliable Meghalaya Dawki River image (Public CDN)
+  const dawkiRiverFixedImage = 'https://images.pexels.com/photos/1483053/pexels-photo-1483053.jpeg?auto=compress&cs=tinysrgb&w=800';
 
   function getWeatherDesc(code) {
     if (code === 0) return { t: 'Clear Sky', i: '☀️' };
@@ -118,7 +111,6 @@
           height: 195px !important;
           object-fit: cover !important;
           display: block !important;
-          background: #e2e8f0 !important;
         }
       `;
       document.head.appendChild(style);
@@ -138,17 +130,12 @@
       else if (cardText.includes('srinagar')) key = 'srinagar';
       else if (cardText.includes('shillong') || cardText.includes('cherrapunji')) key = 'shillong';
 
-      // Fix ONLY Broken Images safely via onerror
+      // Fix ONLY Meghalaya image if missing or broken (Never touch other cards' working original images!)
       const img = card.querySelector('img');
-      if (img && key) {
-        img.onerror = function () {
-          this.onerror = null;
-          this.src = reliableImages[key];
-        };
-        // Agar src pehle se broken Dawki wala hai ya load fail hua ho
-        const currentSrc = img.getAttribute('src') || '';
-        if (currentSrc.includes('Dawki') || currentSrc.includes('unsplash.com')) {
-          img.src = reliableImages[key];
+      if (img && key === 'shillong') {
+        const curSrc = img.getAttribute('src') || '';
+        if (!curSrc || curSrc.includes('Dawki') || curSrc.includes('wikimedia') || img.naturalWidth === 0) {
+          img.src = dawkiRiverFixedImage;
         }
       }
 
@@ -172,7 +159,6 @@
         `;
         badge.innerHTML = `<span>⏳ Weather...</span>`;
 
-        // Card ke andar "Best:" wala element locate karein
         let bestLine = null;
         card.querySelectorAll('*').forEach(el => {
           if (!bestLine && (el.textContent || '').includes('Best:') && el.children.length <= 2) {
