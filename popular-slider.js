@@ -1,5 +1,5 @@
 // =========================================================================
-// INCREDIBLE INDIA - POPULAR DESTINATIONS SLIDER (IMAGE FALLBACK & CLEAN UI)
+// INCREDIBLE INDIA - POPULAR DESTINATIONS SLIDER (IMAGE & BADGE FIX)
 // =========================================================================
 
 (function () {
@@ -12,14 +12,14 @@
     'shillong': { lat: 25.5788, lon: 91.8933 }
   };
 
-  // High-Resolution Fallback Images in case any card image breaks
-  const fallbackImages = {
-    'shillong': 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=800&q=80',
-    'jaipur': 'https://images.unsplash.com/photo-1603288940356-9b044d50cbf1?auto=format&fit=crop&w=800&q=80',
-    'manali': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80',
-    'munnar': 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80',
-    'goa': 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80',
-    'srinagar': 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=800&q=80'
+  // Reliable Direct CDN Images (No hotlink blocks)
+  const reliableImages = {
+    'shillong': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Umngot_river_Dawki_Meghalaya.jpg/800px-Umngot_river_Dawki_Meghalaya.jpg',
+    'jaipur': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Amber_Fort_Jaipur_India.jpg/800px-Amber_Fort_Jaipur_India.jpg',
+    'manali': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Solang_Valley_Himachal_Pradesh.jpg/800px-Solang_Valley_Himachal_Pradesh.jpg',
+    'munnar': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Munnar_tea_plantations.jpg/800px-Munnar_tea_plantations.jpg',
+    'goa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Palolem_beach_Goa.jpg/800px-Palolem_beach_Goa.jpg',
+    'srinagar': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Dal_Lake_Srinagar_Kashmir.jpg/800px-Dal_Lake_Srinagar_Kashmir.jpg'
   };
 
   function getWeatherDesc(code) {
@@ -89,8 +89,6 @@
           -webkit-overflow-scrolling: touch !important;
           gap: 16px !important;
           padding: 8px 16px 20px 16px !important;
-          margin-left: 0 !important;
-          margin-right: 0 !important;
           width: 100% !important;
           box-sizing: border-box !important;
           scrollbar-width: none !important;
@@ -140,21 +138,21 @@
       else if (cardText.includes('srinagar')) key = 'srinagar';
       else if (cardText.includes('shillong') || cardText.includes('cherrapunji')) key = 'shillong';
 
-      // Fix Broken Images
+      // Fix ONLY Broken Images safely via onerror
       const img = card.querySelector('img');
-      if (img && key && fallbackImages[key]) {
-        // Agar image load nahi ho rahi ya broken hai
+      if (img && key) {
         img.onerror = function () {
           this.onerror = null;
-          this.src = fallbackImages[key];
+          this.src = reliableImages[key];
         };
-        // Agar src pehle se broken ya empty hai
-        if (!img.getAttribute('src') || img.naturalWidth === 0 || img.getAttribute('src').includes('Dawki River')) {
-          img.src = fallbackImages[key];
+        // Agar src pehle se broken Dawki wala hai ya load fail hua ho
+        const currentSrc = img.getAttribute('src') || '';
+        if (currentSrc.includes('Dawki') || currentSrc.includes('unsplash.com')) {
+          img.src = reliableImages[key];
         }
       }
 
-      // Proper Weather Badge Placement (Niche bottom buttons ke theek upar)
+      // Live Weather Badge Placement (Inside White Card Body, above 'Best:' row)
       if (key && !card.querySelector('.live-slider-weather-pill')) {
         const badge = document.createElement('div');
         badge.className = 'live-slider-weather-pill';
@@ -162,10 +160,10 @@
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          background: #f1f5f9;
+          background: #f8fafc;
           border: 1px solid rgba(0, 0, 0, 0.08);
           color: #0f172a;
-          font-size: 0.75rem;
+          font-size: 0.74rem;
           padding: 4px 10px;
           border-radius: 20px;
           margin: 6px 14px 10px 14px;
@@ -174,9 +172,16 @@
         `;
         badge.innerHTML = `<span>⏳ Weather...</span>`;
 
-        const guideBtn = card.querySelector('button, a, div:has(> button)') || card.lastElementChild;
-        if (guideBtn && guideBtn.parentElement) {
-          guideBtn.parentElement.insertBefore(badge, guideBtn);
+        // Card ke andar "Best:" wala element locate karein
+        let bestLine = null;
+        card.querySelectorAll('*').forEach(el => {
+          if (!bestLine && (el.textContent || '').includes('Best:') && el.children.length <= 2) {
+            bestLine = el;
+          }
+        });
+
+        if (bestLine && bestLine.parentElement) {
+          bestLine.parentElement.insertBefore(badge, bestLine);
         } else {
           card.appendChild(badge);
         }
