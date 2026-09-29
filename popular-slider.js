@@ -1,8 +1,17 @@
 // =========================================================================
-// INCREDIBLE INDIA - POPULAR DESTINATIONS SLIDER (IMAGES 100% STABLE)
+// INCREDIBLE INDIA - POPULAR DESTINATIONS SLIDER WITH DIRECT FULL-DETAIL TRIGGER
 // =========================================================================
 
 (function () {
+  const destinationMap = {
+    'jaipur': { state: 'Rajasthan', code: 'RJ' },
+    'manali': { state: 'Himachal Pradesh', code: 'HP' },
+    'munnar': { state: 'Kerala', code: 'KL' },
+    'goa': { state: 'Goa', code: 'GA' },
+    'srinagar': { state: 'Jammu & Kashmir', code: 'JK' },
+    'shillong': { state: 'Meghalaya', code: 'ML' }
+  };
+
   const weatherCoords = {
     'jaipur': { lat: 26.9124, lon: 75.7873 },
     'manali': { lat: 32.2432, lon: 77.1892 },
@@ -12,7 +21,6 @@
     'shillong': { lat: 25.5788, lon: 91.8933 }
   };
 
-  // 100% reliable Meghalaya Dawki River image (Public CDN)
   const dawkiRiverFixedImage = 'https://images.pexels.com/photos/1483053/pexels-photo-1483053.jpeg?auto=compress&cs=tinysrgb&w=800';
 
   function getWeatherDesc(code) {
@@ -37,6 +45,26 @@
       }
     } catch (e) {
       badgeEl.innerHTML = `⛅ Live Weather`;
+    }
+  }
+
+  // Open the full-detail state tourism guide page
+  function openDestinationDetail(key) {
+    const info = destinationMap[key];
+    if (!info) return;
+
+    if (typeof window.openStatePage === 'function') {
+      window.openStatePage(info.state);
+    } else if (typeof window.openAppPage === 'function') {
+      window.openAppPage(info.state);
+    } else {
+      // Trigger native click on internal state directory buttons if present
+      const stateBtn = Array.from(document.querySelectorAll('button, a')).find(el => {
+        return (el.textContent || '').trim().toLowerCase() === info.state.toLowerCase();
+      });
+      if (stateBtn) {
+        stateBtn.click();
+      }
     }
   }
 
@@ -105,6 +133,7 @@
           overflow: hidden !important;
           box-shadow: 0 4px 18px rgba(0,0,0,0.08) !important;
           position: relative !important;
+          cursor: pointer !important;
         }
         .slider-single-card img {
           width: 100% !important;
@@ -130,7 +159,7 @@
       else if (cardText.includes('srinagar')) key = 'srinagar';
       else if (cardText.includes('shillong') || cardText.includes('cherrapunji')) key = 'shillong';
 
-      // Fix ONLY Meghalaya image if missing or broken (Never touch other cards' working original images!)
+      // Fix Meghalaya image
       const img = card.querySelector('img');
       if (img && key === 'shillong') {
         const curSrc = img.getAttribute('src') || '';
@@ -139,7 +168,28 @@
         }
       }
 
-      // Live Weather Badge Placement (Inside White Card Body, above 'Best:' row)
+      // Connect Card and Guide Dekhein button to Open Full Detail Page
+      const guideBtn = card.querySelector('button, a, div:has(> button)') || card.lastElementChild;
+      if (key && !card.dataset.detailBound) {
+        card.dataset.detailBound = key;
+
+        // Make button and card open the respective state detail
+        if (guideBtn) {
+          guideBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openDestinationDetail(key);
+          });
+        }
+
+        card.addEventListener('click', function (e) {
+          // If share button or direct link was clicked, allow native handling
+          if (e.target.closest('button[class*="share"], a[href^="http"]')) return;
+          openDestinationDetail(key);
+        });
+      }
+
+      // Live Weather Badge
       if (key && !card.querySelector('.live-slider-weather-pill')) {
         const badge = document.createElement('div');
         badge.className = 'live-slider-weather-pill';
