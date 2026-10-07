@@ -244,9 +244,30 @@
   });
 })();
 // =========================================================================
-// ADD-ON: GLOBAL & REGIONAL LANGUAGE SEARCH IN DRAWER
+// REAL LIVE LANGUAGE TRANSLATION ENGINE (WITH SEARCH)
 // =========================================================================
 (function () {
+  // 1. Google Translate engine check & auto-load
+  if (!document.getElementById('googleTranslateScriptTag')) {
+    const s = document.createElement('script');
+    s.id = 'googleTranslateScriptTag';
+    s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInitCallback';
+    document.body.appendChild(s);
+
+    const hiddenDiv = document.createElement('div');
+    hiddenDiv.id = 'google_translate_element';
+    hiddenDiv.style.display = 'none';
+    document.body.appendChild(hiddenDiv);
+
+    window.googleTranslateElementInitCallback = function () {
+      new google.translate.TranslateElement(
+        { pageLanguage: 'en', autoDisplay: false },
+        'google_translate_element'
+      );
+    };
+  }
+
+  // 2. Languages Database
   const globalLangs = [
     { code: 'hi', name: 'Hindi', native: 'हिन्दी', region: 'India' },
     { code: 'en', name: 'English', native: 'English', region: 'Global' },
@@ -259,9 +280,8 @@
     { code: 'ml', name: 'Malayalam', native: 'മലയാളം', region: 'India' },
     { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ', region: 'India' },
     { code: 'or', name: 'Odia', native: 'ଓଡ଼ିଆ', region: 'India' },
-    { code: 'as', name: 'Assamese', native: 'অসমীয়া', region: 'India' },
     { code: 'ur', name: 'Urdu', native: 'اردو', region: 'India' },
-    { code: 'es', name: 'Spanish', native: 'Español', region: 'Global' },
+    { code: 'es', name: 'Spanish', native: 'Español', region: 'Spain / Latin America' },
     { code: 'fr', name: 'French', native: 'Français', region: 'France' },
     { code: 'de', name: 'German', native: 'Deutsch', region: 'Germany' },
     { code: 'nl', name: 'Dutch', native: 'Nederlands', region: 'Netherlands' },
@@ -269,17 +289,18 @@
     { code: 'ja', name: 'Japanese', native: '日本語', region: 'Japan' },
     { code: 'zh-CN', name: 'Chinese', native: '中文', region: 'China' },
     { code: 'ar', name: 'Arabic', native: 'العربية', region: 'Middle East' },
-    { code: 'pt', name: 'Portuguese', native: 'Português', region: 'Global' },
+    { code: 'pt', name: 'Portuguese', native: 'Português', region: 'Portugal / Brazil' },
     { code: 'it', name: 'Italian', native: 'Italiano', region: 'Italy' },
     { code: 'ko', name: 'Korean', native: '한국어', region: 'South Korea' },
     { code: 'tr', name: 'Turkish', native: 'Türkçe', region: 'Turkey' }
   ];
 
+  // 3. Modal Overlay
   let modalEl = document.getElementById('addonLangSearchModal');
   if (!modalEl) {
     modalEl = document.createElement('div');
     modalEl.id = 'addonLangSearchModal';
-    modalEl.style.cssText = 'display:none; position:fixed; inset:0; background:rgba(6,11,23,0.96); backdrop-filter:blur(10px); z-index:2147483647; padding:20px 16px; box-sizing:border-box; overflow-y:auto;';
+    modalEl.style.cssText = 'display:none; position:fixed; inset:0; background:rgba(6,11,23,0.96); backdrop-filter:blur(12px); z-index:2147483647; padding:20px 16px; box-sizing:border-box; overflow-y:auto; -webkit-overflow-scrolling:touch;';
     document.body.appendChild(modalEl);
   }
 
@@ -310,30 +331,33 @@
     document.body.style.overflow = 'auto';
   };
 
+  // 4. Actual Translation Executor
   window.selectAddonLang = function (code, name) {
     localStorage.setItem('selectedAppLanguage', code);
     window.closeAddonLangModal();
-    const toast = document.createElement('div');
-    toast.style.cssText = 'position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#FF5412; color:#fff; padding:10px 22px; border-radius:50px; font-size:0.85rem; font-weight:700; z-index:2147483648;';
-    toast.innerHTML = `🌐 Language: ${name}`;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2500);
 
-    const gSel = document.querySelector('.goog-te-combo');
-    if (gSel) {
-      gSel.value = code;
-      gSel.dispatchEvent(new Event('change'));
+    // Google Translate Cookie setup
+    document.cookie = `googtrans=/en/${code}; path=/`;
+    document.cookie = `googtrans=/en/${code}; domain=.${location.hostname}; path=/`;
+
+    // Dropdown change trigger
+    const gCombo = document.querySelector('.goog-te-combo');
+    if (gCombo) {
+      gCombo.value = code;
+      gCombo.dispatchEvent(new Event('change'));
+    } else {
+      // Reload karke Google Cookie apply karwana
+      location.reload();
     }
   };
 
-  window.openAddonLangModal = function () {
-    document.querySelectorAll('[id*="Drawer"], [class*="drawer"], [class*="menu"]').forEach(d => {
-      if (d !== modalEl) {
-        d.classList.remove('open', 'active');
-        if (d.style.left === '0px') d.style.left = '-330px';
-      }
-    });
+  window.openExistingLangModal = function () {
+    const drawer = document.getElementById('unifiedDrawer') || document.querySelector('.nav-drawer') || document.getElementById('mobileDrawer');
     const overlay = document.getElementById('unifiedDrawerOverlay') || document.getElementById('drawerOverlay');
+    if (drawer) {
+      drawer.classList.remove('open', 'active');
+      if (drawer.style.left === '0px') drawer.style.left = '-330px';
+    }
     if (overlay) overlay.style.display = 'none';
 
     document.body.style.overflow = 'hidden';
@@ -370,32 +394,31 @@
     }
   };
 
-  function appendBtn() {
-    if (document.getElementById('addonLangMenuRow')) return;
-    const list = document.querySelector('#unifiedDrawer .drawer-menu-list') || document.querySelector('.drawer-links') || document.querySelector('#mobileDrawer ul') || document.querySelector('.nav-drawer ul');
-    if (!list) return;
+  // 5. Existing drawer button ke sath bind karna
+  function bindToExistingButton() {
+    // Duplicate button hatao agar bana ho toh
+    const extra = document.getElementById('addonLangMenuRow');
+    if (extra) extra.remove();
 
-    const li = document.createElement(list.tagName === 'UL' ? 'li' : 'div');
-    li.id = 'addonLangMenuRow';
-    li.style.cssText = 'margin-bottom: 8px; width: 100%; list-style: none;';
-    li.innerHTML = `
-      <button type="button" onclick="openAddonLangModal()" style="display:flex; justify-content:space-between; align-items:center; width:100%; background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.35); padding:12px 14px; border-radius:10px; color:#38bdf8; font-weight:700; font-size:0.9rem; cursor:pointer; text-align:left; box-sizing:border-box;">
-        <span>🌐 <b>Choose Language / भाषा</b></span>
-        <span style="color:#38bdf8;">›</span>
-      </button>
-    `;
-
-    if (list.firstChild) {
-      list.insertBefore(li, list.firstChild);
-    } else {
-      list.appendChild(li);
-    }
+    document.querySelectorAll('button, a, div').forEach(el => {
+      const txt = (el.innerText || el.textContent || '').trim();
+      if (txt.includes('Choose Language') && !el.closest('#addonLangSearchModal')) {
+        if (!el.dataset.liveSearchBound) {
+          el.dataset.liveSearchBound = 'true';
+          el.onclick = function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.openExistingLangModal();
+          };
+        }
+      }
+    });
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', appendBtn);
+    document.addEventListener('DOMContentLoaded', bindToExistingButton);
   } else {
-    appendBtn();
+    bindToExistingButton();
   }
-  setInterval(appendBtn, 600);
+  setInterval(bindToExistingButton, 500);
 })();
