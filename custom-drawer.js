@@ -243,3 +243,159 @@
     });
   });
 })();
+// =========================================================================
+// ADD-ON: GLOBAL & REGIONAL LANGUAGE SEARCH IN DRAWER
+// =========================================================================
+(function () {
+  const globalLangs = [
+    { code: 'hi', name: 'Hindi', native: 'हिन्दी', region: 'India' },
+    { code: 'en', name: 'English', native: 'English', region: 'Global' },
+    { code: 'te', name: 'Telugu', native: 'తెలుగు', region: 'India' },
+    { code: 'ta', name: 'Tamil', native: 'தமிழ்', region: 'India' },
+    { code: 'bn', name: 'Bengali', native: 'বাংলা', region: 'India' },
+    { code: 'mr', name: 'Marathi', native: 'मराठी', region: 'India' },
+    { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી', region: 'India' },
+    { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ', region: 'India' },
+    { code: 'ml', name: 'Malayalam', native: 'മലയാളം', region: 'India' },
+    { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ', region: 'India' },
+    { code: 'or', name: 'Odia', native: 'ଓଡ଼ିଆ', region: 'India' },
+    { code: 'as', name: 'Assamese', native: 'অসমীয়া', region: 'India' },
+    { code: 'ur', name: 'Urdu', native: 'اردو', region: 'India' },
+    { code: 'es', name: 'Spanish', native: 'Español', region: 'Global' },
+    { code: 'fr', name: 'French', native: 'Français', region: 'France' },
+    { code: 'de', name: 'German', native: 'Deutsch', region: 'Germany' },
+    { code: 'nl', name: 'Dutch', native: 'Nederlands', region: 'Netherlands' },
+    { code: 'ru', name: 'Russian', native: 'Русский', region: 'Russia' },
+    { code: 'ja', name: 'Japanese', native: '日本語', region: 'Japan' },
+    { code: 'zh-CN', name: 'Chinese', native: '中文', region: 'China' },
+    { code: 'ar', name: 'Arabic', native: 'العربية', region: 'Middle East' },
+    { code: 'pt', name: 'Portuguese', native: 'Português', region: 'Global' },
+    { code: 'it', name: 'Italian', native: 'Italiano', region: 'Italy' },
+    { code: 'ko', name: 'Korean', native: '한국어', region: 'South Korea' },
+    { code: 'tr', name: 'Turkish', native: 'Türkçe', region: 'Turkey' }
+  ];
+
+  let modalEl = document.getElementById('addonLangSearchModal');
+  if (!modalEl) {
+    modalEl = document.createElement('div');
+    modalEl.id = 'addonLangSearchModal';
+    modalEl.style.cssText = 'display:none; position:fixed; inset:0; background:rgba(6,11,23,0.96); backdrop-filter:blur(10px); z-index:2147483647; padding:20px 16px; box-sizing:border-box; overflow-y:auto;';
+    document.body.appendChild(modalEl);
+  }
+
+  function renderList(items) {
+    const box = document.getElementById('addonLangListTarget');
+    if (!box) return;
+    if (items.length === 0) {
+      box.innerHTML = '<div style="text-align:center; padding:25px; color:#94a3b8; font-size:0.85rem;">Koi bhasha nahi mili. Spelling check karein.</div>';
+      return;
+    }
+    const cur = localStorage.getItem('selectedAppLanguage') || 'en';
+    box.innerHTML = items.map(l => `
+      <div onclick="selectAddonLang('${l.code}', '${l.name}')" style="display:flex; justify-content:space-between; align-items:center; background:${l.code === cur ? 'rgba(255,84,18,0.2)' : '#0f172a'}; border:1px solid ${l.code === cur ? '#FF5412' : 'rgba(255,255,255,0.08)'}; padding:12px 16px; border-radius:10px; cursor:pointer;">
+        <div>
+          <b style="color:#fff; font-size:0.95rem; display:block;">${l.name}</b>
+          <span style="color:#94a3b8; font-size:0.75rem;">${l.region}</span>
+        </div>
+        <div style="text-align:right;">
+          <span style="color:#FF5412; font-weight:700; font-size:0.95rem; display:block;">${l.native}</span>
+          <span style="font-size:0.7rem; color:#64748b; text-transform:uppercase;">${l.code}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  window.closeAddonLangModal = function () {
+    modalEl.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  };
+
+  window.selectAddonLang = function (code, name) {
+    localStorage.setItem('selectedAppLanguage', code);
+    window.closeAddonLangModal();
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#FF5412; color:#fff; padding:10px 22px; border-radius:50px; font-size:0.85rem; font-weight:700; z-index:2147483648;';
+    toast.innerHTML = `🌐 Language: ${name}`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2500);
+
+    const gSel = document.querySelector('.goog-te-combo');
+    if (gSel) {
+      gSel.value = code;
+      gSel.dispatchEvent(new Event('change'));
+    }
+  };
+
+  window.openAddonLangModal = function () {
+    document.querySelectorAll('[id*="Drawer"], [class*="drawer"], [class*="menu"]').forEach(d => {
+      if (d !== modalEl) {
+        d.classList.remove('open', 'active');
+        if (d.style.left === '0px') d.style.left = '-330px';
+      }
+    });
+    const overlay = document.getElementById('unifiedDrawerOverlay') || document.getElementById('drawerOverlay');
+    if (overlay) overlay.style.display = 'none';
+
+    document.body.style.overflow = 'hidden';
+    modalEl.style.display = 'block';
+    modalEl.scrollTop = 0;
+
+    modalEl.innerHTML = `
+      <div style="max-width:480px; margin:0 auto; text-align:left;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1);">
+          <div>
+            <h2 style="margin:0; font-size:1.25rem; color:#fff; font-weight:800;">🌐 Select Language</h2>
+            <span style="font-size:0.75rem; color:#94a3b8;">Search Indian & World Languages</span>
+          </div>
+          <button onclick="closeAddonLangModal()" style="background:#1e293b; border:none; color:#fff; width:34px; height:34px; border-radius:8px; font-size:1.2rem; cursor:pointer;">&times;</button>
+        </div>
+        <div style="position:relative; margin-bottom:16px;">
+          <input type="text" id="addonSearchField" placeholder="Type language (e.g. Telugu, Tamil, German, Dutch)..." autocomplete="off" style="width:100%; box-sizing:border-box; background:#0f172a; border:1px solid rgba(255,255,255,0.2); color:#fff; padding:12px 14px 12px 38px; border-radius:10px; font-size:0.92rem; outline:none;" />
+          <span style="position:absolute; left:12px; top:12px; font-size:0.95rem; color:#94a3b8;">🔍</span>
+        </div>
+        <div id="addonLangListTarget" style="display:flex; flex-direction:column; gap:8px;"></div>
+      </div>
+    `;
+
+    renderList(globalLangs);
+
+    const inp = document.getElementById('addonSearchField');
+    if (inp) {
+      inp.focus();
+      inp.addEventListener('input', function () {
+        const q = this.value.trim().toLowerCase();
+        const res = globalLangs.filter(l => l.name.toLowerCase().includes(q) || l.native.toLowerCase().includes(q) || l.code.toLowerCase().includes(q));
+        renderList(res);
+      });
+    }
+  };
+
+  function appendBtn() {
+    if (document.getElementById('addonLangMenuRow')) return;
+    const list = document.querySelector('#unifiedDrawer .drawer-menu-list') || document.querySelector('.drawer-links') || document.querySelector('#mobileDrawer ul') || document.querySelector('.nav-drawer ul');
+    if (!list) return;
+
+    const li = document.createElement(list.tagName === 'UL' ? 'li' : 'div');
+    li.id = 'addonLangMenuRow';
+    li.style.cssText = 'margin-bottom: 8px; width: 100%; list-style: none;';
+    li.innerHTML = `
+      <button type="button" onclick="openAddonLangModal()" style="display:flex; justify-content:space-between; align-items:center; width:100%; background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.35); padding:12px 14px; border-radius:10px; color:#38bdf8; font-weight:700; font-size:0.9rem; cursor:pointer; text-align:left; box-sizing:border-box;">
+        <span>🌐 <b>Choose Language / भाषा</b></span>
+        <span style="color:#38bdf8;">›</span>
+      </button>
+    `;
+
+    if (list.firstChild) {
+      list.insertBefore(li, list.firstChild);
+    } else {
+      list.appendChild(li);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', appendBtn);
+  } else {
+    appendBtn();
+  }
+  setInterval(appendBtn, 600);
+})();
