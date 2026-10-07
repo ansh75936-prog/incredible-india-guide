@@ -1,12 +1,61 @@
 // =========================================================================
-// INCREDIBLE INDIA - WORKING THEME SWITCHER + HAMBURGER DRAWER
+// INCREDIBLE INDIA - WORKING THEME SWITCHER + HAMBURGER DRAWER + LIVE TRANSLATE
 // =========================================================================
 
 (function () {
-  // 1. Purane duplicate drawers aur overlays ko remove karein
+  // 1. Google Translate Core Engine Setup
+  if (!document.getElementById('googleTranslateScriptTag')) {
+    const s = document.createElement('script');
+    s.id = 'googleTranslateScriptTag';
+    s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInitCallback';
+    document.body.appendChild(s);
+
+    const hiddenDiv = document.createElement('div');
+    hiddenDiv.id = 'google_translate_element';
+    hiddenDiv.style.display = 'none';
+    document.body.appendChild(hiddenDiv);
+
+    window.googleTranslateElementInitCallback = function () {
+      new google.translate.TranslateElement(
+        { pageLanguage: 'en', autoDisplay: false },
+        'google_translate_element'
+      );
+    };
+  }
+
+  // 2. Multi-Language Registry (Indian + World Famous)
+  const globalLangs = [
+    { code: 'hi', name: 'Hindi', native: 'हिन्दी', region: 'India' },
+    { code: 'en', name: 'English', native: 'English', region: 'Global' },
+    { code: 'te', name: 'Telugu', native: 'తెలుగు', region: 'India' },
+    { code: 'ta', name: 'Tamil', native: 'தமிழ்', region: 'India' },
+    { code: 'bn', name: 'Bengali', native: 'বাংলা', region: 'India' },
+    { code: 'mr', name: 'Marathi', native: 'मराठी', region: 'India' },
+    { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી', region: 'India' },
+    { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ', region: 'India' },
+    { code: 'ml', name: 'Malayalam', native: 'മലയാളം', region: 'India' },
+    { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ', region: 'India' },
+    { code: 'or', name: 'Odia', native: 'ଓଡ଼ିଆ', region: 'India' },
+    { code: 'as', name: 'Assamese', native: 'অসমীয়া', region: 'India' },
+    { code: 'ur', name: 'Urdu', native: 'اردو', region: 'India' },
+    { code: 'es', name: 'Spanish', native: 'Español', region: 'Global' },
+    { code: 'fr', name: 'French', native: 'Français', region: 'France' },
+    { code: 'de', name: 'German', native: 'Deutsch', region: 'Germany' },
+    { code: 'nl', name: 'Dutch', native: 'Nederlands', region: 'Netherlands' },
+    { code: 'ru', name: 'Russian', native: 'Русский', region: 'Russia' },
+    { code: 'ja', name: 'Japanese', native: '日本語', region: 'Japan' },
+    { code: 'zh-CN', name: 'Chinese', native: '中文', region: 'China' },
+    { code: 'ar', name: 'Arabic', native: 'العربية', region: 'Middle East' },
+    { code: 'pt', name: 'Portuguese', native: 'Português', region: 'Global' },
+    { code: 'it', name: 'Italian', native: 'Italiano', region: 'Italy' },
+    { code: 'ko', name: 'Korean', native: '한국어', region: 'South Korea' },
+    { code: 'tr', name: 'Turkish', native: 'Türkçe', region: 'Turkey' }
+  ];
+
+  // 3. Purane unwanted elements ko remove karein
   function permanentlyNukeOldDrawer() {
     document.querySelectorAll('div, aside, nav, section').forEach(el => {
-      if (el.id === 'unifiedDrawer' || el.id === 'unifiedDrawerOverlay' || el.id === 'dedicatedAppContainer') return;
+      if (el.id === 'unifiedDrawer' || el.id === 'unifiedDrawerOverlay' || el.id === 'dedicatedAppContainer' || el.id === 'addonLangSearchModal') return;
       const txt = el.textContent || '';
       if (
         (txt.includes('All 36 States & UTs') || txt.includes('Live Interactive Map')) &&
@@ -18,19 +67,21 @@
     });
   }
   permanentlyNukeOldDrawer();
-  setInterval(permanentlyNukeOldDrawer, 200);
 
-  // 2. CSS Inject: Bahar wale topbar aur theme text ko screen se hide rakhein (taaki tap na dabe)
-  const styleKiller = document.createElement('style');
-  styleKiller.id = 'killTopBarStyles';
-  styleKiller.innerHTML = `
-    .topbar, .top-bar, #topbar, nav.navbar, select[id*="curr"], div[class*="currency"] {
-      display: none !important;
-      visibility: hidden !important;
-    }
-  `;
-  document.head.appendChild(styleKiller);
+  // Bahar ke fixed topbar ko screen se hide rakhein
+  if (!document.getElementById('killTopBarStyles')) {
+    const styleKiller = document.createElement('style');
+    styleKiller.id = 'killTopBarStyles';
+    styleKiller.innerHTML = `
+      .topbar, .top-bar, #topbar, select[id*="curr"], div[class*="currency"] {
+        display: none !important;
+        visibility: hidden !important;
+      }
+    `;
+    document.head.appendChild(styleKiller);
+  }
 
+  // Purana drawer recreate karein fresh elements ke sath
   const oldDrawer = document.getElementById('unifiedDrawer');
   if (oldDrawer) oldDrawer.remove();
   const oldOverlay = document.getElementById('unifiedDrawerOverlay');
@@ -80,18 +131,19 @@
       </button>
 
       <!-- Helpline -->
-      <a href="tel:1363" style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:10px 14px; border-radius:8px; text-decoration:none; color:#f1f5f9; font-size:0.85rem; font-weight:600; margin-bottom:14px;">
+      <a href="tel:1363" style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:10px 14px; border-radius:8px; text-decoration:none; color:#f1f5f9; font-size:0.85rem; font-weight:600; margin-bottom:12px;">
         📞 Helpline: 1363 (24×7)
       </a>
+
+      <!-- Single Live Search Language Button (Helpline ke theek neeche) -->
+      <button id="drawerLanguageOpenBtn" style="display:flex; justify-content:space-between; align-items:center; background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.25); padding:12px 14px; border-radius:8px; color:#38bdf8; font-weight:700; font-size:0.88rem; cursor:pointer; text-align:left; width:100%; margin-bottom:12px;">
+        <span>🌐 Choose Language / भाषा</span>
+        <span style="color:#38bdf8; font-size:0.85rem;">›</span>
+      </button>
 
       <!-- Navigation Pages -->
       <div style="display:flex; flex-direction:column; gap:10px;">
         
-        <button class="drawer-nav-trigger" data-page="language" style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding:12px 14px; border-radius:8px; color:#cbd5e1; font-size:0.88rem; cursor:pointer; text-align:left; width:100%;">
-          <span>🌐 Choose Language / भाषा</span>
-          <span style="color:#64748b; font-size:0.8rem;">›</span>
-        </button>
-
         <button class="drawer-nav-trigger" data-page="quote" style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding:12px 14px; border-radius:8px; color:#cbd5e1; font-size:0.88rem; cursor:pointer; text-align:left; width:100%;">
           <span>📝 Plan Trip / Get Free Quote</span>
           <span style="color:#64748b; font-size:0.8rem;">›</span>
@@ -113,7 +165,6 @@
         </button>
 
       </div>
-      <div id="google_translate_element" style="display:none;"></div>
     </div>
   `;
 
@@ -140,13 +191,13 @@
   overlay.addEventListener('click', closeDrawer);
   drawer.addEventListener('click', e => e.stopPropagation());
 
-  // 3. Top-left Hamburger Button create & align
+  // 4. Hamburger Button Injection
   function ensureHamburger() {
     let hamBtn = document.getElementById('appHamburgerBtn');
     if (!hamBtn) {
       hamBtn = document.createElement('button');
       hamBtn.id = 'appHamburgerBtn';
-      hamBtn.innerHTML = '&#9776;'; // ☰
+      hamBtn.innerHTML = '&#9776;';
       hamBtn.setAttribute('aria-label', 'Menu');
       document.body.appendChild(hamBtn);
       hamBtn.addEventListener('click', openDrawer);
@@ -171,43 +222,12 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important;
       line-height: 1 !important;
     `;
-
-    // Original bahar wale Theme button ko background mein chhupa ke rakhein (taaki click kar sakein)
-    document.querySelectorAll('button, div, span').forEach(el => {
-      if (el.closest('#unifiedDrawer') || el.id === 'appHamburgerBtn' || el.closest('#dedicatedAppContainer')) return;
-      const txt = (el.textContent || '').trim();
-      if (txt === 'Theme' || txt.includes('Theme')) {
-        el.style.opacity = '0';
-        el.style.pointerEvents = 'none';
-        el.style.position = 'fixed';
-        el.style.top = '-9999px';
-      }
-    });
   }
   ensureHamburger();
-  setTimeout(ensureHamburger, 500);
 
-  // 4. POWERFUL THEME SWITCH TRIGGER (Clicks original buttons + toggles attributes)
+  // 5. In-Drawer Theme Switcher
   const themeSwitchBtn = document.getElementById('inDrawerThemeToggle');
   themeSwitchBtn.addEventListener('click', function () {
-    let triggered = false;
-
-    // A. Original theme button dhoondh kar usko programmatically click karein
-    document.querySelectorAll('button, div, a').forEach(el => {
-      if (el === themeSwitchBtn || el.closest('#unifiedDrawer')) return;
-      const t = (el.textContent || '').trim();
-      if (
-        t === 'Theme' || 
-        t.includes('Theme') || 
-        el.getAttribute('onclick')?.includes('theme') ||
-        el.className.toString().includes('theme-toggle')
-      ) {
-        el.click(); // Original website toggle click
-        triggered = true;
-      }
-    });
-
-    // B. Direct CSS Theme Toggle (Dark / Light toggle)
     const html = document.documentElement;
     const currentTheme = html.getAttribute('data-theme') || (html.classList.contains('dark') ? 'dark' : 'light');
     const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
@@ -226,125 +246,15 @@
     }
 
     localStorage.setItem('theme', newTheme);
-
-    // C. Global function call agar koi ho
     if (typeof window.toggleTheme === 'function') window.toggleTheme();
-    if (typeof window.switchTheme === 'function') window.switchTheme();
   });
 
-  // Dedicated Pages navigation links
-  document.querySelectorAll('.drawer-nav-trigger').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const page = this.getAttribute('data-page');
-      closeDrawer();
-      if (window.openAppPage) {
-        window.openAppPage(page);
-      }
-    });
-  });
-})();
-        </div>
-        <div id="addonLangListTarget" style="display:flex; flex-direction:column; gap:8px;"></div>
-      </div>
-    `;
-
-    renderList(globalLangs);
-
-    const inp = document.getElementById('addonSearchField');
-    if (inp) {
-      inp.focus();
-      inp.addEventListener('input', function () {
-        const q = this.value.trim().toLowerCase();
-        const res = globalLangs.filter(l => l.name.toLowerCase().includes(q) || l.native.toLowerCase().includes(q) || l.code.toLowerCase().includes(q));
-        renderList(res);
-      });
-    }
-  };
-
-  // 5. Existing drawer button ke sath bind karna
-  function bindToExistingButton() {
-    // Duplicate button hatao agar bana ho toh
-    const extra = document.getElementById('addonLangMenuRow');
-    if (extra) extra.remove();
-
-    document.querySelectorAll('button, a, div').forEach(el => {
-      const txt = (el.innerText || el.textContent || '').trim();
-      if (txt.includes('Choose Language') && !el.closest('#addonLangSearchModal')) {
-        if (!el.dataset.liveSearchBound) {
-          el.dataset.liveSearchBound = 'true';
-          el.onclick = function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            window.openExistingLangModal();
-          };
-        }
-      }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bindToExistingButton);
-  } else {
-    bindToExistingButton();
-  }
-  setInterval(bindToExistingButton, 500);
-})();
-// =========================================================================
-// SINGLE NATIVE DRAWER LANGUAGE SEARCH & TRANSLATE ENGINE
-// =========================================================================
-(function () {
-  // Google Translate Engine Auto-Inject
-  if (!document.getElementById('googleTranslateScriptTag')) {
-    const s = document.createElement('script');
-    s.id = 'googleTranslateScriptTag';
-    s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInitCallback';
-    document.body.appendChild(s);
-
-    const hiddenDiv = document.createElement('div');
-    hiddenDiv.id = 'google_translate_element';
-    hiddenDiv.style.display = 'none';
-    document.body.appendChild(hiddenDiv);
-
-    window.googleTranslateElementInitCallback = function () {
-      new google.translate.TranslateElement(
-        { pageLanguage: 'en', autoDisplay: false },
-        'google_translate_element'
-      );
-    };
-  }
-
-  const globalLangs = [
-    { code: 'hi', name: 'Hindi', native: 'हिन्दी', region: 'India' },
-    { code: 'en', name: 'English', native: 'English', region: 'Global' },
-    { code: 'te', name: 'Telugu', native: 'తెలుగు', region: 'India' },
-    { code: 'ta', name: 'Tamil', native: 'தமிழ்', region: 'India' },
-    { code: 'bn', name: 'Bengali', native: 'বাংলা', region: 'India' },
-    { code: 'mr', name: 'Marathi', native: 'मराठी', region: 'India' },
-    { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી', region: 'India' },
-    { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ', region: 'India' },
-    { code: 'ml', name: 'Malayalam', native: 'മലയാളം', region: 'India' },
-    { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ', region: 'India' },
-    { code: 'or', name: 'Odia', native: 'ଓଡ଼ିଆ', region: 'India' },
-    { code: 'ur', name: 'Urdu', native: 'اردو', region: 'India' },
-    { code: 'es', name: 'Spanish', native: 'Español', region: 'Global' },
-    { code: 'fr', name: 'French', native: 'Français', region: 'France' },
-    { code: 'de', name: 'German', native: 'Deutsch', region: 'Germany' },
-    { code: 'nl', name: 'Dutch', native: 'Nederlands', region: 'Netherlands' },
-    { code: 'ru', name: 'Russian', native: 'Русский', region: 'Russia' },
-    { code: 'ja', name: 'Japanese', native: '日本語', region: 'Japan' },
-    { code: 'zh-CN', name: 'Chinese', native: '中文', region: 'China' },
-    { code: 'ar', name: 'Arabic', native: 'العربية', region: 'Middle East' },
-    { code: 'pt', name: 'Portuguese', native: 'Português', region: 'Portugal / Brazil' },
-    { code: 'it', name: 'Italian', native: 'Italiano', region: 'Italy' },
-    { code: 'ko', name: 'Korean', native: '한국어', region: 'South Korea' },
-    { code: 'tr', name: 'Turkish', native: 'Türkçe', region: 'Turkey' }
-  ];
-
+  // 6. Language Search Modal & Direct Translate Handler
   let modalEl = document.getElementById('addonLangSearchModal');
   if (!modalEl) {
     modalEl = document.createElement('div');
     modalEl.id = 'addonLangSearchModal';
-    modalEl.style.cssText = 'display:none; position:fixed; inset:0; background:rgba(6,11,23,0.96); backdrop-filter:blur(12px); z-index:2147483647; padding:20px 16px; box-sizing:border-box; overflow-y:auto; -webkit-overflow-scrolling:touch;';
+    modalEl.style.cssText = 'display:none; position:fixed; inset:0; background:rgba(6,11,23,0.96); backdrop-filter:blur(12px); z-index:2147483648; padding:20px 16px; box-sizing:border-box; overflow-y:auto; -webkit-overflow-scrolling:touch;';
     document.body.appendChild(modalEl);
   }
 
@@ -357,7 +267,7 @@
     }
     const cur = localStorage.getItem('selectedAppLanguage') || 'en';
     box.innerHTML = items.map(l => `
-      <div onclick="selectAddonLang('${l.code}', '${l.name}')" style="display:flex; justify-content:space-between; align-items:center; background:${l.code === cur ? 'rgba(255,84,18,0.2)' : '#0f172a'}; border:1px solid ${l.code === cur ? '#FF5412' : 'rgba(255,255,255,0.08)'}; padding:12px 16px; border-radius:10px; cursor:pointer; margin-bottom:8px;">
+      <div onclick="selectLanguageLive('${l.code}', '${l.name}')" style="display:flex; justify-content:space-between; align-items:center; background:${l.code === cur ? 'rgba(255,84,18,0.2)' : '#0f172a'}; border:1px solid ${l.code === cur ? '#FF5412' : 'rgba(255,255,255,0.08)'}; padding:12px 16px; border-radius:10px; cursor:pointer; margin-bottom:8px;">
         <div>
           <b style="color:#fff; font-size:0.95rem; display:block;">${l.name}</b>
           <span style="color:#94a3b8; font-size:0.75rem;">${l.region}</span>
@@ -375,11 +285,10 @@
     document.body.style.overflow = 'auto';
   };
 
-  window.selectAddonLang = function (code, name) {
+  window.selectLanguageLive = function (code, name) {
     localStorage.setItem('selectedAppLanguage', code);
     window.closeAddonLangModal();
 
-    // Google Translate Cookie Trigger
     document.cookie = `googtrans=/en/${code}; path=/`;
     document.cookie = `googtrans=/en/${code}; domain=.${location.hostname}; path=/`;
 
@@ -392,15 +301,8 @@
     }
   };
 
-  window.openExistingLangModal = function () {
-    const drawer = document.getElementById('unifiedDrawer') || document.querySelector('.nav-drawer') || document.getElementById('mobileDrawer');
-    const overlay = document.getElementById('unifiedDrawerOverlay') || document.getElementById('drawerOverlay');
-    if (drawer) {
-      drawer.classList.remove('open', 'active');
-      if (drawer.style.left === '0px') drawer.style.left = '-330px';
-    }
-    if (overlay) overlay.style.display = 'none';
-
+  function openLanguageModalDirect() {
+    closeDrawer();
     document.body.style.overflow = 'hidden';
     modalEl.style.display = 'block';
     modalEl.scrollTop = 0;
@@ -433,39 +335,19 @@
         renderList(res);
       });
     }
-  };
-
-  // Har 400ms me duplicate buttons clean karega aur sirf lower wale button par trigger bind karega
-  function cleanAndBindSingleButton() {
-    // 1. Agar upar koi duplicate inject hua ho toh use force delete karein
-    document.querySelectorAll('#forceInjectedLangBtn, #addonLangMenuRow, #nativeDrawerLangBtn, #drawerLangRowBtn').forEach(el => el.remove());
-
-    // 2. Drawer ke andar Helpline ke neeche wale button ko live search se jodna
-    const allButtons = Array.from(document.querySelectorAll('button, a, div')).filter(el => {
-      const txt = (el.innerText || el.textContent || '').trim();
-      return txt.includes('Choose Language') && !el.closest('#addonLangSearchModal');
-    });
-
-    if (allButtons.length > 1) {
-      // Sirf aakhri (neeche wala) button rakho, baaki hatao
-      for (let i = 0; i < allButtons.length - 1; i++) {
-        const parentLi = allButtons[i].closest('li');
-        if (parentLi) parentLi.remove();
-        else allButtons[i].remove();
-      }
-    }
-
-    // Single target par click lagayein
-    const targetBtn = allButtons[allButtons.length - 1];
-    if (targetBtn && !targetBtn.dataset.singleBound) {
-      targetBtn.dataset.singleBound = 'true';
-      targetBtn.onclick = function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        window.openExistingLangModal();
-      };
-    }
   }
 
-  setInterval(cleanAndBindSingleButton, 400);
+  document.getElementById('drawerLanguageOpenBtn').addEventListener('click', openLanguageModalDirect);
+
+  // Dedicated Pages Navigation Trigger
+  document.querySelectorAll('.drawer-nav-trigger').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const page = this.getAttribute('data-page');
+      closeDrawer();
+      if (window.openAppPage) {
+        window.openAppPage(page);
+      }
+    });
+  });
+
 })();
