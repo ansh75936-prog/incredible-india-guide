@@ -243,11 +243,57 @@
     });
   });
 })();
+        </div>
+        <div id="addonLangListTarget" style="display:flex; flex-direction:column; gap:8px;"></div>
+      </div>
+    `;
+
+    renderList(globalLangs);
+
+    const inp = document.getElementById('addonSearchField');
+    if (inp) {
+      inp.focus();
+      inp.addEventListener('input', function () {
+        const q = this.value.trim().toLowerCase();
+        const res = globalLangs.filter(l => l.name.toLowerCase().includes(q) || l.native.toLowerCase().includes(q) || l.code.toLowerCase().includes(q));
+        renderList(res);
+      });
+    }
+  };
+
+  // 5. Existing drawer button ke sath bind karna
+  function bindToExistingButton() {
+    // Duplicate button hatao agar bana ho toh
+    const extra = document.getElementById('addonLangMenuRow');
+    if (extra) extra.remove();
+
+    document.querySelectorAll('button, a, div').forEach(el => {
+      const txt = (el.innerText || el.textContent || '').trim();
+      if (txt.includes('Choose Language') && !el.closest('#addonLangSearchModal')) {
+        if (!el.dataset.liveSearchBound) {
+          el.dataset.liveSearchBound = 'true';
+          el.onclick = function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.openExistingLangModal();
+          };
+        }
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindToExistingButton);
+  } else {
+    bindToExistingButton();
+  }
+  setInterval(bindToExistingButton, 500);
+})();
 // =========================================================================
-// REAL LIVE LANGUAGE TRANSLATION ENGINE (WITH SEARCH)
+// SINGLE NATIVE DRAWER LANGUAGE SEARCH & TRANSLATE ENGINE
 // =========================================================================
 (function () {
-  // 1. Google Translate engine check & auto-load
+  // Google Translate Engine Auto-Inject
   if (!document.getElementById('googleTranslateScriptTag')) {
     const s = document.createElement('script');
     s.id = 'googleTranslateScriptTag';
@@ -267,7 +313,6 @@
     };
   }
 
-  // 2. Languages Database
   const globalLangs = [
     { code: 'hi', name: 'Hindi', native: 'हिन्दी', region: 'India' },
     { code: 'en', name: 'English', native: 'English', region: 'Global' },
@@ -281,7 +326,7 @@
     { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ', region: 'India' },
     { code: 'or', name: 'Odia', native: 'ଓଡ଼ିଆ', region: 'India' },
     { code: 'ur', name: 'Urdu', native: 'اردو', region: 'India' },
-    { code: 'es', name: 'Spanish', native: 'Español', region: 'Spain / Latin America' },
+    { code: 'es', name: 'Spanish', native: 'Español', region: 'Global' },
     { code: 'fr', name: 'French', native: 'Français', region: 'France' },
     { code: 'de', name: 'German', native: 'Deutsch', region: 'Germany' },
     { code: 'nl', name: 'Dutch', native: 'Nederlands', region: 'Netherlands' },
@@ -295,7 +340,6 @@
     { code: 'tr', name: 'Turkish', native: 'Türkçe', region: 'Turkey' }
   ];
 
-  // 3. Modal Overlay
   let modalEl = document.getElementById('addonLangSearchModal');
   if (!modalEl) {
     modalEl = document.createElement('div');
@@ -313,7 +357,7 @@
     }
     const cur = localStorage.getItem('selectedAppLanguage') || 'en';
     box.innerHTML = items.map(l => `
-      <div onclick="selectAddonLang('${l.code}', '${l.name}')" style="display:flex; justify-content:space-between; align-items:center; background:${l.code === cur ? 'rgba(255,84,18,0.2)' : '#0f172a'}; border:1px solid ${l.code === cur ? '#FF5412' : 'rgba(255,255,255,0.08)'}; padding:12px 16px; border-radius:10px; cursor:pointer;">
+      <div onclick="selectAddonLang('${l.code}', '${l.name}')" style="display:flex; justify-content:space-between; align-items:center; background:${l.code === cur ? 'rgba(255,84,18,0.2)' : '#0f172a'}; border:1px solid ${l.code === cur ? '#FF5412' : 'rgba(255,255,255,0.08)'}; padding:12px 16px; border-radius:10px; cursor:pointer; margin-bottom:8px;">
         <div>
           <b style="color:#fff; font-size:0.95rem; display:block;">${l.name}</b>
           <span style="color:#94a3b8; font-size:0.75rem;">${l.region}</span>
@@ -331,22 +375,19 @@
     document.body.style.overflow = 'auto';
   };
 
-  // 4. Actual Translation Executor
   window.selectAddonLang = function (code, name) {
     localStorage.setItem('selectedAppLanguage', code);
     window.closeAddonLangModal();
 
-    // Google Translate Cookie setup
+    // Google Translate Cookie Trigger
     document.cookie = `googtrans=/en/${code}; path=/`;
     document.cookie = `googtrans=/en/${code}; domain=.${location.hostname}; path=/`;
 
-    // Dropdown change trigger
     const gCombo = document.querySelector('.goog-te-combo');
     if (gCombo) {
       gCombo.value = code;
       gCombo.dispatchEvent(new Event('change'));
     } else {
-      // Reload karke Google Cookie apply karwana
       location.reload();
     }
   };
@@ -394,31 +435,37 @@
     }
   };
 
-  // 5. Existing drawer button ke sath bind karna
-  function bindToExistingButton() {
-    // Duplicate button hatao agar bana ho toh
-    const extra = document.getElementById('addonLangMenuRow');
-    if (extra) extra.remove();
+  // Har 400ms me duplicate buttons clean karega aur sirf lower wale button par trigger bind karega
+  function cleanAndBindSingleButton() {
+    // 1. Agar upar koi duplicate inject hua ho toh use force delete karein
+    document.querySelectorAll('#forceInjectedLangBtn, #addonLangMenuRow, #nativeDrawerLangBtn, #drawerLangRowBtn').forEach(el => el.remove());
 
-    document.querySelectorAll('button, a, div').forEach(el => {
+    // 2. Drawer ke andar Helpline ke neeche wale button ko live search se jodna
+    const allButtons = Array.from(document.querySelectorAll('button, a, div')).filter(el => {
       const txt = (el.innerText || el.textContent || '').trim();
-      if (txt.includes('Choose Language') && !el.closest('#addonLangSearchModal')) {
-        if (!el.dataset.liveSearchBound) {
-          el.dataset.liveSearchBound = 'true';
-          el.onclick = function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            window.openExistingLangModal();
-          };
-        }
-      }
+      return txt.includes('Choose Language') && !el.closest('#addonLangSearchModal');
     });
+
+    if (allButtons.length > 1) {
+      // Sirf aakhri (neeche wala) button rakho, baaki hatao
+      for (let i = 0; i < allButtons.length - 1; i++) {
+        const parentLi = allButtons[i].closest('li');
+        if (parentLi) parentLi.remove();
+        else allButtons[i].remove();
+      }
+    }
+
+    // Single target par click lagayein
+    const targetBtn = allButtons[allButtons.length - 1];
+    if (targetBtn && !targetBtn.dataset.singleBound) {
+      targetBtn.dataset.singleBound = 'true';
+      targetBtn.onclick = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.openExistingLangModal();
+      };
+    }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bindToExistingButton);
-  } else {
-    bindToExistingButton();
-  }
-  setInterval(bindToExistingButton, 500);
+  setInterval(cleanAndBindSingleButton, 400);
 })();
