@@ -1,9 +1,36 @@
 // =========================================================================
-// INCREDIBLE INDIA - WORKING THEME SWITCHER + HAMBURGER DRAWER + LIVE TRANSLATE
+// INCREDIBLE INDIA - HARD CACHE OVERRIDE & SINGLE DRAWER ENGINE
 // =========================================================================
 
 (function () {
-  // 1. Google Translate Core Engine Setup
+  // 1. Force Clean Old Topbars & PWA Service Workers
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      for (let reg of registrations) reg.unregister();
+    });
+  }
+
+  function purgeOldHeaderArtifacts() {
+    // Purana Currency, Theme button, 3-dots topbar jo image me dikh raha hai use physically delete karein
+    document.querySelectorAll('.topbar, .top-bar, #topbar, select[id*="curr"], div[class*="currency"]').forEach(el => {
+      el.remove();
+    });
+
+    document.querySelectorAll('button, div, span').forEach(el => {
+      if (el.closest('#unifiedDrawer') || el.id === 'appHamburgerBtn') return;
+      const t = (el.textContent || '').trim();
+      if (t === 'Theme' || t.includes('Theme') || t.includes('₹') || t.includes('INR')) {
+        const parent = el.closest('.topbar') || el.closest('header') || el;
+        if (parent && !parent.id.includes('unified')) {
+          el.style.setProperty('display', 'none', 'important');
+        }
+      }
+    });
+  }
+  purgeOldHeaderArtifacts();
+  setInterval(purgeOldHeaderArtifacts, 300);
+
+  // 2. Google Translate Core Engine Setup
   if (!document.getElementById('googleTranslateScriptTag')) {
     const s = document.createElement('script');
     s.id = 'googleTranslateScriptTag';
@@ -23,7 +50,7 @@
     };
   }
 
-  // 2. Multi-Language Registry (Indian + World Famous)
+  // 3. Multi-Language Registry (Indian + World Famous)
   const globalLangs = [
     { code: 'hi', name: 'Hindi', native: 'हिन्दी', region: 'India' },
     { code: 'en', name: 'English', native: 'English', region: 'Global' },
@@ -52,36 +79,7 @@
     { code: 'tr', name: 'Turkish', native: 'Türkçe', region: 'Turkey' }
   ];
 
-  // 3. Purane unwanted elements ko remove karein
-  function permanentlyNukeOldDrawer() {
-    document.querySelectorAll('div, aside, nav, section').forEach(el => {
-      if (el.id === 'unifiedDrawer' || el.id === 'unifiedDrawerOverlay' || el.id === 'dedicatedAppContainer' || el.id === 'addonLangSearchModal') return;
-      const txt = el.textContent || '';
-      if (
-        (txt.includes('All 36 States & UTs') || txt.includes('Live Interactive Map')) &&
-        (el.offsetHeight > 200 || window.getComputedStyle(el).position === 'fixed')
-      ) {
-        el.style.setProperty('display', 'none', 'important');
-        el.remove();
-      }
-    });
-  }
-  permanentlyNukeOldDrawer();
-
-  // Bahar ke fixed topbar ko screen se hide rakhein
-  if (!document.getElementById('killTopBarStyles')) {
-    const styleKiller = document.createElement('style');
-    styleKiller.id = 'killTopBarStyles';
-    styleKiller.innerHTML = `
-      .topbar, .top-bar, #topbar, select[id*="curr"], div[class*="currency"] {
-        display: none !important;
-        visibility: hidden !important;
-      }
-    `;
-    document.head.appendChild(styleKiller);
-  }
-
-  // Purana drawer recreate karein fresh elements ke sath
+  // 4. Drawer & Overlay DOM Inject
   const oldDrawer = document.getElementById('unifiedDrawer');
   if (oldDrawer) oldDrawer.remove();
   const oldOverlay = document.getElementById('unifiedDrawerOverlay');
@@ -102,7 +100,7 @@
         <button id="closeDrawerBtn" style="background:transparent; border:none; color:#94a3b8; font-size:1.5rem; cursor:pointer; line-height:1;">&times;</button>
       </div>
 
-      <!-- User Account Status -->
+      <!-- User Status -->
       <div id="drawerUserStatusBlock" style="margin-bottom:12px;">
         ${currentUser ? `
           <div style="background:rgba(255,84,18,0.12); border:1px solid rgba(255,84,18,0.3); padding:10px 12px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
@@ -135,7 +133,7 @@
         📞 Helpline: 1363 (24×7)
       </a>
 
-      <!-- Single Live Search Language Button (Helpline ke theek neeche) -->
+      <!-- EXACT SINGLE LANGUAGE BUTTON -->
       <button id="drawerLanguageOpenBtn" style="display:flex; justify-content:space-between; align-items:center; background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.25); padding:12px 14px; border-radius:8px; color:#38bdf8; font-weight:700; font-size:0.88rem; cursor:pointer; text-align:left; width:100%; margin-bottom:12px;">
         <span>🌐 Choose Language / भाषा</span>
         <span style="color:#38bdf8; font-size:0.85rem;">›</span>
@@ -143,7 +141,6 @@
 
       <!-- Navigation Pages -->
       <div style="display:flex; flex-direction:column; gap:10px;">
-        
         <button class="drawer-nav-trigger" data-page="quote" style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding:12px 14px; border-radius:8px; color:#cbd5e1; font-size:0.88rem; cursor:pointer; text-align:left; width:100%;">
           <span>📝 Plan Trip / Get Free Quote</span>
           <span style="color:#64748b; font-size:0.8rem;">›</span>
@@ -163,7 +160,6 @@
           <span>🛡️ Official State & UT Registry</span>
           <span style="color:#64748b; font-size:0.8rem;">›</span>
         </button>
-
       </div>
     </div>
   `;
@@ -176,7 +172,7 @@
 
   function openDrawer(e) {
     if (e) { e.preventDefault(); e.stopPropagation(); }
-    permanentlyNukeOldDrawer();
+    purgeOldHeaderArtifacts();
     drawer.style.left = '0px';
     overlay.style.display = 'block';
   }
@@ -189,67 +185,37 @@
 
   closeBtn.addEventListener('click', closeDrawer);
   overlay.addEventListener('click', closeDrawer);
-  drawer.addEventListener('click', e => e.stopPropagation());
 
-  // 4. Hamburger Button Injection
-  function ensureHamburger() {
-    let hamBtn = document.getElementById('appHamburgerBtn');
-    if (!hamBtn) {
-      hamBtn = document.createElement('button');
-      hamBtn.id = 'appHamburgerBtn';
-      hamBtn.innerHTML = '&#9776;';
-      hamBtn.setAttribute('aria-label', 'Menu');
-      document.body.appendChild(hamBtn);
-      hamBtn.addEventListener('click', openDrawer);
-    }
-
-    hamBtn.style.cssText = `
-      position: fixed !important;
-      top: 14px !important;
-      left: 14px !important;
-      width: 44px !important;
-      height: 44px !important;
-      background: #0f172a !important;
-      border: 1px solid rgba(255,255,255,0.2) !important;
-      border-radius: 10px !important;
-      color: #fff !important;
-      font-size: 1.4rem !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      cursor: pointer !important;
-      z-index: 2147483645 !important;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important;
-      line-height: 1 !important;
-    `;
+  // 5. Clean Single Hamburger Button On Top-Left
+  let hamBtn = document.getElementById('appHamburgerBtn');
+  if (!hamBtn) {
+    hamBtn = document.createElement('button');
+    hamBtn.id = 'appHamburgerBtn';
+    hamBtn.innerHTML = '&#9776;';
+    hamBtn.setAttribute('aria-label', 'Menu');
+    document.body.appendChild(hamBtn);
+    hamBtn.addEventListener('click', openDrawer);
   }
-  ensureHamburger();
+  hamBtn.style.cssText = `
+    position: fixed !important;
+    top: 14px !important;
+    left: 14px !important;
+    width: 44px !important;
+    height: 44px !important;
+    background: #0f172a !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    font-size: 1.4rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 2147483645 !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important;
+  `;
 
-  // 5. In-Drawer Theme Switcher
-  const themeSwitchBtn = document.getElementById('inDrawerThemeToggle');
-  themeSwitchBtn.addEventListener('click', function () {
-    const html = document.documentElement;
-    const currentTheme = html.getAttribute('data-theme') || (html.classList.contains('dark') ? 'dark' : 'light');
-    const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
-
-    html.setAttribute('data-theme', newTheme);
-    document.body.setAttribute('data-theme', newTheme);
-
-    if (newTheme === 'dark') {
-      html.classList.add('dark');
-      document.body.classList.add('dark');
-      document.getElementById('themeBadgeText').innerText = 'Dark Mode';
-    } else {
-      html.classList.remove('dark');
-      document.body.classList.remove('dark');
-      document.getElementById('themeBadgeText').innerText = 'Light Mode';
-    }
-
-    localStorage.setItem('theme', newTheme);
-    if (typeof window.toggleTheme === 'function') window.toggleTheme();
-  });
-
-  // 6. Language Search Modal & Direct Translate Handler
+  // 6. Language Search Modal & Direct Translation Engine
   let modalEl = document.getElementById('addonLangSearchModal');
   if (!modalEl) {
     modalEl = document.createElement('div');
@@ -339,15 +305,12 @@
 
   document.getElementById('drawerLanguageOpenBtn').addEventListener('click', openLanguageModalDirect);
 
-  // Dedicated Pages Navigation Trigger
+  // 7. Navigation Links Trigger
   document.querySelectorAll('.drawer-nav-trigger').forEach(btn => {
     btn.addEventListener('click', function () {
       const page = this.getAttribute('data-page');
       closeDrawer();
-      if (window.openAppPage) {
-        window.openAppPage(page);
-      }
+      if (window.openAppPage) window.openAppPage(page);
     });
   });
-
 })();
