@@ -1,11 +1,17 @@
 // =========================================================================
-// INCREDIBLE INDIA - WORKING THEME SWITCHER + HAMBURGER + TRANSLATE
+// INCREDIBLE INDIA - WORKING THEME SWITCHER + HAMBURGER + TRANSLATE + WEATHER PURGE
 // =========================================================================
 
 (function () {
-  // 1. Force Clean Old Header Artifacts
+  // 1. Force Clean Old Header Artifacts & Weather Section
   function purgeOldHeaderArtifacts() {
+    // Purana Currency, Theme button, aur topbar remove karein
     document.querySelectorAll('.topbar, .top-bar, #topbar, select[id*="curr"], div[class*="currency"]').forEach(el => {
+      el.remove();
+    });
+
+    // HOME PAGE SE WEATHER SECTION PHYSICALLY DELETE KAREIN
+    document.querySelectorAll('[id*="weather"], [class*="weather"], section.weather-section, div.weather-container, .weather-card, #indiaWeatherSection').forEach(el => {
       el.remove();
     });
 
@@ -61,6 +67,11 @@
       [data-theme="dark"] h2, body.dark h2,
       [data-theme="dark"] h3, body.dark h3 {
         color: #ffffff !important;
+      }
+      /* Weather Section CSS Backup Hide */
+      [id*="weather"], [class*="weather"], .weather-section {
+        display: none !important;
+        visibility: hidden !important;
       }
     `;
     document.head.appendChild(themeStyle);
@@ -273,7 +284,6 @@
     localStorage.setItem('theme', theme);
   }
 
-  // Load saved theme initially
   applyTheme(savedTheme);
 
   const themeSwitchBtn = document.getElementById('inDrawerThemeToggle');
@@ -282,7 +292,6 @@
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
     applyTheme(nextTheme);
 
-    // Call background website functions if present
     if (typeof window.toggleTheme === 'function') window.toggleTheme();
   });
 
