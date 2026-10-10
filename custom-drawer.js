@@ -1,17 +1,10 @@
 // =========================================================================
-// INCREDIBLE INDIA - HARD CACHE OVERRIDE & SINGLE DRAWER ENGINE
+// INCREDIBLE INDIA - WORKING THEME SWITCHER + HAMBURGER + TRANSLATE
 // =========================================================================
 
 (function () {
-  // 1. Force Clean Old Topbars & PWA Service Workers
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(registrations => {
-      for (let reg of registrations) reg.unregister();
-    });
-  }
-
+  // 1. Force Clean Old Header Artifacts
   function purgeOldHeaderArtifacts() {
-    // Purana Currency, Theme button, 3-dots topbar jo image me dikh raha hai use physically delete karein
     document.querySelectorAll('.topbar, .top-bar, #topbar, select[id*="curr"], div[class*="currency"]').forEach(el => {
       el.remove();
     });
@@ -28,9 +21,52 @@
     });
   }
   purgeOldHeaderArtifacts();
-  setInterval(purgeOldHeaderArtifacts, 300);
+  setInterval(purgeOldHeaderArtifacts, 400);
 
-  // 2. Google Translate Core Engine Setup
+  // 2. Global Dark Mode Styles Enforcer
+  if (!document.getElementById('forcedGlobalThemeStyles')) {
+    const themeStyle = document.createElement('style');
+    themeStyle.id = 'forcedGlobalThemeStyles';
+    themeStyle.innerHTML = `
+      [data-theme="dark"], body.dark, html.dark {
+        --bg-base: #070c16 !important;
+        --surface: #0e1726 !important;
+        --text-main: #f1f5f9 !important;
+        --text-muted: #94a3b8 !important;
+        --border-light: #1e293b !important;
+        background-color: #070c16 !important;
+        color: #f1f5f9 !important;
+      }
+      [data-theme="dark"] .site-header,
+      body.dark .site-header,
+      html.dark .site-header {
+        background: rgba(14, 23, 38, 0.95) !important;
+        border-bottom-color: #1e293b !important;
+      }
+      [data-theme="dark"] .destination-card-unit,
+      body.dark .destination-card-unit,
+      [data-theme="dark"] .state-card-tile,
+      body.dark .state-card-tile,
+      [data-theme="dark"] section#states,
+      body.dark section#states {
+        background: #0e1726 !important;
+        border-color: #1e293b !important;
+        color: #f1f5f9 !important;
+      }
+      [data-theme="dark"] .dest-card-heading,
+      body.dark .dest-card-heading,
+      [data-theme="dark"] .state-tile-meta h3,
+      body.dark .state-tile-meta h3,
+      [data-theme="dark"] h1, body.dark h1,
+      [data-theme="dark"] h2, body.dark h2,
+      [data-theme="dark"] h3, body.dark h3 {
+        color: #ffffff !important;
+      }
+    `;
+    document.head.appendChild(themeStyle);
+  }
+
+  // 3. Google Translate Engine Setup
   if (!document.getElementById('googleTranslateScriptTag')) {
     const s = document.createElement('script');
     s.id = 'googleTranslateScriptTag';
@@ -50,7 +86,7 @@
     };
   }
 
-  // 3. Multi-Language Registry (Indian + World Famous)
+  // 4. Languages List
   const globalLangs = [
     { code: 'hi', name: 'Hindi', native: 'हिन्दी', region: 'India' },
     { code: 'en', name: 'English', native: 'English', region: 'Global' },
@@ -79,20 +115,20 @@
     { code: 'tr', name: 'Turkish', native: 'Türkçe', region: 'Turkey' }
   ];
 
-  // 4. Drawer & Overlay DOM Inject
+  // 5. Drawer DOM
   const oldDrawer = document.getElementById('unifiedDrawer');
   if (oldDrawer) oldDrawer.remove();
   const oldOverlay = document.getElementById('unifiedDrawerOverlay');
   if (oldOverlay) oldOverlay.remove();
 
   const currentUser = JSON.parse(localStorage.getItem('incredible_user') || 'null');
+  const savedTheme = localStorage.getItem('theme') || 'light';
 
   const drawerHTML = `
     <div id="unifiedDrawerOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.75); z-index:2147483646; backdrop-filter:blur(3px);"></div>
     
     <div id="unifiedDrawer" style="position:fixed; top:0; left:-330px; width:310px; height:100vh; background:#0b1329; color:#fff; z-index:2147483647; box-shadow:4px 0 25px rgba(0,0,0,0.6); transition:left 0.25s ease; display:flex; flex-direction:column; box-sizing:border-box; overflow-y:auto; padding:20px 16px;">
       
-      <!-- Drawer Header -->
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08);">
         <h3 style="margin:0; font-size:1.15rem; font-weight:800; color:#FF5412; display:flex; align-items:center; gap:8px;">
           🇮🇳 Incredible India
@@ -100,7 +136,6 @@
         <button id="closeDrawerBtn" style="background:transparent; border:none; color:#94a3b8; font-size:1.5rem; cursor:pointer; line-height:1;">&times;</button>
       </div>
 
-      <!-- User Status -->
       <div id="drawerUserStatusBlock" style="margin-bottom:12px;">
         ${currentUser ? `
           <div style="background:rgba(255,84,18,0.12); border:1px solid rgba(255,84,18,0.3); padding:10px 12px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
@@ -125,7 +160,9 @@
       <!-- Live Theme Toggle Button -->
       <button id="inDrawerThemeToggle" style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; border:1px solid rgba(255,255,255,0.12); padding:10px 14px; border-radius:8px; color:#f1f5f9; font-size:0.85rem; font-weight:600; cursor:pointer; width:100%; margin-bottom:12px;">
         <span>🌓 Switch Theme</span>
-        <span id="themeBadgeText" style="font-size:0.75rem; background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:12px; color:#38bdf8;">Dark / Light</span>
+        <span id="themeBadgeText" style="font-size:0.75rem; background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:12px; color:#38bdf8;">
+          ${savedTheme === 'dark' ? 'Dark Mode' : 'Light Mode'}
+        </span>
       </button>
 
       <!-- Helpline -->
@@ -133,7 +170,7 @@
         📞 Helpline: 1363 (24×7)
       </a>
 
-      <!-- EXACT SINGLE LANGUAGE BUTTON -->
+      <!-- Single Language Button -->
       <button id="drawerLanguageOpenBtn" style="display:flex; justify-content:space-between; align-items:center; background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.25); padding:12px 14px; border-radius:8px; color:#38bdf8; font-weight:700; font-size:0.88rem; cursor:pointer; text-align:left; width:100%; margin-bottom:12px;">
         <span>🌐 Choose Language / भाषा</span>
         <span style="color:#38bdf8; font-size:0.85rem;">›</span>
@@ -186,7 +223,7 @@
   closeBtn.addEventListener('click', closeDrawer);
   overlay.addEventListener('click', closeDrawer);
 
-  // 5. Clean Single Hamburger Button On Top-Left
+  // 6. Hamburger Button
   let hamBtn = document.getElementById('appHamburgerBtn');
   if (!hamBtn) {
     hamBtn = document.createElement('button');
@@ -215,7 +252,41 @@
     box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important;
   `;
 
-  // 6. Language Search Modal & Direct Translation Engine
+  // 7. REAL WORKING THEME TOGGLE LOGIC
+  function applyTheme(theme) {
+    const html = document.documentElement;
+    const body = document.body;
+
+    if (theme === 'dark') {
+      html.setAttribute('data-theme', 'dark');
+      body.setAttribute('data-theme', 'dark');
+      html.classList.add('dark');
+      body.classList.add('dark');
+      document.getElementById('themeBadgeText').innerText = 'Dark Mode';
+    } else {
+      html.setAttribute('data-theme', 'light');
+      body.setAttribute('data-theme', 'light');
+      html.classList.remove('dark');
+      body.classList.remove('dark');
+      document.getElementById('themeBadgeText').innerText = 'Light Mode';
+    }
+    localStorage.setItem('theme', theme);
+  }
+
+  // Load saved theme initially
+  applyTheme(savedTheme);
+
+  const themeSwitchBtn = document.getElementById('inDrawerThemeToggle');
+  themeSwitchBtn.addEventListener('click', function () {
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(nextTheme);
+
+    // Call background website functions if present
+    if (typeof window.toggleTheme === 'function') window.toggleTheme();
+  });
+
+  // 8. Language Search Modal
   let modalEl = document.getElementById('addonLangSearchModal');
   if (!modalEl) {
     modalEl = document.createElement('div');
@@ -305,7 +376,7 @@
 
   document.getElementById('drawerLanguageOpenBtn').addEventListener('click', openLanguageModalDirect);
 
-  // 7. Navigation Links Trigger
+  // 9. Dedicated Pages Navigation Trigger
   document.querySelectorAll('.drawer-nav-trigger').forEach(btn => {
     btn.addEventListener('click', function () {
       const page = this.getAttribute('data-page');
