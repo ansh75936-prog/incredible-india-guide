@@ -1,182 +1,204 @@
 // =========================================================================
-// IN-PAGE STATE EXPANDER ENGINE (With Ambient Hero Video Support)
+// INCREDIBLE INDIA - DEDICATED STATE PORTAL VIEWER
+// Displays full dedicated State view with District Slider
 // =========================================================================
 
-function openStateDetail(stateId, triggerElement) {
+function openStateDetail(stateId) {
   let data = null;
 
-  if (stateId === 'rajasthan' && typeof rajasthanGuideData !== 'undefined') {
-    data = rajasthanGuideData;
-  } else if (stateId === 'himachal' && typeof himachalGuideData !== 'undefined') {
+  if (stateId === 'himachal' && typeof himachalGuideData !== 'undefined') {
     data = himachalGuideData;
+  } else if (stateId === 'rajasthan' && typeof rajasthanGuideData !== 'undefined') {
+    data = rajasthanGuideData;
   }
 
   if (!data) {
-    alert("Guide data is loading. Please try again in a moment.");
+    alert("Guide data is loading. Please try again.");
     return;
   }
 
-  // Toggle Check: Pehle se khula hai toh band kar do
-  const existingContainer = document.getElementById('inPageStateDetailContainer');
-  if (existingContainer && existingContainer.getAttribute('data-active-state') === stateId) {
-    existingContainer.remove();
-    return;
+  // Check ya create state view screen
+  let viewContainer = document.getElementById('dedicatedStatePortalView');
+  if (!viewContainer) {
+    viewContainer = document.createElement('div');
+    viewContainer.id = 'dedicatedStatePortalView';
+    viewContainer.style.cssText = `
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #070c16;
+      z-index: 999999;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      color: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    `;
+    document.body.appendChild(viewContainer);
   }
-  if (existingContainer) existingContainer.remove();
 
-  // Target: Jis card par tap kiya uske theek neeche lagana
-  let target = triggerElement ? triggerElement.closest('.state-card-tile, .state-card, .destination-card-unit, section') : null;
-  if (!target) {
-    document.querySelectorAll('button, div, section').forEach(el => {
-      if (!target && (el.innerText || '').includes('Himachal Pradesh')) {
-        target = el.closest('.state-card-tile, .state-card, section') || el;
-      }
-    });
-  }
-
-  const inlineBox = document.createElement('div');
-  inlineBox.id = 'inPageStateDetailContainer';
-  inlineBox.setAttribute('data-active-state', stateId);
-  inlineBox.style.cssText = `
-    width: 100%;
-    grid-column: 1 / -1;
-    background: #0b1329;
-    border: 1px solid rgba(255, 84, 18, 0.35);
-    border-radius: 16px;
-    margin: 18px 0;
-    overflow: hidden;
-    box-sizing: border-box;
-    color: #f1f5f9;
-    box-shadow: 0 14px 40px rgba(0,0,0,0.6);
-  `;
-
-  inlineBox.innerHTML = `
-    <!-- Top Action Bar -->
-    <div style="background: rgba(11, 19, 41, 0.95); padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08);">
-      <span style="font-size: 0.8rem; font-weight: 800; color: #FF5412; text-transform: uppercase; letter-spacing: 1px;">Official Guide Overview</span>
-      <button onclick="document.getElementById('inPageStateDetailContainer').remove()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #f87171; font-weight: bold; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;">
-        ✕ Close
+  // Render State View
+  viewContainer.innerHTML = `
+    <!-- Top Sticky Navigation Bar -->
+    <header style="position: sticky; top: 0; background: rgba(7, 12, 22, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 100;">
+      <button onclick="closeStatePortal()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #38bdf8; font-weight: 700; font-size: 0.9rem; padding: 7px 16px; border-radius: 50px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+        &larr; Back to Home
       </button>
-    </div>
+      <span style="font-size: 0.85rem; font-weight: 800; color: #FF5412; letter-spacing: 1px; text-transform: uppercase;">
+        State Tourism Portal
+      </span>
+    </header>
 
-    <!-- Hero Section (Video / Poster Engine) -->
-    <div style="position: relative; width: 100%; height: 260px; overflow: hidden; background: #000;">
+    <!-- State Hero Banner with Video -->
+    <div style="position: relative; width: 100%; height: 380px; overflow: hidden; background: #000;">
       ${data.heroVideo ? `
-        <video 
-          autoplay 
-          muted 
-          loop 
-          playsinline 
-          poster="${data.heroPoster || ''}"
-          style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); opacity: 0.75;">
+        <video autoplay muted loop playsinline poster="${data.heroPoster || ''}" style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); opacity: 0.75;">
           <source src="${data.heroVideo}" type="video/mp4">
         </video>
       ` : `
-        <div style="position: absolute; inset: 0; background: url('${data.heroImage}') center/cover no-repeat; opacity: 0.7;"></div>
+        <div style="position: absolute; inset: 0; background: url('${data.heroPoster || data.heroImage}') center/cover no-repeat; opacity: 0.75;"></div>
       `}
-
-      <!-- Gradient Overlay & Titles -->
-      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,19,41,0.2) 0%, rgba(11,19,41,0.95) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;">
-        <span style="color: #38bdf8; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px;">Explore Bharat</span>
-        <h2 style="margin: 2px 0 4px 0; font-size: 1.8rem; color: #fff; font-family: 'Playfair Display', serif; font-weight: 800;">${data.name}</h2>
-        <p style="color: #cbd5e1; font-size: 0.88rem; margin: 0;">${data.tagline}</p>
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,12,22,0.1) 0%, rgba(7,12,22,0.95) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 20px; max-width: 1200px; margin: 0 auto;">
+        <span style="color: #38bdf8; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Welcome to</span>
+        <h1 style="margin: 4px 0 6px 0; font-size: clamp(2.2rem, 5vw, 3.6rem); color: #fff; font-family: 'Playfair Display', serif; font-weight: 800; line-height: 1.1;">
+          ${data.name}
+        </h1>
+        <p style="color: #cbd5e1; font-size: clamp(0.95rem, 2vw, 1.15rem); margin: 0; max-width: 700px;">
+          ${data.tagline}
+        </p>
       </div>
     </div>
 
-    <!-- Content Body -->
-    <div style="padding: 20px 18px;">
+    <!-- Main Container -->
+    <main style="max-width: 1200px; margin: 0 auto; padding: 24px 20px 60px 20px;">
       
-      <!-- Quick Stats -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-bottom: 22px;">
-        <div style="background: rgba(255,255,255,0.04); padding: 10px; border-radius: 10px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 0.7rem; color: #94a3b8; display: block;">CAPITAL</span>
-          <b style="font-size: 0.82rem; color: #fff;">${data.capital}</b>
+      <!-- Key Statistics Strip -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 36px;">
+        <div style="background: #0f172a; padding: 14px; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+          <small style="color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; font-weight: 700;">Capital</small>
+          <strong style="display: block; font-size: 0.95rem; color: #fff; margin-top: 4px;">${data.capital}</strong>
         </div>
-        <div style="background: rgba(255,255,255,0.04); padding: 10px; border-radius: 10px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 0.7rem; color: #94a3b8; display: block;">BEST SEASON</span>
-          <b style="font-size: 0.82rem; color: #FF5412;">${data.bestSeason}</b>
+        <div style="background: #0f172a; padding: 14px; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+          <small style="color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; font-weight: 700;">Best Season</small>
+          <strong style="display: block; font-size: 0.95rem; color: #FF5412; margin-top: 4px;">${data.bestSeason}</strong>
         </div>
-        <div style="background: rgba(255,255,255,0.04); padding: 10px; border-radius: 10px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 0.7rem; color: #94a3b8; display: block;">IDEAL DURATION</span>
-          <b style="font-size: 0.82rem; color: #38bdf8;">${data.idealDuration}</b>
+        <div style="background: #0f172a; padding: 14px; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+          <small style="color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; font-weight: 700;">Ideal Duration</small>
+          <strong style="display: block; font-size: 0.95rem; color: #38bdf8; margin-top: 4px;">${data.idealDuration}</strong>
         </div>
-        <div style="background: rgba(255,255,255,0.04); padding: 10px; border-radius: 10px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 0.7rem; color: #94a3b8; display: block;">DISTRICTS</span>
-          <b style="font-size: 0.82rem; color: #fff;">${data.districtsCount}</b>
+        <div style="background: #0f172a; padding: 14px; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+          <small style="color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; font-weight: 700;">Total Districts</small>
+          <strong style="display: block; font-size: 0.95rem; color: #fff; margin-top: 4px;">${data.districtsCount} Districts</strong>
         </div>
       </div>
 
       <!-- About Section -->
-      <div style="margin-bottom: 22px;">
-        <h3 style="font-size: 1.1rem; color: #fff; border-left: 3px solid #FF5412; padding-left: 8px; margin-bottom: 8px;">About ${data.name}</h3>
-        <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; margin: 0;">${data.overview}</p>
-      </div>
+      <section style="margin-bottom: 38px;">
+        <h2 style="font-size: 1.4rem; color: #fff; border-left: 4px solid #FF5412; padding-left: 10px; margin-bottom: 12px; font-family: 'Playfair Display', serif;">
+          About the State
+        </h2>
+        <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; margin: 0;">
+          ${data.overview}
+        </p>
+      </section>
 
-      <!-- Key Destinations -->
-      <div style="margin-bottom: 22px;">
-        <h3 style="font-size: 1.1rem; color: #fff; border-left: 3px solid #FF5412; padding-left: 8px; margin-bottom: 12px;">Key Destinations & Hubs</h3>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-          ${data.topDestinations.map(d => `
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); padding: 12px 14px; border-radius: 10px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                <b style="font-size: 1rem; color: #fff;">${d.name}</b>
-                <span style="color: #38bdf8; font-size: 0.78rem;">${d.alias}</span>
+      <!-- DISTRICTS SLIDER SECTION -->
+      ${data.districts && data.districts.length > 0 ? `
+        <section style="margin-bottom: 45px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 14px;">
+            <div>
+              <span style="color: #FF5412; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Districts Directory</span>
+              <h2 style="font-size: 1.4rem; color: #fff; margin: 2px 0 0; font-family: 'Playfair Display', serif;">
+                Explore All ${data.districts.length} Districts
+              </h2>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button onclick="document.getElementById('stateDistTrack').scrollBy({left: -320, behavior: 'smooth'})" style="background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">&#8249;</button>
+              <button onclick="document.getElementById('stateDistTrack').scrollBy({left: 320, behavior: 'smooth'})" style="background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">&#8250;</button>
+            </div>
+          </div>
+
+          <!-- Slide Track -->
+          <div id="stateDistTrack" style="display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 2px 14px 2px; -webkit-overflow-scrolling: touch; scrollbar-width: thin;">
+            ${data.districts.map(dist => `
+              <div style="flex: 0 0 290px; scroll-snap-align: start; background: #0f172a; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
+                <div style="height: 160px; width: 100%; position: relative; background: #000;">
+                  <img src="${dist.image}" alt="${dist.name}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+                  <span style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); color: #38bdf8; font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 30px;">
+                    ${dist.vibe}
+                  </span>
+                </div>
+                <div style="padding: 16px; display: flex; flex-direction: column; flex: 1;">
+                  <h3 style="margin: 0 0 2px 0; font-size: 1.18rem; color: #fff;">${dist.name}</h3>
+                  <small style="color: #FF5412; font-size: 0.78rem; font-weight: 700; margin-bottom: 8px;">${dist.tag}</small>
+                  <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.5; margin: 0; flex: 1;">
+                    <strong style="color: #cbd5e1;">Top Spots:</strong> ${dist.attractions}
+                  </p>
+                </div>
               </div>
-              <div style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 6px;"><strong>Highlights:</strong> ${d.highlights}</div>
-              <span style="background: rgba(255,84,18,0.15); color: #FF5412; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;">Best for: ${d.bestFor}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
+            `).join('')}
+          </div>
+        </section>
+      ` : ''}
 
-      <!-- Travel Route Itinerary -->
-      <div style="margin-bottom: 22px;">
-        <h3 style="font-size: 1.1rem; color: #fff; border-left: 3px solid #FF5412; padding-left: 8px; margin-bottom: 12px;">Suggested Travel Route</h3>
-        <div style="display: flex; flex-direction: column; gap: 8px;">
+      <!-- Suggested Route Itinerary -->
+      <section style="margin-bottom: 38px;">
+        <h2 style="font-size: 1.4rem; color: #fff; border-left: 4px solid #FF5412; padding-left: 10px; margin-bottom: 16px; font-family: 'Playfair Display', serif;">
+          Curated Travel Route
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
           ${data.itinerary.map(it => `
-            <div style="background: rgba(255,255,255,0.02); border-left: 3px solid #38bdf8; padding: 10px 14px; border-radius: 0 8px 8px 0;">
-              <span style="color: #38bdf8; font-size: 0.75rem; font-weight: 800;">${it.day}</span>
-              <div style="color: #fff; font-weight: 600; font-size: 0.9rem; margin: 2px 0;">${it.title}</div>
-              <div style="color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">${it.desc}</div>
+            <div style="background: #0f172a; border-left: 3px solid #38bdf8; padding: 14px 18px; border-radius: 0 12px 12px 0; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04);">
+              <span style="color: #38bdf8; font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">${it.day}</span>
+              <h3 style="color: #fff; font-weight: 700; font-size: 1.05rem; margin: 3px 0 6px;">${it.title}</h3>
+              <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.5; margin: 0;">${it.desc}</p>
             </div>
           `).join('')}
         </div>
-      </div>
+      </section>
 
-      <!-- Taste of the State -->
-      <div style="margin-bottom: 22px;">
-        <h3 style="font-size: 1.1rem; color: #fff; border-left: 3px solid #FF5412; padding-left: 8px; margin-bottom: 12px;">Culinary Heritage (Taste of the State)</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+      <!-- Culinary Heritage -->
+      <section style="margin-bottom: 38px;">
+        <h2 style="font-size: 1.4rem; color: #fff; border-left: 4px solid #FF5412; padding-left: 10px; margin-bottom: 16px; font-family: 'Playfair Display', serif;">
+          Taste of ${data.name}
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
           ${data.cuisine.map(c => `
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 10px; border-radius: 8px;">
-              <b style="color: #fbbf24; font-size: 0.88rem; display: block; margin-bottom: 2px;">🍛 ${c.item}</b>
-              <span style="color: #cbd5e1; font-size: 0.8rem; line-height: 1.3; display: block;">${c.desc}</span>
+            <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px;">
+              <b style="color: #fbbf24; font-size: 0.95rem; display: block; margin-bottom: 4px;">🍛 ${c.item}</b>
+              <span style="color: #cbd5e1; font-size: 0.84rem; line-height: 1.4; display: block;">${c.desc}</span>
             </div>
           `).join('')}
         </div>
-      </div>
+      </section>
 
-      <!-- Connectivity & Helpline -->
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 14px; border-radius: 10px; font-size: 0.83rem;">
-        <h4 style="margin: 0 0 8px 0; color: #fff; font-size: 0.95rem;">✈️ Connectivity & Official Contacts</h4>
-        <div style="color: #cbd5e1; margin-bottom: 4px;"><strong>Airports:</strong> ${data.connectivity.airports}</div>
-        <div style="color: #cbd5e1; margin-bottom: 4px;"><strong>Rail Access:</strong> ${data.connectivity.railway}</div>
-        <div style="color: #cbd5e1; margin-bottom: 10px;"><strong>Key Highways:</strong> ${data.connectivity.highways}</div>
-        <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 8px; color: #94a3b8;">
-          <span>📞 Tourist Helpline: ${data.helplines.touristAssistance}</span> | 
-          <span>🏛️ State Tourism: ${data.helplines.stateTourism}</span>
+      <!-- Connectivity & Emergency -->
+      <section style="background: #0f172a; border: 1px solid rgba(255,255,255,0.08); padding: 20px; border-radius: 14px;">
+        <h3 style="margin: 0 0 10px; color: #fff; font-size: 1.1rem;">✈️ Connectivity & Official Contacts</h3>
+        <p style="color: #cbd5e1; font-size: 0.88rem; margin-bottom: 6px;"><strong>Airports:</strong> ${data.connectivity.airports}</p>
+        <p style="color: #cbd5e1; font-size: 0.88rem; margin-bottom: 6px;"><strong>Rail Access:</strong> ${data.connectivity.railway}</p>
+        <p style="color: #cbd5e1; font-size: 0.88rem; margin-bottom: 14px;"><strong>Highways:</strong> ${data.connectivity.highways}</p>
+        <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; color: #94a3b8; font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 16px;">
+          <span>📞 Tourist Helpline: <strong>${data.helplines.touristAssistance}</strong></span>
+          <span>🏛️ State Tourism: <strong>${data.helplines.stateTourism}</strong></span>
         </div>
-      </div>
+      </section>
 
-    </div>
+    </main>
   `;
 
-  if (target && target.parentNode) {
-    target.parentNode.insertBefore(inlineBox, target.nextSibling);
-    inlineBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  } else {
-    document.body.appendChild(inlineBox);
+  viewContainer.style.display = 'block';
+  viewContainer.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeStatePortal() {
+  const viewContainer = document.getElementById('dedicatedStatePortalView');
+  if (viewContainer) {
+    viewContainer.style.display = 'none';
   }
+  document.body.style.overflow = 'auto';
 }
 
 window.openStateDetail = openStateDetail;
+window.closeStatePortal = closeStatePortal;
