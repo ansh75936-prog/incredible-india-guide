@@ -941,7 +941,7 @@
 
             <div class="vault-grid-layout" id="statesVaultContainer">
                 <!-- NORTH (6) -->
-                <button class="state-card-tile" data-region="north" data-state="Himachal Pradesh">
+                <button class="state-card-tile" data-region="north" data-state="Himachal Pradesh" onclick="openStateDetail('himachal', this)">
                     <div class="state-tile-icon" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 512 512"><path d="M256 32L32 448h448L256 32z"/></svg></div>
                     <div class="state-tile-meta"><h3>Himachal Pradesh</h3><span>Shimla • Manali • Spiti</span></div>
                 </button>
@@ -1138,7 +1138,7 @@
                         <p class="dest-card-desc">Solang Valley skiing, Atal Tunnel, Beas river rafting aur sukoon bhare pahaad.</p>
                         <div class="dest-card-foot">
                             <div class="dest-season-box">Best: <strong>Year Round</strong></div>
-                            <button class="btn-inspect-guide">Guide Dekhein &rarr;</button>
+                            <button class="btn-inspect-guide" onclick="openStateDetail('himachal', this)">Guide Dekhein &rarr;</button>
                         </div>
                     </div>
                 </article>
@@ -1284,4 +1284,4 @@
     <script src="state-viewer.js?v=1.0"></script>
 
 </body>
-                            </html>
+                        </html>
