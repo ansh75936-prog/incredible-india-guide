@@ -11,175 +11,175 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Agra Petha (Angoori & Kesar)", "Bedai & Jalebi", "Mughlai Kebab"],
     hotelAreas: ["Fatehabad Road", "Taj East Gate Road", "Sadar Bazaar"],
     hospitals: ["S.N. Medical College & Hospital", "Pushpanjali Hospital", "District Hospital Agra"],
-    quickTip: "Taj Mahal sunrise ke waqt visit karein bheed se bachne ke liye."
+    quickTip: "Visit the Taj Mahal at sunrise to avoid the crowds."
   },
   "Aligarh": {
     attractions: ["Aligarh Fort", "Sir Syed Hall AMU", "Khereshwar Temple"],
     famousFood: ["Aligarh Barula with Spicy Chutney", "Chhole Bhature", "Rabri Ghewar"],
     hotelAreas: ["GT Road", "Ramghat Road", "Marris Road"],
     hospitals: ["Jawaharlal Nehru Medical College (AMU)", "Malkhan Singh District Hospital"],
-    quickTip: "Barula street food Aligarh ka signature snack hai, zaroor try karein."
+    quickTip: "Barula is Aligarh's signature street snack — be sure to try it."
   },
   "Ambedkar Nagar": {
     attractions: ["Kichhauchha Sharif Dargah", "Shravan Kshetra Dham", "Shiv Baba Mandir"],
     famousFood: ["Desi Ghee ki Tikki", "Samosa Chaat", "Tanda Malpua"],
     hotelAreas: ["Akbarpur Station Road", "Tanda Road Circle"],
     hospitals: ["Mahamaya Rajkiya Allopathic Medical College", "District Combined Hospital Akbarpur"],
-    quickTip: "Shravan Kshetra mein Shravan Kumar se juda aitihasik sarovar sthit hai."
+    quickTip: "Shravan Kshetra is home to a historic lake associated with Shravan Kumar."
   },
   "Amethi": {
     attractions: ["Nandmahar Dham", "Ulta Ratha Mandir", "Bijli Pasi Fort"],
     famousFood: ["Gulgule", "Besan Ladoo", "Desi Poori Sabzi"],
     hotelAreas: ["Gauriganj Main Market", "Amethi Station Road"],
     hospitals: ["District Hospital Gauriganj", "Sanjay Gandhi Hospital Munshiganj"],
-    quickTip: "Gauriganj administrative headquarters hai jahan basic stays uplabdh hain."
+    quickTip: "Gauriganj, the administrative headquarters, offers basic places to stay."
   },
   "Amroha": {
     attractions: ["Vasudev Temple", "Tigri Dham Ganga Ghat", "Dargah Hazrat Shah Wilayat"],
     famousFood: ["Amroha Dholak Craft", "Mango Varieties", "Halwa Sohan"],
     hotelAreas: ["Station Road", "Joya Road"],
     hospitals: ["District Hospital Amroha", "Chaudhary Nihal Singh Hospital"],
-    quickTip: "Kartik Purnima par Tigri Mela UP ke bade snan melon mein shamil hai."
+    quickTip: "The Tigri Mela, held on Kartik Purnima, ranks among Uttar Pradesh's largest bathing fairs."
   },
   "Auraiya": {
     attractions: ["Devkali Temple", "Bhadreshwar Temple", "Yamuna Ghat Auraiya"],
     famousFood: ["Auraiya Pure Desi Ghee Peda", "Samosa", "Chhena Kheer"],
     hotelAreas: ["Dibiyapur Road", "NH-19 Highway Circle"],
     hospitals: ["100 Bedded District Hospital Chicholi", "Combined Health Centre Auraiya"],
-    quickTip: "Auraiya pure Desi Ghee aur usse bani mithaiyon ke liye prasiddh hai."
+    quickTip: "Auraiya is renowned for its pure desi ghee and the sweets made from it."
   },
   "Ayodhya": {
     attractions: ["Ram Mandir Ayodhya", "Hanuman Garhi Ayodhya", "Kanak Bhawan", "Saryu River Ghat"],
     famousFood: ["Ayodhya Rabri & Peda", "Hanuman Garhi Besan Ladoo", "Saryu Chaat"],
     hotelAreas: ["Ram Path Road", "Naya Ghat Circuit", "Civil Lines"],
     hospitals: ["Rajarshi Dashrath Autonomous Medical College", "District Hospital Ayodhya"],
-    quickTip: "Ram Mandir darshan ke baad shaam ko Saryu riverfront aarti attend karein."
+    quickTip: "After darshan at Ram Mandir, attend the evening aarti on the Saryu riverfront."
   },
   "Azamgarh": {
     attractions: ["Durvasa Rishi Ashram", "Mehnagar Fort", "Dattatreya Ashram"],
     famousFood: ["Nizamabad Black Pottery Craft", "Litti Chokha", "Jalebi"],
     hotelAreas: ["Civil Lines", "Chowk Area"],
     hospitals: ["Government Medical College Chakrapanpur", "District Hospital Azamgarh"],
-    quickTip: "Nizamabad ki Black Pottery GI tagged handicraft hai."
+    quickTip: "Nizamabad's Black Pottery is a GI-tagged handicraft."
   },
   "Baghpat": {
     attractions: ["Trilok Teerth Dham", "Pura Mahadev Temple", "Barnawa Lakshagriha"],
     famousFood: ["Ghewar", "Ganne Ka Taaza Ras", "Tandoori Paratha"],
     hotelAreas: ["Delhi-Saharanpur Highway", "Baraut Town"],
     hospitals: ["District Hospital Baghpat", "Astha Hospital Baraut"],
-    quickTip: "Pura Mahadev mandir par Shivratri ke dauran lakhon kavad yatri aate hain."
+    quickTip: "The Pura Mahadev temple draws countless Kanwar pilgrims during Shivratri."
   },
   "Bahraich": {
     attractions: ["Katarniaghat Wildlife Sanctuary", "Dargah Syed Salar Masood", "Chittaura Jheel"],
     famousFood: ["Bahraich Ladoo", "Shahi Tukda", "Kebab Paratha"],
     hotelAreas: ["Station Road", "Digiha Crossing"],
     hospitals: ["Maharshi Balark Medical College", "District Male Hospital"],
-    quickTip: "Katarniaghat jungle safari Dudhwa tiger reserve ecosystem ka hissa hai."
+    quickTip: "The Katarniaghat jungle safari is part of the Dudhwa tiger reserve ecosystem."
   },
   "Ballia": {
     attractions: ["Bhrigu Temple Ballia", "Surha Taal Bird Sanctuary", "Dardari Mela"],
     famousFood: ["Litti Chokha with Desi Ghee", "Sattu Sharbat", "Khaja"],
     hotelAreas: ["Station Road", "Civil Lines Ballia"],
     hospitals: ["District Hospital Ballia", "Mata Ram Shanti Hospital"],
-    quickTip: "Maharshi Bhrigu ka mandir aur Dardari mela yahan ke mukhya aakarshan hain."
+    quickTip: "The temple of Maharshi Bhrigu and the Dardari fair are the main attractions here."
   },
   "Balrampur": {
     attractions: ["Devipatan Shaktipeeth", "Suhaildev Wildlife Sanctuary", "Bijlipur Temple"],
     famousFood: ["Tharu Tribal Food", "Desi Ghee Puri & Sabzi", "Balrampur Peda"],
     hotelAreas: ["Tulsipur Road", "Station Circle"],
     hospitals: ["Memorial Hospital Balrampur", "District Women Hospital"],
-    quickTip: "Devipatan 51 Shaktipeethon mein se ek hai jo Tulsipur ke paas sthit hai."
+    quickTip: "Devipatan is one of the 51 Shaktipeethas, located near Tulsipur."
   },
   "Banda": {
     attractions: ["Kalinjar Fort", "Bamdev Temple", "Khatri Pahar Mandir"],
     famousFood: ["Bundelkhandi Thali", "Laphra Roti", "Mawa Gujiya"],
     hotelAreas: ["Civil Lines", "Station Road Banda"],
     hospitals: ["Government Medical College Banda", "District Hospital Banda"],
-    quickTip: "Kalinjar Fort pahadi par sthit aitihasik killa hai, subah jana behtar hai."
+    quickTip: "Kalinjar Fort is a historic hilltop citadel — mornings are the best time to visit."
   },
   "Barabanki": {
     attractions: ["Dewa Sharif", "Parijaat Tree Kintoor", "Lodheshwar Mahadev Mandir"],
     famousFood: ["Dewa Mela Kebabs", "Biryani", "Rewari & Gajak"],
     hotelAreas: ["Faizabad Road NH-28", "Dewa Road"],
     hospitals: ["District Hospital Barabanki", "Mayo Institute of Medical Sciences"],
-    quickTip: "Kintoor ka Parijaat vriksha Mahabharat kaal se juda durlabh vriksha hai."
+    quickTip: "The Parijaat tree at Kintoor is a rare tree linked to the era of the Mahabharata."
   },
   "Bareilly": {
     attractions: ["Alakhnath Temple Bareilly", "Dargah Aala Hazrat", "Phoenix United Mall Bareilly"],
     famousFood: ["Seekh Kebab", "Bareilly ki Khasta Kachori", "Paneer Jalebi"],
     hotelAreas: ["Civil Lines", "Station Road", "Pilibhit Bypass"],
     hospitals: ["Rohilkhand Medical College", "District Hospital Bareilly"],
-    quickTip: "Zari Zardozi work aur Surma ki shopping ke liye Bareilly ka Bara Bazaar best hai."
+    quickTip: "Bara Bazaar in Bareilly is the best place to shop for zari zardozi work and surma."
   },
   "Basti": {
     attractions: ["Makhauda Dham", "Bhadreshwar Nath Mandir", "Chando Tal"],
     famousFood: ["Basti Peda", "Samosa Sabzi", "Khichdi with Chooran"],
     hotelAreas: ["Company Bagh", "Malviya Road"],
     hospitals: ["Maharshi Vashishtha Medical College", "District Hospital Basti"],
-    quickTip: "Makhauda Dham wahi sthan hai jahan Putrakameshti Yagya hua tha."
+    quickTip: "Makhauda Dham is the site where the Putrakameshti yagya was performed."
   },
   "Bhadohi": {
     attractions: ["Sita Samahit Sthal Sitamarhi", "Semradh Nath Mandir", "Baba Harihar Nath"],
     famousFood: ["Handmade Carpet Craft", "Baati Chokha", "Chhena Toast"],
     hotelAreas: ["Gyanpur Road", "Station Area Bhadohi"],
     hospitals: ["Maharaja Chet Singh District Hospital", "Jeevan Deep Hospital"],
-    quickTip: "Bhadohi carpet city of India hai jahan world class hand-woven kaleen bante hain."
+    quickTip: "Bhadohi is India's carpet city, producing world-class hand-woven carpets."
   },
   "Bijnor": {
     attractions: ["Kanva Ashram Bijnor", "Vidur Kuti Daranagar", "Najibudaulah Fort"],
     famousFood: ["Sugarcane Jaggery", "Pista Burfi", "Bedmi Puri"],
     hotelAreas: ["Civil Lines Bijnor", "Najibabad Circle"],
     hospitals: ["District Hospital Bijnor", "Neelkanth Hospital"],
-    quickTip: "Kanva Ashram Emperor Bharat ki janam-sthali ke roop mein jaana jata hai."
+    quickTip: "Kanva Ashram is known as the birthplace of Emperor Bharat."
   },
   "Budaun": {
     attractions: ["Jama Masjid Shamsi", "Dargah Hazrat Bade Sarkar", "Birua Badi Temple"],
     famousFood: ["Budaun Ka Mashhoor Peda", "Sheermal", "Nihari"],
     hotelAreas: ["Civil Lines Budaun", "Indira Chowk"],
     hospitals: ["Government Medical College Budaun", "District Hospital Budaun"],
-    quickTip: "Budaun ke pure khoya peda poore Bharat mein famous hain."
+    quickTip: "Budaun's pure khoya pedas are famous across India."
   },
   "Bulandshahr": {
     attractions: ["Khurja Pottery", "Anoopshahr Ganga Ghat", "Karnavas"],
     famousFood: ["Khurja ki Khurchan", "Tandoori Kulche", "Chhole Puri"],
     hotelAreas: ["Delhi Road", "Khurja Bypass", "Civil Lines"],
     hospitals: ["District Hospital Bulandshahr", "Kailash Hospital Khurja"],
-    quickTip: "Khurja se hand-painted pottery aur ceramic items wholesale rates par milte hain."
+    quickTip: "Hand-painted pottery and ceramic items from Khurja are available at wholesale rates."
   },
   "Chandauli": {
     attractions: ["Rajdari Falls", "Deodari Falls", "Chandraprabha Wildlife Sanctuary"],
     famousFood: ["Baati Chokha", "Chhena Toast", "Gupchup"],
     hotelAreas: ["Pt Deen Dayal Upadhyay Nagar (Mughalsarai) Junction Area"],
     hospitals: ["District Hospital Chandauli", "Railway Divisional Hospital"],
-    quickTip: "Rajdari waterfall monsoon ke mausam mein picnic ke liye best spot hai."
+    quickTip: "Rajdari waterfall is the perfect picnic spot during the monsoon season."
   },
   "Chitrakoot": {
     attractions: ["Ramghat Mandakini Chitrakoot", "Kamadgiri Chitrakoot", "Gupt Godavari", "Hanuman Dhara Chitrakoot"],
     famousFood: ["Chitrakoot Peda", "Mandakini Chaat", "Mahua Ladoo"],
     hotelAreas: ["Ramghat Circle", "Sitapur Road", "Karwi"],
     hospitals: ["Jankikund Chikitsalaya", "Sadguru Netra Chikitsalaya"],
-    quickTip: "Gupt Godavari caves explore karne ke liye waterproof footwear pehnein."
+    quickTip: "Wear waterproof footwear to explore the Gupt Godavari caves."
   },
   "Deoria": {
     attractions: ["Deoraha Baba Ashram", "Somnath Mandir Deoria"],
     famousFood: ["Deoria Peda", "Litti Chokha", "Taal Makhana"],
     hotelAreas: ["Civil Lines", "Subhash Chowk"],
     hospitals: ["Maharshi Devraha Baba Medical College", "District Hospital Deoria"],
-    quickTip: "Deoraha Baba ashram Saryu nadi ke tat par ek shant spiritual sthal hai."
+    quickTip: "The Deoraha Baba ashram is a serene spiritual retreat on the banks of the Saryu."
   },
   "Etah": {
     attractions: ["Patna Bird Sanctuary", "Awagarh Fort", "Kailash Mandir Etah"],
     famousFood: ["Jalesar Bell Brass Craft", "Bedai Sabzi", "Ghewar"],
     hotelAreas: ["Shringarnagar", "Agra Road Etah"],
     hospitals: ["Viraangana Avanti Bai Autonomous Medical College", "District Hospital Etah"],
-    quickTip: "Jalesar se mandir ke brass ghante poore vishwa ke mandiron mein export hote hain."
+    quickTip: "Brass temple bells from Jalesar are exported to temples around the world."
   },
   "Etawah": {
     attractions: ["Etawah Safari Park", "National Chambal Sanctuary", "Victoria Memorial Hall Etawah"],
     famousFood: ["Etawah ke Gulab Jamun", "Kachori & Dubki Wale Aloo", "Peda"],
     hotelAreas: ["Safari Road", "Civil Lines Etawah", "Station Road"],
     hospitals: ["Saifai Medical College (U P Medical University)", "District Hospital Etawah"],
-    quickTip: "Chambal river safari boat ride mein freshwater dolphin aur ghariyal dekhne ko milte hain."
+    quickTip: "The Chambal river safari boat ride offers sightings of freshwater dolphins and gharials."
   },
   "Faizabad": {
     attractions: ["Gulab Bari Faizabad", "Bahu Begum Tomb", "Guptar Ghat"],

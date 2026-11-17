@@ -13,7 +13,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Bundelkhandi Thali", "Laphra", "Petha Dalmoth"],
     hotelAreas: ["Station Road", "Civil Lines", "Elite Crossing"],
     hospitals: ["Maharani Laxmi Bai Medical College", "District Hospital Jhansi"],
-    quickTip: "Jhansi Fort ke light and sound show mein Rani Laxmibai ki veer-gatha zaroor dekhein."
+    quickTip: "Be sure to catch the light and sound show at Jhansi Fort, which brings alive the heroic saga of Rani Laxmibai."
   },
   "Kannauj": {
     attractions: [
@@ -24,7 +24,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Kannauji Gulab Ittr Sweets", "Bedai Poori", "Khurchan"],
     hotelAreas: ["GT Road", "Sarafa Bazaar"],
     hospitals: ["Government Medical College Kannauj", "District Hospital Kannauj"],
-    quickTip: "Kannauj ko 'Perfume Capital of India' kaha jata hai, authentic Mitti Ittr zaroor lein."
+    quickTip: "Kannauj is celebrated as the 'Perfume Capital of India' — be sure to take home an authentic Mitti Ittr (earthen perfume)."
   },
   "Kanpur Dehat": {
     attractions: [
@@ -34,7 +34,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Desi Ghee Ladoo", "Peda", "Kachori Chhole"],
     hotelAreas: ["Akbarpur Mati", "Rura Highway"],
     hospitals: ["District Hospital Akbarpur Mati", "Community Health Center Rura"],
-    quickTip: "Bhitargaon Bharat ka sabse purana surakshit terracotta eenton ka mandir hai."
+    quickTip: "Bhitargaon is home to India's oldest surviving terracotta brick temple."
   },
   "Kanpur Nagar": {
     attractions: [
@@ -46,7 +46,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Thaggu ke Laddu", "Badnam Kulfi", "Kanpuri Biryani", "Sultani Dal"],
     hotelAreas: ["Civil Lines", "Mall Road", "Swaroop Nagar"],
     hospitals: ["GSVM Medical College", "Regency Hospital", "Hallet Hospital"],
-    quickTip: "Bithoor Ganga Ghat par sunset boat ride aur Nana Saheb Peshwa memorial visit karein."
+    quickTip: "Enjoy a sunset boat ride at the Bithoor Ganga Ghat and visit the Nana Saheb Peshwa memorial."
   },
   "Kasganj": {
     attractions: [
@@ -56,7 +56,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Soron ke Peda", "Samosa", "Rabri Ghewar"],
     hotelAreas: ["Station Road", "Soron Bypass"],
     hospitals: ["District Combined Hospital Kasganj", "Soron Community Health Centre"],
-    quickTip: "Soron Ganga kinare sthit tirth sthal hai jahan asthi visarjan aur snan ki manyata hai."
+    quickTip: "Soron is a sacred pilgrimage site on the banks of the Ganga, revered for ritual baths and the immersion of ashes."
   },
   "Kaushambi": {
     attractions: [
@@ -67,7 +67,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Allahabadi Surkha Guava", "Sattu Paratha", "Desi Jalebi"],
     hotelAreas: ["Manjhanpur Town", "GT Road Highway Hub"],
     hospitals: ["District Hospital Manjhanpur", "Combined Health Center Sirathu"],
-    quickTip: "Kara Dham 51 Shaktipeethon mein ahem sthan rakhta hai."
+    quickTip: "Kara Dham holds an important place among the 51 Shaktipeethas."
   },
   "Kushinagar": {
     attractions: [
@@ -79,7 +79,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Buddhist Vegetarian Thali", "Litti Chokha", "Chhena Peda"],
     hotelAreas: ["Buddhist Circuit Road", "Kushinagar Main Chowk"],
     hospitals: ["District Hospital Kushinagar", "Buddha Medical Trust Hospital"],
-    quickTip: "Yeh Bhagwan Buddha ka Mahaparinirvana sthal hai, yahan ka vatavaran behad shant hai."
+    quickTip: "This is where Lord Buddha attained Mahaparinirvana, and the atmosphere here is profoundly peaceful."
   },
   "Lakhimpur Kheri": {
     attractions: [
@@ -90,7 +90,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Ganne ki Kheer", "Dudhwa Honey", "Dal-Roti Thali"],
     hotelAreas: ["Palia Kalan (Near Dudhwa Gates)", "Lakhimpur City Center"],
     hospitals: ["District Hospital Lakhimpur", "Combined Hospital Palia"],
-    quickTip: "Dudhwa mein jungle safari ke liye pre-booking online forest portal se karein."
+    quickTip: "Pre-book your jungle safari at Dudhwa through the online forest portal."
   },
   "Lalitpur": {
     attractions: [
@@ -101,7 +101,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Bundelkhandi Kadhi Badi", "Mawa Gujiya", "Dal Bafla"],
     hotelAreas: ["Station Road", "Civil Lines Lalitpur"],
     hospitals: ["District Hospital Lalitpur", "Combined District Health Center"],
-    quickTip: "Deogarh Betwa nadi kinare ancient stone carvings ke liye famous hai."
+    quickTip: "Deogarh, on the banks of the Betwa River, is famed for its ancient stone carvings."
   },
   "Maharajganj": {
     attractions: [
@@ -112,7 +112,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Kalanamak Chawal Khichdi", "Litti Chokha", "Chhena"],
     hotelAreas: ["Nautanwa Road", "Maharajganj Chowk"],
     hospitals: ["District Hospital Maharajganj", "Community Health Center Anandnagar"],
-    quickTip: "Sonauli border (Nepal pravesh) yahan se kareeb hai."
+    quickTip: "The Sonauli border crossing into Nepal is close by."
   },
   "Mahoba": {
     attractions: [
@@ -123,7 +123,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Mahoba Desi Paan (Desawari)", "Laphra", "Kheer"],
     hotelAreas: ["Station Road Mahoba", "Civil Lines"],
     hospitals: ["District Hospital Mahoba", "Women Hospital Mahoba"],
-    quickTip: "Mahoba Alha-Udal ki veer nagari aur Desawari betel leaves ke liye prasiddh hai."
+    quickTip: "Mahoba is renowned as the land of the legendary heroes Alha-Udal and for its Desawari betel leaves."
   },
   "Mainpuri": {
     attractions: [
@@ -134,7 +134,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Mainpuri Wooden Tarkashi Work", "Dalmoth", "Bedai Sabzi"],
     hotelAreas: ["Station Road", "Agra-Mainpuri Bypass"],
     hospitals: ["Maharaja Tej Singh District Hospital", "Autonomous Medical College Mainpuri"],
-    quickTip: "Saman bird sanctuary sardiyon mein sarus cranes dekhne ke liye famous hai."
+    quickTip: "Saman Bird Sanctuary is famous for sarus crane sightings in the winter months."
   },
   "Mau": {
     attractions: [
@@ -145,7 +145,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Mau Handloom Saree Craft", "Tikki Chhole", "Malpua"],
     hotelAreas: ["Chowk Area", "Railway Station Road Mau"],
     hospitals: ["District Hospital Mau", "Sharda Narayan Hospital"],
-    quickTip: "Mau textile aur powerloom kapde ke manufacturing hub ke roop mein mashhoor hai."
+    quickTip: "Mau is well known as a manufacturing hub for textiles and powerloom fabrics."
   },
   "Meerut": {
     attractions: [
@@ -157,7 +157,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Meerut Gajak & Rewari", "Nan Khatai", "Amritsari Naan", "Tandoori Chaat"],
     hotelAreas: ["Delhi Road", "Cantonment Area", "Garh Road"],
     hospitals: ["LLRM Medical College", "Nutema Hospital", "Apollo Clinic Meerut"],
-    quickTip: "Sardhana mein Begum Samru dwara banwaya gaya 200 saal purana church dekhein."
+    quickTip: "Visit the 200-year-old church in Sardhana, commissioned by Begum Samru."
   },
   "Mirzapur": {
     attractions: [
@@ -169,7 +169,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Vindhyachal Peda", "Baati Chokha", "Chunar Clay Pottery Craft"],
     hotelAreas: ["Vindhyachal Temple Corridor", "Civil Lines Mirzapur", "Chunar Road"],
     hospitals: ["Maa Vindhyavasini Autonomous State Medical College", "District Hospital Mirzapur"],
-    quickTip: "Vindhyachal Trikon Parikrama (Vindhyavasini, Kali Khoh, Ashtabhuja) zaroor karein."
+    quickTip: "Be sure to complete the Vindhyachal triangle pilgrimage circuit (Vindhyavasini, Kali Khoh, Ashtabhuja)."
   },
   "Moradabad": {
     attractions: [
@@ -180,7 +180,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Moradabadi Moong Dal", "Murgh Biryani", "Gulab Jamun"],
     hotelAreas: ["Delhi Road Highway", "Civil Lines", "Station Road Moradabad"],
     hospitals: ["Teerthanker Mahaveer Medical College (TMU)", "District Hospital Moradabad"],
-    quickTip: "Peetal nagari hone ke naate yahan se brass antique items wholesale price par milte hain."
+    quickTip: "Fittingly known as the 'Brass City', Moradabad offers antique brass items at wholesale prices."
   },
   "Muzaffarnagar": {
     attractions: [
@@ -191,7 +191,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Muzaffarnagar Gur (Jaggery)", "Doodh Jalebi", "Tandoori Kulche"],
     hotelAreas: ["Bhopa Road", "Delhi-Dehradun Highway NH-58", "Civil Lines"],
     hospitals: ["Muzaffarnagar Medical College Begrajpur", "District Hospital Muzaffarnagar"],
-    quickTip: "Shukratal mein Maharshi Shukdev ji ne Raja Parikshit ko Shrimad Bhagwat katha sunayi thi."
+    quickTip: "At Shukratal, Maharshi Shukdev is said to have narrated the Shrimad Bhagwat to King Parikshit."
   },
   "Pilibhit": {
     attractions: [
@@ -202,7 +202,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Handmade Wooden Flutes (Bansuri)", "Desi Ghee ki Tikki", "Kheer"],
     hotelAreas: ["Station Road Pilibhit", "Chuka Eco Tourism Resort Huts"],
     hospitals: ["Autonomous State Medical College Pilibhit", "District Hospital Pilibhit"],
-    quickTip: "Chuka beach Sharda Sagar dam ke kinare forest huts mein rukne ka behtareen experience deta hai."
+    quickTip: "Staying in the forest huts at Chuka Beach, beside the Sharda Sagar Dam, is an unforgettable experience."
   },
   "Pratapgarh": {
     attractions: [
@@ -213,7 +213,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Pratapgarh Amla Murabba & Candy", "Litti Chokha", "Peda"],
     hotelAreas: ["Civil Lines Pratapgarh", "Station Road"],
     hospitals: ["Autonomous State Medical College Pratapgarh", "District Hospital Pratapgarh"],
-    quickTip: "Pratapgarh Bharat ka Amla capital hai, pure amla murabba zaroor try karein."
+    quickTip: "Pratapgarh is India's amla capital — be sure to try the pure amla murabba."
   },
   "Rae Bareli": {
     attractions: [
@@ -224,7 +224,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Desi Chai with Samosa", "Litti Chokha", "Peda"],
     hotelAreas: ["Civil Lines Rae Bareli", "Lucknow Highway Bypass"],
     hospitals: ["AIIMS Rae Bareli", "District Hospital Rae Bareli"],
-    quickTip: "AIIMS Rae Bareli Lucknow route par high-tech healthcare facility pradan karta hai."
+    quickTip: "AIIMS Rae Bareli provides a high-tech healthcare facility on the Lucknow route."
   },
   "Rampur": {
     attractions: [
@@ -235,7 +235,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Rampuri Kebab", "Taar Korma", "Habshi Halwa", "Rampuri Chaura"],
     hotelAreas: ["Civil Lines", "Bareilly Road", "Station Area"],
     hospitals: ["District Hospital Rampur", "Apex Hospital Rampur"],
-    quickTip: "Raza Library mein Mughal shasakon ke dauran ke durlabh hastlikhit granth maujood hain."
+    quickTip: "The Raza Library houses rare handwritten manuscripts from the era of the Mughal rulers."
   },
   "Saharanpur": {
     attractions: [
@@ -246,7 +246,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Saharanpur Wooden Handicrafts", "Kachori & Dubki Aloo", "Ghewar"],
     hotelAreas: ["Court Road", "Delhi Road", "Railway Station Circle"],
     hospitals: ["Sheikh-Ul-Hind Maulana Mahmood Hasan Medical College", "District Hospital Saharanpur"],
-    quickTip: "Shakumbhari Devi mandir Shivalik pahadiyon ke beech khubsurat ghati mein sthit hai."
+    quickTip: "The Shakumbhari Devi temple is set in a beautiful valley amid the Shivalik hills."
   },
   "Sambhal": {
     attractions: [
@@ -257,7 +257,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Bone & Horn Craft Products", "Biryani", "Doodh Jalebi"],
     hotelAreas: ["Chandausi Road", "Sambhal Main Market"],
     hospitals: ["District Hospital Sambhal", "Community Health Center Chandausi"],
-    quickTip: "Puranik granthon ke mutabik Kalki bhagwan ka avtaran sthal Sambhal bataya gaya hai."
+    quickTip: "According to ancient scriptures, Sambhal is believed to be the future birthplace of Lord Kalki."
   },
   "Sant Kabir Nagar": {
     attractions: [
@@ -268,7 +268,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Bakhira Brass Utensils", "Litti Chokha", "Peda"],
     hotelAreas: ["Khalilabad Station Road", "Gorakhpur-Lucknow Highway"],
     hospitals: ["District Hospital Khalilabad", "Combined Hospital Sant Kabir Nagar"],
-    quickTip: "Maghar mein Sant Kabir Das ji ne apne aakhri saans liye the."
+    quickTip: "Maghar is where Sant Kabir Das spent his final days."
   },
   "Shahjahanpur": {
     attractions: [
@@ -279,7 +279,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Desi Chai with Mathri", "Shahjahanpuri Dalmoth", "Peda"],
     hotelAreas: ["Town Hall Area", "Station Road", "Bareilly Highway"],
     hospitals: ["Autonomous State Medical College Shahjahanpur", "District Male Hospital"],
-    quickTip: "Hanumat Dham river island par bani 104 feet unchi murti dekhne layak hai."
+    quickTip: "The 104-foot statue at Hanumat Dham, set on a river island, is well worth seeing."
   },
   "Shamli": {
     attractions: [
@@ -289,7 +289,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Shamli Jaggery & Sugarcane Juice", "Tandoori Roti Sabzi", "Kachori"],
     hotelAreas: ["Delhi-Saharanpur Highway", "Shamli Chowk"],
     hospitals: ["District Hospital Shamli", "Community Health Center Kairana"],
-    quickTip: "Kairana Hindustani classical music ke prasiddh 'Kirana Gharana' ki janam-bhoomi hai."
+    quickTip: "Kairana is the birthplace of the renowned 'Kirana Gharana' of Hindustani classical music."
   },
   "Shravasti": {
     attractions: [
@@ -301,7 +301,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Buddhist Pure Vegetarian Food", "Kheer", "Peda"],
     hotelAreas: ["Buddhist Pilgrim Hub", "Bhinga Town", "Balrampur Route"],
     hospitals: ["District Hospital Bhinga", "Combined Health Center Shravasti"],
-    quickTip: "Bhagwan Buddha ne sabse zyada varshavaas (monsoon retreats) Shravasti ke Jetavana mein bitaye the."
+    quickTip: "Lord Buddha spent the greatest number of his monsoon retreats at Jetavana in Shravasti."
   },
   "Siddharthnagar": {
     attractions: [
@@ -312,7 +312,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["GI-Tagged Kalanamak Rice (Buddha Rice)", "Litti Chokha", "Peda"],
     hotelAreas: ["Naugarh Station Road", "Kapilvastu Base"],
     hospitals: ["Autonomous State Medical College Siddharthnagar", "District Hospital Naugarh"],
-    quickTip: "Yahan ka Kalanamak rice apni shandaar sugandh aur poshak tatvon ke liye GI-tag prapt hai."
+    quickTip: "The local Kalanamak rice holds a GI tag for its exceptional aroma and rich nutritional value."
   },
   "Sitapur": {
     attractions: [
@@ -324,7 +324,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Sitapuri Peda & Rabri", "Chakratirth Prasad Khichdi", "Kachori Aloo"],
     hotelAreas: ["Naimisharanya Dharamsalas", "Sitapur City Center", "Lucknow-Sitapur Highway"],
     hospitals: ["District Hospital Sitapur", "Sitapur Eye Hospital (Asia's Historic Eye Care)"],
-    quickTip: "Naimisharanya 88,000 rishiyon ki tapobhoomi maani jaati hai."
+    quickTip: "Naimisharanya is revered as the sacred ground where 88,000 sages once meditated."
   },
   "Sonbhadra": {
     attractions: [
@@ -336,7 +336,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Baati Chokha", "Tribal Herbal Dishes", "Gulab Jamun"],
     hotelAreas: ["Robertsganj Town", "Anpara & Renukoot Guest Houses"],
     hospitals: ["District Hospital Robertsganj", "Hindalco Hospital Renukoot"],
-    quickTip: "Salkhan Fossil Park mein 1.4 Arab saal purane vriksha jeevashm maujood hain."
+    quickTip: "Salkhan Fossil Park is home to tree fossils estimated to be 1.4 billion years old."
   },
   "Sultanpur": {
     attractions: [
@@ -347,7 +347,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Gomti Riverfront Chaat", "Sultanpur Peda", "Samosa"],
     hotelAreas: ["Civil Lines Sultanpur", "Station Road"],
     hospitals: ["Autonomous State Medical College Sultanpur", "District Hospital Sultanpur"],
-    quickTip: "Vijethua Dham mein Hanuman ji ne Kalnemi daitya ka vadh kiya tha."
+    quickTip: "Vijethua Dham is where Lord Hanuman is said to have slain the demon Kalnemi."
   },
   "Unnao": {
     attractions: [
@@ -358,7 +358,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Unnao ke Dahi Jalebi", "Leather Craft Products", "Samosa Sabzi"],
     hotelAreas: ["Kanpur-Lucknow Highway NH-27", "Unnao Station Road"],
     hospitals: ["District Hospital Unnao", "Combined Health Center Nawabganj"],
-    quickTip: "Pariyar mein Mata Sita ne apne banwas ke dauran sharan li thi aur Luv-Kush ka janam hua tha."
+    quickTip: "Pariyar is where Goddess Sita is believed to have taken refuge during her exile, and where Luv and Kush were born."
   },
 
   // =========================================================================
@@ -372,7 +372,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Makki Di Roti Sarson Da Saag", "Dal Makhani", "Sweet Lassi"],
     hotelAreas: ["College Road", "Kachehri Chowk"],
     hospitals: ["Civil Hospital Barnala", "Adesh Hospital"],
-    quickTip: "Textile aur agro equipment manufacturing ke liye Barnala jaana jaata hai."
+    quickTip: "Barnala is known for its textile and agro-equipment manufacturing."
   },
   "Bathinda": {
     attractions: [
@@ -384,7 +384,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Bathinda Lassi & Pinni", "Chana Kulcha", "Tandoori Chicken"],
     hotelAreas: ["Mall Road Bathinda", "Civil Lines", "Talwandi Sabo Base"],
     hospitals: ["AIIMS Bathinda", "Civil Hospital Bathinda", "Max Super Speciality Hospital Bathinda"],
-    quickTip: "Qila Mubarak wahi killa hai jahan Razia Sultan ko kaid kiya gaya tha."
+    quickTip: "Qila Mubarak is the historic fort where Razia Sultan was once imprisoned."
   },
   "Faridkot": {
     attractions: [
@@ -395,7 +395,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Punjabi Kadhi Chawal", "Pinni", "Amritsari Kulcha"],
     hotelAreas: ["Talwandi Road", "Civil Lines"],
     hospitals: ["Guru Gobind Singh Medical College & Hospital (GGS)", "Civil Hospital Faridkot"],
-    quickTip: "Tilla Baba Farid par har saal sufi mela aayojit hota hai."
+    quickTip: "A Sufi fair is held at Tilla Baba Farid every year."
   },
   "Fatehgarh Sahib": {
     attractions: [
@@ -406,7 +406,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Guru Ka Langar", "Malai Kulfi", "Sirhind Special Pinni"],
     hotelAreas: ["GT Road Sirhind", "Fatehgarh Sahib Complex"],
     hospitals: ["Civil Hospital Fatehgarh Sahib", "Indus Hospital Sirhind"],
-    quickTip: "Yeh chhotte Sahibzaadon (Baba Zorawar Singh aur Baba Fateh Singh) ki shahadat ka pavitra sthal hai."
+    quickTip: "This is the sacred site where the younger Sahibzadas, Baba Zorawar Singh and Baba Fateh Singh, were martyred."
   },
   "Fazilka": {
     attractions: [
@@ -417,7 +417,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Tosha (Famous Sweet)", "Golgappe with 5 Waters", "Bikaneri Bhujia"],
     hotelAreas: ["Clock Tower Chowk", "Abohar Highway"],
     hospitals: ["Civil Hospital Fazilka", "Sanjeevani Hospital"],
-    quickTip: "Sadqi Border par Wagah ki tarah hi Indo-Pak retreat ceremony hoti hai."
+    quickTip: "The Sadqi Border hosts an Indo-Pak retreat ceremony much like the one at Wagah."
   },
   "Ferozepur": {
     attractions: [
@@ -429,7 +429,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Hussainiwala Kulfi", "Punjabi Samosa", "Lassi"],
     hotelAreas: ["Cantonment Area", "Mall Road Ferozepur", "Station Road"],
     hospitals: ["Civil Hospital Ferozepur Cantt", "Frances Newton Hospital"],
-    quickTip: "Hussainiwala mein Shaheed Bhagat Singh, Sukhdev aur Rajguru ki samadhi sthit hai."
+    quickTip: "Hussainiwala is home to the memorial of martyrs Bhagat Singh, Sukhdev and Rajguru."
   },
   "Gurdaspur": {
     attractions: [
@@ -440,7 +440,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Gurdaspuri Peda", "Makki Roti Saag", "Kadhi Pakora"],
     hotelAreas: ["Tibri Road", "Batala Road"],
     hospitals: ["Civil Hospital Gurdaspur", "Babbar Hospital"],
-    quickTip: "Dera Baba Nanak se Kartarpur Sahib Gurudwara Darshan view point uplabdh hai."
+    quickTip: "From Dera Baba Nanak, a viewpoint offers a clear view of Kartarpur Sahib Gurudwara."
   },
   "Hoshiarpur": {
     attractions: [
@@ -451,7 +451,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Hoshiarpur Wooden Inlay Craft", "Amritsari Kulcha", "Mango Shake"],
     hotelAreas: ["Mall Road", "Jalandhar Road"],
     hospitals: ["Civil Hospital Hoshiarpur", "Shivam Hospital"],
-    quickTip: "Hoshiarpur Shivalik pahadiyon ki god mein wooden inlay art ke liye mashhoor hai."
+    quickTip: "Nestled in the lap of the Shivalik hills, Hoshiarpur is famed for its wooden inlay art."
   },
   "Jalandhar": {
     attractions: [
@@ -463,7 +463,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["World-class Sports Goods", "Chhole Bhature at Model Town", "Kharode Da Soup", "Matka Kulfi"],
     hotelAreas: ["Model Town", "GT Road", "Civil Lines"],
     hospitals: ["Tagore Hospital & Heart Institute", "Civil Hospital Jalandhar", "Sacred Heart Hospital"],
-    quickTip: "Cricket bat aur sports equipment khareedne ke liye Basti Nau Sports Market sabse badi mandi hai."
+    quickTip: "Basti Nau Sports Market is the largest marketplace for buying cricket bats and sports equipment."
   },
   "Kapurthala": {
     attractions: [
@@ -475,7 +475,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Shahi Paneer Naan", "Pinni", "Kapurthala Lassi"],
     hotelAreas: ["Mall Road", "Jalandhar-Kapurthala Road"],
     hospitals: ["Civil Hospital Kapurthala", "Guru Nanak Hospital"],
-    quickTip: "Kapurthala ko 'Paris of Punjab' kaha jata hai uske French style mehalon ke kaaran."
+    quickTip: "Kapurthala is called the 'Paris of Punjab' for its French-style palaces."
   },
   "Malerkotla": {
     attractions: [
@@ -486,7 +486,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Malerkotla Seekh Kebab", "Biryani", "Badana Sweet"],
     hotelAreas: ["Ludhiana Bypass", "Satta Chowk"],
     hospitals: ["Civil Hospital Malerkotla", "Dr. Hira Singh Eye Hospital"],
-    quickTip: "Malerkotla Punjab ka pramukh nawabi aur cultural heritage center hai."
+    quickTip: "Malerkotla is a prominent centre of nawabi and cultural heritage in Punjab."
   },
   "Mansa": {
     attractions: [
@@ -496,7 +496,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Makki Roti Saag", "Cotton Belt Pure Milk Tea", "Kachori"],
     hotelAreas: ["Cinema Road", "Station Road Mansa"],
     hospitals: ["Civil Hospital Mansa", "Janata Hospital"],
-    quickTip: "Mansa ko Punjab ke white cotton belt ke roop mein pehchana jata hai."
+    quickTip: "Mansa is recognised as Punjab's white cotton belt."
   },
   "Moga": {
     attractions: [
@@ -507,7 +507,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Moga Pure Desi Ghee Sweets", "Kulcha Chhole", "Kulfi"],
     hotelAreas: ["GT Road Moga", "Main Chowk"],
     hospitals: ["Civil Hospital Moga", "Medicity Hospital Moga"],
-    quickTip: "Moga dairy aur agro packaging industries ke liye kafi famous hai."
+    quickTip: "Moga is widely known for its dairy and agro-packaging industries."
   },
   "Muktsar (Sri Muktsar Sahib)": {
     attractions: [
@@ -518,7 +518,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Muktsari Jutti Craft", "Sarson Saag Makki Roti", "Pinni"],
     hotelAreas: ["Malout Road", "Bhai Maha Singh Hall Area"],
     hospitals: ["Civil Hospital Sri Muktsar Sahib", "Adesh Charitable Hospital"],
-    quickTip: "Chalis Mukte (40 Shaheedon) ki yaad mein yahan Maghi Mela aayojit hota hai."
+    quickTip: "The Maghi Mela is held here in memory of the Chalis Mukte (forty martyrs)."
   },
   "Pathankot": {
     attractions: [
@@ -530,7 +530,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Pathankot Chana Bhatura", "Tandoori Trout Fish", "Peda"],
     hotelAreas: ["Dalhousie Road", "Railway Station Circle", "Defense Road"],
     hospitals: ["Civil Hospital Pathankot", "Amandeep Multispeciality Hospital Pathankot"],
-    quickTip: "Himachal (Dharamshala, Dalhousie) aur J&K jane ke liye Pathankot mukhya gateway hai."
+    quickTip: "Pathankot is the main gateway to Himachal Pradesh (Dharamshala, Dalhousie) and Jammu & Kashmir."
   },
   "Patiala": {
     attractions: [
@@ -542,7 +542,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Patiala Shahi Lassi", "Patiala Shahi Turban & Jutti", "Butter Chicken", "Amritsari Kulcha"],
     hotelAreas: ["Mall Road", "Baradari", "Leela Bhawan"],
     hospitals: ["Government Rajindra Hospital", "Columbia Asia / Manipal Hospital Patiala"],
-    quickTip: "Patiala jutti aur phulkari dupatta shopping ke liye Adalat Bazaar best jagah hai."
+    quickTip: "Adalat Bazaar is the best place to shop for Patiala juttis and phulkari dupattas."
   },
   "Rupnagar (Ropar)": {
     attractions: [
@@ -554,7 +554,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Sutlej River Fresh Fish", "Kulcha Chhole", "Pinni"],
     hotelAreas: ["Sutlej Waterfront Resorts", "Nangal Road Ropar"],
     hospitals: ["Civil Hospital Ropar", "Parmar Hospital"],
-    quickTip: "Virasat-e-Khalsa Anandpur Sahib mein Sikh itihas ka anokha museum hai."
+    quickTip: "Virasat-e-Khalsa in Anandpur Sahib is a one-of-a-kind museum of Sikh history."
   },
   "Sahibzada Ajit Singh Nagar (Mohali)": {
     attractions: [
@@ -565,7 +565,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Butter Chicken", "Amritsari Naan", "Tandoori Platter", "Cafes in Phase 3B2 & Sector 70"],
     hotelAreas: ["Phase 3B2 Hub", "Sector 70", "Aerocity Airport Road"],
     hospitals: ["Fortis Hospital Mohali", "Max Super Speciality Hospital Mohali", "Ivy Hospital"],
-    quickTip: "Fateh Burj Bharat ka sabse uncha victory minar (328 ft) hai."
+    quickTip: "Fateh Burj is India's tallest victory tower, standing 328 ft high."
   },
   "Sangrur": {
     attractions: [
@@ -576,7 +576,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Makki Di Roti", "Desi Chai", "Pinni"],
     hotelAreas: ["Patiala Road", "Dhuri Road"],
     hospitals: ["Civil Hospital Sangrur", "PGI Satellite Centre Sangrur"],
-    quickTip: "Jind riyasat ke dauran banaya gaya Banasar Bagh ek shant garden retreat hai."
+    quickTip: "Banasar Bagh, built during the era of the Jind princely state, is a tranquil garden retreat."
   },
   "Shahid Bhagat Singh Nagar (Nawanshahr)": {
     attractions: [
@@ -586,7 +586,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Sarson Ka Saag", "Punjabi Dal Fry", "Lassi"],
     hotelAreas: ["Banga Road", "Chandigarh Highway"],
     hospitals: ["Civil Hospital Nawanshahr", "Guru Nanak Mission Hospital Dhahan Kaleran"],
-    quickTip: "Khatkar Kalan museum Shaheed Bhagat Singh ke jeevan ki yaadon se bhara hai."
+    quickTip: "The Khatkar Kalan museum is filled with memories from the life of Shaheed Bhagat Singh."
   },
   "Tarn Taran": {
     attractions: [
@@ -597,7 +597,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Guru Ka Langar", "Tarn Taran Jalebi", "Amritsari Kulcha"],
     hotelAreas: ["Amritsar Road", "Darbar Sahib Complex"],
     hospitals: ["Civil Hospital Tarn Taran", "Guru Nanak Dev Super Speciality Hospital"],
-    quickTip: "Tarn Taran Sarovar ka ghera duniya mein kisi bhi Gurudware se sabse bada hai."
+    quickTip: "The sarovar at Tarn Taran is the largest of its kind at any Gurudwara in the world."
   },
 
   // =========================================================================
@@ -612,7 +612,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Bilaspuri Dham", "Madra", "Sweet Poldu"],
     hotelAreas: ["Lake View Circuit", "Naina Devi Base"],
     hospitals: ["AIIMS Bilaspur (Kothipura)", "Regional Hospital Bilaspur"],
-    quickTip: "Naina Devi temple par pahunchne ke liye cable car ropeway ka prayog karein."
+    quickTip: "Take the cable car ropeway to reach the Naina Devi temple."
   },
   "Chamba": {
     attractions: [
@@ -624,7 +624,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Chamba Chukh (Spicy Chili Paste)", "Chamba Madra", "Chamba Rumaal Craft"],
     hotelAreas: ["Dalhousie Mall Road", "Khajjiar Meadows", "Chamba Town"],
     hospitals: ["Pt. Jawaharlal Nehru Govt Medical College Chamba", "Civil Hospital Dalhousie"],
-    quickTip: "Khajjiar ke devdar vanon ke beech horse riding aur paragliding zaroor try karein."
+    quickTip: "Be sure to try horse riding and paragliding among the deodar forests of Khajjiar."
   },
   "Hamirpur (HP)": {
     attractions: [
@@ -635,7 +635,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Kangri Dham", "Khatta Meat", "Bhaturu with Dal"],
     hotelAreas: ["Gandhi Chowk", "Deotsidh Temple Road"],
     hospitals: ["Dr. Radhakrishnan Govt Medical College Hamirpur", "Civil Hospital Nadaun"],
-    quickTip: "Baba Balak Nath ji ki pawan gufa Deotsidh mein sthit hai jahan har saal mela lagta hai."
+    quickTip: "The sacred cave of Baba Balak Nath lies at Deotsidh, where a fair is held every year."
   },
   "Kinnaur": {
     attractions: [
@@ -647,7 +647,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Kinnauri Golden Apples", "Chulli (Wild Apricot Oil)", "Thukpa", "Ogla & Phafra Bread"],
     hotelAreas: ["Kalpa Viewpoint", "Sangla Riverside Camps", "Reckong Peo"],
     hospitals: ["Regional Hospital Reckong Peo", "Community Health Center Sangla"],
-    quickTip: "Kalpa se sunrise ke samay Kinner Kailash Shivling ka rang badalte dekhna advitiya hai."
+    quickTip: "Watching the colours of the Kinner Kailash Shivling shift at sunrise from Kalpa is a matchless experience."
   },
   "Lahaul & Spiti": {
     attractions: [
@@ -660,7 +660,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Spiti Seabuckthorn Tea", "Thukpa & Tingmo", "Tibetan Butter Tea", "Siddu"],
     hotelAreas: ["Kaza Main Market", "Sissu Valley Homestays", "Jispa Riverside Camps"],
     hospitals: ["Community Health Centre Kaza", "Regional Hospital Keylong"],
-    quickTip: "Hikkim post office se apne ghar ke liye ek handwritten postcard zaroor bhejein!"
+    quickTip: "Be sure to mail a handwritten postcard home from the world's highest post office at Hikkim!"
   },
   "Mandi": {
     attractions: [
@@ -672,7 +672,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Sepu Badi Madra", "Mandi Dham", "Kachori with spicy tamarind chutney"],
     hotelAreas: ["Mandi Town Center", "Rewalsar Lakefront", "Barot Camps"],
     hospitals: ["Shri Lal Bahadur Shastri Govt Medical College Nerchowk Mandi", "Zonal Hospital Mandi"],
-    quickTip: "Prashar Lake ka 360-degree Dhauladhar snow view camera mein behad khoobsurat aata hai."
+    quickTip: "The 360-degree view of the snow-clad Dhauladhars from Prashar Lake is incredibly photogenic."
   },
   "Sirmaur": {
     attractions: [
@@ -684,7 +684,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Sirmauri Patande (Pahari Pancakes)", "Lushke", "Madra"],
     hotelAreas: ["Paonta Sahib Yamuna Ghat", "Nahan Heritage Town", "Renukaji"],
     hospitals: ["Dr. Y.S. Parmar Govt Medical College Nahan", "Civil Hospital Paonta Sahib"],
-    quickTip: "Renuka Lake Bharat ki sabse badi natural lake hai jiska aakar leti hui mahila jaisa hai."
+    quickTip: "Renuka Lake is India's largest natural lake, its outline said to resemble a reclining woman."
   },
   "Solan": {
     attractions: [
@@ -696,7 +696,7 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Mushroom City Dishes", "Bun Samosa Solan", "Pahari Siddu", "Fruit Wines"],
     hotelAreas: ["Kasauli Mall Road & Upper Mall", "Chail Resorts", "Solan Mall Road"],
     hospitals: ["Maharishi Markandeshwar Medical College Kumarhatti", "Regional Hospital Solan"],
-    quickTip: "Kasauli mein sunset point aur heritage Christ Church walk ka shaant anubhav lein."
+    quickTip: "Soak in the tranquil experience of the sunset point and a heritage walk around Christ Church in Kasauli."
   },
   "Una": {
     attractions: [
@@ -708,6 +708,6 @@ Object.assign(window.DISTRICT_LEVEL_DETAILS, {
     famousFood: ["Madra", "Dham", "Kachori Chhole"],
     hotelAreas: ["Chintpurni Temple Hub", "Una Station Road"],
     hospitals: ["Regional Hospital Una", "Civil Hospital Amb"],
-    quickTip: "Maa Chintpurni darshan ke baad temple corridor se prasad aur souvenir shopping karein."
+    quickTip: "After darshan at Maa Chintpurni, browse for prasad and souvenirs along the temple corridor."
   }
 });
